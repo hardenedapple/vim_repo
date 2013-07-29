@@ -238,6 +238,22 @@ let g:pymode_syntax_print_as_function = 1
 " map pk to run pymode lint
 noremap <leader>pk :PyLint<CR>
 " }}}
+
+" {{{ Gundo plugin
+nnoremap <F5> :GundoToggle<CR>
+" }}} 
+
+" {{{ CtrlP plugin
+" Change where ctrlp opens the files, what file it looks for and how it
+" searches
+let g:ctrlp_switch_buffer = 'Et'
+let g:ctrlp_tabpage_position = 'ac'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_open_multiple_files = '2tr'
+let g:ctrlp_arg_map = 1
+let g:ctrlp_extensions = ['dir', 'buffertag', 'tag', 'changes', 'line']
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
