@@ -8,7 +8,6 @@ comment importing urllib.request"""
 
 
 # from __future__ import print_function
-import getpass
 import os.path as path
 import re
 import shutil
@@ -18,15 +17,10 @@ import urllib.request as urlreq
 import zipfile
 
 
-def get_zipfile(user, password, tem_dir):
+def get_zipfile(tem_dir):
     """Download pathogen.vim as a zipfile"""
     pathurl = 'https://github.com/tpope/vim-pathogen/archive/master.zip'
     req = urlreq.Request(pathurl)
-    password_manager = urlreq.HTTPPasswordMgrWithDefaultRealm()
-    password_manager.add_password(None, pathurl, user, password)
-    auth_manager = urlreq.HTTPBasicAuthHandler(password_manager)
-    opener = urlreq.build_opener(auth_manager)
-    urlreq.install_opener(opener)
     handler = urlreq.urlopen(req)
     zippedfile = path.join(tem_dir, 'zipathogen')
     with open(zippedfile, 'wb') as mytmp:
@@ -45,10 +39,7 @@ def extract_zipfile(zippedfile, tem_dir):
 
 def put_files(temp_files):
     """Given list of files, move into relative directories in vim dir"""
-    splittedfiles = [path.split(f) for f in temp_files]
-    double_split = [path.split(d[0]) for d in splittedfiles]
-    vimfiles = [path.join('vim', d[1], s[1]) for d, s
-                in zip(double_split, splittedfiles)]
+    vimfiles = [path.join('vim', st[st.find('/') + 1:]) for st in temp_files]
     for f, v in zip(temp_files, vimfiles):
         # Print out filename so I know if something's gone wrong
         print(shutil.move(f, v))
@@ -58,7 +49,7 @@ if __name__ == '__main__':
     # public repo - don't need a password
     temp_dir = tempfile.mkdtemp()
     try:
-        zipp = get_zipfile('user', 'password', temp_dir)
+        zipp = get_zipfile(temp_dir)
         taken_files = extract_zipfile(zipp, temp_dir)
         put_files(taken_files)
     finally:
