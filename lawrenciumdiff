@@ -1,0 +1,18 @@
+diff --git a/plugin/lawrencium.vim b/plugin/lawrencium.vim
+--- a/plugin/lawrencium.vim
++++ b/plugin/lawrencium.vim
+@@ -843,12 +843,12 @@
+         nnoremap <buffer> <silent> <C-U> :Hgstatusdiffsum<cr>
+         nnoremap <buffer> <silent> <C-H> :Hgstatusvdiffsum<cr>
+         nnoremap <buffer> <silent> <C-A> :Hgstatusaddremove<cr>
+-        nnoremap <buffer> <silent> <C-S> :Hgstatuscommit<cr>
++        nnoremap <buffer> <silent> <C-X> :Hgstatuscommit<cr>
+         nnoremap <buffer> <silent> <C-R> :Hgstatusrefresh<cr>
+         nnoremap <buffer> <silent> q     :bdelete!<cr>
+ 
+         vnoremap <buffer> <silent> <C-A> :Hgstatusaddremove<cr>
+-        vnoremap <buffer> <silent> <C-S> :Hgstatuscommit<cr>
++        vnoremap <buffer> <silent> <C-X> :Hgstatuscommit<cr>
+     endif
+ endfunction
+ 

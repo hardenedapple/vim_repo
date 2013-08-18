@@ -1,4 +1,7 @@
 My vim dir so that I can easily get my working environment wherever I roam.
+NOTE-TO-SELF: vim-lawrencium maps <C-S> to Hgcommit when in status window - terminal overrides this with 'freeze'
+              not sure how I can simply change it without going into the plugin itself - remember to use the 'lawrenciumdiff'
+              patch when using this repo
 
 Everything interesting comes from somewhere else - google 'vim <dir>' for any dir in the bundle directory.
 Pathogen.vim is indispensible for making sense without a package manager.
