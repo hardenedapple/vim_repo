@@ -1,0 +1,1173 @@
+diff -ruN ./colors/autumn2.vim /home/apple/share/repos/vim_repo/vim/colors/autumn2.vim
+--- ./colors/autumn2.vim	2013-08-18 13:44:18.270383754 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/autumn2.vim	2013-07-27 19:19:11.008922281 +0100
+@@ -8,7 +8,7 @@
+         syntax reset
+ endif
+ 
+-let colors_name = "autumn"
++let colors_name = "autumn2"
+ 
+ hi Normal       term=none      cterm=none ctermfg=black         ctermbg=White           gui=none guifg=Black            guibg=#f0f2f0
+ hi Cursor       term=none      cterm=none ctermfg=white         ctermbg=darkgrey        gui=none guifg=black            guibg=red
+diff -ruN ./colors/autumnleaf.vim /home/apple/share/repos/vim_repo/vim/colors/autumnleaf.vim
+--- ./colors/autumnleaf.vim	2013-08-18 13:44:18.270383754 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/autumnleaf.vim	2013-07-27 19:19:11.008922281 +0100
+@@ -12,7 +12,7 @@
+     syntax reset
+ endif
+ 
+-let colors_name="AutumnLeaf"
++let colors_name="autumnleaf"
+ 
+ 
+ " Colors for the User Interface.
+diff -ruN ./colors/blackbeauty.vim /home/apple/share/repos/vim_repo/vim/colors/blackbeauty.vim
+--- ./colors/blackbeauty.vim	2013-08-18 13:44:18.273717069 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/blackbeauty.vim	2013-07-27 19:19:11.008922281 +0100
+@@ -9,7 +9,7 @@
+    syntax reset 
+ endif
+ 
+-let g:colors_name = "koehler"
++let g:colors_name = "blackbeauty"
+ hi Normal		  guifg=white  guibg=black
+ hi Scrollbar	  guibg=darkgray guifg=darkgray
+ hi Menu			  guifg=black guibg=gray
+diff -ruN ./colors/blacksea.vim /home/apple/share/repos/vim_repo/vim/colors/blacksea.vim
+--- ./colors/blacksea.vim	2013-08-18 13:44:18.277050385 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/blacksea.vim	2013-07-27 19:19:11.008922281 +0100
+@@ -12,7 +12,7 @@
+ if exists("syntax_on")
+   syntax reset
+ endif
+-let g:colors_name = "BlackSea"
++let g:colors_name = "blacksea"
+ 
+ hi Normal guibg=Black guifg=seashell ctermfg=White
+ hi NonText guifg=LavenderBlush ctermfg=LightMagenta
+diff -ruN ./colors/bluegreen.vim /home/apple/share/repos/vim_repo/vim/colors/bluegreen.vim
+--- ./colors/bluegreen.vim	2013-08-18 13:44:18.270383754 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/bluegreen.vim	2013-07-27 19:19:11.008922281 +0100
+@@ -14,7 +14,7 @@
+ if exists("syntax_on")
+     syntax reset
+ endif
+-let g:colors_name="mine"
++let g:colors_name="bluegreen"
+ 
+ hi Normal       guifg=White guibg=#061A3E
+ 
+diff -ruN ./colors/chocolateliquor.vim /home/apple/share/repos/vim_repo/vim/colors/chocolateliquor.vim
+--- ./colors/chocolateliquor.vim	2013-08-18 13:44:18.270383754 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/chocolateliquor.vim	2013-07-27 19:19:11.012255596 +0100
+@@ -14,7 +14,7 @@
+ if exists("syntax_on")
+   syntax reset
+ endif
+-let g:colors_name = "ChocolateLiquor"
++let g:colors_name = "chocolateliquor"
+ 
+ hi Normal guibg=#3f1f1f guifg=PapayaWhip ctermfg=White
+ hi NonText guibg=#1f0f0f guifg=Brown2 ctermfg=Brown ctermbg=Black
+diff -ruN ./colors/euphrasia.vim /home/apple/share/repos/vim_repo/vim/colors/euphrasia.vim
+--- ./colors/euphrasia.vim	1970-01-01 01:00:00.000000000 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/euphrasia.vim	2013-07-27 18:50:44.224835391 +0100
+@@ -0,0 +1,397 @@
++" euphrasia
++" colour scheme for Vim & GVIM
++" tty friendly
++" Author:  bohoomil
++" Date:    October, 2012
++" Release: 1.0
++"
++" This theme is supposed to be used
++" with the euphrasia .Xdefaults colour settings.
++" The GUI part is .Xdefaults independent.
++
++set background=dark
++hi clear
++if exists("syntax_on")
++    syntax reset
++endif
++
++let g:colors_name="euphrasia"
++
++"
++" terminal zone
++"
++if &t_Co > 255
++	hi Normal                  ctermfg=none
++	hi Boolean                 ctermfg=13
++	hi Character               ctermfg=15
++	hi Comment                 ctermfg=8    ctermbg=none cterm=none
++	hi Conditional             ctermfg=6
++	hi Constant                ctermfg=3
++	hi Cursor                               ctermbg=2
++	hi Debug                   ctermfg=13
++	hi Define                  ctermfg=11
++	hi Delimiter               ctermfg=8
++	hi DiffLine                ctermfg=4 
++	hi DiffOldLine             ctermfg=1    ctermbg=none
++	hi DiffOldFile             ctermfg=1    ctermbg=none
++	hi DiffNewFile             ctermfg=2    ctermbg=none
++	hi DiffAdd                 ctermfg=10   ctermbg=none
++	hi DiffAdded               ctermfg=10   ctermbg=none
++	hi DiffDelete              ctermfg=1    ctermbg=none
++	hi DiffRemoved             ctermfg=1    ctermbg=none
++	hi DiffChange              ctermfg=6    ctermbg=none
++	hi DiffChanged             ctermfg=6    ctermbg=none
++	hi DiffText                ctermfg=4    ctermbg=none
++	hi Directory               ctermfg=2
++	hi Error                   ctermfg=9    ctermbg=none
++	hi ErrorMsg                ctermfg=9    ctermbg=none
++	hi Exception               ctermfg=13
++	hi Float                   ctermfg=14
++	hi FoldColumn              ctermfg=14   ctermbg=none
++	hi Folded                  ctermfg=14   ctermbg=0
++	hi Function                ctermfg=3
++	hi Identifier              ctermfg=11                cterm=none
++	hi IncSearch               ctermfg=15   ctermbg=1
++	hi Keyword                 ctermfg=4
++	hi Label                   ctermfg=5
++	hi LineNr                  ctermfg=8
++	hi CursorLine              ctermfg=15   ctermbg=0    cterm=bold
++	hi CursorLineNr            ctermfg=15   ctermbg=4
++	hi Macro                   ctermfg=3                 cterm=none
++	hi MatchParen              ctermfg=0    ctermbg=14
++	hi ModeMsg                 ctermfg=11
++	hi MoreMsg                 ctermfg=14
++	hi NonText                 ctermfg=8    ctermbg=none
++	hi Number                  ctermfg=10
++	hi Operator                ctermfg=13
++	hi PreCondit               ctermfg=13   ctermbg=none cterm=none
++	hi PreProc                 ctermfg=14
++	hi Question                ctermfg=14
++	hi Repeat                  ctermfg=14
++	hi Search                  ctermfg=15   ctermbg=1
++	hi SpecialChar             ctermfg=13
++	hi SpecialComment          ctermfg=8
++	hi Special                 ctermfg=13
++	hi SpecialKey              ctermfg=10
++	hi Statement               ctermfg=4    ctermbg=none
++	hi StorageClass            ctermfg=4
++	hi String                  ctermfg=2    ctermbg=none
++	hi Structure               ctermfg=67
++	hi Tag                     ctermfg=5
++	hi Title                   ctermfg=7    ctermbg=none cterm=bold
++	hi Todo                    ctermfg=10   ctermbg=0
++	hi Typedef                 ctermfg=4
++	hi Type                    ctermfg=5
++	hi Underlined              ctermfg=7
++	hi VertSplit               ctermfg=0    ctermbg=11
++	hi Visual                  ctermfg=15   ctermbg=8
++	hi VisualNOS               ctermfg=10   ctermbg=8    cterm=bold
++	hi WarningMsg              ctermfg=9   
++	hi WildMenu                ctermfg=5    ctermbg=0
++
++	" statusline
++	hi StatusLine              ctermfg=7    ctermbg=0    cterm=none
++	hi StatusLineNC            ctermfg=0    ctermbg=7
++	hi StatusModFlag           ctermfg=9    ctermbg=0    cterm=none
++	hi StatusRO                ctermfg=13   ctermbg=0    cterm=none
++	hi StatusHLP               ctermfg=10   ctermbg=0    cterm=none
++	hi StatusPRV               ctermfg=11   ctermbg=0    cterm=none
++	hi StatusFTP               ctermfg=12   ctermbg=0    cterm=none
++
++	" spellchecking
++	hi SpellLocal              ctermfg=0    ctermbg=14   cterm=underline
++	hi SpellBad                ctermfg=15   ctermbg=1    cterm=underline
++	hi SpellCap                ctermfg=0    ctermbg=12   cterm=underline
++	hi SpellRare               ctermfg=0    ctermbg=13   cterm=underline
++
++	" pmenu
++	hi Pmenu                   ctermfg=7    ctermbg=0
++	hi PmenuSel                ctermfg=none ctermbg=8 
++	hi PmenuSbar               ctermfg=8    ctermbg=15
++
++	" html
++	hi htmlTag                 ctermfg=12
++	hi htmlEndTag              ctermfg=12
++	hi htmlTagName             ctermfg=11
++
++	" xml
++	hi xmlTag                  ctermfg=4
++	hi xmlEndTag               ctermfg=4
++	hi xmlTagName              ctermfg=3
++
++	" perl
++	hi perlStatement           ctermfg=13
++	hi perlStatementStorage    ctermfg=1
++	hi perlVarPlain            ctermfg=6
++	hi perlVarPlain2           ctermfg=11
++
++	" mini buffer explorer
++	hi MBENormal               ctermfg=8
++	hi MBEChanged              ctermfg=1
++	hi MBEVisibleNormal        ctermfg=5
++	hi MBEVisibleNormalActive  ctermfg=13
++	hi MBEVisibleChanged       ctermfg=7
++	hi MBEVisibleChangedActive ctermfg=9
++
++	" rst
++	hi rstEmphasis             ctermfg=7                 cterm=underline
++	hi rstLiteralBlock         ctermfg=3
++	hi rstInlineLiteral        ctermfg=11
++	hi rstSections             ctermfg=1
++	hi rstHyperlinkTarget      ctermfg=6
++	hi rstStandaloneHyperlink  ctermfg=10
++	hi rstInterpretedTextOrHyperlinkReference ctermfg=10
++	hi rstCitation             ctermfg=7
++	hi rstQuotedLiteralBlock   ctermfg=11
++	hi rstLineBlock            ctermfg=6
++
++else "linux console settings
++
++	hi Normal                  ctermfg=white
++	hi Boolean                 ctermfg=magenta                 cterm=bold
++	hi Character               ctermfg=white
++	hi Comment                 ctermfg=black   ctermbg=none    cterm=bold
++	hi Conditional             ctermfg=cyan
++	hi Constant                ctermfg=yellow
++	hi Debug                   ctermfg=magenta                 cterm=bold
++	hi Define                  ctermfg=yellow                  cterm=bold
++	hi Delimiter               ctermfg=black                   cterm=bold
++	hi DiffLine                ctermfg=blue
++	hi DiffOldLine             ctermfg=red     ctermbg=none
++	hi DiffOldFile             ctermfg=red     ctermbg=none
++	hi DiffNewFile             ctermfg=green   ctermbg=none
++	hi DiffAdd                 ctermfg=green   ctermbg=none    cterm=bold
++	hi DiffAdded               ctermfg=green   ctermbg=none    cterm=bold
++	hi DiffDelete              ctermfg=red     ctermbg=none
++	hi DiffRemoved             ctermfg=red     ctermbg=none
++	hi DiffChange              ctermfg=cyan    ctermbg=none
++	hi DiffChanged             ctermfg=cyan    ctermbg=none
++	hi DiffText                ctermfg=blue    ctermbg=none    cterm=bold
++	hi Directory               ctermfg=green
++	hi Error                   ctermfg=red     ctermbg=none    cterm=bold
++	hi ErrorMsg                ctermfg=red     ctermbg=none    cterm=bold
++	hi Exception               ctermfg=magenta                 cterm=bold
++	hi Float                   ctermfg=cyan                    cterm=bold
++	hi FoldColumn              ctermfg=blue    ctermbg=black
++	hi Folded                  ctermfg=black   ctermbg=white
++	hi Function                ctermfg=yellow
++	hi Identifier              ctermfg=yellow                  cterm=bold
++	hi IncSearch               ctermfg=white   ctermbg=red     cterm=bold
++	hi Keyword                 ctermfg=blue
++	hi Label                   ctermfg=magenta
++	hi LineNr                  ctermfg=black                   cterm=bold
++	hi CursorLine              ctermfg=white   ctermbg=black   cterm=bold
++	hi CursorLineNr            ctermfg=white   ctermbg=blue
++	hi Macro                   ctermfg=yellow
++	hi MatchParen              ctermfg=black   ctermbg=cyan    cterm=bold
++	hi ModeMsg                 ctermfg=yellow                  cterm=bold
++	hi MoreMsg                 ctermfg=cyan                    cterm=bold
++	hi NonText                 ctermfg=black   ctermbg=none    cterm=bold
++	hi Number                  ctermfg=green                   cterm=bold
++	hi Operator                ctermfg=magenta                 cterm=bold
++	hi PreCondit               ctermfg=cyan                    cterm=bold
++	hi PreProc                 ctermfg=cyan                    cterm=bold
++	hi Question                ctermfg=cyan                    cterm=bold
++	hi Repeat                  ctermfg=cyan                    cterm=bold
++	hi Search                  ctermfg=white   ctermbg=red     cterm=bold
++	hi SpecialChar             ctermfg=magenta                 cterm=bold
++	hi SpecialComment          ctermfg=black                   cterm=bold
++	hi Special                 ctermfg=magenta                 cterm=bold
++	hi SpecialKey              ctermfg=green                   cterm=bold
++	hi Statement               ctermfg=blue
++	hi StorageClass            ctermfg=blue
++	hi String                  ctermfg=green
++	hi Structure               ctermfg=cyan                    cterm=bold
++	hi Tag                     ctermfg=magenta
++	hi Title                   ctermfg=white
++	hi Todo                    ctermfg=green   ctermbg=none
++	hi Typedef                 ctermfg=blue
++	hi Type                    ctermfg=magenta
++	hi Underlined              ctermfg=white                   cterm=underline
++	hi VertSplit               ctermfg=green   ctermbg=black   cterm=bold
++	hi Visual                  ctermfg=white   ctermbg=black   cterm=bold
++	hi VisualNOS               ctermfg=green   ctermbg=black   cterm=bold
++	hi WarningMsg              ctermfg=red                     cterm=bold
++	hi WildMenu                ctermfg=magenta ctermbg=black   cterm=bold
++
++	" statusline
++	hi StatusLine              ctermfg=white   ctermbg=black   cterm=bold
++	hi StatusModFlag           ctermfg=red     ctermbg=black   cterm=bold
++	hi StatusRO                ctermfg=magenta ctermbg=black   cterm=bold
++	hi StatusHLP               ctermfg=green   ctermbg=black   cterm=bold
++	hi StatusPRV               ctermfg=yellow  ctermbg=black   cterm=bold
++	hi StatusFTP               ctermfg=blue    ctermbg=black   cterm=bold
++
++	" spellchecking
++	hi SpellLocal              ctermfg=black   ctermbg=cyan    cterm=bold,underline
++	hi SpellBad                ctermfg=white   ctermbg=red     cterm=bold,underline
++	hi SpellCap                ctermfg=black   ctermbg=blue    cterm=bold,underline
++	hi SpellRare               ctermfg=black   ctermbg=magenta cterm=bold,underline
++
++	" pmenu
++	hi Pmenu                   ctermfg=white   ctermbg=black
++	hi PmenuSel                ctermfg=none    ctermbg=black   cterm=bold
++	hi PmenuSbar               ctermfg=black   ctermbg=white   cterm=bold
++
++	" html
++	hi htmlTag                 ctermfg=blue                    cterm=bold
++	hi htmlEndTag              ctermfg=blue                    cterm=bold
++	hi htmlTagName             ctermfg=yellow
++
++	" xml
++	hi xmlTag                  ctermfg=cyan
++	hi xmlEndTag               ctermfg=cyan
++	hi xmlTagName              ctermfg=yellow                  cterm=bold
++
++	" perl
++	hi perlStatement           ctermfg=magenta                 cterm=bold
++	hi perlStatementStorage    ctermfg=red
++	hi perlVarPlain            ctermfg=cyan
++	hi perlVarPlain2           ctermfg=yellow                  cterm=bold
++
++	" mini buffer explorer
++	hi MBENormal               ctermfg=black                   cterm=bold
++	hi MBEChanged              ctermfg=red
++	hi MBEVisibleNormal        ctermfg=magenta
++	hi MBEVisibleNormalActive  ctermfg=magenta                 cterm=bold
++	hi MBEVisibleChanged       ctermfg=white
++	hi MBEVisibleChangedActive ctermfg=red                     cterm=bold
++
++	" rst
++	hi rstEmphasis             ctermfg=white                   cterm=underline
++	hi rstLiteralBlock         ctermfg=yellow
++	hi rstInlineLiteral        ctermfg=yellow                  cterm=bold
++	hi rstSections             ctermfg=red
++	hi rstHyperlinkTarget      ctermfg=cyan
++	hi rstStandaloneHyperlink  ctermfg=green                   cterm=bold
++	hi rstInterpretedTextOrHyperlinkReference ctermfg=green    cterm=bold
++	hi rstCitation             ctermfg=black                   cterm=bold
++	hi rstQuotedLiteralBlock   ctermfg=yellow                  cterm=bold
++	hi rstLineBlock            ctermfg=cyan
++
++endif
++
++"
++" gui zone
++"
++hi Normal                  guifg=#F8F8F8 guibg=#090C19
++hi Boolean                 guifg=#F47BDA
++hi Character               guifg=#DBDDE4 guibg=#090C19 gui=none 
++hi Comment                 guifg=#8C8B89               gui=none
++hi Conditional             guifg=#3278AA
++hi Constant                guifg=#FFAA3E
++hi Cursor                  guifg=#090C19 guibg=#1AAA13
++hi Debug                   guifg=#F47BDA
++hi Define                  guifg=#FADD2D 
++hi Delimiter               guifg=#8C8B89
++hi DiffLine                guifg=#3A57D7
++hi DiffOldLine             guifg=#BE1919
++hi DiffOldFile             guifg=#BE1919
++hi DiffNewFile             guifg=#1AAA13 
++hi DiffAdded               guifg=#5DCE33
++hi DiffRemoved             guifg=#BE1919
++hi DiffChanged             guifg=#3278AA
++hi Directory               guifg=#1AAA13
++hi Error                   guifg=#DC2F32 guibg=#090C19
++hi ErrorMsg                guifg=#DC2F32 guibg=#090C19
++hi Exception               guifg=#F47BDA
++hi Float                   guifg=#4DC5DC
++hi FoldColumn              guifg=#4DC5DC guibg=#090C19
++hi Folded                  guifg=#4DC5DC guibg=#222946
++hi Function                guifg=#FFAA3E
++hi Identifier              guifg=#FADD2D
++hi IncSearch               guifg=#DBDDE4 guibg=#BE1919
++hi Keyword                 guifg=#3A57D7               gui=none
++hi Label                   guifg=#B40078
++hi LineNr                  guifg=#8C8B89 
++hi CursorLine              guifg=#DBDDE4 guibg=#222946 gui=bold
++hi CursorColumn            guifg=#DBDDE4 guibg=#222946 gui=bold
++hi CursorLineNr            guifg=#DBDDE4 guibg=#3A57D7 
++
++hi Macro                   guifg=#FFAA3E
++hi ModeMsg                 guifg=#FADD2D
++hi MoreMsg                 guifg=#4DC5DC
++hi NonText                 guifg=#8C8B89
++hi Number                  guifg=#5DCE33
++hi Operator                guifg=#E671D3
++hi PreCondit               guifg=#F47BDA
++hi PreProc                 guifg=#4DC5DC
++hi Question                guifg=#4DC5DC
++hi Repeat                  guifg=#4DC5DC
++hi Search                  guifg=#DBDDE4 guibg=#BE1919
++hi SpecialChar             guifg=#F47BDA
++hi SpecialComment          guifg=#8C8B89
++hi Special                 guifg=#F47BDA
++hi SpecialKey              guifg=#5DCE33
++hi Statement               guifg=#3A57D7               gui=none
++hi StorageClass            guifg=#3A57D7               gui=none
++hi String                  guifg=#1AAA13
++hi Structure               guifg=#5F87AF
++hi Tag                     guifg=#B40078               gui=none
++hi Title                   guifg=#AEAEAE
++hi Todo                    guifg=#5DCE33 guibg=#1A1A1A
++hi Typedef                 guifg=#3A57D7
++hi Type                    guifg=#B40078               gui=none
++hi Underlined              guifg=#AEAEAE guibg=#090C19
++hi VertSplit               guifg=#222946 guibg=#FADD2D
++hi Visual                  guifg=#DBDDE4 guibg=#8C8B89
++hi VisualNOS               guifg=#5DCE33 guibg=#8C8B89
++hi WarningMsg              guifg=#DC2F32 
++hi WildMenu                guifg=#8787D7 guibg=#222946
++hi CursorLine                            guibg=#222946 gui=none
++	
++" statusline
++hi StatusLine              guifg=#AEAEAE guibg=#222946 gui=none
++hi StatusLineNC            guifg=#222946 guibg=#AEAEAE
++hi StatusModFlag           guifg=#DC2F32 guibg=#222946 gui=bold
++hi StatusRO                guifg=#F47BDA guibg=#222946 gui=bold
++hi StatusHLP               guifg=#5DCE33 guibg=#222946 gui=bold
++hi StatusPRV               guifg=#FADD2D guibg=#222946 gui=bold
++hi StatusFTP               guifg=#507CFF guibg=#222946 gui=bold
++
++" spellchecking
++hi SpellBad                guifg=#DBDDE4 guifg=#BE1919 gui=underline
++hi SpellCap                guifg=#222946 guifg=#507CFF gui=underline
++hi SpellRare               guifg=#222946 guifg=#F47BDA gui=underline
++hi SpellLocal              guifg=#222946 guifg=#4DC5DC gui=underline
++
++" pmenu
++hi PMenu                   guifg=#AEAEAE guibg=#222956
++hi PMenuSel                guifg=#222956 guibg=#8C8B89
++
++" html
++hi htmlTag                 guifg=#507CFF
++hi htmlEndTag              guifg=#507CFF
++hi htmlTagName             guifg=#FADD2D
++
++" xml
++hi xmlTag                  guifg=#3A57D7
++hi xmlEndTag               guifg=#3A57D7
++hi xmlTageName             guifg=#FFAA3E
++
++" perl
++hi perlStatement           guifg=#F47BDA
++hi perlStatementStorage    guifg=#BE1919
++hi perlVarPlain            guifg=#258F8F
++hi perlVarPlain2           guifg=#FADD2D
++
++" mini buffer explorer
++hi MBENormal               guifg=#8C8B89
++hi MBEChanged              guifg=#BE1919
++hi MBEVisibleNormal        guifg=#B40078
++hi MBEVisibleNormalActive  guifg=#F47BDA
++hi MBEVisibleChanged       guifg=#AEAEAE
++hi MBEVisibleChangedActive guifg=#DC2F32
++
++" rst
++hi rstEmphasis             guifg=#AEAEAE               gui=underline
++hi rstLiteralBlock         guifg=#FFAA3E
++hi rstInlineLiteral        guifg=#FADD2D
++hi rstSections             guifg=#BE1919
++hi rstHyperlinkTarget      guifg=#258F8F
++hi rstStandaloneHyperlink  guifg=#5DCE33
++hi rstInterpretedTextOrHyperlinkReference guifg=#5DCE33
++hi rstCitation             guifg=#AEAEAE
++hi rstQuotedLiteralBlock   guifg=#FADD2D
++hi rstLineBlock            guifg=#258F8F
++
+diff -ruN ./colors/fine_blue2.vim /home/apple/share/repos/vim_repo/vim/colors/fine_blue2.vim
+--- ./colors/fine_blue2.vim	2013-08-18 13:44:18.277050385 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/fine_blue2.vim	2013-07-27 19:19:11.015588912 +0100
+@@ -10,7 +10,7 @@
+    syntax reset
+ endif
+ 
+-let colors_name = "fine_blue"
++let colors_name = "fine_blue2"
+ 
+ hi Normal       guifg=#404048 guibg=#f8f8f8
+ 
+diff -ruN ./colors/gentooish.vim /home/apple/share/repos/vim_repo/vim/colors/gentooish.vim
+--- ./colors/gentooish.vim	2013-08-18 13:44:18.270383754 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/gentooish.vim	2013-07-27 19:19:11.015588912 +0100
+@@ -9,6 +9,8 @@
+    syntax reset
+ endif
+ 
++let g:colors_name = "gentooish"
++
+ if has('gui_running')
+     hi Normal         gui=NONE   guifg=#cccccc   guibg=#191919
+ 
+diff -ruN ./colors/guardian.vim /home/apple/share/repos/vim_repo/vim/colors/guardian.vim
+--- ./colors/guardian.vim	2013-08-18 13:44:18.270383754 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/guardian.vim	2013-07-27 19:19:11.015588912 +0100
+@@ -98,6 +98,6 @@
+ 
+ " And finally.
+ 
+-let g:colors_name = "Guardian"
+-let colors_name   = "Guardian"
++let g:colors_name = "guardian"
++"let colors_name   = "guardian"
+ 
+diff -ruN ./colors/habilight.vim /home/apple/share/repos/vim_repo/vim/colors/habilight.vim
+--- ./colors/habilight.vim	2013-08-18 13:44:18.267050439 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/habilight.vim	2013-07-27 19:19:11.015588912 +0100
+@@ -16,7 +16,7 @@
+ if exists("syntax_on")
+   syntax reset
+ endif
+-let g:colors_name = "habiLight"
++let g:colors_name = "habilight"
+ 
+ " Normal {{{1
+ hi Normal ctermfg=black ctermbg=NONE guifg=black guibg=#F9F5F9
+diff -ruN ./colors/leo.vim /home/apple/share/repos/vim_repo/vim/colors/leo.vim
+--- ./colors/leo.vim	2013-08-18 13:44:18.277050385 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/leo.vim	2013-07-27 19:19:11.015588912 +0100
+@@ -80,7 +80,6 @@
+ 	end
+ endif
+ 
+-let g:colors_name = "leo256"
+ 
+ set background=dark
+ if v:version > 580
+@@ -90,6 +89,7 @@
+ 	endif
+ endif
+ 
++let g:colors_name = "leo"
+ " ### Normal should come first
+ 
+ " console-gui different
+diff -ruN ./colors/manuscript.vim /home/apple/share/repos/vim_repo/vim/colors/manuscript.vim
+--- ./colors/manuscript.vim	2013-08-18 13:44:18.277050385 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/manuscript.vim	2013-07-27 19:19:11.018922227 +0100
+@@ -18,7 +18,8 @@
+  syntax reset
+ endif
+ 
+-let g:colors_name = expand('<sfile>:t:r')
++"let g:colors_name = expand('<sfile>:t:r')
++let g:colors_name = "manuscript"
+ "}}}
+ 
+ " General "{{{
+diff -ruN ./colors/midnight.vim /home/apple/share/repos/vim_repo/vim/colors/midnight.vim
+--- ./colors/midnight.vim	2013-08-18 13:44:18.277050385 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/midnight.vim	2013-07-27 19:19:11.018922227 +0100
+@@ -23,7 +23,7 @@
+ if exists("syntax_on")
+     syntax reset
+ endif
+-let g:colors_name="midnight2"
++let g:colors_name="midnight"
+ 
+ hi Normal guifg=slategray3 guibg=#000029 ctermfg=14
+ 
+diff -ruN ./colors/mustang.vim /home/apple/share/repos/vim_repo/vim/colors/mustang.vim
+--- ./colors/mustang.vim	1970-01-01 01:00:00.000000000 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/mustang.vim	2013-07-27 19:19:11.018922227 +0100
+@@ -0,0 +1,57 @@
++" Maintainer:	Henrique C. Alves (hcarvalhoalves@gmail.com)
++" Version:      1.0
++" Last Change:	September 25 2008
++
++set background=dark
++
++hi clear
++
++if exists("syntax_on")
++  syntax reset
++endif
++
++let colors_name = "mustang"
++
++" Vim >= 7.0 specific colors
++if version >= 700
++  hi CursorLine guibg=#2d2d2d ctermbg=236
++  hi CursorColumn guibg=#2d2d2d ctermbg=236
++  hi MatchParen guifg=#d0ffc0 guibg=#2f2f2f gui=bold ctermfg=157 ctermbg=237 cterm=bold
++  hi Pmenu 		guifg=#ffffff guibg=#444444 ctermfg=255 ctermbg=238
++  hi PmenuSel 	guifg=#000000 guibg=#b1d631 ctermfg=0 ctermbg=148
++endif
++
++" General colors
++hi Cursor 		guifg=NONE    guibg=#626262 gui=none ctermbg=241
++hi Normal 		guifg=#e2e2e5 guibg=#202020 gui=none ctermfg=253 ctermbg=234
++hi NonText 		guifg=#808080 guibg=#303030 gui=none ctermfg=244 ctermbg=235
++hi LineNr 		guifg=#808080 guibg=#000000 gui=none ctermfg=244 ctermbg=232
++hi StatusLine 	guifg=#d3d3d5 guibg=#444444 gui=italic ctermfg=253 ctermbg=238 cterm=italic
++hi StatusLineNC guifg=#939395 guibg=#444444 gui=none ctermfg=246 ctermbg=238
++hi VertSplit 	guifg=#444444 guibg=#444444 gui=none ctermfg=238 ctermbg=238
++hi Folded 		guibg=#384048 guifg=#a0a8b0 gui=none ctermbg=4 ctermfg=248
++hi Title		guifg=#f6f3e8 guibg=NONE	gui=bold ctermfg=254 cterm=bold
++hi Visual		guifg=#faf4c6 guibg=#3c414c gui=none ctermfg=254 ctermbg=4
++hi SpecialKey	guifg=#808080 guibg=#343434 gui=none ctermfg=244 ctermbg=236
++
++" Syntax highlighting
++hi Comment 		guifg=#808080 gui=italic ctermfg=244
++hi Todo 		guifg=#8f8f8f gui=italic ctermfg=245
++hi Boolean      guifg=#b1d631 gui=none ctermfg=148
++hi String 		guifg=#b1d631 gui=italic ctermfg=148
++hi Identifier 	guifg=#b1d631 gui=none ctermfg=148
++hi Function 	guifg=#ffffff gui=bold ctermfg=255
++hi Type 		guifg=#7e8aa2 gui=none ctermfg=103
++hi Statement 	guifg=#7e8aa2 gui=none ctermfg=103
++hi Keyword		guifg=#ff9800 gui=none ctermfg=208
++hi Constant 	guifg=#ff9800 gui=none  ctermfg=208
++hi Number		guifg=#ff9800 gui=none ctermfg=208
++hi Special		guifg=#ff9800 gui=none ctermfg=208
++hi PreProc 		guifg=#faf4c6 gui=none ctermfg=230
++hi Todo         guifg=#000000 guibg=#e6ea50 gui=italic
++
++" Code-specific colors
++hi pythonOperator guifg=#7e8aa2 gui=none ctermfg=103
++
++hi Search     guifg=white	guibg=NONE	cterm=NONE	gui=underline
++
+diff -ruN ./colors/Mustang.vim /home/apple/share/repos/vim_repo/vim/colors/Mustang.vim
+--- ./colors/Mustang.vim	2013-08-18 13:44:18.270383754 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/Mustang.vim	1970-01-01 01:00:00.000000000 +0100
+@@ -1,57 +0,0 @@
+-" Maintainer:	Henrique C. Alves (hcarvalhoalves@gmail.com)
+-" Version:      1.0
+-" Last Change:	September 25 2008
+-
+-set background=dark
+-
+-hi clear
+-
+-if exists("syntax_on")
+-  syntax reset
+-endif
+-
+-let colors_name = "mustang"
+-
+-" Vim >= 7.0 specific colors
+-if version >= 700
+-  hi CursorLine guibg=#2d2d2d ctermbg=236
+-  hi CursorColumn guibg=#2d2d2d ctermbg=236
+-  hi MatchParen guifg=#d0ffc0 guibg=#2f2f2f gui=bold ctermfg=157 ctermbg=237 cterm=bold
+-  hi Pmenu 		guifg=#ffffff guibg=#444444 ctermfg=255 ctermbg=238
+-  hi PmenuSel 	guifg=#000000 guibg=#b1d631 ctermfg=0 ctermbg=148
+-endif
+-
+-" General colors
+-hi Cursor 		guifg=NONE    guibg=#626262 gui=none ctermbg=241
+-hi Normal 		guifg=#e2e2e5 guibg=#202020 gui=none ctermfg=253 ctermbg=234
+-hi NonText 		guifg=#808080 guibg=#303030 gui=none ctermfg=244 ctermbg=235
+-hi LineNr 		guifg=#808080 guibg=#000000 gui=none ctermfg=244 ctermbg=232
+-hi StatusLine 	guifg=#d3d3d5 guibg=#444444 gui=italic ctermfg=253 ctermbg=238 cterm=italic
+-hi StatusLineNC guifg=#939395 guibg=#444444 gui=none ctermfg=246 ctermbg=238
+-hi VertSplit 	guifg=#444444 guibg=#444444 gui=none ctermfg=238 ctermbg=238
+-hi Folded 		guibg=#384048 guifg=#a0a8b0 gui=none ctermbg=4 ctermfg=248
+-hi Title		guifg=#f6f3e8 guibg=NONE	gui=bold ctermfg=254 cterm=bold
+-hi Visual		guifg=#faf4c6 guibg=#3c414c gui=none ctermfg=254 ctermbg=4
+-hi SpecialKey	guifg=#808080 guibg=#343434 gui=none ctermfg=244 ctermbg=236
+-
+-" Syntax highlighting
+-hi Comment 		guifg=#808080 gui=italic ctermfg=244
+-hi Todo 		guifg=#8f8f8f gui=italic ctermfg=245
+-hi Boolean      guifg=#b1d631 gui=none ctermfg=148
+-hi String 		guifg=#b1d631 gui=italic ctermfg=148
+-hi Identifier 	guifg=#b1d631 gui=none ctermfg=148
+-hi Function 	guifg=#ffffff gui=bold ctermfg=255
+-hi Type 		guifg=#7e8aa2 gui=none ctermfg=103
+-hi Statement 	guifg=#7e8aa2 gui=none ctermfg=103
+-hi Keyword		guifg=#ff9800 gui=none ctermfg=208
+-hi Constant 	guifg=#ff9800 gui=none  ctermfg=208
+-hi Number		guifg=#ff9800 gui=none ctermfg=208
+-hi Special		guifg=#ff9800 gui=none ctermfg=208
+-hi PreProc 		guifg=#faf4c6 gui=none ctermfg=230
+-hi Todo         guifg=#000000 guibg=#e6ea50 gui=italic
+-
+-" Code-specific colors
+-hi pythonOperator guifg=#7e8aa2 gui=none ctermfg=103
+-
+-hi Search     guifg=white	guibg=NONE	cterm=NONE	gui=underline
+-
+diff -ruN ./colors/papayawhip.vim /home/apple/share/repos/vim_repo/vim/colors/papayawhip.vim
+--- ./colors/papayawhip.vim	2013-08-18 13:44:18.273717069 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/papayawhip.vim	2013-07-27 19:19:11.022255542 +0100
+@@ -12,7 +12,7 @@
+ if exists("syntax_on")
+   syntax reset
+ endif
+-let g:colors_name = "PapayaWhip"
++let g:colors_name = "papayawhip"
+ 
+ hi Normal guifg=#3f1f1f guibg=PapayaWhip ctermbg=Gray ctermfg=Black
+ hi NonText guibg=Moccasin guifg=Brown ctermfg=Brown
+diff -ruN ./colors/peaksea.vim /home/apple/share/repos/vim_repo/vim/colors/peaksea.vim
+--- ./colors/peaksea.vim	2013-08-18 13:44:18.267050439 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/peaksea.vim	2013-07-27 19:19:11.022255542 +0100
+@@ -36,7 +36,8 @@
+   syntax reset
+ endif
+ 
+-let g:colors_name = expand("<sfile>:t:r")
++"let g:colors_name = expand("<sfile>:t:r")
++let g:colors_name = "peaksea"
+ 
+ " I don't want to abuse folding, but here folding is used to avoid confusion. 
+ if &background=='light' 
+diff -ruN ./colors/pylight.vim /home/apple/share/repos/vim_repo/vim/colors/pylight.vim
+--- ./colors/pylight.vim	1970-01-01 01:00:00.000000000 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/pylight.vim	2013-07-27 18:50:44.224835391 +0100
+@@ -0,0 +1,191 @@
++" Vim color file
++"
++" Modified from github color scheme 
++"          http://www.vim.org/scripts/script.php?script_id=2855
++"
++"Taking elements of bitbuckets syntax highlighting
++"
++" TODO: Change Visual highlight
++"       Check typedef colour
++"
++" NOTE: So far managed to make it nice for python
++"       Will next make it nice for cpp
++"       Then for vimscript
++"       Then make it as general as possible.
++"
++" NOTE: As at the moment I only use the three languages
++"       I may as well fix any problems that occur in one but not
++"       others directly (i.e. override any aliases that I don't like.
++
++hi clear
++
++set background=light
++if version > 580
++    " no guarantees for version 5.8 and below, but this makes it stop
++    " complaining
++    hi clear
++    if exists("syntax_on")
++	syntax reset
++    endif
++endif
++let g:colors_name="pylight"
++
++"hi Normal       guifg=#000000 guibg=#F0F0F0
++hi Normal       guifg=#000000 guibg=#F8F8FF
++
++" {{{ Cursor
++hi Cursor		guibg=#444454 guifg=#F8F8FF
++hi CursorLine	guibg=#E4E4E4
++"hi CursorLine	guibg=#D8D8DD
++hi CursorColumn	guibg=#E8E8EE
++" }}}
++
++" {{{ Diff
++hi DiffAdd         guifg=#003300 guibg=#DDFFDD gui=none
++hi DiffChange                    guibg=#ececec gui=none
++hi DiffText        guifg=#000033 guibg=#DDDDFF gui=none
++hi DiffDelete      guifg=#DDCCCC guibg=#FFDDDD gui=none
++" }}}
++
++" {{{ Folding / Line Numbering / Status Lines
++hi Folded		guibg=#ECECEC guifg=#808080 gui=bold
++hi vimFold		guibg=#ECECEC guifg=#808080 gui=bold
++hi FoldColumn	guibg=#ECECEC guifg=#808080 gui=bold
++
++hi LineNr		guifg=#959595 guibg=#ECECEC gui=NONE
++hi NonText		guifg=#808080 guibg=#ECECEC
++hi Folded		guifg=#808080 guibg=#ECECEC gui=bold
++hi FoldeColumn  guifg=#808080 guibg=#ECECEC gui=bold
++
++hi VertSplit	guibg=#bbbbbb guifg=#bbbbbb gui=none
++hi StatusLine   guibg=#bbbbbb guifg=#404040 gui=bold
++hi StatusLineNC guibg=#d4d4d4 guifg=#404040 gui=italic
++" }}}
++
++" {{{ Misc
++hi ModeMsg		guifg=#990000
++hi MoreMsg		guifg=#990000
++
++hi Title		guifg=#ef5939
++hi WarningMsg	guifg=#ef5939
++hi SpecialKey   guifg=#177F80 gui=italic
++
++hi MatchParen	guibg=#cdcdfd guifg=#000000
++hi Underlined	guifg=#000000 gui=underline
++hi Directory	guifg=#990000
++" }}}
++
++" {{{ Search, Visual, etc
++"not confident about this change
++"hi Visual		guifg=#FFFFFF guibg=#3465a4 gui=none
++hi Visual       guifg=NONE    guibg=#aaddff gui=NONE
++hi VisualNOS    guifg=#FFFFFF guibg=#204a87 gui=NONE
++hi IncSearch	guibg=#cdcdfd guifg=NONE gui=italic
++hi Search		guibg=#cdcdfd guifg=NONE gui=italic
++"hi IncSearch	guibg=#cdcdfd guifg=#000000 gui=italic
++"hi Search		guibg=#cdcdfd guifg=#000000 gui=italic
++" }}}
++
++" {{{ Syntax groups
++"not sure what Ignore does at the moment - remoember for later.
++hi Ignore		guifg=#808080
++hi Identifier	guifg=#af0000
++" change things like bold, italic etc in vim
++" generic preprocessor (#if #else #define #include)
++" subclasses of Include, Define, Precondit
++hi PreProc		guifg=#af0000 gui=bold
++hi Include      guifg=#87005F gui=bold
++hi Comment		guifg=#999988 gui=italic
++hi Constant		guifg=#177F80 gui=none
++"change this to a teal-like colour
++hi String		guifg=#D7AF00
++"hi Function		guifg=#000000 gui=NONE
++hi Function		guifg=#af0000 gui=NONE
++"Change this to change things like def in python
++hi Statement	guifg=#080887 gui=NONE
++"Change type to change all these guifg and Comment String etc words
++hi Type			guifg=#080887 gui=NONE
++hi Number		guifg=#1C9898
++"metacharacters e.g. \n
++hi Special		guifg=#ff5f5f gui=bold
++"hi rubySymbol   guifg=#960B73
++"Change this
++hi Error        guibg=#f8f8ff guifg=#ff1100 gui=undercurl
++hi Todo         guibg=#f8f8ff guifg=#585858 gui=underline
++hi Label        guifg=#000000 gui=bold
++"change things like 'const' in cpp
++hi StorageClass guifg=#080887 gui=NONE
++" Change this (assuming this defines the colour of the using namespace bit)
++"Structure defined things like AssertionError in python
++hi Structure    guifg=#008700
++hi Operator     guifg=#87005F gui=NONE
++"may want to change this - see later
++hi TypeDef      guifg=#000000 gui=bold
++" }}}
++
++" Python specific {{{
++hi pythonExceptions guifg=#af0000 gui=NONE
++hi pythonFunction guifg=#af0000 gui=NONE
++hi pythonBuiltin guifg=#008700 gui=italic
++
++"}}}
++
++" Vim specific {{{
++hi vimCommentTitle guifg=#999988 gui=bold
++" }}}
++
++" C++ specific {{{
++"want something 
++hi cppType guifg=#ff0087
++"Things like int, void, double much more important
++"hence need a more distinguishing colour.
++"NOTE: cppOperators and cppTypes often together.
++"Have a look at $VIMRUNTIME/syntax/cpp.vim
++"maybe add some definitions in there.
++" }}}
++
++" {{{ Completion menus
++hi WildMenu     guifg=#7fbdff guibg=#425c78 gui=none
++
++hi Pmenu        guibg=#808080 guifg=#ffffff gui=bold
++hi PmenuSel     guibg=#cdcdfd guifg=#000000 gui=italic
++hi PmenuSbar    guibg=#000000 guifg=#444444
++hi PmenuThumb   guibg=#aaaaaa guifg=#aaaaaa
++" }}}
++
++" {{{ Spelling
++hi spellBad     guisp=#fcaf3e
++hi spellCap     guisp=#73d216
++hi spellRare    guisp=#fcaf3e
++hi spellLocal   guisp=#729fcf
++" }}}
++
++" {{{ Aliases
++hi link cppSTL          Function
++hi link cppSTLType      Type
++hi link Character		Number
++hi link htmlTag			htmlEndTag
++"hi link htmlTagName     htmlTag
++hi link htmlLink		Underlined
++"hi link pythonFunction	Identifier
++hi link Question		Type
++hi link CursorIM		Cursor
++hi link VisualNOS		Visual
++hi link xmlTag			Identifier
++hi link xmlTagName		Identifier
++hi link shDeref			Identifier
++hi link shVariable		Function
++hi link rubySharpBang	Special
++hi link perlSharpBang	Special
++hi link schemeFunc      Statement
++"hi link shSpecialVariables Constant
++"hi link bashSpecialVariables Constant
++" }}}
++
++" {{{ Tabs (non-gui0
++hi TabLine		guifg=#404040 guibg=#dddddd gui=none
++hi TabLineFill	guifg=#404040 guibg=#dddddd gui=none
++hi TabLineSel	guifg=#404040 gui=bold
++" }}}
++"
++" vim: sw=4 ts=4 foldmethod=marker
+diff -ruN ./colors/railscasts2.vim /home/apple/share/repos/vim_repo/vim/colors/railscasts2.vim
+--- ./colors/railscasts2.vim	2013-08-18 13:44:18.273717069 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/railscasts2.vim	2013-07-27 19:19:11.022255542 +0100
+@@ -15,7 +15,7 @@
+ if exists("syntax_on")
+   syntax reset
+ endif
+-let g:colors_name = "railscasts"
++let g:colors_name = "railscasts2"
+ 
+ " Colors
+ " Brown        #BC9458
+diff -ruN ./colors/tcsoft.vim /home/apple/share/repos/vim_repo/vim/colors/tcsoft.vim
+--- ./colors/tcsoft.vim	2013-08-18 13:44:18.270383754 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/tcsoft.vim	2013-07-27 19:19:11.022255542 +0100
+@@ -10,7 +10,7 @@
+ if exists("syntax_on")
+   syntax reset
+ endif
+-let colors_name = "TCSoft"
++let colors_name = "tcsoft"
+ 
+ if version >= 700
+   hi CursorLine                 guibg=#FFFF33  gui=NONE  "hellgelb
+diff -ruN ./colors/techras.vim /home/apple/share/repos/vim_repo/vim/colors/techras.vim
+--- ./colors/techras.vim	1970-01-01 01:00:00.000000000 +0100
++++ /home/apple/share/repos/vim_repo/vim/colors/techras.vim	2013-07-27 18:50:44.224835391 +0100
+@@ -0,0 +1,238 @@
++"This is my attempt at converting my vim colorscheme to a gvim colorscheme
++"Initiallly just copy the cterm options, then transfer using the code
++"On the internet.
++
++"Would like to Define a font specifically for this colorscheme
++"It would be the same font as my terminal font, but I don't think
++"I have that font on gvim at the moment.
++
++"TODO:
++"   Make some difference between strings and numbers.
++"   Add python, c++ and vim specific options
++"   (I only use those, won't know what looks good with others.
++
++hi clear	
++
++set background=dark
++if version > 580
++    " no guarantees for version 5.8 and below, but this makes it stop
++    " complaining
++    hi clear
++    if exists("syntax_on")
++	syntax reset
++    endif
++endif
++let g:colors_name="techras"
++
++hi Normal	 guifg=#ffffff guibg=#000000
++
++" GUI section  
++" {{{ Cursor
++"Haven't got anything for Cursor - figure it out later
++hi Cursor        guibg=#bbbbbb
++hi CursorLine	   guibg=#101010
++hi CursorColumn	 guibg=#101010
++"Not sure if I want to change this or not.
++hi CursorLineNr  gui=NONE guifg=Yellow
++" }}}
++
++" {{{ Diff
++hi DiffAdd	 guibg=#1f0000
++hi DiffChange	 guibg=#001f00
++hi DiffText	 guibg=#3f0000 gui=italic
++"Like to change this
++hi DiffDelete	 guifg=#ffff00 guibg=NONE
++" }}}
++
++" {{{ Folding / Line Numbering / Status Lines
++hi Folded	 guifg=#878700 guibg=NONE gui=bold
++"hi vimFold		guibg=#ECECEC guifg=#808080 gui=bold
++hi FoldColumn	 guifg=#00ffff guibg=NONE gui=NONE
++
++hi LineNr	  guifg=#008000  guibg=NONE gui=NONE
++hi NonText	 guifg=#0000ff guibg=NONE gui=NONE
++
++hi VertSplit	 guifg=#00ffd7 guibg=NONE gui=NONE
++hi StatusLine	 guifg=#00ffff guibg=NONE gui=NONE
++hi StatusLineNC	 guifg=#303030 guibg=NONE gui=NONE
++" }}}
++
++
++" {{{ Misc
++hi ModeMsg	 gui=bold
++hi MoreMsg	 guifg=#008000
++
++hi Title	 guifg=#800080
++hi WarningMsg	 guifg=#800000
++hi SpecialKey	 guifg=#000080
++
++hi MatchParen	 guibg=#00ffff
++hi Underlined	 guifg=#800080 gui=underline
++hi Directory	 guifg=#000080
++" }}}
++
++" {{{ Search, Visual, etc
++"NOTE: I don't actually like the Visual defaults, will want to change these
++hi Visual	 guibg=#00003f
++hi VisualNOS	 gui=bold
++"Not sure what this is - will have to find out
++hi IncSearch	 gui=reverse
++hi Search	 guibg=#576f2f
++" }}}
++
++" {{{ Syntax groups
++hi Ignore	    guifg=#ffffff
++hi Identifier   guifg=#00ffff
++hi PreProc	    guifg=#c000c0
++hi Comment	    guifg=#005fff gui=italic
++hi Constant	    guifg=#005faf
++hi String	    guifg=#ff0000
++hi Function	    guifg=#00ffff
++hi Statement	guifg=#ff8700 gui=NONE
++hi Type	        guifg=#00ff00  gui=NONE
++hi Number	    guifg=#ff0000
++" don't like this - want to improve
++hi Todo	 guifg=#000000 guibg=#ffff00
++hi Special	 guifg=#c000c0
++"Might want to change this, it's pretty ugly, (always made me fix it)
++hi Error	    guifg=#ffffff guibg=#ff0000
++hi Label	    guifg=#ff8700
++hi StorageClass	guifg=#00ff00 gui=NONE
++hi Structure    guifg=#00ff00 gui=NONE
++hi TypeDef	    guifg=#00ff00 gui=NONE
++" }}}
++
++" Python specific {{{
++"hi pythonExceptions guifg=###### guibg=###### gui=
++"hi pythonFunction
++hi pythonBuiltin guifg=#00ff00
++" }}}
++
++" Vim specific {{{
++"hi vimCommentTitle guifg=###### guibg=###### gui=
++"hi 
++"hi 
++" }}}
++
++" C++ specific {{{
++"hi 
++"hi 
++"hi 
++" }}}
++
++" {{{ Completion menus
++hi WildMenu	 guifg=#000000 guibg=#ffff00
++
++hi Pmenu	 guibg=#000080
++hi PmenuSel	 guibg=#800080
++hi PmenuSbar	 guibg=#a8a8a8
++hi PmenuThumb	 guibg=#000000
++" }}}
++
++" {{{ Spelling
++"NOTE: haven't actually chosen any of this - will have to look at it again
++hi spellBad	 guibg=#ffd7d7
++hi spellCap	 guibg=#5fd7ff
++hi spellRare	 guibg=#ffd7ff
++hi spellLocal	 guibg=#00ffff
++" }}}
++
++" {{{ Aliases
++"NOTE: Think easiest to define language specific colours as I only work
++"       in three at the moment
++"hi link cppSTL          Function
++"hi link cppSTLType      Type
++"hi link Character		Number
++"hi link htmlTag			htmlEndTag
++""hi link htmlTagName     htmlTag
++"hi link htmlLink		Underlined
++"hi link pythonFunction	Identifier
++"hi link Question		Type
++"hi link CursorIM		Cursor
++"hi link VisualNOS		Visual
++"hi link xmlTag			Identifier
++"hi link xmlTagName		Identifier
++"hi link shDeref			Identifier
++"hi link shVariable		Function
++"hi link rubySharpBang	Special
++"hi link perlSharpBang	Special
++"hi link schemeFunc      Statement
++"hi link shSpecialVariables Constant
++"hi link bashSpecialVariables Constant
++" }}}
++
++" {{{ Tabs (non-gui0
++hi TabLine	 guifg=#000000 guibg=#c0c0c0 gui=underline
++hi TabLineFill	 gui=reverse
++hi TabLineSel	 gui=bold
++" }}}
++"
++"
++" Cterm options
++if &t_Co==8
++  highlight LineNr ctermfg=LightGreen
++  highlight CursorColumn cterm=standout ctermfg=Gray ctermbg=NONE
++  highlight CursorLine cterm=bold ctermfg=NONE ctermbg=DarkBlue
++  highlight Folded cterm=bold ctermfg=blue ctermbg=NONE
++  highlight StatusLine cterm=NONE ctermbg=NONE ctermfg=DarkCyan
++  highlight StatusLineNC cterm=NONE ctermbg=NONE ctermfg=DarkGray
++  highlight Comment      cterm=NONE ctermfg=6
++  highlight FoldColumn cterm=NONE ctermfg=Cyan ctermbg=NONE
++  highlight String       cterm=NONE        ctermfg=1      ctermbg=NONE
++elseif &t_Co==256
++  highlight Normal       cterm=NONE        ctermfg=15     ctermbg=NONE
++  highlight Comment ctermfg=27 cterm=NONE ctermbg=NONE
++  highlight LineNr cterm=NONE ctermfg=DarkGreen
++  highlight FoldColumn cterm=NONE ctermfg=Cyan ctermbg=NONE
++  highlight Folded       cterm=bold   ctermfg=100    ctermbg=NONE
++  highlight CursorColumn cterm=NONE ctermfg=NONE ctermbg=236
++  highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=236
++  highlight Folded cterm=bold ctermfg=100 ctermbg=NONE
++  highlight Search cterm=NONE ctermfg=NONE ctermbg=107
++  highlight Pmenu cterm=NONE ctermfg=NONE ctermbg=darkblue
++  highlight Pmenusel cterm=NONE ctermfg=NONE ctermbg=darkmagenta
++  highlight StatusLine   cterm=NONE   ctermfg=51     ctermbg=NONE
++  highlight StatusLineNC cterm=NONE ctermbg=NONE ctermfg=236
++  highlight Todo ctermfg=0 ctermbg=30
++  highlight DiffAdd      cterm=NONE        ctermfg=NONE   ctermbg=81
++  highlight DiffChange   cterm=NONE        ctermfg=NONE   ctermbg=225
++  highlight DiffText     cterm=bold        ctermfg=NONE   ctermbg=9
++  highlight DiffDelete   cterm=NONE        ctermfg=12     ctermbg=159
++  highlight NonText      cterm=NONE        ctermfg=12     ctermbg=NONE
++  highlight VertSplit    cterm=NONE        ctermfg=50     ctermbg=NONE
++  highlight ModeMsg      cterm=bold        ctermfg=NONE   ctermbg=NONE
++  highlight MoreMsg      cterm=NONE        ctermfg=2      ctermbg=NONE
++  highlight Title        cterm=NONE        ctermfg=5      ctermbg=NONE
++  highlight WarningMsg   cterm=NONE        ctermfg=1      ctermbg=NONE
++  highlight SpecialKey   cterm=NONE        ctermfg=4      ctermbg=NONE
++  highlight MatchParen   cterm=NONE        ctermfg=14     ctermbg=NONE
++  highlight Underlined   cterm=underline   ctermfg=5      ctermbg=NONE
++  highlight Visual       cterm=NONE        ctermfg=NONE   ctermbg=17
++  highlight VisualNOS    cterm=bold        ctermfg=NONE   ctermbg=NONE
++  highlight IncSearch    cterm=reverse     ctermfg=NONE   ctermbg=NONE
++  highlight Ignore       cterm=NONE        ctermfg=15     ctermbg=NONE
++  highlight Identifier   cterm=NONE        ctermfg=6      ctermbg=NONE
++  highlight PreProc      cterm=NONE        ctermfg=5      ctermbg=NONE
++  highlight Constant     cterm=NONE        ctermfg=1      ctermbg=NONE
++  highlight String       cterm=NONE        ctermfg=1      ctermbg=NONE
++  highlight Function     cterm=NONE        ctermfg=6      ctermbg=NONE
++  highlight Statement    cterm=NONE        ctermfg=130    ctermbg=NONE
++  highlight Type         cterm=NONE        ctermfg=2      ctermbg=NONE
++  highlight Number       cterm=NONE        ctermfg=1      ctermbg=NONE
++  highlight Todo         cterm=NONE        ctermfg=0      ctermbg=11
++  highlight Special      cterm=NONE        ctermfg=5      ctermbg=NONE
++  highlight Error        cterm=NONE        ctermfg=15     ctermbg=9
++  highlight Label        cterm=NONE        ctermfg=130    ctermbg=NONE
++  highlight StorageClass cterm=NONE        ctermfg=2      ctermbg=NONE
++  highlight Structure    cterm=NONE        ctermfg=2      ctermbg=NONE
++  highlight TypeDef      cterm=NONE        ctermfg=2      ctermbg=NONE
++  highlight WildMenu     cterm=NONE        ctermfg=0      ctermbg=11
++  highlight PmenuSbar    cterm=NONE        ctermfg=NONE   ctermbg=248
++  highlight PmenuThumb   cterm=NONE        ctermfg=NONE   ctermbg=248
++  highlight TabLine      cterm=NONE        ctermfg=NONE   ctermbg=236
++  highlight TabLineFill  cterm=NONE        ctermfg=NONE   ctermbg=236
++  highlight TabLineSel   cterm=NONE        ctermfg=11     ctermbg=236
++endif
++
++
++" vim: foldmethod=marker

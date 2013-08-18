@@ -1,8 +1,5 @@
 "This is my vim Customisation file.
 
-" Am considering switching from pathogen to vundle
-" will have to check how it interacts with submodules / subrepos
-
 set nocompatible
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -168,6 +165,11 @@ let g:NERDDefaultNesting=0
 let g:NERDSpaceDelims=1
 " }}}
 
+" {{{ NERDTree plugin
+nnoremap <leader>nl :NERDTreeToggle<CR>
+nnoremap <leader>nc :NERDTreeClose<CR>
+" }}}
+
 " Pathogen plugin {{{
 execute pathogen#infect()
 call pathogen#helptags()
@@ -198,7 +200,7 @@ let g:syntastic_mode_map = { 'mode': 'passive',
                             \ 'passive_filetypes': [] }
 "
 " Map <leader>ok to check the file
-noremap <leader>ok :SyntasticCheck<CR>
+nnoremap <leader>ok :SyntasticCheck<CR>
 " }}}
 
 " Workspace plugin {{{
@@ -209,7 +211,7 @@ let Ws_WinWidth = 20
 
 "Surround Plugin {{{
 " remove the 's' mapping in visual mode
-xmap <Leader>s <Plug>Vsurround
+" xmap <Leader>s <Plug>Vsurround
 "}}}
 
 " Buf Explorer Plugin {{{
@@ -238,7 +240,7 @@ let g:pymode_syntax_space_errors=0
 let g:pymode_syntax_print_as_function = 1
 
 " map pk to run pymode lint
-noremap <leader>pk :PyLint<CR>
+nnoremap <leader>pk :PyLint<CR>
 " }}}
 
 " {{{ Gundo plugin
@@ -257,6 +259,12 @@ let g:ctrlp_open_new_file = 'v'
 let g:ctrlp_open_multiple_files = '2tr'
 let g:ctrlp_arg_map = 1
 let g:ctrlp_extensions = ['dir', 'buffertag', 'tag', 'changes', 'line']
+" }}}
+
+" {{{ Fugitive Plugin
+autocmd BufReadPost fugitive://* set bufhidden=delete
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+" }}}
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

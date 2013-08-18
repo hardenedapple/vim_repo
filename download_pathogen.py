@@ -7,7 +7,6 @@ NOTE: This only works for python3, To use python2, change the import of
 urllib.request to urllib2"""
 
 
-import os.path as path
 import urllib.request as urlreq
 
 
