@@ -2,7 +2,8 @@
 "gui specific stuff
 "change the font used for gui
 "set guifont=Nimbus\ Mono\ L\ 10
-set guifont=Terminal\ 10
+" set guifont=Terminal\ 10
+set guifont=Tamsyn\ 10
 
 
 "I think I should be able to combine these into one command
@@ -23,7 +24,7 @@ set guioptions-=M
 "NOTE: have to have this after all the colour declarations, else they'll
 "      override the settings
     "colorscheme desert
-colorscheme zenburn
+colorscheme hybrid
     "colorscheme pyte
     "colorscheme pylight
     "colorscheme techras

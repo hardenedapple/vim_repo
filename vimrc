@@ -108,6 +108,7 @@ set wildmenu
 set smarttab
 set shiftround
 set autoread
+" set shell=/usr/bin/zsh
 
 " macro to put spaces around a character - python operators
 let @s='s  P'
