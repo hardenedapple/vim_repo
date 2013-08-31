@@ -11,95 +11,92 @@
 "   Add python, c++ and vim specific options
 "   (I only use those, won't know what looks good with others.
 
-hi clear	
+hi clear
 
 set background=dark
 if version > 580
-    " no guarantees for version 5.8 and below, but this makes it stop
-    " complaining
     hi clear
     if exists("syntax_on")
-	syntax reset
+        syntax reset
     endif
 endif
 let g:colors_name="techras"
 
-hi Normal	 guifg=#ffffff guibg=#000000
+hi Normal    guifg=#ffffff guibg=#000000
 
-" GUI section  
+" GUI section
 " {{{ Cursor
 "Haven't got anything for Cursor - figure it out later
 hi Cursor        guibg=#bbbbbb
-hi CursorLine	   guibg=#101010
-hi CursorColumn	 guibg=#101010
+hi CursorLine      guibg=#101010
+hi CursorColumn  guibg=#101010
 "Not sure if I want to change this or not.
 hi CursorLineNr  gui=NONE guifg=Yellow
 " }}}
 
 " {{{ Diff
-hi DiffAdd	 guibg=#1f0000
-hi DiffChange	 guibg=#001f00
-hi DiffText	 guibg=#3f0000 gui=italic
-"Like to change this
-hi DiffDelete	 guifg=#ffff00 guibg=NONE
+hi DiffAdd                       guibg=#003f00
+hi DiffChange                    guibg=#2f002f
+hi DiffText                      guibg=#002f3f gui=italic
+hi DiffDelete     guifg=#3f3f00  guibg=#3f0000
 " }}}
 
 " {{{ Folding / Line Numbering / Status Lines
-hi Folded	 guifg=#878700 guibg=NONE gui=bold
-"hi vimFold		guibg=#ECECEC guifg=#808080 gui=bold
-hi FoldColumn	 guifg=#00ffff guibg=NONE gui=NONE
+hi Folded    guifg=#878700 guibg=NONE gui=bold
+"hi vimFold     guibg=#ECECEC guifg=#808080 gui=bold
+hi FoldColumn    guifg=#00ffff guibg=NONE gui=NONE
 
-hi LineNr	  guifg=#008000  guibg=NONE gui=NONE
-hi NonText	 guifg=#0000ff guibg=NONE gui=NONE
+hi LineNr     guifg=#008000  guibg=NONE gui=NONE
+hi NonText   guifg=#0000ff guibg=NONE gui=NONE
 
-hi VertSplit	 guifg=#00ffd7 guibg=NONE gui=NONE
-hi StatusLine	 guifg=#00ffff guibg=NONE gui=NONE
-hi StatusLineNC	 guifg=#303030 guibg=NONE gui=NONE
+hi VertSplit     guifg=#00ffd7 guibg=NONE gui=NONE
+hi StatusLine    guifg=#00ffff guibg=NONE gui=NONE
+hi StatusLineNC  guifg=#303030 guibg=NONE gui=NONE
 " }}}
 
 
 " {{{ Misc
-hi ModeMsg	 gui=bold
-hi MoreMsg	 guifg=#008000
+hi ModeMsg   gui=bold
+hi MoreMsg   guifg=#008000
 
-hi Title	 guifg=#800080
-hi WarningMsg	 guifg=#800000
-hi SpecialKey	 guifg=#000080
+hi Title     guifg=#800080
+hi WarningMsg    guifg=#800000
+hi SpecialKey    guifg=#000080
 
-hi MatchParen	 guibg=#00ffff
-hi Underlined	 guifg=#800080 gui=underline
-hi Directory	 guifg=#000080
+hi MatchParen    guibg=#00ffff
+hi Underlined    guifg=#800080 gui=underline
+hi Directory     guifg=#000080
 " }}}
 
 " {{{ Search, Visual, etc
 "NOTE: I don't actually like the Visual defaults, will want to change these
-hi Visual	 guibg=#00003f
-hi VisualNOS	 gui=bold
+hi Visual    guibg=#00003f
+hi VisualNOS     gui=bold
 "Not sure what this is - will have to find out
-hi IncSearch	 gui=reverse
-hi Search	 guibg=#576f2f
+hi IncSearch     gui=reverse
+hi Search    guibg=#576f2f
 " }}}
 
 " {{{ Syntax groups
-hi Ignore	    guifg=#ffffff
+hi Ignore       guifg=#ffffff
 hi Identifier   guifg=#00ffff
-hi PreProc	    guifg=#c000c0
-hi Comment	    guifg=#005fff gui=italic
-hi Constant	    guifg=#005faf
-hi String	    guifg=#ff0000
-hi Function	    guifg=#00ffff
-hi Statement	guifg=#ff8700 gui=NONE
-hi Type	        guifg=#00ff00  gui=NONE
-hi Number	    guifg=#ff0000
+hi PreProc      guifg=#c000c0
+hi Comment      guifg=#005fff gui=italic
+hi Constant     guifg=#005faf
+hi String       guifg=#ff0000
+hi Function     guifg=#00ffff
+hi Statement    guifg=#ff8700 gui=NONE
+hi Type         guifg=#00ff00  gui=NONE
+hi Number       guifg=#ff0000
 " don't like this - want to improve
-hi Todo	 guifg=#000000 guibg=#ffff00
-hi Special	 guifg=#c000c0
+hi Todo  guifg=#000000 guibg=#ffff00
+hi Special   guifg=#c000c0
 "Might want to change this, it's pretty ugly, (always made me fix it)
-hi Error	    guifg=#ffffff guibg=#ff0000
-hi Label	    guifg=#ff8700
-hi StorageClass	guifg=#00ff00 gui=NONE
+hi Error        guifg=#ffffff guibg=#ff0000
+hi Label        guifg=#ff8700
+hi StorageClass guifg=#00ff00 gui=NONE
 hi Structure    guifg=#00ff00 gui=NONE
-hi TypeDef	    guifg=#00ff00 gui=NONE
+hi TypeDef      guifg=#00ff00 gui=NONE
 " }}}
 
 " Python specific {{{
@@ -110,31 +107,31 @@ hi pythonBuiltin guifg=#00ff00
 
 " Vim specific {{{
 "hi vimCommentTitle guifg=###### guibg=###### gui=
-"hi 
-"hi 
+"hi
+"hi
 " }}}
 
 " C++ specific {{{
-"hi 
-"hi 
-"hi 
+"hi
+"hi
+"hi
 " }}}
 
 " {{{ Completion menus
-hi WildMenu	 guifg=#000000 guibg=#ffff00
+hi WildMenu  guifg=#000000 guibg=#ffff00
 
-hi Pmenu	 guibg=#000080
-hi PmenuSel	 guibg=#800080
-hi PmenuSbar	 guibg=#a8a8a8
-hi PmenuThumb	 guibg=#000000
+hi Pmenu     guibg=#000080
+hi PmenuSel  guibg=#800080
+hi PmenuSbar     guibg=#a8a8a8
+hi PmenuThumb    guibg=#000000
 " }}}
 
 " {{{ Spelling
 "NOTE: haven't actually chosen any of this - will have to look at it again
-hi spellBad	 guibg=#ffd7d7
-hi spellCap	 guibg=#5fd7ff
-hi spellRare	 guibg=#ffd7ff
-hi spellLocal	 guibg=#00ffff
+hi spellBad  guibg=#ffd7d7
+hi spellCap  guibg=#5fd7ff
+hi spellRare     guibg=#ffd7ff
+hi spellLocal    guibg=#00ffff
 " }}}
 
 " {{{ Aliases
@@ -142,29 +139,29 @@ hi spellLocal	 guibg=#00ffff
 "       in three at the moment
 "hi link cppSTL          Function
 "hi link cppSTLType      Type
-"hi link Character		Number
-"hi link htmlTag			htmlEndTag
+"hi link Character      Number
+"hi link htmlTag            htmlEndTag
 ""hi link htmlTagName     htmlTag
-"hi link htmlLink		Underlined
-"hi link pythonFunction	Identifier
-"hi link Question		Type
-"hi link CursorIM		Cursor
-"hi link VisualNOS		Visual
-"hi link xmlTag			Identifier
-"hi link xmlTagName		Identifier
-"hi link shDeref			Identifier
-"hi link shVariable		Function
-"hi link rubySharpBang	Special
-"hi link perlSharpBang	Special
+"hi link htmlLink       Underlined
+"hi link pythonFunction Identifier
+"hi link Question       Type
+"hi link CursorIM       Cursor
+"hi link VisualNOS      Visual
+"hi link xmlTag         Identifier
+"hi link xmlTagName     Identifier
+"hi link shDeref            Identifier
+"hi link shVariable     Function
+"hi link rubySharpBang  Special
+"hi link perlSharpBang  Special
 "hi link schemeFunc      Statement
 "hi link shSpecialVariables Constant
 "hi link bashSpecialVariables Constant
 " }}}
 
 " {{{ Tabs (non-gui0
-hi TabLine	 guifg=#000000 guibg=#c0c0c0 gui=underline
-hi TabLineFill	 gui=reverse
-hi TabLineSel	 gui=bold
+hi TabLine   guifg=#000000 guibg=#c0c0c0 gui=underline
+hi TabLineFill   gui=reverse
+hi TabLineSel    gui=bold
 " }}}
 "
 "
@@ -194,10 +191,10 @@ elseif &t_Co==256
   highlight StatusLine   cterm=NONE   ctermfg=51     ctermbg=NONE
   highlight StatusLineNC cterm=NONE ctermbg=NONE ctermfg=236
   highlight Todo ctermfg=0 ctermbg=30
-  highlight DiffAdd      cterm=NONE        ctermfg=NONE   ctermbg=81
-  highlight DiffChange   cterm=NONE        ctermfg=NONE   ctermbg=225
-  highlight DiffText     cterm=bold        ctermfg=NONE   ctermbg=9
-  highlight DiffDelete   cterm=NONE        ctermfg=12     ctermbg=159
+  highlight DiffAdd      cterm=NONE        ctermfg=NONE   ctermbg=22
+  highlight DiffChange   cterm=NONE        ctermfg=NONE   ctermbg=53
+  highlight DiffText     cterm=bold        ctermfg=NONE   ctermbg=23
+  highlight DiffDelete   cterm=NONE        ctermfg=58     ctermbg=52
   highlight NonText      cterm=NONE        ctermfg=12     ctermbg=NONE
   highlight VertSplit    cterm=NONE        ctermfg=50     ctermbg=NONE
   highlight ModeMsg      cterm=bold        ctermfg=NONE   ctermbg=NONE

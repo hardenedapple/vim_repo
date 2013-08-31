@@ -2,6 +2,11 @@
 
 set nocompatible
 
+" Pathogen plugin {{{
+execute pathogen#infect()
+" call pathogen#helptags()
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Manage spaces and tabs {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -77,7 +82,6 @@ set fillchars=vert:\
 
 "Make the cursor always stay 3 lines inside the window when scrolling
 set scrolloff=3
-
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -85,6 +89,9 @@ set scrolloff=3
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "General {{{
+
+"Turn off the mouse
+set mouse=""
 
 "give me two lines to write commands out
 set cmdheight=2
@@ -111,7 +118,7 @@ set autoread
 " set shell=/usr/bin/zsh
 
 " macro to put spaces around a character - python operators
-let @s='s  P'
+let @s='?\S[=*+/-]\Sls  P:nohlsearch'
 
 "indentation in visual
 vnoremap < <gv
@@ -146,6 +153,17 @@ au BufWinLeave ?*.txt mkview
 au BufWinEnter ?*.txt silent loadview
 "NOTE the regex matches filenames, the ? is there so it doesn't match empty
 "filenames, else there would be an error when opening help
+
+" Choose windows based on number
+nnoremap <leader>1 :exe 1 . "wincmd w"<CR>
+nnoremap <leader>2 :exe 2 . "wincmd w"<CR>
+nnoremap <leader>3 :exe 3 . "wincmd w"<CR>
+nnoremap <leader>4 :exe 4 . "wincmd w"<CR>
+nnoremap <leader>5 :exe 5 . "wincmd w"<CR>
+nnoremap <leader>6 :exe 6 . "wincmd w"<CR>
+nnoremap <leader>7 :exe 7 . "wincmd w"<CR>
+nnoremap <leader>8 :exe 8 . "wincmd w"<CR>
+nnoremap <leader>9 :exe 9 . "wincmd w"<CR>
 "}}}
 
 "Omnicppcomplete options {{{
@@ -169,11 +187,6 @@ let g:NERDSpaceDelims=1
 " {{{ NERDTree plugin
 nnoremap <leader>nl :NERDTreeToggle<CR>
 nnoremap <leader>nc :NERDTreeClose<CR>
-" }}}
-
-" Pathogen plugin {{{
-execute pathogen#infect()
-call pathogen#helptags()
 " }}}
 
 " Syntastic plugin {{{
@@ -224,7 +237,6 @@ let g:bufExplorerShowNoName=1
 " Taglist Plugin {{{
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_File_Fold_Auto_Close = 1
-
 " }}}
 
 " Python-mode plugin {{{
@@ -239,6 +251,8 @@ let g:pymode_lint_cwindow = 0
 let g:pymode_lint_write = 0
 let g:pymode_syntax_space_errors=0
 let g:pymode_syntax_print_as_function = 1
+let g:pymode_rope_extended_complete=1
+let g:pymode_rope_enable_autoimport=1
 
 " map pk to run pymode lint
 nnoremap <leader>pk :PyLint<CR>
