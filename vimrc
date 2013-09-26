@@ -251,8 +251,11 @@ let g:pymode_lint_cwindow = 0
 let g:pymode_lint_write = 0
 let g:pymode_syntax_space_errors=0
 let g:pymode_syntax_print_as_function = 1
-let g:pymode_rope_extended_complete=1
-let g:pymode_rope_enable_autoimport=1
+
+"Disable ropevim in favour of jedi vim
+let g:pymode_rope=0
+" let g:pymode_rope_extended_complete=1
+" let g:pymode_rope_enable_autoimport=1
 
 " map pk to run pymode lint
 nnoremap <leader>pk :PyLint<CR>

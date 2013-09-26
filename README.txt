@@ -13,3 +13,12 @@ Pathogen.vim is indispensible for making sense without a package manager.
 
 As Arch has python3 under python by default (and similar for pylint, pep8 etc), syntastic will check python3 scripts.
 As python-mode comes with it's own syntax checker (which is for python2), pymode will check python2 scripts.
+
+Jedi vim uses external 'jedi' library (either in python2 or python3).
+Vim seems to have trouble being compiled with both python and python2 
+support.
+Not sure how jedi-vim uses the vim python support, but I think the easiest way
+to get support for both is to have a vim different binary for python3 and
+python2.
+Then, jedi-vim would use the Jedi library in the corresponding site-packages
+directory
