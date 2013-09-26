@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 """
 script that downloads the latest version of bufexplorer from vim.org
-and gets the latest version of pathogen.vim from github.
+the latest version of c.vim ffrom vim.org, the hybrid colorscheme from
+w0ng github and latest version of pathogen.vim from tpop github.
 
 Uses python3 - for python2, use urllib2 for urlopen and urllib for urlretrieve
 
@@ -18,9 +19,8 @@ import urllib.request as urlreq
 import zipfile
 
 
-def find_latest_bufexp():
-    """returns the url for the latest zipped script of bufexplorer"""
-    url = 'http://www.vim.org/scripts/script.php?script_id=42'
+def find_latest_vimscript(url):
+    """returns the url for the latest zipped script on a vimscript page"""
     data = urlreq.urlopen(url).read()
     # This is a completely non-general method of getting the charset
     # MIGHT account for the page charset changing in the future
@@ -39,9 +39,18 @@ def find_latest_bufexp():
 
 def get_bufexp():
     """downloads the latest bufexplorer script to file"""
-    page = urlreq.urlopen(find_latest_bufexp())
+    bufurl = 'http://www.vim.org/scripts/script.php?script_id=42'
+    page = urlreq.urlopen(find_latest_vimscript(bufurl))
     zpf = zipfile.ZipFile(BytesIO(page.read()))
     zpf.extractall('vim/bundle/bufexplorer')
+
+
+def get_cvim():
+    """downloads the latest cvim script to file"""
+    bufurl = 'http://www.vim.org/scripts/script.php?script_id=213'
+    page = urlreq.urlopen(find_latest_vimscript(bufurl))
+    zpf = zipfile.ZipFile(BytesIO(page.read()))
+    zpf.extractall('vim/bundle/cvim')
 
 
 def get_pathogen():
@@ -66,6 +75,7 @@ if __name__ == '__main__':
         get_bufexp()
         get_pathogen()
         get_hybrid()
+        get_cvim()
     else:
         for mod in sys.argv[1:]:
             if mod in myfuncs:
