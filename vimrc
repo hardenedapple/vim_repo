@@ -96,6 +96,14 @@ set mouse=""
 "give me two lines to write commands out
 set cmdheight=2
 
+" Backspaces
+set backspace=indent,eol,start
+" History
+set history=50
+set ruler
+
+" Lower priority tab completion
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 "Separate windows when scrolling
 set nocursorbind
 set noscrollbind

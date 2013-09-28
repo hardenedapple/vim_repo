@@ -29,3 +29,6 @@ colorscheme hybrid
     "colorscheme pylight
     "colorscheme techras
     
+" Make shift-insert work like in Xterm
+map <S-Insert> <MiddleMouse>
+map! <S-Insert> <MiddleMouse>

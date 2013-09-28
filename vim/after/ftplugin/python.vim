@@ -1,5 +1,5 @@
 " set foldmethod=indent
-setlocal comments=:#
-set textwidth=78
+setlocal comments=:#%s
+set textwidth=79
 
 setlocal fo+=crot
