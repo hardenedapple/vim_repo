@@ -4,7 +4,7 @@ set nocompatible
 
 " Pathogen plugin {{{
 execute pathogen#infect()
-" call pathogen#helptags()
+call pathogen#helptags()
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -252,6 +252,8 @@ let g:pymode_lint_write = 0
 let g:pymode_syntax_space_errors=0
 let g:pymode_syntax_print_as_function = 1
 
+let g:pymode_run_key='<leader>pr'
+
 "Disable ropevim in favour of jedi vim
 let g:pymode_rope=0
 " let g:pymode_rope_extended_complete=1
@@ -259,6 +261,14 @@ let g:pymode_rope=0
 
 " map pk to run pymode lint
 nnoremap <leader>pk :PyLint<CR>
+" }}}
+
+" {{{ Jedi vim
+let g:jedi#use_tabs_not_buffers=0
+let g:jedi#use_splits_not_buffers="right"
+" If writing in a small terminal and don't want the pop-up
+" setlocal completeopt-=preview
+" This can be put in a modeline
 " }}}
 
 " {{{ Gundo plugin
