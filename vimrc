@@ -203,14 +203,20 @@ nnoremap <leader>nc :NERDTreeClose<CR>
 " Use the location list more
 " Jump to first error in file
 let g:syntastic_python_checkers=["pylint","pep8"]
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open=0
 let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list=1
+let g:syntastic_auto_loc_list=0
 " Want this when syntastic is passive, not when active
 let g:syntastic_auto_jump=0
-let g:syntastic_enable_signs=0
+let g:syntastic_enable_signs=1
 let g:syntastic_enable_balloons=0
+" Get all errors instead of stopping at first error
+let g:syntastic_aggregate_errors=1
+" Show error in command window
+let g:syntastic_echo_current_error=1
 
+" Set syntastic statusline format
+let g:syntastic_stl_format='%W{[Warn: %w - %fw]}%B{, }%E{[Err: %e - %fe]}'
 " Mode of checking
 " Leave most files alone - I save a lot
 " and pop-ups all the time would get annoying
@@ -223,6 +229,7 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 "
 " Map <leader>ok to check the file
 nnoremap <leader>ok :SyntasticCheck<CR>
+nnoremap <leader>rk :SyntasticReset<CR>
 " }}}
 
 " Workspace plugin {{{
@@ -248,6 +255,9 @@ let Tlist_File_Fold_Auto_Close = 1
 " }}}
 
 " Python-mode plugin {{{
+
+" These variables don't matter if don't have python-mode installed
+
 " Disable python folding - Already have a nicer plugin for that
 " Though would like to check about this versions docstring handling
 let g:pymode_folding = 0
@@ -299,8 +309,8 @@ let g:ctrlp_extensions = ['dir', 'buffertag', 'tag', 'changes', 'line']
 
 " {{{ Fugitive Plugin
 autocmd BufReadPost fugitive://* set bufhidden=delete
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 " }}}
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}\ \ \ %{SyntasticStatuslineFlag()}%=%-14.(%l,%c%V%)\ %P
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
