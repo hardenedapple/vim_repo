@@ -175,16 +175,14 @@ nnoremap <leader>9 :exe 9 . "wincmd w"<CR>
 "}}}
 
 "Omnicppcomplete options {{{
-if v:version >= 700
-    set omnifunc=syntaxcomplete#Complete "override builtin C
-    let OmniCpp_GlobalScopeSearch   = 1
-    let OmniCpp_DisplayMode         = 0 "prune out-of-scope variables
-    let OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace
-    let OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop
-    let OmniCpp_ShowAccess          = 1 "show access
-    let OmniCpp_SelectFirstItem     = 2 "select first item
-    set completeopt=menuone,menu,longest
-endif
+autocmd FileType c setlocal omnifunc=syntaxcomplete#Complete "override builtin C
+let OmniCpp_GlobalScopeSearch   = 1
+let OmniCpp_DisplayMode         = 0 "prune out-of-scope variables
+let OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace
+let OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop
+let OmniCpp_ShowAccess          = 1 "show access
+let OmniCpp_SelectFirstItem     = 2 "select first item
+set completeopt=menuone,menu,longest
 "}}}
 
 "NERDcommenter options {{{
@@ -252,6 +250,9 @@ let g:bufExplorerShowNoName=1
 " Taglist Plugin {{{
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_File_Fold_Auto_Close = 1
+" Opens Taglist and moves to that window
+" if are on a tag will open at that tag
+nnoremap <F6> :TlistToggle <CR>
 " }}}
 
 " Python-mode plugin {{{
@@ -284,8 +285,8 @@ nnoremap <leader>pk :PyLint<CR>
 " {{{ Jedi vim
 let g:jedi#use_tabs_not_buffers=0
 let g:jedi#use_splits_not_buffers="right"
-" If writing in a small terminal and don't want the pop-up
-" setlocal completeopt-=preview
+" don't want the docstring popping up all the time
+autocmd FileType python setlocal completeopt-=preview
 " This can be put in a modeline
 " }}}
 

@@ -22,6 +22,7 @@ import sys
 import urllib.request as urlreq
 import zipfile
 import shutil
+import re
 
 
 def find_latest_vimscript(url):
@@ -48,7 +49,7 @@ def get_bufexp():
     page = urlreq.urlopen(find_latest_vimscript(bufurl))
     zpf = zipfile.ZipFile(BytesIO(page.read()))
     zpf.extractall('vim/bundle/bufexplorer')
-    print('Got bufexplorer')
+    print('Downloaded bufexplorer')
 
 
 def get_cvim():
@@ -60,7 +61,7 @@ def get_cvim():
     print('Downloaded c-vim')
 
 
-def get_pysyn():
+def get_pysyntax():
     """Downloads the latest python syntax script to file"""
     bufurl = 'http://www.vim.org/scripts/script.php?script_id=790'
     urlreq.urlretrieve(find_latest_vimscript(bufurl),
@@ -86,27 +87,24 @@ def get_hybrid():
     print('Downloaded the hybrid colorscheme')
 
 
-def steal_pymodebits():
+def steal_pymode():
     """Copy and modify the bits from pymode for defining motion and indent"""
-    # Copy the base parts
-    shutil.copy2('vim/bundle/python-mode/autoload/pymode.vim',
-                 'vim/bundle/python-extras/autoload')
-    call(['patch', 'vim/bundle/python-extras/autoload/pymode.vim',
-          'patches/python_stuff/pybase.diff'])
-    # Copy autoload/pymode/motion.vim
-    shutil.copy2('vim/bundle/python-mode/autoload/pymode/indent.vim',
-                 'vim/bundle/python-extras/autoload/pymode')
-    shutil.copy2('vim/bundle/python-mode/after/indent/python.vim',
-                 'vim/bundle/python-extras/after/indent')
-    call(['patch', 'vim/bundle/python-extras/after/indent/python.vim',
-          'patches/python_stuff/indentpy.diff'])
-    # Copy autoload/pymode/motion.vim
-    shutil.copy2('vim/bundle/python-mode/autoload/pymode/motion.vim',
-                 'vim/bundle/python-extras/autoload/pymode')
-    shutil.copy2('vim/bundle/python-mode/after/ftplugin/python.vim',
-                 'vim/bundle/python-extras/after/ftplugin')
-    call(['patch', 'vim/bundle/python-extras/after/ftplugin/python.vim',
-          'patches/python_stuff/ftplugpy.diff'])
+    # Directories I'm working with
+    orig = 'vim/bundle/python-mode'
+    new = 'vim/bundle/python-extras'
+    patch = 'patches/python_stuff'
+    # Copy files across from python-mode to python-extras
+    for filestr in ['autoload/pymode.vim', 'autoload/pymode/indent.vim',
+                    'autoload/pymode/motion.vim', 'after/indent/python.vim',
+                    'after/ftplugin/python.vim']:
+        shutil.copy2(os.path.join(orig, filestr), os.path.join(new, filestr))
+    # Remove the python-mode integration from files
+    for filestr in ['autoload/pymode.vim', 'after/indent/python.vim',
+                    'after/ftplugin/python.vim']:
+        patchfile = os.path.join(patch, filestr.replace('vim', 'diff'))
+        call(['patch', os.path.join(new, filestr), patchfile])
+
+    print("Copied pymode's indent and motion scripts to python-extra")
 
 if __name__ == '__main__':
     myfuncs = locals()
@@ -114,10 +112,11 @@ if __name__ == '__main__':
         get_bufexp()
         get_pathogen()
         get_hybrid()
-        get_cvim()
-        get_pysyn()
-        steal_pymodebits()
+        get_pysyntax()
+        steal_pymode()
+        # cvim is a bit slow - ask for confirmation
+        input('Get cvim? ') in ['y', 'Y'] and get_cvim()
     else:
         for mod in sys.argv[1:]:
-            if mod in myfuncs:
+            if mod in myfuncs and mod != 'find_latest_vimscript':
                 myfuncs[mod]()
