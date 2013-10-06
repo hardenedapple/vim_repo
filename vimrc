@@ -214,7 +214,7 @@ let g:syntastic_aggregate_errors=1
 let g:syntastic_echo_current_error=1
 
 " Set syntastic statusline format
-let g:syntastic_stl_format='%W{[Warn: %w - %fw]}%B{, }%E{[Err: %e - %fe]}'
+let g:syntastic_stl_format='%W{[Warn: %w]}%E{[Err: %e]}'
 " Mode of checking
 " Leave most files alone - I save a lot
 " and pop-ups all the time would get annoying
@@ -285,13 +285,18 @@ nnoremap <leader>pk :PyLint<CR>
 " {{{ Jedi vim
 let g:jedi#use_tabs_not_buffers=0
 let g:jedi#use_splits_not_buffers="right"
+" allow enabling and disabling jedi call signatures
+nnoremap <leader>jp  :let g:jedi#show_call_signatures=1
+nnoremap <leader>jc  :let g:jedi#show_call_signatures=0
 " don't want the docstring popping up all the time
 autocmd FileType python setlocal completeopt-=preview
-" This can be put in a modeline
+" This can be put in a modeline, or ftplugin file, but I don't want to
+" split up plugin options.
 " }}}
 
 " {{{ Gundo plugin
 nnoremap <F5> :GundoToggle<CR>
+let g:gundo_prefer_python3=1
 " }}} 
 
 " {{{ CtrlP plugin
