@@ -93,6 +93,8 @@ set scrolloff=3
 "Turn off the mouse
 set mouse=""
 
+set completeopt=menuone,menu,longest
+inoremap <C-c> <ESC>
 "give me two lines to write commands out
 set cmdheight=2
 
@@ -175,14 +177,13 @@ nnoremap <leader>9 :exe 9 . "wincmd w"<CR>
 "}}}
 
 "Omnicppcomplete options {{{
-autocmd FileType c setlocal omnifunc=syntaxcomplete#Complete "override builtin C
+autocmd FileType c, cpp set omnifunc=syntaxcomplete#Complete "override builtin C
 let OmniCpp_GlobalScopeSearch   = 1
 let OmniCpp_DisplayMode         = 0 "prune out-of-scope variables
 let OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace
 let OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop
 let OmniCpp_ShowAccess          = 1 "show access
 let OmniCpp_SelectFirstItem     = 2 "select first item
-set completeopt=menuone,menu,longest
 "}}}
 
 "NERDcommenter options {{{
@@ -285,9 +286,11 @@ nnoremap <leader>pk :PyLint<CR>
 " {{{ Jedi vim
 let g:jedi#use_tabs_not_buffers=0
 let g:jedi#use_splits_not_buffers="right"
+" Don't want completeopt overridden - and already have C-c mapped to ESC
+let g:jedi#auto_vim_configuration=0
 " allow enabling and disabling jedi call signatures
-nnoremap <leader>jp  :let g:jedi#show_call_signatures=1
-nnoremap <leader>jc  :let g:jedi#show_call_signatures=0
+nnoremap [oj  :let g:jedi#show_call_signatures=1<CR>
+nnoremap ]oj  :let g:jedi#show_call_signatures=0<CR>
 " don't want the docstring popping up all the time
 autocmd FileType python setlocal completeopt-=preview
 " This can be put in a modeline, or ftplugin file, but I don't want to

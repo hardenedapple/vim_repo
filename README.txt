@@ -29,3 +29,6 @@ CREDITS:
         most colors come from vim-colorsamplerpack arch package.
         (colordiff is difference between vim-colorsamplerpack and directory that
         works with set_colors)
+
+REQUIREMENTS:
+    gundo:   vim 7.3 with python 2.4+ support
