@@ -93,8 +93,11 @@ set scrolloff=3
 "Turn off the mouse
 set mouse=""
 
+" If having problems with complete scanning /dev/null or /dev/random
+" remove the search over included files
+" set complete=.,w,b,u,t
 set completeopt=menuone,menu,longest
-inoremap <C-c> <ESC>
+noremap <C-c> <ESC>
 "give me two lines to write commands out
 set cmdheight=2
 
@@ -128,13 +131,15 @@ set autoread
 " set shell=/usr/bin/zsh
 
 " macro to put spaces around a character - python operators
-let @s='?\S[=*+/-]\Sls  P:nohlsearch'
+let @s='?\S[=*<+/>-]\Sls  P:nohlsearch'
 
 "indentation in visual
 vnoremap < <gv
 vnoremap > >gv
 nnoremap Y y$
 
+" Remove trailing whitespace
+nnoremap <F9> :%s/\s\+$//<CR>
 
 " Allows /opening of buffers in the background/
 set hidden
@@ -145,10 +150,7 @@ set textwidth=79
 "set textwrapping for normal lines
 "add paragraph formatting options
 "don't automatically break already long line
-set formatoptions+=cro
-set formatoptions+=t
-set formatoptions+=q
-set formatoptions+=l
+set formatoptions+=crotql
 
 "Make automatic open with folds all closed
 set foldlevelstart=0
@@ -177,7 +179,7 @@ nnoremap <leader>9 :exe 9 . "wincmd w"<CR>
 "}}}
 
 "Omnicppcomplete options {{{
-autocmd FileType c, cpp set omnifunc=syntaxcomplete#Complete "override builtin C
+autocmd FileType c,cpp setlocal omnifunc=syntaxcomplete#Complete "override builtin C
 let OmniCpp_GlobalScopeSearch   = 1
 let OmniCpp_DisplayMode         = 0 "prune out-of-scope variables
 let OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace
@@ -192,7 +194,7 @@ let g:NERDSpaceDelims=1
 " }}}
 
 " {{{ NERDTree plugin
-nnoremap <leader>nl :NERDTreeToggle<CR>
+nnoremap <F7> :NERDTreeToggle<CR>
 nnoremap <leader>nc :NERDTreeClose<CR>
 " }}}
 
@@ -291,16 +293,16 @@ let g:jedi#auto_vim_configuration=0
 " allow enabling and disabling jedi call signatures
 nnoremap [oj  :let g:jedi#show_call_signatures=1<CR>
 nnoremap ]oj  :let g:jedi#show_call_signatures=0<CR>
-" don't want the docstring popping up all the time
-autocmd FileType python setlocal completeopt-=preview
 " This can be put in a modeline, or ftplugin file, but I don't want to
 " split up plugin options.
+nnoremap [op  :set completeopt+=preview<CR>
+nnoremap ]op  :set completeopt-=preview<CR>
 " }}}
 
 " {{{ Gundo plugin
 nnoremap <F5> :GundoToggle<CR>
 let g:gundo_prefer_python3=1
-" }}} 
+" }}}
 
 " {{{ CtrlP plugin
 " Change where ctrlp opens the files, what file it looks for and how it
