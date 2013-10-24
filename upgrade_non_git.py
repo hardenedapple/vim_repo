@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """
-Script that downloads the latest version of bufexplorer from vim.org
-the latest version of c.vim ffrom vim.org, the hybrid colorscheme from
-w0ng github and latest version of pathogen.vim from tpop github.
+Script that downloads the latest version of c.vim from vim.org, the hybrid
+colorscheme from w0ng github and latest version of pathogen.vim from tpope
+github.
 
 It also copies scripts that I can use with python3 enabled from python-mode
 into python-extras.
@@ -43,19 +43,10 @@ def find_latest_vimscript(url):
     return downloadpage
 
 
-def get_bufexp():
-    """downloads the latest bufexplorer script to file"""
-    bufurl = 'http://www.vim.org/scripts/script.php?script_id=42'
-    page = urlreq.urlopen(find_latest_vimscript(bufurl))
-    zpf = zipfile.ZipFile(BytesIO(page.read()))
-    zpf.extractall('vim/bundle/bufexplorer')
-    print('Downloaded bufexplorer')
-
-
 def get_cvim():
     """downloads the latest cvim script to file"""
-    bufurl = 'http://www.vim.org/scripts/script.php?script_id=213'
-    page = urlreq.urlopen(find_latest_vimscript(bufurl))
+    url = 'http://www.vim.org/scripts/script.php?script_id=213'
+    page = urlreq.urlopen(find_latest_vimscript(url))
     zpf = zipfile.ZipFile(BytesIO(page.read()))
     zpf.extractall('vim/bundle/cvim')
     print('Downloaded c-vim')
@@ -63,8 +54,8 @@ def get_cvim():
 
 def get_pysyntax():
     """Downloads the latest python syntax script to file"""
-    bufurl = 'http://www.vim.org/scripts/script.php?script_id=790'
-    urlreq.urlretrieve(find_latest_vimscript(bufurl),
+    url = 'http://www.vim.org/scripts/script.php?script_id=790'
+    urlreq.urlretrieve(find_latest_vimscript(url),
                        'vim/bundle/python-extras/syntax/python3.0.vim')
     print('Downloaded python syntax extras')
 
@@ -109,7 +100,6 @@ def steal_pymode():
 if __name__ == '__main__':
     myfuncs = locals()
     if len(sys.argv) == 1:
-        get_bufexp()
         get_pathogen()
         get_hybrid()
         get_pysyntax()
