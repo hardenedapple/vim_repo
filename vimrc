@@ -141,7 +141,7 @@ nnoremap Y y$
 " Remove trailing whitespace
 nnoremap <F9> :%s/\s\+$//<CR>
 
-" Allows /opening of buffers in the background/
+" Allows opening of buffers in the background
 set hidden
 "set bufhidden=hide
 "Format options:
@@ -166,6 +166,10 @@ au BufWinEnter ?*.txt silent loadview
 "NOTE the regex matches filenames, the ? is there so it doesn't match empty
 "filenames, else there would be an error when opening help
 
+" Conceal text - define when it's not shown
+set conceallevel=2
+set concealcursor=nc
+
 " Choose windows based on number
 nnoremap <leader>1 :exe 1 . "wincmd w"<CR>
 nnoremap <leader>2 :exe 2 . "wincmd w"<CR>
@@ -176,16 +180,6 @@ nnoremap <leader>6 :exe 6 . "wincmd w"<CR>
 nnoremap <leader>7 :exe 7 . "wincmd w"<CR>
 nnoremap <leader>8 :exe 8 . "wincmd w"<CR>
 nnoremap <leader>9 :exe 9 . "wincmd w"<CR>
-"}}}
-
-"Omnicppcomplete options {{{
-autocmd FileType c,cpp setlocal omnifunc=syntaxcomplete#Complete "override builtin C
-let OmniCpp_GlobalScopeSearch   = 1
-let OmniCpp_DisplayMode         = 0 "prune out-of-scope variables
-let OmniCpp_ShowScopeInAbbr     = 0 "do not show namespace
-let OmniCpp_ShowPrototypeInAbbr = 1 "show prototype in pop
-let OmniCpp_ShowAccess          = 1 "show access
-let OmniCpp_SelectFirstItem     = 2 "select first item
 "}}}
 
 "NERDcommenter options {{{
