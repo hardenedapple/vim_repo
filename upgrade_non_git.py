@@ -43,15 +43,6 @@ def find_latest_vimscript(url):
     return downloadpage
 
 
-def get_cvim():
-    """downloads the latest cvim script to file"""
-    url = 'http://www.vim.org/scripts/script.php?script_id=213'
-    page = urlreq.urlopen(find_latest_vimscript(url))
-    zpf = zipfile.ZipFile(BytesIO(page.read()))
-    zpf.extractall('vim/bundle/cvim')
-    print('Downloaded c-vim')
-
-
 def get_pysyntax():
     """Downloads the latest python syntax script to file"""
     url = 'http://www.vim.org/scripts/script.php?script_id=790'
@@ -104,8 +95,6 @@ if __name__ == '__main__':
         get_hybrid()
         get_pysyntax()
         steal_pymode()
-        # cvim is a bit slow - ask for confirmation
-        input('Get cvim? ') in ['y', 'Y'] and get_cvim()
     else:
         for mod in sys.argv[1:]:
             if mod in myfuncs and mod != 'find_latest_vimscript':

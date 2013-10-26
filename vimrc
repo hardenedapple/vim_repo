@@ -311,6 +311,7 @@ let g:pymode_rope=0
 " let g:pymode_rope_extended_complete=1
 " let g:pymode_rope_enable_autoimport=1
 
+let g:pymode_run=0
 " map pk to run pymode lint
 nnoremap <leader>pk :PyLint<CR>
 " }}}
