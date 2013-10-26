@@ -182,6 +182,42 @@ nnoremap <leader>8 :exe 8 . "wincmd w"<CR>
 nnoremap <leader>9 :exe 9 . "wincmd w"<CR>
 "}}}
 
+" {{{ clang_complete
+let g:clang_auto_select=1
+let g:clang_complete_auto=1
+let g:clang_complete_copen=0
+let g:clang_hl_errors=1
+let g:clang_periodic_quickfix=0
+let g:clang_snippets=1
+let g:clang_snippets_engine="ultisnips"
+let g:clang_conceal_snippets=1
+let g:clang_trailing_placeholder=1
+let g:clang_use_library=1
+let g:clang_sort_algo="priority"
+let g:clang_complete_macros=1
+" Have a look at replacing c-support with this and ultisnips
+let g:clang_complete_patterns=0
+let g:clang_jumpto_declaration_key="<C-]>"
+" Just use C-O, and retain C-T for use with cscope
+let g:clang_jumpto_back_key=""
+let g:clang_user_options="|| exit 0"
+autocmd FileType c,cpp setlocal concealcursor+=iv
+" }}}
+
+" {{{ Ultisnips
+" let g:UltiSnipsUsePythonVersion=2
+let g:UltiSnipsUsePythonVersion=3
+let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetsDir="~/.vim/bundle/ultisnips/mysnippets"
+let g:UltiSnipsSnippetDirectories=["mysnippets","UltiSnips"]
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" let g:UltiSnipRemoveSelectModeMappings=0
+
+" }}}
+
 "NERDcommenter options {{{
 let g:NERDDefaultNesting=0
 let g:NERDSpaceDelims=1
