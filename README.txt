@@ -3,8 +3,6 @@ My vim dir so that I can easily get my working environment wherever I roam.
 CLASHES:
     vim-lawrencium: <C-S> Hgcommit, terminal overrides with freeze
 
-    NerdCommenter uses '\cc' to comment single line and '\cs' to comment 'sexily'
-    
     To use python3 jedi omnicompletion etc, need vim compiled with python3
         this breaks python-mode.
 
@@ -13,7 +11,7 @@ CLASHES:
         and apply patches to remove pymode interdependancies
 
     If compiled with python3, symlink python-extra into .vim/bundle directory
-        and don't try to use clang_complete - instead use clang_complete
+        and don't try to use clang_complete repo - instead use clang_complete
         vimball from vim.org (scriptid=3302)
     If compiled with python2, symlink python-mode into .vim/bundle directory
         and use clang_complete with libclang.so library

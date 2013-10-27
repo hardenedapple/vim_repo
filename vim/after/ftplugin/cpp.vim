@@ -20,11 +20,15 @@ inoremap <buffer> {<CR>  {<CR>}<Esc>O
 " include prototype in function folding - This uses things that the help says
 " will be slow, but is a really simple function otherwise - will see when
 " using large files.
-function FoldBrace()
-    if getline(v:lnum+1) =~ "^\\s*{$"
+function! FoldBrace()
+    " If the line below starts with a '{' or this line has non-space non-'}'
+    " characters before an opening bracket, increase foldlevel
+    if getline(v:lnum+1) =~ "^\\s*{$" || getline(v:lnum) =~ "^\\s*[^} ][^}]*{$"
         return 'a1'
     endif
-    if getline(v:lnum) =~ "^\\s*}$"
+    " If the line starts with a a close bracket and doesn't have another open
+    " bracket - decrease the foldlevel.
+    if getline(v:lnum) =~ "^\\s*}[^{]*$"
         return 's1'
     endif
     return '='
