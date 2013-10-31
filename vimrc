@@ -202,6 +202,12 @@ let g:clang_jumpto_declaration_key="<C-]>"
 let g:clang_jumpto_back_key=""
 let g:clang_user_options="|| exit 0"
 autocmd FileType c,cpp setlocal concealcursor+=iv
+" Map ctrl-space to the completion
+if has('gui_running')
+    autocmd FileType c,cpp inoremap <silent> <buffer> <C-Space> <C-X><C-U>
+else
+    autocmd FileType c,cpp inoremap <silent> <buffer> <C-@> <C-X><C-U>
+endif
 " }}}
 
 " {{{ Ultisnips
@@ -323,8 +329,8 @@ let g:jedi#use_splits_not_buffers="right"
 " Don't want completeopt overridden - and already have C-c mapped to ESC
 let g:jedi#auto_vim_configuration=0
 " allow enabling and disabling jedi call signatures
-nnoremap [oj  :let g:jedi#show_call_signatures=1<CR>
-nnoremap ]oj  :let g:jedi#show_call_signatures=0<CR>
+autocmd FileType python nnoremap [oj  :let g:jedi#show_call_signatures=1<CR>
+autocmd FileType python nnoremap ]oj  :let g:jedi#show_call_signatures=0<CR>
 " This can be put in a modeline, or ftplugin file, but I don't want to
 " split up plugin options.
 nnoremap [op  :set completeopt+=preview<CR>
