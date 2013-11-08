@@ -1,0 +1,33 @@
+snippet switch "switch() .. case .. case .. case .. case"
+switch(${1:${VISUAL/^\s*//}}) {
+
+	case ${2}: {
+		${3}
+		${4:break;}
+	}
+
+	case ${5}: {
+		${6}
+		${7:break;}
+	}
+
+	case ${8}: {
+		${9}
+		${10:break;}
+	}
+
+	default: {
+		${11}
+	}${12}
+}
+${0}
+endsnippet
+
+snippet case "case : { }"
+
+case ${1}: {
+	${2:${VISUAL/^\s*//}}
+	${3:break;}
+}
+${0}
+endsnippet
