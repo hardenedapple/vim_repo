@@ -23,6 +23,20 @@
 " Jason Duell       jduell@alumni.princeton.edu     2002/3/7
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Search through all upper levels to find the cscope database (taken from
+" vim.wikia.com/wiki/Autoloading_Cscope_Database)
+function! LoadCscope()
+  let db = findfile("cscope.out", ".;")
+  if (!empty(db))
+    let path = strpart(db, 0, match(db, "/cscope.out$"))
+    set nocscopeverbose " suppress 'duplicate connection' error
+    exe "cs add " . db . " " . path
+    set cscopeverbose
+  endif
+endfunction
+" Call the function every time file is sourced (i.e. every time open a .c file)
+call LoadCscope()
+
 
 " This tests to see if vim was configured with the '--enable-cscope' option
 " when it was compiled.  If it wasn't, time to recompile vim...
@@ -36,14 +50,6 @@ if has("cscope")
     " check cscope for definition of a symbol before checking ctags: set to 1
     " if you want the reverse search order.
     set csto=0
-
-    " add any cscope database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out
-    " else add the database pointed to by environment variable
-    elseif $CSCOPE_DB != ""
-        cs add $CSCOPE_DB
-    endif
 
     " show msg when any other cscope db added
     set cscopeverbose
