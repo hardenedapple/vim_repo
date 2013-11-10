@@ -5,10 +5,6 @@ nnoremap ]om :set makeprg=make<CR>
 " Run cscope
 nnoremap <F11>  :!cscope -Rb<CR> :cs reset<CR>
 
-" Run ctags (in way for OmniCppComplete)
-nnoremap <F12>  :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
-
-
 " add closing of comments when I type the lead
 inoremap <buffer> /*  /*<Space><Space>*/<Left><Left><Left>
 inoremap <buffer> /*<CR>  /*<CR><CR>/<Esc>kA

@@ -1,4 +1,18 @@
 "This is my vim Customisation file.
+" NOTE: Function keys
+"       <F1> - Help (as usual for vim)
+"       <F2> -
+"       <F3> - Ultisnips list completions
+"       <F4> -
+"       <F5> - GundoToggle
+"       <F6> - TlistToggle
+"       <F7> - NERDTreeToggle
+"       <F8> - switch through colours
+"       <F9> - Remove trailing whitespace
+"       <F10> -
+"       <F11> - (in C/C++) cscope update
+"       <F12> - ctags update
+
 
 set nocompatible
 
@@ -169,6 +183,9 @@ au BufWinEnter ?*.txt silent loadview
 " Conceal text - define when it's not shown
 set conceallevel=2
 set concealcursor=nc
+
+" Run ctags
+nnoremap <F12>  :!ctags -R --fields=+iaS --extra=+q .<CR><CR>
 
 " Choose windows based on number
 nnoremap <leader>1 :exe 1 . "wincmd w"<CR>
