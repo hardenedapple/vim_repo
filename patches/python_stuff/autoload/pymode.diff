@@ -142,7 +142,7 @@
  fun! pymode#BlockStart(lnum, ...) "{{{
      let pattern = a:0 ? a:1 : '^\s*\(@\|class\s.*:\|def\s\)'
      let lnum = a:lnum + 1
-@@ -174,23 +39,4 @@
+@@ -174,22 +39,4 @@
  endfunction "}}}
  
  
@@ -154,7 +154,6 @@
 -            let {'b:pymode_'.name} = value
 -        endfor
 -    endif
--    au BufRead <buffer> call pymode#Modeline()
 -endfunction "}}}
 -
 -
