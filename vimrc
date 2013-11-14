@@ -107,6 +107,15 @@ set scrolloff=3
 "Turn off the mouse
 set mouse=""
 
+" Insert and command-line only Caps-Lock
+" make search and insert mode keymaps the same
+" When toggle keymap (defined in vim/keymaps/insert_only_capslock), make sure
+" the mapping is removed when leaving insert mode
+set imsearch=-1
+set keymap=insert_only_capslock
+set iminsert=0
+autocmd InsertLeave * set iminsert=0
+
 " If having problems with complete scanning /dev/null or /dev/random
 " remove the search over included files
 " set complete=.,w,b,u,t
