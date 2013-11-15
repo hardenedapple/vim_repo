@@ -160,10 +160,13 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 set tags=./tags;$HOME
 "change how the command line autocomplete works
 "set wildmode=<parameters>
-set wildmenu
 set smarttab
 set shiftround
 set autoread
+set wildmenu
+set wildignore=*.o,*.obj,*~,*.swp
+set wildignore+=*.png,*.jpg,*.gif
+set wildignore+=*.pyc,__pycache__/
 
 "}}}
 
@@ -173,6 +176,7 @@ set autoread
 "give me two lines to write commands out
 "show commands as typing add line numbers
 set showcmd
+set showmode
 set cmdheight=2
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}\ \ \ %{SyntasticStatuslineFlag()}%=%-14.(%l,%c%V%)\ %P
 set ruler
