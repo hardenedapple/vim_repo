@@ -1,7 +1,7 @@
 
 " Ultisnips using python3
-" let g:UltiSnipsUsePythonVersion=2
-let g:UltiSnipsUsePythonVersion=3
+let g:UltiSnipsUsePythonVersion=2
+" let g:UltiSnipsUsePythonVersion=3
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetsDir="~/.vim/mysnippets"
 let g:UltiSnipsSnippetDirectories=["mysnippets","UltiSnips"]

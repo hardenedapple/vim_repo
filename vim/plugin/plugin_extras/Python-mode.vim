@@ -12,7 +12,6 @@ let g:pymode_lint_cwindow = 0
 " don't highlight spaces at end of line - when typing is annoying
 let g:pymode_lint_write = 0
 let g:pymode_syntax_space_errors=0
-let g:pymode_syntax_print_as_function = 1
 
 let g:pymode_run_key='<leader>pr'
 
