@@ -19,7 +19,7 @@ inoremap <buffer> {<CR>  {<CR>}<Esc>O
 function! FoldBrace()
     " If the line has a '{' somewhere other than the start and doesn't have a
     " '}' open new fold
-    if getline(v:lnum) =~ "^\\s*[^} ][^}]*{\\s*$"
+    if getline(v:lnum) =~ "^\\s*[^} 	][^}]*{\\s*$"
         return 'a1'
     endif
     " If the line below starts with '{' and the current line has '}' return '='
