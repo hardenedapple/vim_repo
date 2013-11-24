@@ -43,14 +43,6 @@ def find_latest_vimscript(url):
     return downloadpage
 
 
-def get_pysyntax():
-    """Downloads the latest python syntax script to file"""
-    url = 'http://www.vim.org/scripts/script.php?script_id=790'
-    urlreq.urlretrieve(find_latest_vimscript(url),
-                       'vim/bundle/python-extras/syntax/python3.0.vim')
-    print('Downloaded python syntax extras')
-
-
 def get_pathogen():
     """Download the pathogen script"""
     pathurl = \
@@ -68,25 +60,6 @@ def get_hybrid():
         urlreq.urlretrieve(pathurl, 'vim/colors/' + name)
     print('Downloaded the hybrid colorscheme')
 
-
-def steal_pymode():
-    """Copy and modify the bits from pymode for defining motion and indent"""
-    # Directories I'm working with
-    orig = 'vim/bundle/python-mode'
-    new = 'vim/bundle/python-extras'
-    patch = 'patches/python_stuff'
-    # Copy files across from python-mode to python-extras
-    for filestr in ['autoload/pymode.vim', 'autoload/pymode/indent.vim',
-                    'autoload/pymode/motion.vim', 'after/indent/python.vim',
-                    'after/ftplugin/python.vim']:
-        shutil.copy2(os.path.join(orig, filestr), os.path.join(new, filestr))
-    # Remove the python-mode integration from files
-    for filestr in ['autoload/pymode.vim', 'after/indent/python.vim',
-                    'after/ftplugin/python.vim']:
-        patchfile = os.path.join(patch, filestr.replace('vim', 'diff'))
-        call(['patch', os.path.join(new, filestr), patchfile])
-
-    print("Copied pymode's indent and motion scripts to python-extra")
 
 if __name__ == '__main__':
     myfuncs = locals()
