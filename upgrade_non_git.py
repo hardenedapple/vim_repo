@@ -66,8 +66,6 @@ if __name__ == '__main__':
     if len(sys.argv) == 1:
         get_pathogen()
         get_hybrid()
-        get_pysyntax()
-        steal_pymode()
     else:
         for mod in sys.argv[1:]:
             if mod in myfuncs and mod != 'find_latest_vimscript':
