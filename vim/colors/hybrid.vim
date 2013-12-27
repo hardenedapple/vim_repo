@@ -37,6 +37,17 @@
 "
 "       let g:hybrid_use_Xresources = 1
 "       colorscheme hybrid
+"
+" For iTerm2 users:
+" 1.  Install this color preset on your iTerm2:
+"
+"       https://gist.github.com/luan/6362811
+"
+" 2. Use iTerm colours by setting in ~/.vimrc:
+"
+"       let g:hybrid_use_iTerm_colors = 1
+"       colorscheme hybrid
+"
 
 "}}}
 " Initialisation:"{{{
@@ -47,6 +58,10 @@ endif
 
 if !exists("g:hybrid_use_Xresources")
   let g:hybrid_use_Xresources = 0
+endif
+
+if !exists("g:hybrid_use_iTerm_colors")
+  let g:hybrid_use_iTerm_colors = 0
 endif
 
 set background=dark
@@ -102,6 +117,22 @@ else
     let s:aqua       = "14"   " LightCyan
     let s:blue       = "12"   " LightBlue
     let s:purple     = "13"   " LightMagenta
+  elseif g:hybrid_use_iTerm_colors == 1
+    let s:background = "8"
+    let s:foreground = "15"
+    let s:selection  = "13"
+    let s:line       = "0"
+    let s:comment    = "7"
+    let s:red        = "1"   
+    let s:orange     = "9"   
+    let s:yellow     = "3"   
+    let s:green      = "2"
+    let s:aqua       = "6"
+    let s:blue       = "4"
+    let s:purple     = "5"
+    let s:darkcolumn = "11"
+    let s:addbg      = "10"
+    let s:changebg   = "12"
   else
     let s:foreground = "250"
     let s:selection  = "237"
@@ -274,7 +305,7 @@ exe "hi! WarningMsg"    .s:fg_red         .s:bg_none        .s:fmt_none
 "		WildMenu"
 
 " Use Xresources for background colour
-if has('gui_running') || g:hybrid_use_Xresources != 1
+if has('gui_running') || (g:hybrid_use_Xresources != 1 && g:hybrid_use_iTerm_colors != 1)
   exe "hi! Normal"        .s:fg_foreground  .s:bg_background  .s:fmt_none
 else
   exe "hi! Normal"        .s:fg_foreground  .s:bg_none        .s:fmt_none
