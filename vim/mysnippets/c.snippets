@@ -20,13 +20,10 @@ switch(${1:${VISUAL/^\s*//}}) {
 ${0}
 endsnippet
 
-snippet case "case : { }"
-
+snippet case "case : "
 case ${1}:
 	${2:${VISUAL/^\s*//}}
-	${3:break;}
-
-${0}
+	${0:break;}
 endsnippet
 
 clearsnippets Inc
