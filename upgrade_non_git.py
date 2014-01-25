@@ -14,15 +14,10 @@ Assumes the encoding is defined with charset=...'
 Assumes the first occurance of download id is the latest and the one I want.
 """
 
-from io import BytesIO
-from subprocess import call
 import os.path
 import re
 import sys
 import urllib.request as urlreq
-import zipfile
-import shutil
-import re
 
 
 def find_latest_vimscript(url):

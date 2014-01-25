@@ -216,7 +216,7 @@ set foldlevelstart=0
 set timeoutlen=1000
 
 " Conceal text - define when it's not shown
-set conceallevel=2
+set conceallevel=0
 set concealcursor=nc
 
 "}}}
