@@ -10,7 +10,7 @@ let g:pymode_lint_cwindow = 1
 " let g:pymode_lint_message = 0
 " don't automatically call checking - same reason as for syntastic
 " don't highlight spaces at end of line - when typing is annoying
-let g:pymode_lint_write = 0
+let g:pymode_lint_on_write = 0
 let g:pymode_syntax_space_errors=0
 
 let g:pymode_run_key='<leader>pr'
