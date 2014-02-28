@@ -223,6 +223,10 @@ set timeoutlen=1000
 set conceallevel=0
 set concealcursor=nc
 
+" Make gx open the file under cursor with whatever program it requires.
+" NOTE: URL's require 'http://' at the front
+let g:netrw_browsex_viewer = "xdg-open"
+
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
