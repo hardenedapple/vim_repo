@@ -190,7 +190,6 @@ elseif &t_Co==256
   highlight Pmenusel cterm=NONE ctermfg=NONE ctermbg=darkmagenta
   highlight StatusLine   cterm=NONE   ctermfg=51     ctermbg=NONE
   highlight StatusLineNC cterm=NONE ctermbg=NONE ctermfg=236
-  highlight Todo ctermfg=0 ctermbg=30
   highlight DiffAdd      cterm=NONE        ctermfg=NONE   ctermbg=22
   highlight DiffChange   cterm=NONE        ctermfg=NONE   ctermbg=53
   highlight DiffText     cterm=bold        ctermfg=NONE   ctermbg=23
@@ -216,7 +215,7 @@ elseif &t_Co==256
   highlight Statement    cterm=NONE        ctermfg=130    ctermbg=NONE
   highlight Type         cterm=NONE        ctermfg=2      ctermbg=NONE
   highlight Number       cterm=NONE        ctermfg=1      ctermbg=NONE
-  highlight Todo         cterm=NONE        ctermfg=0      ctermbg=11
+  highlight Todo         cterm=NONE        ctermfg=0      ctermbg=30
   highlight Special      cterm=NONE        ctermfg=5      ctermbg=NONE
   highlight Error        cterm=NONE        ctermfg=15     ctermbg=9
   highlight Label        cterm=NONE        ctermfg=130    ctermbg=NONE
