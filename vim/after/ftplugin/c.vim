@@ -12,10 +12,10 @@ inoremap <buffer> /*<CR>  /*<CR><CR>/<Esc>kA
 " add opening a block with {<CR>
 inoremap <buffer> {<CR>  {<CR>}<Esc>O
 
+let c_no_comment_fold = 1
 
-" include prototype in function folding - This uses things that the help says
-" will be slow, but is a really simple function otherwise - will see when
-" using large files.
+" This function for folding does everything I want, but slows eveything down
+" in large files - If reading large files switch to foldmethod=syntax
 function! FoldBrace()
     " If the line has a '{' somewhere other than the start and doesn't have a
     " '}' open new fold

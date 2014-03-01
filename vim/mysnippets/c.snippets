@@ -26,8 +26,9 @@ case ${1}:
 	${0:break;}
 endsnippet
 
-clearsnippets Inc
+# Let the cpp Inc snippet overwrite this one
+priority -1
 
-snippet Inc "include <>"
+snippet Inc "#include <>"
 #include <${1}.h>
 endsnippet
