@@ -7,7 +7,7 @@ nnoremap <F11>  :!cscope -Rb<CR> :cs reset<CR>
 
 " add closing of comments when I type the lead
 inoremap <buffer> /*  /*<Space><Space>*/<Left><Left><Left>
-inoremap <buffer> /*<CR>  /*<CR><CR>/<Esc>kA
+inoremap <buffer> /*<CR>  /*<CR><CR>/<Esc>kA 
 
 " add opening a block with {<CR>
 inoremap <buffer> {<CR>  {<CR>}<Esc>O
@@ -39,4 +39,10 @@ function! FoldBrace()
 endfunction
 
 set foldexpr=FoldBrace()
-set foldmethod=expr
+" The function I've defined works nicely with pretty much all folding styles
+" but is slow if there are too many folds above where you're writing.
+if line('$') < 500
+    set foldmethod=expr
+else
+    set foldmethod=syntax
+endif
