@@ -214,6 +214,10 @@ set hidden
 set textwidth=79
 set formatoptions+=crotql
 
+" If in C and using syntax folding, don't fold comments
+" (is here not after/ftplugin as has to be active when syntax/c.vim is read)
+let g:c_no_comment_fold = 1
+
 "Make automatic open with folds all closed
 " Give me enough time to think aobut which command I want
 set foldlevelstart=0

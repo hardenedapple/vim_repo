@@ -12,8 +12,6 @@ inoremap <buffer> /*<CR>  /*<CR><CR>/<Esc>kA
 " add opening a block with {<CR>
 inoremap <buffer> {<CR>  {<CR>}<Esc>O
 
-let c_no_comment_fold = 1
-
 " This function for folding does everything I want, but slows eveything down
 " in large files - If reading large files switch to foldmethod=syntax
 function! FoldBrace()
