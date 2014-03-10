@@ -26,6 +26,12 @@ case ${1}:
 	${0:break;}
 endsnippet
 
+snippet ch " /* Check ... */ "
+/* Check for strange parameters */ {
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
 # Let the cpp Inc snippet overwrite this one
 priority -1
 
