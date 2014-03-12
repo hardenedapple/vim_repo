@@ -98,3 +98,6 @@
 [submodule "vim/bundle/ctrlp-funky"]
 	path = vim/bundle/ctrlp-funky
 	url = git://github.com/tacahiroy/ctrlp-funky.git
+[submodule "vim/bundle/arduinosyntax"]
+	path = vim/bundle/arduinosyntax
+	url = git://github.com/sudar/vim-arduino-syntax.git
