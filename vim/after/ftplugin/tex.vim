@@ -1,8 +1,8 @@
 "Probable only work on writing at work (on big screen)
-set textwidth=125
+setlocal textwidth=125
 
-set shiftwidth=2
-set iskeyword+=:
+setlocal shiftwidth=2
+setlocal iskeyword+=:
 
 "Change the font to one better for tex
 if has('gui_running')
