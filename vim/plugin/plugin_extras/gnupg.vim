@@ -1,5 +1,5 @@
 " Tell the GnuPG plugin to armor new files
-let g:GPGPreferArmor=1
+" let g:GPGPreferArmor=1
 
 " Sign new files with my public key?
 let g:GPGPreferSign=0
