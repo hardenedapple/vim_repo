@@ -59,3 +59,6 @@
 [submodule "vim/bundle/eunuch"]
 	path = vim/bundle/eunuch
 	url = git://github.com/tpope/vim-eunuch.git
+[submodule "vim/bundle/ctrlspace"]
+    path = vim/bundle/ctrlspace
+	url = git://github.com/szw/vim-ctrlspace.git

@@ -28,6 +28,9 @@ colorscheme hybrid
     "colorscheme pyte
     "colorscheme pylight
     "colorscheme techras
+
+" gvim can show unicode symbols much better than terminal vim (not sure why)
+let g:ctrlspace_unicode_font=1
     
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
