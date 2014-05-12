@@ -73,14 +73,11 @@ if has("cscope")
     " diplays your search result in the new window, and one that does the same
     " thing, but does a vertical split instead (vim 6 only).
     "
-    " I've used CTRL-\ and CTRL-@ as the starting keys for these maps, as it's
+    " I've used CTRL-\ and CTRL-/ as the starting keys for these maps, as it's
     " unlikely that you need their default mappings (CTRL-\'s default use is
     " as part of CTRL-\ CTRL-N typemap, which basically just does the same
-    " thing as hitting 'escape': CTRL-@ doesn't seem to have any default use).
-    " If you don't like using 'CTRL-@' or CTRL-\, , you can change some or all
-    " of these maps to use other keys.  One likely candidate is 'CTRL-_'
-    " (which also maps to CTRL-/, which is easier to type).  By default it is
-    " used to switch between Hebrew and English keyboard mode.
+    " thing as hitting 'escape': 'CTRL-_' (which also maps to CTRL-/) by default
+    " is used to switch between Hebrew and English keyboard mode.
     "
     " All of the maps involving the <cfile> macro use '^<cfile>$': this is so
     " that searches over '#include <time.h>" return only references to
@@ -108,62 +105,35 @@ if has("cscope")
     "      way around - couldn't be bothered to make sure the grammar
     "      was correct.
 
-    " Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type
+    " Using 'CTRL-/' (intepreted as CTRL-_ by vim) then a search type
     " makes the vim window split vertically with search result displayed in
     " the new window.
     "
     " (Note: earlier versions of vim may not have the :scs command, but it
     " can be simulated roughly via:
-    "    nmap <C-@>s <C-W><C-S> :cs find s <C-R>=expand("<cword>")<CR><CR>
+    "    nmap <C-_>s <C-W><C-S> :cs find s <C-R>=expand("<cword>")<CR><CR>
 
-    " Hitting CTRL-space *twice* before the search type does a horizontal
+    " Hitting CTRL-/ *twice* before the search type does a horizontal
     " split instead of a horizontal one (vim 6 and up only)
-    "
-    " (Note: you may wish to put a 'set splitright' in your .vimrc
-    " if you prefer the new window on the right instead of the left
 
-    " In the gui mapping <C-@> doesn't map to Ctrl-Space, in the terminal
-    " mapping <C-Space> doesn't, account for with simple if statement
-    if has("gui_running")
-        nmap <C-Space>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-Space>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-Space>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-Space>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-Space>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-Space>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
-        nmap <C-Space>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-        nmap <C-Space>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+    nmap <C-_>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nmap <C-_>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
 
-        nmap <C-Space><C-Space>s scs find s <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-Space><C-Space>g scs find g <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-Space><C-Space>c scs find c <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-Space><C-Space>t scs find t <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-Space><C-Space>e scs find e <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-Space><C-Space>f scs find f <C-R>=expand("<cfile>")<CR><CR>
-        nmap <C-Space><C-Space>i scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-        nmap <C-Space><C-Space>d scs find d <C-R>=expand("<cword>")<CR><CR>
-    else
-        nmap <C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
-        nmap <C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-        nmap <C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
-
-
-        nmap <C-@><C-@>s scs find s <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-@><C-@>g scs find g <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-@><C-@>c scs find c <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-@><C-@>t scs find t <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-@><C-@>e scs find e <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-@><C-@>f scs find f <C-R>=expand("<cfile>")<CR><CR>
-        nmap <C-@><C-@>i scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-        nmap <C-@><C-@>d scs find d <C-R>=expand("<cword>")<CR><CR>
-    endif
-
+    nmap <C-_><C-_>s scs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_><C-_>g scs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_><C-_>c scs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_><C-_>t scs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_><C-_>e scs find e <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_><C-_>f scs find f <C-R>=expand("<cfile>")<CR><CR>
+    nmap <C-_><C-_>i scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nmap <C-_><C-_>d scs find d <C-R>=expand("<cword>")<CR><CR>
 
 
     """"""""""""" key map timeouts
