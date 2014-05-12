@@ -62,3 +62,6 @@
 [submodule "vim/bundle/ctrlspace"]
     path = vim/bundle/ctrlspace
 	url = git://github.com/szw/vim-ctrlspace.git
+[submodule "vim/bundle/pathogen"]
+	path = vim/bundle/pathogen
+	url = git://github.com/tpope/vim-pathogen.git

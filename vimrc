@@ -15,6 +15,7 @@
 
 
 set nocompatible
+runtime bundle/pathogen/autoload/pathogen.vim
 
 " Pathogen plugin {{{
 execute pathogen#infect()
