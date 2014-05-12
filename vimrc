@@ -136,15 +136,6 @@ au BufWinEnter ?*.txt silent loadview
 "NOTE the regex matches filenames, the ? is there so it doesn't match empty
 "filenames, else there would be an error when opening help
 
-" Insert and command-line only Caps-Lock
-" make search and insert mode keymaps the same
-" When toggle keymap (defined in vim/keymaps/insert_only_capslock), make sure
-" the mapping is removed when leaving insert mode
-set imsearch=-1
-set keymap=insert_only_capslock
-set iminsert=0
-autocmd InsertLeave * set iminsert=0
-
 "turn the plugin lookup on
 "turn automatic filetype indentation on
 filetype plugin on
