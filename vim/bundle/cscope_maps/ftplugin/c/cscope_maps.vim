@@ -115,6 +115,10 @@ if has("cscope")
 
     " Hitting CTRL-/ *twice* before the search type does a horizontal
     " split instead of a horizontal one (vim 6 and up only)
+    "
+    " NOTE:
+    "   <C-_> is only equivalent to <C-/>  in the terminal
+    "   In gvim <C-/> is unmappable - as far as I can tell
 
     nmap <C-_>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
     nmap <C-_>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
