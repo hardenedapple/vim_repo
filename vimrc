@@ -223,6 +223,9 @@ set concealcursor=nc
 " NOTE: URL's require 'http://' at the front
 let g:netrw_browsex_viewer = "xdg-open"
 
+" incremental searches
+set incsearch
+
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
