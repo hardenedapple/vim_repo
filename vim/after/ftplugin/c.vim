@@ -44,3 +44,27 @@ if line('$') < 500
 else
     set foldmethod=syntax
 endif
+
+
+" Automatically add newline on ';' when outside of a comment or string
+
+function! Semi()
+    let synname = synIDattr(synID(line('.'), col('.') - 1, 1), "name")
+
+    " If previous char is not in a Comment and Not in a string, add a newline
+    if match(synname, "Comment") != -1
+        return ';'
+    elseif match(synname, "String") == -1
+        return ';'
+    endif
+
+    " Check the number of '"' up until here - if is even, add newline
+    if len(substitute(strpart(getline('.'), 0, col('.') -1), '[^"]', '','g')) % 2 == 0
+        return ';'
+    endif
+
+    " In a string - return original
+    return ';'
+endfunction
+
+inoremap <buffer><expr> ; Semi()
