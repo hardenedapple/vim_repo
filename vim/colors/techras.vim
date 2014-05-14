@@ -183,7 +183,7 @@ elseif &t_Co==256
   highlight FoldColumn cterm=NONE ctermfg=Cyan ctermbg=NONE
   highlight Folded       cterm=bold   ctermfg=100    ctermbg=NONE
   highlight CursorColumn cterm=NONE ctermfg=NONE ctermbg=236
-  highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=236
+  highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=234
   highlight Folded cterm=bold ctermfg=100 ctermbg=NONE
   highlight Search cterm=NONE ctermfg=NONE ctermbg=107
   highlight Pmenu cterm=NONE ctermfg=NONE ctermbg=darkblue
