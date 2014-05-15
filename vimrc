@@ -107,6 +107,8 @@ call setreg('d', '/@todoc//e', 'c')
 "indentation in visual
 vnoremap < <gv
 vnoremap > >gv
+
+" make Y match other capitals
 nnoremap Y y$
 
 " Remove trailing whitespace
@@ -140,6 +142,9 @@ au BufWinEnter ?*.txt silent loadview
 "turn automatic filetype indentation on
 filetype plugin on
 filetype indent on
+
+" When executing automatic commands, wait until finished
+set lazyredraw
 
 "}}}
 
@@ -182,7 +187,7 @@ set number
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Miscellaneous {{{
+" Other Settings {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Make split windows open on right and below by default
@@ -205,6 +210,7 @@ set hidden
 "Format options: automatic folding, comment folding etc.
 set textwidth=79
 set formatoptions+=crotql
+set virtualedit=block
 
 " If in C and using syntax folding, don't fold comments
 " (is here not after/ftplugin as has to be active when syntax/c.vim is read)
