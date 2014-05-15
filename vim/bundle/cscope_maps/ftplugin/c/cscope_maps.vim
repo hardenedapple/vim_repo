@@ -130,14 +130,14 @@ if has("cscope")
     nmap <C-_>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
 
-    nmap <C-_><C-_>s scs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-_><C-_>g scs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-_><C-_>c scs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-_><C-_>t scs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-_><C-_>e scs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-_><C-_>f scs find f <C-R>=expand("<cfile>")<CR><CR>
-    nmap <C-_><C-_>i scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-_><C-_>d scs find d <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_><C-_>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_><C-_>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_><C-_>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_><C-_>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_><C-_>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+    nmap <C-_><C-_>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+    nmap <C-_><C-_>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nmap <C-_><C-_>d :scs find d <C-R>=expand("<cword>")<CR><CR>
 
 
     """"""""""""" key map timeouts
