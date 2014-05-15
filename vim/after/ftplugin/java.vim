@@ -1,13 +1,9 @@
-set foldmethod=syntax
-
 " add a simple toggle for test scripts
 nnoremap [om :set makeprg=javac\ %<CR>
 nnoremap ]om :set makeprg=make<CR>
 
-" add closing of comments when I type the lead
-inoremap <buffer> /*  /*<Space><Space>*/<Left><Left><Left>
-inoremap <buffer> /*<CR>  /*<CR><CR>/<Esc>kA 
+let general_plug = expand('<sfile>:p:h') . "/c_languages.vim"
+exec "source " . general_plug
 
-" add opening a block with {<CR>
-inoremap <buffer> {<CR>  {<CR>}<Esc>O
-
+" Overwrite the foldmethod from c_languages.vim
+set foldmethod=syntax
