@@ -42,7 +42,7 @@ else
 endif
 
 " Automatically add newline on ';' when outside of a comment or string
-function! Semi()
+function! CSemi()
     let colnum = col('.')
     let linenum = line('.')
 
@@ -84,4 +84,12 @@ function! Semi()
     return ";\n"
 endfunction
 
-inoremap <buffer><expr> ; Semi()
+function! Togglenewlineadd()
+    if strlen(mapcheck(';', 'i')) > 0
+        iunmap <buffer> ;
+    else
+        inoremap <buffer><expr> ; CSemi()
+    endif
+endfunction
+
+nnoremap <silent> <leader>n :call Togglenewlineadd()<CR>
