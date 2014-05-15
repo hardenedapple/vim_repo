@@ -21,8 +21,8 @@ function! DoWindowSwap()
 endfunction
 
 
-nnoremap <leader>H :call  MarkWindowSwap()<CR> <C-w>h :call DoWindowSwap()<CR>
-nnoremap <leader>J :call  MarkWindowSwap()<CR> <C-w>j :call DoWindowSwap()<CR>
-nnoremap <leader>K :call  MarkWindowSwap()<CR> <C-w>k :call DoWindowSwap()<CR>
-nnoremap <leader>L :call  MarkWindowSwap()<CR> <C-w>l :call DoWindowSwap()<CR>
+nnoremap <silent> <leader>H :call  MarkWindowSwap()<CR><C-w>h :call DoWindowSwap()<CR>
+nnoremap <silent> <leader>J :call  MarkWindowSwap()<CR><C-w>j :call DoWindowSwap()<CR>
+nnoremap <silent> <leader>K :call  MarkWindowSwap()<CR><C-w>k :call DoWindowSwap()<CR>
+nnoremap <silent> <leader>L :call  MarkWindowSwap()<CR><C-w>l :call DoWindowSwap()<CR>
 
