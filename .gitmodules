@@ -32,9 +32,6 @@
 [submodule "vim/bundle/jedi"]
 	path = vim/bundle/jedi
 	url = git://github.com/davidhalter/jedi-vim.git
-[submodule "vim/bundle/bufexplorer"]
-	path = vim/bundle/bufexplorer
-	url = git://github.com/jlanzarotta/bufexplorer
 [submodule "vim/bundle/clang_complete"]
 	path = vim/bundle/clang_complete
 	url = git://github.com/Rip-Rip/clang_complete.git
