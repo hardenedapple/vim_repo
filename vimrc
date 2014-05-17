@@ -6,7 +6,7 @@
 "       <F4> -
 "       <F5> - GundoToggle
 "       <F6> - TlistToggle
-"       <F7> - NERDTreeToggle
+"       <F7> -
 "       <F8> - switch through colours
 "       <F9> - Remove trailing whitespace
 "       <F10> -
@@ -187,6 +187,17 @@ set number
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" {{{ Netrw
+" Make gx open the file under cursor with whatever program it requires.
+" NOTE: URL's require 'http://' at the front
+let g:netrw_browsex_viewer = "xdg-open"
+
+" Default browser liststyle
+let g:netrw_liststyle=4
+
+" }}}
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Other Settings {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -224,10 +235,6 @@ set timeoutlen=1000
 " Conceal text - define when it's not shown
 set conceallevel=0
 set concealcursor=nc
-
-" Make gx open the file under cursor with whatever program it requires.
-" NOTE: URL's require 'http://' at the front
-let g:netrw_browsex_viewer = "xdg-open"
 
 " incremental searches
 set incsearch
