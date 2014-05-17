@@ -151,9 +151,9 @@ set lazyredraw
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Completion {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" If having problems with complete scanning /dev/null or /dev/random
-" remove the search over included files
-" set complete=.,w,b,u,t
+
+"Don't scan included files - takes too long and can use <C-x><C-i>
+set complete=.,w,b,u,t
 set completeopt=menuone,menu,longest
 " Lower priority tab completion
 "search current and above directory for tag file
