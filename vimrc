@@ -121,15 +121,15 @@ nnoremap <silent> <F9> :%s/\s\+$//<CR>:nohlsearch<CR>
 nnoremap <F12>  :!ctags -R --fields=+iaS --extra=+q .<CR><CR>
 
 " Choose windows based on number
-nnoremap <leader>1 :exe 1 . "wincmd w"<CR>
-nnoremap <leader>2 :exe 2 . "wincmd w"<CR>
-nnoremap <leader>3 :exe 3 . "wincmd w"<CR>
-nnoremap <leader>4 :exe 4 . "wincmd w"<CR>
-nnoremap <leader>5 :exe 5 . "wincmd w"<CR>
-nnoremap <leader>6 :exe 6 . "wincmd w"<CR>
-nnoremap <leader>7 :exe 7 . "wincmd w"<CR>
-nnoremap <leader>8 :exe 8 . "wincmd w"<CR>
-nnoremap <leader>9 :exe 9 . "wincmd w"<CR>
+nnoremap <silent> <leader>1 :exe 1 . "wincmd w"<CR>
+nnoremap <silent> <leader>2 :exe 2 . "wincmd w"<CR>
+nnoremap <silent> <leader>3 :exe 3 . "wincmd w"<CR>
+nnoremap <silent> <leader>4 :exe 4 . "wincmd w"<CR>
+nnoremap <silent> <leader>5 :exe 5 . "wincmd w"<CR>
+nnoremap <silent> <leader>6 :exe 6 . "wincmd w"<CR>
+nnoremap <silent> <leader>7 :exe 7 . "wincmd w"<CR>
+nnoremap <silent> <leader>8 :exe 8 . "wincmd w"<CR>
+nnoremap <silent> <leader>9 :exe 9 . "wincmd w"<CR>
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
