@@ -63,7 +63,7 @@ set ls=2
 "Highlights all occurances of the last search pattern
 " but let Space in command mode turn off the highlighting
 set hlsearch
-nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+nnoremap <silent> <Space> :nohlsearch<CR>
 "I have no idea what the <Bar> part of this means
 
 "get vim to automatically highlight based on syntax and file extension
@@ -113,7 +113,7 @@ nnoremap Y y$
 
 " Remove trailing whitespace
 " Run ctags
-nnoremap <F9> :%s/\s\+$//<CR>
+nnoremap <silent> <F9> :%s/\s\+$//<CR>:nohlsearch<CR>
 nnoremap <F12>  :!ctags -R --fields=+iaS --extra=+q .<CR><CR>
 
 " Choose windows based on number
