@@ -66,6 +66,10 @@ set hlsearch
 nnoremap <silent> <Space> :nohlsearch<CR>
 "I have no idea what the <Bar> part of this means
 
+" If in C and using syntax folding, don't fold comments
+" (is here not after/ftplugin as has to be active when syntax/c.vim is read)
+let g:c_no_comment_fold = 1
+
 "get vim to automatically highlight based on syntax and file extension
 syntax on
 filetype on
@@ -222,10 +226,6 @@ set hidden
 set textwidth=79
 set formatoptions+=crotql
 set virtualedit=block
-
-" If in C and using syntax folding, don't fold comments
-" (is here not after/ftplugin as has to be active when syntax/c.vim is read)
-let g:c_no_comment_fold = 1
 
 "Make automatic open with folds all closed
 " Give me enough time to think aobut which command I want
