@@ -180,12 +180,14 @@ set wildignore+=*.pyc,__pycache__/
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "give me two lines to write commands out
 "show commands as typing add line numbers
+"don't save options when using mksession (interferes with plugins)
 set showcmd
 set showmode
 set cmdheight=2
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}\ \ \ %{SyntasticStatuslineFlag()}%=%-14.(%l,%c%V%)\ %P
 set ruler
 set number
+set sessionoptions-=options
 
 
 "}}}
@@ -200,7 +202,7 @@ let g:netrw_browsex_viewer = "xdg-open"
 let g:netrw_liststyle=4
 
 " }}}
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Other Settings {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
