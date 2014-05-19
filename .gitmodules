@@ -23,9 +23,6 @@
 [submodule "vim/bundle/unimpaired"]
 	path = vim/bundle/unimpaired
 	url = git://github.com/tpope/vim-unimpaired.git
-[submodule "vim/bundle/easymotion"]
-	path = vim/bundle/easymotion
-	url = git://github.com/Lokaltog/vim-easymotion.git
 [submodule "vim/bundle/jedi"]
 	path = vim/bundle/jedi
 	url = git://github.com/davidhalter/jedi-vim.git
