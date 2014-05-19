@@ -35,7 +35,7 @@ endfunction
 set foldexpr=FoldBrace()
 " The function I've defined works nicely with pretty much all folding styles
 " but is slow if there are too many folds above where you're writing.
-if line('$') < 500
+if line('$') < 250
     set foldmethod=expr
 else
     set foldmethod=syntax

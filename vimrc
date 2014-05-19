@@ -158,7 +158,7 @@ set lazyredraw
 
 "Don't scan included files - takes too long and can use <C-x><C-i>
 set complete=.,w,b,u,t
-set completeopt=menu
+set completeopt=menu,longest
 " Lower priority tab completion
 "search current and above directory for tag file
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
