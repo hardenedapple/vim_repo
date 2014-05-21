@@ -103,10 +103,6 @@ noremap <C-c> <ESC>
 
 " macro to put spaces around a character - e.g. python operators
 let @s='?\S[=*<+/>-]\Sls  P:nohlsearch'
-" Macro to go to and change the next occurance of @todo
-" require setreg  -  see
-" https://groups.google.com/forum/?_escaped_fragment_=topic/vim_use/-pbK15zfqts#!topic/vim_use/-pbK15zfqts
-call setreg('d', '/@todoc//e', 'c')
 
 "indentation in visual
 vnoremap < <gv
