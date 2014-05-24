@@ -1,20 +1,21 @@
 My vim dir so that I can easily get my working environment wherever I roam.
 
 CLASHES:
-    vim-lawrencium: <C-S> Hgcommit, terminal overrides with freeze
+
+    NOTE:
+        I've only tested the compatabilities on Arch which has python3 as
+        default, this might cause some problems - I don't know.
 
     To use python3 jedi omnicompletion etc, need vim compiled with python3
-        this breaks python-mode.
+        this breaks python-mode, so copy the pymode motion and indent scripts
+        both from 'autoload' directory, and 'after' directory and apply patches
+        to remove pymode interdependancies
 
-    So copy the pymode motion and indent scripts: 
-        both from 'autoload' directory, and 'after' directory
-        and apply patches to remove pymode interdependancies
-
-    If compiled with python3, symlink python-extra into .vim/bundle directory
-        and don't try to use clang_complete repo - instead use clang_complete
-        vimball from vim.org (scriptid=3302)
-    If compiled with python2, symlink python-mode into .vim/bundle directory
-        and use clang_complete with libclang.so library
+    If compiled with python3, use the python_stuff patches to salvage what we
+        can from python-mode and don't try to use clang_complete repo - instead
+        use clang_complete vimball from vim.org (scriptid=3302)
+    If compiled with python2, use python-mode and use clang_complete with
+        libclang.so library
 
 
 NOTES:
@@ -29,13 +30,8 @@ NOTES:
 
 CREDITS:
     Pylight and techras are my modified versions of github and default resp.
-    Everything comes from someone else - I've just collected them.
+    Everything else comes from someone else - I've just collected them.
     Things hard to google:
         most colors come from vim-colorsamplerpack arch package.
-        (colordiff is difference between vim-colorsamplerpack and directory that
-        works with set_colors)
-
-REQUIREMENTS:
-    gundo:              vim 7.3 with python 2.4+ support
-    clang_complete:     vim 7.3  - better with python 2.7 and conceal feature,
-                        also with libclang.so on the path.
+        (colordiff is difference between vim-colorsamplerpack and directory
+        that works with set_colors)
