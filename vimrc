@@ -77,13 +77,8 @@ filetype on
 set cursorcolumn
 set cursorline
 color techras
-"if in the tty only have 8 colours - tell vim that
-if &term == "linux" || &term == "screen"
-    set t_Co=8
-"if in xterm in X, have 256 colours, use them all
-elseif &term == "xterm-256color" || &term == "xterm" || &term == "screen-256color"
-    "This has to be set after the set syntax, as it is overwitten otherwise
-    set t_Co=256
+" If in xterm, use control sequences to control cursor
+if &term == "xterm-256color" || &term == "xterm" || &term == "screen-256color"
     "Make the cursor in command mode be a blinking block
     "and the cursor in insert mode be a solid underscore
     let &t_SI = "\<Esc>[4 q"
