@@ -343,8 +343,8 @@ endfunction
 " Restore previous external compatibility options
 let &cpo = s:save_cpo
 
-vmap  <expr>  <LEFT>   DVB_Drag('left')
-vmap  <expr>  <RIGHT>  DVB_Drag('right')
-vmap  <expr>  <DOWN>   DVB_Drag('down')
-vmap  <expr>  <UP>     DVB_Drag('up')
-vmap  <expr>  D        DVB_Duplicate()
+xmap  <expr>  <LEFT>   DVB_Drag('left')
+xmap  <expr>  <RIGHT>  DVB_Drag('right')
+xmap  <expr>  <DOWN>   DVB_Drag('down')
+xmap  <expr>  <UP>     DVB_Drag('up')
+xmap  <expr>  D        DVB_Duplicate()
