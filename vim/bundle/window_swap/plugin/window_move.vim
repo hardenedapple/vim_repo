@@ -1,28 +1,28 @@
-function! MarkWindowSwap()
-    " marked window number
-    let g:markedWinNum = winnr()
-    let g:markedBufNum = bufnr("%")
+function! DoWindowSwap(direction)
+    let firstWinNum = winnr()
+    let firstBufNum = bufnr("%")
+
+    " Find the next buffer
+    exe "wincmd " . a:direction
+    let secondWinNum = winnr()
+    let secondBufNum = bufnr("%")
+
+    " Load first buffer in this window
+    exe "hide buf" firstBufNum
+
+    "Switch focus to first window
+    exe firstWinNum . "wincmd w"
+
+    " Load second buffer in current window
+    exe 'hide buf' secondBufNum
+
+    " Go to last window
+    exe secondWinNum . "wincmd w"
 endfunction
 
-function! DoWindowSwap()
-    let curWinNum = winnr()
-    let curBufNum = bufnr("%")
-    " Switch focus to marked window
-    exe g:markedWinNum . "wincmd w"
 
-    " Load current buffer on marked window
-    exe 'hide buf' curBufNum
-
-    " Switch focus to current window
-    exe curWinNum . "wincmd w"
-
-    " Load marked buffer in current window
-    exe 'hide buf' g:markedBufNum
-endfunction
-
-
-nnoremap <silent> <leader>H :call  MarkWindowSwap()<CR><C-w>h :call DoWindowSwap()<CR>
-nnoremap <silent> <leader>J :call  MarkWindowSwap()<CR><C-w>j :call DoWindowSwap()<CR>
-nnoremap <silent> <leader>K :call  MarkWindowSwap()<CR><C-w>k :call DoWindowSwap()<CR>
-nnoremap <silent> <leader>L :call  MarkWindowSwap()<CR><C-w>l :call DoWindowSwap()<CR>
+nnoremap <silent> <leader>H :call  DoWindowSwap('h')<CR>
+nnoremap <silent> <leader>J :call  DoWindowSwap('j')<CR>
+nnoremap <silent> <leader>K :call  DoWindowSwap('k')<CR>
+nnoremap <silent> <leader>L :call  DoWindowSwap('l')<CR>
 
