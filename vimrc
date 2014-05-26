@@ -187,7 +187,7 @@ set sessionoptions-=options
 let g:netrw_browsex_viewer = "xdg-open"
 
 " Default browser liststyle
-let g:netrw_liststyle=4
+let g:netrw_liststyle=3
 
 " }}}
 
