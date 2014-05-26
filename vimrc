@@ -9,7 +9,7 @@
 "       <F7> -
 "       <F8> - switch through colours
 "       <F9> - Remove trailing whitespace
-"       <F10> -
+"       <F10> - Dispatch
 "       <F11> - (in C/C++) cscope update
 "       <F12> - ctags update
 
