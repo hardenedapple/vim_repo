@@ -4,7 +4,7 @@
 
 " Disable python folding - Already have a nicer plugin for that
 " Though would like to check about this versions docstring handling
-let g:pymode_folding = 0
+let g:pymode_folding = 1
 let g:pymode_lint_checker = "pylint,pyflakes,pep8,mccabe"
 let g:pymode_lint_cwindow = 1
 " let g:pymode_lint_message = 0
