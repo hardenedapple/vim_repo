@@ -161,6 +161,9 @@ set wildignore=*.o,*.obj,*~,*.swp
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.pyc,__pycache__/
 
+" if ignorecase is on, don't ignore the case when completing a match
+set infercase
+
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
