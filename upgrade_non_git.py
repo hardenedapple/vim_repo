@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 """
-Script that downloads the latest version of c.vim from vim.org, the hybrid
-colorscheme from w0ng github.
-
-It also copies scripts that I can use with python3 enabled from python-mode
-into python-extras.
+Script that downloads the latest version of the hybrid colorscheme from w0ng
+github.
 
 Uses python3 - for python2, use urllib2 for urlopen and urllib for urlretrieve
 
@@ -15,7 +12,6 @@ Assumes the first occurance of download id is the latest and the one I want.
 
 import os.path
 import re
-import sys
 import urllib.request as urlreq
 
 
@@ -37,6 +33,14 @@ def find_latest_vimscript(url):
     return downloadpage
 
 
+def get_grep():
+    """ Downloads the latest grep.vim script from vim.org."""
+    url = 'http://www.vim.org/scripts/script.php?script_id=311'
+    page = urlreq.urlretrieve(find_latest_vimscript(url),
+                              'vim/plugin/grep.vim')
+    print('Downloaded grep.vim')
+
+
 def get_hybrid():
     """Download hybrid colorscheme - not including the Xdefaults recommended"""
     basepath = 'https://raw.github.com/w0ng/vim-hybrid/master/colors/'
@@ -49,3 +53,4 @@ def get_hybrid():
 
 if __name__ == '__main__':
     get_hybrid()
+    get_grep()

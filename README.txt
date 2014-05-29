@@ -6,11 +6,6 @@ CLASHES:
         I've only tested the compatabilities on Arch which has python3 as
         default, this might cause some problems - I don't know.
 
-    To use python3 jedi omnicompletion etc, need vim compiled with python3
-        this breaks python-mode, so copy the pymode motion and indent scripts
-        both from 'autoload' directory, and 'after' directory and apply patches
-        to remove pymode interdependancies
-
     If compiled with python3, use the python_stuff patches to salvage what we
         can from python-mode and don't try to use clang_complete repo - instead
         use clang_complete vimball from vim.org (scriptid=3302)
