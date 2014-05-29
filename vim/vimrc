@@ -164,6 +164,9 @@ set wildignore+=*.pyc,__pycache__/
 " if ignorecase is on, don't ignore the case when completing a match
 set infercase
 
+nnoremap <silent> <leader>cl :setlocal completeopt+=longest<CR>
+nnoremap <silent> <leader>cn :setlocal completeopt-=longest<CR>
+
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
