@@ -76,7 +76,7 @@ function! s:NextColor(how, echo_color)
   let how = a:how
   for i in range(len(s:mycolors))
     if how == 0
-      let current = localtime() % len(s:mycolors)
+      let current = reltime()[1] % len(s:mycolors)
       let how = 1  " in case random color does not exist
     else
       let current += how
@@ -102,7 +102,7 @@ endfunction
 
 nnoremap <F8> :call NextColor(1)<CR>
 nnoremap <S-F8> :call NextColor(-1)<CR>
-nnoremap <A-F8> :call NextColor(0)<CR>
+nnoremap <C-F8> :call NextColor(0)<CR>
 
 " Set color scheme according to current time of day.
 function! s:HourColor()
