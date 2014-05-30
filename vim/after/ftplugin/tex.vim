@@ -8,3 +8,7 @@ setlocal iskeyword+=:
 if has('gui_running')
     colorscheme autumn
 endif
+
+set makeprg=pdflatex\ %
+nnoremap [om :set makeprg=pdflatex\ %<CR>
+nnoremap ]om :set makeprg=make<CR>
