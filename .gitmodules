@@ -61,3 +61,6 @@
 [submodule "vim/bundle/submode"]
 	path = vim/bundle/submode
 	url = git://github.com/kana/vim-submode.git
+[submodule "vim/bundle/sideways"]
+	path = vim/bundle/sideways
+	url = git://github.com/AndrewRadev/sideways.vim.git
