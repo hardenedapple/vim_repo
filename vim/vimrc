@@ -106,6 +106,12 @@ vnoremap > >gv
 " make Y match other capitals
 nnoremap Y y$
 
+" Reverse whether going to exact position or linewise in motions
+" This only remaps the operation in normal mode - so in operation
+" pending mode the mappings stay the same.
+nnoremap ' `
+nnoremap ` '
+
 " Remove trailing whitespace
 " Run ctags
 nnoremap <silent> <F9> :%s/\s\+$//<CR>:nohlsearch<CR>
