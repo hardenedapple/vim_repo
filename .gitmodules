@@ -58,3 +58,6 @@
 [submodule "vim/bundle/dispatch"]
 	path = vim/bundle/dispatch
 	url = git://github.com/tpope/vim-dispatch.git
+[submodule "vim/bundle/submode"]
+	path = vim/bundle/submode
+	url = git://github.com/kana/vim-submode.git
