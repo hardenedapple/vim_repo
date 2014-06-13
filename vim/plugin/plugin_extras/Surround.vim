@@ -1,5 +1,5 @@
 "Surround Plugin {{{
-" remove the 's' mapping in visual mode
-" xmap <Leader>s <Plug>Vsurround
+" Make 'S' do "ysiw"
+nmap S ysiw
 "}}}
 
