@@ -67,3 +67,6 @@
 [submodule "vim/bundle/sexp"]
 	path = vim/bundle/sexp
 	url = git://github.com/guns/vim-sexp.git
+[submodule "vim/bundle/sexp_mappings"]
+	path = vim/bundle/sexp_mappings
+	url = git://github.com/tpope/vim-sexp-mappings-for-regular-people.git
