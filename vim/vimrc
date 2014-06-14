@@ -112,6 +112,9 @@ nnoremap Y y$
 nnoremap ' `
 nnoremap ` '
 
+" Quicker looking at buffers
+nnoremap <leader>l :ls<CR>:b<space>
+
 " Remove trailing whitespace
 " Run ctags
 nnoremap <silent> <F9> :%s/\s\+$//<CR>:nohlsearch<CR>
