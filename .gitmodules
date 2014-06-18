@@ -69,4 +69,3 @@
 [submodule "vim/bundle/sexp_mappings"]
 	path = vim/bundle/sexp_mappings
 	url = git://github.com/tpope/vim-sexp-mappings-for-regular-people.git
-    ignore = dirty

@@ -1,0 +1,35 @@
+Things to read:
+    vi introduction on internet (firefox bookmark) [waz]
+
+
+Plugins possibly to remove:
+    python-mode - cannabalise the motion commands and create a compile file for pylint
+        What I use:
+            Motion commands --> see what I have in patches
+            Folding         --> autoload/pymode/folding.vim
+                                Maybe modify this a bit to take account of closures
+            Lint            --> Make a compiler file for pylint2 and python2-pep8
+
+
+Changes for Dvorak layout:
+    Doesn't seem to be much of a problem so far - will see as I get more.
+
+
+Keys that are valid mappings (i.e. don't directly overwrite anything):
+     z .. {p,q,u,y,B,I,J,K,P,Q,S,T,U,V,Y,Z}
+     Z .. [^ZQ]
+     [ .. something
+     ] .. something
+     c .. something
+     d .. something
+     y .. something
+     g .. something
+     \ .. something
+
+Keys I don't use:
+    spelling mappings (actually, just very rarely use them)
+    Q
+    gQ
+    ZQ
+    ZZ
+    S
