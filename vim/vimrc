@@ -63,8 +63,7 @@ set ls=2
 "Highlights all occurances of the last search pattern
 " but let Space in command mode turn off the highlighting
 set hlsearch
-nnoremap <silent> <Space> :nohlsearch<CR>
-"I have no idea what the <Bar> part of this means
+nnoremap <silent> <Return> :nohlsearch<CR>
 
 " If in C and using syntax folding, don't fold comments
 " (is here not after/ftplugin as has to be active when syntax/c.vim is read)
@@ -95,6 +94,7 @@ set scrolloff=3
 "Mappings {{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 noremap <C-c> <ESC>
+let mapleader=" "
 
 " macro to put spaces around a character - e.g. python operators
 let @s='?\S[=*<+/>-]\Sls  P:nohlsearch'
