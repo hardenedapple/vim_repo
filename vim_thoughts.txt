@@ -1,3 +1,6 @@
+Repo organisation:
+     Find a nice method to update the colorschemes.
+
 Things to read:
     vi introduction on internet (firefox bookmark) [waz]
 
