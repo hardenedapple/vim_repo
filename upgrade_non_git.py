@@ -33,14 +33,6 @@ def find_latest_vimscript(url):
     return downloadpage
 
 
-def get_grep():
-    """ Downloads the latest grep.vim script from vim.org."""
-    url = 'http://www.vim.org/scripts/script.php?script_id=311'
-    page = urlreq.urlretrieve(find_latest_vimscript(url),
-                              'vim/plugin/grep.vim')
-    print('Downloaded grep.vim')
-
-
 def get_hybrid():
     """Download hybrid colorscheme - not including the Xdefaults recommended"""
     basepath = 'https://raw.github.com/w0ng/vim-hybrid/master/colors/'
@@ -53,4 +45,3 @@ def get_hybrid():
 
 if __name__ == '__main__':
     get_hybrid()
-    get_grep()

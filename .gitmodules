@@ -72,3 +72,6 @@
 [submodule "vim/bundle/gitv"]
 	path = vim/bundle/gitv
 	url = git://github.com/gregsexton/gitv.git
+[submodule "vim/bundle/easygrep"]
+	path = vim/bundle/easygrep
+	url = git://github.com/dkprice/vim-easygrep.git
