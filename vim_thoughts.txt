@@ -1,6 +1,17 @@
 Things to read:
     vi introduction on internet (firefox bookmark) [waz]
 
+Possible extras:
+    Funkey - regexp parsing for functions, puts results in Ctrl-P
+        https://github.com/tacahiroy/ctrlp-funky
+    Gitv  - a viewer of the git log, extension of vim fugitive.
+        https://github.com/gregsexton/gitv
+    vim-easygrep - replace Grep.vim as has replacement features
+        https://github.com/dkprice/vim-easygrep
+
+Possible changes:
+    Remap Enter to :nohlsearch  so I can then make Space my mapleader
+    <left> <right> <up> <down> window swap, shifted versions window resize
 
 Plugins possibly to remove:
     python-mode - cannabalise the motion commands and create a compile file for pylint
