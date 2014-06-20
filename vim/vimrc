@@ -63,7 +63,6 @@ set ls=2
 "Highlights all occurances of the last search pattern
 " but let Space in command mode turn off the highlighting
 set hlsearch
-nnoremap <silent> <Return> :nohlsearch<CR>
 
 " If in C and using syntax folding, don't fold comments
 " (is here not after/ftplugin as has to be active when syntax/c.vim is read)
@@ -116,9 +115,13 @@ nnoremap ` '
 nnoremap <leader>l :ls<CR>:b<space>
 
 " Remove trailing whitespace
-" Run ctags
 nnoremap <silent> <F9> :%s/\s\+$//<CR>:nohlsearch<CR>
+
 nnoremap <F12>  :!ctags -R --fields=+iaS --extra=+q .<CR><CR>
+nnoremap <silent> <leader>nh :nohlsearch<CR>
+
+nnoremap <silent> <leader>cl :setlocal completeopt+=longest<CR>
+nnoremap <silent> <leader>cn :setlocal completeopt-=longest<CR>
 
 " Choose windows based on number
 nnoremap <silent> g1 :exe 1 . "wincmd w"<CR>
@@ -172,9 +175,6 @@ set wildignore+=*.pyc,__pycache__/
 
 " if ignorecase is on, don't ignore the case when completing a match
 set infercase
-
-nnoremap <silent> <leader>cl :setlocal completeopt+=longest<CR>
-nnoremap <silent> <leader>cn :setlocal completeopt-=longest<CR>
 
 "}}}
 
