@@ -4,6 +4,7 @@ setlocal commentstring=#%s
 setlocal textwidth=79
 
 setlocal fo+=crot
+setlocal define=^\s*\\(def\\\\|class\\)
 
 " Macro to go to and change the next occurance of @todo
 " require setreg  -  see
