@@ -21,8 +21,8 @@ function! DoWindowSwap(direction)
 endfunction
 
 
-nnoremap <silent> <leader>H :call  DoWindowSwap('h')<CR>
-nnoremap <silent> <leader>J :call  DoWindowSwap('j')<CR>
-nnoremap <silent> <leader>K :call  DoWindowSwap('k')<CR>
-nnoremap <silent> <leader>L :call  DoWindowSwap('l')<CR>
+nnoremap <silent> <leader>wh :call  DoWindowSwap('h')<CR>
+nnoremap <silent> <leader>wj :call  DoWindowSwap('j')<CR>
+nnoremap <silent> <leader>wk :call  DoWindowSwap('k')<CR>
+nnoremap <silent> <leader>wl :call  DoWindowSwap('l')<CR>
 
