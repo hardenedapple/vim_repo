@@ -112,7 +112,7 @@ nnoremap ' `
 nnoremap ` '
 
 " Quicker looking at buffers
-nnoremap <leader>b :ls<CR>:b<space>
+nnoremap <leader>bs :ls<CR>:b<space>
 
 " Remove trailing whitespace
 nnoremap <silent> <F9> :%s/\s\+$//<CR>:nohlsearch<CR>
