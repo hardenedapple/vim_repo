@@ -3,7 +3,6 @@ Repo organisation:
 
 Things to read:
     vi introduction on internet (firefox bookmark) [waz]
-    easygrep documentation
 
 Possible extras:
     Funkey - regexp parsing for functions, puts results in Ctrl-P
@@ -11,7 +10,6 @@ Possible extras:
 
 Possible changes:
     <left> <right> <up> <down> window swap, shifted versions window resize
-    <leader> mappings for fugitive (gps - push, gpl - pull, gc - commit, etc)
 
 Plugins possibly to remove:
     python-mode - cannabalise the motion commands and create a compile file for pylint
