@@ -12,12 +12,12 @@ let g:after_sexp_mappings = 1
 nnoremap <buffer> b B
 nnoremap <buffer> w W
 nnoremap <buffer> e E
-nnoremap <buffer> ge GE
+nnoremap <buffer> ge gE
 xnoremap <buffer> b B
 xnoremap <buffer> w W
 xnoremap <buffer> e E
-xnoremap <buffer> ge GE
+xnoremap <buffer> ge gE
 onoremap <buffer> b B
 onoremap <buffer> w W
 onoremap <buffer> e E
-onoremap <buffer> ge GE
+onoremap <buffer> ge gE
