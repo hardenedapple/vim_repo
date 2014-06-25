@@ -130,6 +130,9 @@ nnoremap <silent> g3 :exe 3 . "wincmd w"<CR>
 nnoremap <silent> g4 :exe 4 . "wincmd w"<CR>
 nnoremap <silent> g5 :exe 5 . "wincmd w"<CR>
 nnoremap <silent> g6 :exe 6 . "wincmd w"<CR>
+
+" In Dvorak, keep completion commands nearer each other
+inoremap <C-b> <C-n>
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
