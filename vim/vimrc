@@ -105,6 +105,9 @@ vnoremap > >gv
 " make Y match other capitals
 nnoremap Y y$
 
+" Make cw consistent with the rest of vim
+nnoremap cw dwi
+
 " Reverse whether going to exact position or linewise in motions
 " This only remaps the operation in normal mode - so in operation
 " pending mode the mappings stay the same.
