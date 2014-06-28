@@ -94,6 +94,7 @@ set scrolloff=3
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 noremap <C-c> <ESC>
 let mapleader=" "
+let maplocalleader=" "
 
 " macro to put spaces around a character - e.g. python operators
 let @s='?\S[=*<+/>-]\Sls  P:nohlsearch'
