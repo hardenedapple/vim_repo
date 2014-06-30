@@ -75,3 +75,6 @@
 [submodule "vim/bundle/easygrep"]
 	path = vim/bundle/easygrep
 	url = git://github.com/dkprice/vim-easygrep.git
+[submodule "vim/bundle/obsession"]
+	path = vim/bundle/obsession
+	url = git://github.com/tpope/vim-obsession.git
