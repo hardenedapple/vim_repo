@@ -136,7 +136,7 @@ nnoremap <silent> g5 :exe 5 . "wincmd w"<CR>
 nnoremap <silent> g6 :exe 6 . "wincmd w"<CR>
 
 " In Dvorak, keep completion commands nearer each other
-inoremap <C-b> <C-n>
+inoremap <C-b> <C-p>
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -157,6 +157,17 @@ filetype indent on
 " When executing automatic commands, wait until finished
 set lazyredraw
 
+" Scratch file function from http://dhruvasagar.com/tag/vim
+function! ScratchEdit(cmd, options)
+    exe a:cmd tempname()
+    setl buftype=nofile bufhidden=wipe nobuflisted
+    if !empty(a:options) | exe 'setl' a:options | endif
+endfunction
+
+command! -bar -nargs=* Sedit call ScratchEdit('edit', <q-args>)
+command! -bar -nargs=* Ssplit call ScratchEdit('split', <q-args>)
+command! -bar -nargs=* Svsplit call ScratchEdit('vsplit', <q-args>)
+command! -bar -nargs=* Stabedit call ScratchEdit('tabe', <q-args>)
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -199,6 +210,12 @@ set ruler
 set number
 set sessionoptions-=options
 
+" Filter quicklist from http://dhruvasagar.com/tag/vim
+function! FilterQuickfixList(bang, pattern)
+    let cmp = a:bang ? '!~#' : '=~#'
+    call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) " . cmp . "a:pattern"))
+endfunction
+command! -bang -nargs=1 -complete=file QFilter call FilterQuickfixList(<bang>0, <q-args>)
 
 "}}}
 
