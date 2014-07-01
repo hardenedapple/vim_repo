@@ -78,3 +78,6 @@
 [submodule "vim/bundle/obsession"]
 	path = vim/bundle/obsession
 	url = git://github.com/tpope/vim-obsession.git
+[submodule "vim/bundle/jedi"]
+	path = vim/bundle/jedi
+	url = git://github.com/davidhalter/jedi-vim.git
