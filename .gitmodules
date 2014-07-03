@@ -81,3 +81,6 @@
 [submodule "vim/bundle/jedi"]
 	path = vim/bundle/jedi
 	url = git://github.com/davidhalter/jedi-vim.git
+[submodule "vim/bundle/lawrencium"]
+	path = vim/bundle/lawrencium
+	url = git://github.com/ludovicchabant/vim-lawrencium.git
