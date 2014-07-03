@@ -81,9 +81,14 @@ call submode#map('folds', 'n', '', 'o', 'zo')
 call submode#map('folds', 'n', '', 'O', 'zO')
 call submode#map('folds', 'n', '', 'c', 'zc')
 call submode#map('folds', 'n', '', 'C', 'zC')
+
+" Scrolling
+call submode#map('folds', 'n', '', 't', 'zt')
+call submode#map('folds', 'n', '', 'b', 'zb')
+call submode#map('folds', 'n', '', 'z', 'zz')
 " }}}
 
-" {{{ Scolling submode
+" {{{ Scrolling submode
 call submode#enter_with('scrolling', 'n', '', 'gs', 'jk')
 
 " Motion
