@@ -84,3 +84,6 @@
 [submodule "vim/bundle/lawrencium"]
 	path = vim/bundle/lawrencium
 	url = git://github.com/ludovicchabant/vim-lawrencium.git
+[submodule "vim/bundle/exchange"]
+	path = vim/bundle/exchange
+	url = git://github.com/tommcdo/vim-exchange.git
