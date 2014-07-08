@@ -5,10 +5,13 @@ Things to read:
     vi introduction on internet (firefox bookmark) [waz]
 
 Possible extras:
+    Lisp ftplugin - map C-e and C-y to "move in sexp" up and down respectively.
     Funkey - regexp parsing for functions, puts results in Ctrl-P
         https://github.com/tacahiroy/ctrlp-funky
 
 Possible changes:
+    Put maplocalleader to \ and leave mapleader as <SPC>
+        More mappings available, but harder to reach.
     <left> <right> <up> <down> window swap, shifted versions window resize
 
 Plugins possibly to remove:
@@ -18,10 +21,6 @@ Plugins possibly to remove:
             Folding         --> autoload/pymode/folding.vim
                                 Maybe modify this a bit to take account of closures
             Lint            --> Make a compiler file for pylint2 and python2-pep8
-
-
-Changes for Dvorak layout:
-    Doesn't seem to be much of a problem so far - will see as I get more.
 
 
 Keys that are valid mappings (i.e. don't directly overwrite anything):
