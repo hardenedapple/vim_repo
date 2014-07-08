@@ -87,3 +87,6 @@
 [submodule "vim/bundle/exchange"]
 	path = vim/bundle/exchange
 	url = git://github.com/tommcdo/vim-exchange.git
+[submodule "vim/bundle/visualstar"]
+	path = vim/bundle/visualstar
+	url = git://github.com/thinca/vim-visualstar.git
