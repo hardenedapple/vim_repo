@@ -143,6 +143,9 @@ inoremap <C-b> <C-p>
 
 " For my specific keyboard layout
 nnoremap <leader>' :
+
+nnoremap ; ,
+nnoremap , ;
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
