@@ -140,6 +140,9 @@ nnoremap <silent> g6 :exe 6 . "wincmd w"<CR>
 
 " In Dvorak, keep completion commands nearer each other
 inoremap <C-b> <C-p>
+
+" For my specific keyboard layout
+nnoremap <leader>' :
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
