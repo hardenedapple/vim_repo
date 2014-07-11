@@ -143,6 +143,7 @@ inoremap <C-b> <C-p>
 
 " For my specific keyboard layout
 nnoremap <leader>' :
+nnoremap <leader>z :
 
 nnoremap ; ,
 nnoremap , ;
