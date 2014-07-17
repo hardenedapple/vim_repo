@@ -142,15 +142,15 @@ nnoremap <silent> g6 :exe 6 . "wincmd w"<CR>
 inoremap <C-b> <C-p>
 
 " j and k keys below the 4 key in Dvorak
-nnoremap gj @='4j'<CR>
-nnoremap gk @='4k'<CR>
+noremap gj @='4j'<CR>
+noremap gk @='4k'<CR>
 
 " For my specific keyboard layout
-nnoremap <leader>' :
-nnoremap <leader>z :
+noremap <leader>' :
+noremap <leader>z :
 
-nnoremap ; ,
-nnoremap , ;
+noremap ; ,
+noremap , ;
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
