@@ -10,10 +10,6 @@
 [submodule "vim/bundle/syntastic"]
     path = vim/bundle/syntastic
     url = git://github.com/scrooloose/syntastic.git
-[submodule "vim/bundle/taglist"]
-    path = vim/bundle/taglist
-    url = git://github.com/vim-scripts/taglist.vim.git
-    ignore = dirty
 [submodule "vim/bundle/fugitive"]
     path = vim/bundle/fugitive
     url = git://github.com/tpope/vim-fugitive.git
