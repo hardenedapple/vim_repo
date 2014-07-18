@@ -90,3 +90,6 @@
 [submodule "vim/bundle/visualstar"]
 	path = vim/bundle/visualstar
 	url = git://github.com/thinca/vim-visualstar.git
+[submodule "vim/bundle/airline"]
+	path = vim/bundle/airline
+	url = git://github.com/bling/vim-airline.git

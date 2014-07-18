@@ -219,7 +219,6 @@ set infercase
 set showcmd
 set showmode
 set cmdheight=2
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}\ \ \ %{SyntasticStatuslineFlag()}%=%-14.(%l,%c%V%)\ %P
 set ruler
 set number
 set sessionoptions-=options
