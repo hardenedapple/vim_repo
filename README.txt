@@ -25,6 +25,8 @@ NOTES:
 
 CREDITS:
     Pylight and techras are my modified versions of github and default resp.
+    The Pylight airline theme is copied and pasted from lucius to make airline
+        load it automatically
     Everything else comes from someone else - I've just collected them.
     Things hard to google:
         most colors come from vim-colorsamplerpack arch package.
