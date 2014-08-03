@@ -6,6 +6,13 @@ if !has("gui_running")
 else
     let g:ctrlp_map = "<C-Space>"
 endif
+
+map <Leader>cpt :CtrlPTag<CR>
+map <Leader>cpb :CtrlPBufTag<CR>
+map <Leader>cpq :CtrlPQuickfix<CR>
+map <Leader>cpu :CtrlPUndo<CR>
+map <Leader>cpc :CtrlPChange<CR>
+
 let g:ctrlp_switch_buffer = 'Et'
 let g:ctrlp_tabpage_position = 'ac'
 let g:ctrlp_working_path_mode = 'ra'
