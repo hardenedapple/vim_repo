@@ -168,6 +168,17 @@ au BufWinEnter ?*.txt silent loadview
 filetype plugin on
 filetype indent on
 
+" Set scripts to be executable from the shell
+function! MakeExecutableIfScript()
+    if getline(1) =~ "^#!"
+        if getline(1) =~ "/bin/"
+            silent !chmod +x <afile>
+        endif
+    endif
+endfunction
+
+au BufWritePost * call MakeExecutableIfScript()
+
 " When executing automatic commands, wait until finished
 set lazyredraw
 
