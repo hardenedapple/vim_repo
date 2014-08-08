@@ -1,0 +1,47 @@
+extends c
+
+snippet pm "pinMode()" b
+pinMode(${1}, ${2});${0}
+endsnippet
+
+snippet dread "digitalRead()" i
+digitalRead(${1});${0}
+endsnippet
+
+snippet dwrite "digitalWrite()" i
+digitalWrite(${1}, ${2});${0}
+endsnippet
+
+snippet aread "analogRead()" i
+analogRead(${1});${0}
+endsnippet
+
+snippet awrite "analogWrite()" i
+analogWrite(${1}, ${2});${0}
+endsnippet
+
+snippet print "Serial.print()" b
+Serial.print(${1:""});${0}
+endsnippet
+
+snippet println "Serial.println()" b
+Serial.println(${1:""});${0}
+endsnippet
+
+snippet setup "void setup() ..." b
+void setup()
+{
+	${1}
+}
+
+${0}
+endsnippet
+
+snippet loop "void loop() ..." b
+void loop()
+{
+	${1}
+}
+
+${0}
+endsnippet
