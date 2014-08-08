@@ -92,4 +92,4 @@ function! Togglenewlineadd()
     endif
 endfunction
 
-nnoremap <silent> <leader>n :call Togglenewlineadd()<CR>
+nnoremap <silent> <LocalLeader>n :call Togglenewlineadd()<CR>
