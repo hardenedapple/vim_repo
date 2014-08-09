@@ -15,6 +15,7 @@
 
 
 set nocompatible
+runtime ftplugin/man.vim
 runtime bundle/pathogen/autoload/pathogen.vim
 
 " Pathogen plugin {{{
@@ -137,6 +138,19 @@ nnoremap <silent> g3 :exe 3 . "wincmd w"<CR>
 nnoremap <silent> g4 :exe 4 . "wincmd w"<CR>
 nnoremap <silent> g5 :exe 5 . "wincmd w"<CR>
 nnoremap <silent> g6 :exe 6 . "wincmd w"<CR>
+
+" Change the man command - This might be annoying if the keywordprg  is set
+" elsewhere, so add a mapping to toggle it.
+function! ToggleManSetting()
+    if strlen(mapcheck('K', 'n')) > 0
+        unmap <buffer> K
+    else
+        nnoremap <buffer> K :Man <cword><CR>
+    endif
+endfunction
+
+nnoremap <silent> <LocalLeader>mo :call ToggleManSetting()<CR>
+nnoremap K :Man <cword><CR>
 
 " In Dvorak, keep completion commands nearer each other
 inoremap <C-b> <C-p>
