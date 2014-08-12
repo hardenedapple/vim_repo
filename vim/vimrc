@@ -141,16 +141,24 @@ nnoremap <silent> g6 :exe 6 . "wincmd w"<CR>
 
 " Change the man command - This might be annoying if the keywordprg  is set
 " elsewhere, so add a mapping to toggle it.
+function! OpenManThisWindow()
+    Man <cword>
+    exe "wincmd k"
+    let newWindow = winnr()
+    close
+    exe newWindow . "wincmd w"
+endfunction
+
 function! ToggleManSetting()
     if strlen(mapcheck('K', 'n')) > 0
         unmap <buffer> K
     else
-        nnoremap <buffer> K :Man <cword><CR>
+        nnoremap <buffer> K :call OpenManThisWindow()<CR>
     endif
 endfunction
 
 nnoremap <silent> <LocalLeader>mo :call ToggleManSetting()<CR>
-nnoremap K :Man <cword><CR>
+nnoremap <buffer> K :call OpenManThisWindow()<CR>
 
 " In Dvorak, keep completion commands nearer each other
 inoremap <C-b> <C-p>
