@@ -1,17 +1,19 @@
+To Add:
+    Find something to map <BS> to.
+    Get a sensible setting for the find path that also looks it my current directory,
+        i.e. I want a method to add recursive search to a depth of 2 directories.
+
 Repo organisation:
-     Find a nice method to update the colorschemes.
+    Find a nice method to update the colorschemes.
+    Keep a list of all changed/added keybord shortcuts.
 
 Things to read:
     vi introduction on internet (firefox bookmark) [waz]
 
 Possible extras:
     Lisp ftplugin - map C-e and C-y to "move in sexp" up and down respectively.
-    Funkey - regexp parsing for functions, puts results in Ctrl-P
-        https://github.com/tacahiroy/ctrlp-funky
 
 Possible changes:
-    Put maplocalleader to \ and leave mapleader as <SPC>
-        More mappings available, but harder to reach.
     <left> <right> <up> <down> window swap, shifted versions window resize
 
 Plugins possibly to remove:
