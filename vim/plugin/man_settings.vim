@@ -2,11 +2,19 @@ runtime ftplugin/man.vim
 
 " Change the man command.
 function! OpenManThisWindow(man_page)
+    " If we start off in a man page, don't want to remove previous window
+    if &filetype == "man"
+        let close_prev = 0
+    else
+        let close_prev = 1
+    endif
+
     exe "Man " . a:man_page
-    exe "wincmd k"
-    let newWindow = winnr()
-    close
-    exe newWindow . "wincmd w"
+
+    if close_prev
+        exe "wincmd k"
+        close
+    endif
 endfunction
 
 function! OpenManVerticalSplit(man_page)
