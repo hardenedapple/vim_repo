@@ -235,11 +235,18 @@ set number
 set sessionoptions-=options
 
 " Filter quicklist from http://dhruvasagar.com/tag/vim
-function! FilterQuickfixList(bang, pattern)
+function! FilterQuickfixListByBuffer(bang, pattern)
     let cmp = a:bang ? '!~#' : '=~#'
     call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) " . cmp . "a:pattern"))
 endfunction
-command! -bang -nargs=1 -complete=file QFilter call FilterQuickfixList(<bang>0, <q-args>)
+
+function! FilterQuickfixListBySubject(bang, pattern)
+    let cmp = a:bang ? '!~#' : '=~#'
+    call setqflist(filter(getqflist(), "v:val['text'] " . cmp . "a:pattern"))
+endfunction
+
+command! -bang -nargs=1 -complete=file QFilterBuf call FilterQuickfixListByBuffer(<bang>0, <q-args>)
+command! -bang -nargs=1 QFilterMatch call FilterQuickfixListBySubject(<bang>0, <q-args>)
 
 "}}}
 
