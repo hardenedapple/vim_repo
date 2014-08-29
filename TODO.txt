@@ -1,7 +1,11 @@
 To Add:
     Find something to map <BS> to.
-    Get a sensible setting for the find path that also looks it my current directory,
+    Find sensible setting for find path that includes current directory and all below.
         i.e. I want a method to add recursive search to a depth of 2 directories.
+
+To Fix:
+    My OpenManThisWindow function closes the current window if the man page
+        isn't found - add some kind of error check.
 
 Repo organisation:
     Find a nice method to update the colorschemes.

@@ -299,6 +299,9 @@ set concealcursor=nc
 " incremental searches
 set incsearch
 
+" When running under zsh, have a problem with 'grep -s ...'
+set shell=/usr/bin/bash
+
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
