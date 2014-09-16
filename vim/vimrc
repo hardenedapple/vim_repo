@@ -115,6 +115,9 @@ nnoremap cw dwi
 nnoremap ' `
 nnoremap ` '
 
+" Mapping from vimcast 62
+nnoremap <silent> Q :normal n.<CR>
+
 " Quicker looking at buffers
 nnoremap <leader>bs :ls<CR>:b<space>
 
@@ -142,8 +145,8 @@ nnoremap <silent> g6 :exe 6 . "wincmd w"<CR>
 inoremap <C-b> <C-p>
 
 " j and k keys below the 4 key in Dvorak
-noremap <silent> gj @='4j'<CR>
-noremap <silent> gk @='4k'<CR>
+noremap <silent> gj :normal 4j<CR>
+noremap <silent> gk :normal 4k<CR>
 
 " For my specific keyboard layout
 noremap <leader>' :
