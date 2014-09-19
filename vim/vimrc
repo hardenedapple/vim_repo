@@ -172,7 +172,7 @@ filetype plugin on
 filetype indent on
 
 " Set scripts to be executable from the shell
-function! MakeExecutableIfScript()
+function MakeExecutableIfScript()
     if getline(1) =~ "^#!"
         if getline(1) =~ "/bin/"
             silent !chmod +x <afile>
@@ -183,8 +183,8 @@ endfunction
 au BufWritePost * call MakeExecutableIfScript()
 
 " Qargs command from vimcast 45
-command! -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
-function! QuickfixFilenames()
+command -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
+function QuickfixFilenames()
     " Building a hash ensures we get each buffer only once
     let buffer_numbers = {}
     for quickfix_item in getqflist()
@@ -197,16 +197,16 @@ endfunction
 set lazyredraw
 
 " Scratch file function from http://dhruvasagar.com/tag/vim
-function! ScratchEdit(cmd, options)
+function ScratchEdit(cmd, options)
     exe a:cmd tempname()
     setl buftype=nofile bufhidden=wipe nobuflisted
     if !empty(a:options) | exe 'setl' a:options | endif
 endfunction
 
-command! -bar -nargs=* Sedit call ScratchEdit('edit', <q-args>)
-command! -bar -nargs=* Ssplit call ScratchEdit('split', <q-args>)
-command! -bar -nargs=* Svsplit call ScratchEdit('vsplit', <q-args>)
-command! -bar -nargs=* Stabedit call ScratchEdit('tabe', <q-args>)
+command -bar -nargs=* Sedit call ScratchEdit('edit', <q-args>)
+command -bar -nargs=* Ssplit call ScratchEdit('split', <q-args>)
+command -bar -nargs=* Svsplit call ScratchEdit('vsplit', <q-args>)
+command -bar -nargs=* Stabedit call ScratchEdit('tabe', <q-args>)
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -249,18 +249,18 @@ set number
 set sessionoptions-=options
 
 " Filter quicklist from http://dhruvasagar.com/tag/vim
-function! FilterQuickfixListByBuffer(bang, pattern)
+function FilterQuickfixListByBuffer(bang, pattern)
     let cmp = a:bang ? '!~#' : '=~#'
     call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) " . cmp . "a:pattern"))
 endfunction
 
-function! FilterQuickfixListBySubject(bang, pattern)
+function FilterQuickfixListBySubject(bang, pattern)
     let cmp = a:bang ? '!~#' : '=~#'
     call setqflist(filter(getqflist(), "v:val['text'] " . cmp . "a:pattern"))
 endfunction
 
-command! -bang -nargs=1 -complete=file QFilterBuf call FilterQuickfixListByBuffer(<bang>0, <q-args>)
-command! -bang -nargs=1 QFilterMatch call FilterQuickfixListBySubject(<bang>0, <q-args>)
+command -bang -nargs=1 -complete=file QFilterBuf call FilterQuickfixListByBuffer(<bang>0, <q-args>)
+command -bang -nargs=1 QFilterMatch call FilterQuickfixListBySubject(<bang>0, <q-args>)
 
 "}}}
 
