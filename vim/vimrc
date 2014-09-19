@@ -262,6 +262,29 @@ endfunction
 command -bang -nargs=1 -complete=file QFilterBuf call FilterQuickfixListByBuffer(<bang>0, <q-args>)
 command -bang -nargs=1 QFilterMatch call FilterQuickfixListBySubject(<bang>0, <q-args>)
 
+function CompareQuickfixEntries(i1, i2)
+  if bufname(a:i1.bufnr) == bufname(a:i2.bufnr)
+    return a:i1.lnum == a:i2.lnum ? 0 : (a:i1.lnum < a:i2.lnum ? -1 : 1)
+  else
+    return bufname(a:i1.bufnr) < bufname(a:i2.bufnr) ? -1 : 1
+  endif
+endfunction
+
+function SortUniqQFList()
+  let sortedList = sort(getqflist(), 'CompareQuickfixEntries')
+  let uniqedList = []
+  let last = ''
+  for item in sortedList
+    let this = bufname(item.bufnr) . "\t" . item.lnum
+    if this !=# last
+      call add(uniqedList, item)
+      let last = this
+    endif
+  endfor
+  call setqflist(uniqedList)
+endfunction
+
+command -bar SortQuickfix call SortUniqQFList()
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
