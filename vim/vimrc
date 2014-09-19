@@ -24,7 +24,6 @@ call pathogen#helptags()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Manage spaces and tabs {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "stay indented when getting new line
 set autoindent
@@ -33,22 +32,22 @@ set shiftwidth=4
 "make a tab change to 4 spaces
 set expandtab
 set tabstop=4
+
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Errorbells {{{
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Don't keep bugging me whenever I type something wrong
 set noerrorbells
 "set novisualbells
 set t_vb=
 set tm=500
+
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Changing the look of the editor {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Add a foldcolumn
 set foldcolumn=2
@@ -87,11 +86,12 @@ endif
 
 "Make the cursor always stay 3 lines inside the window when scrolling
 set scrolloff=3
+
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Mappings {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 noremap <C-c> <ESC>
 let mapleader=" "
 let maplocalleader="\\"
@@ -154,11 +154,12 @@ noremap <leader>z :
 
 noremap ; ,
 noremap , ;
+
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Automation {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "Automatically save and load folds for text files (program files will
 "have the syntax folding on).
 au BufWinLeave ?*.txt mkview
@@ -207,11 +208,11 @@ command -bar -nargs=* Sedit call ScratchEdit('edit', <q-args>)
 command -bar -nargs=* Ssplit call ScratchEdit('split', <q-args>)
 command -bar -nargs=* Svsplit call ScratchEdit('vsplit', <q-args>)
 command -bar -nargs=* Stabedit call ScratchEdit('tabe', <q-args>)
+
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Completion {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Don't scan included files - takes too long and can use <C-x><C-i>
 set complete=.,w,b,u,t
@@ -237,7 +238,7 @@ set infercase
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Information {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "give me two lines to write commands out
 "show commands as typing add line numbers
 "don't save options when using mksession (interferes with plugins)
@@ -289,6 +290,7 @@ command -bar SortQuickfix call SortUniqQFList()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " {{{ Netrw
+
 " Make gx open the file under cursor with whatever program it requires.
 " NOTE: URL's require 'http://' at the front
 let g:netrw_browsex_viewer = "xdg-open"
@@ -300,7 +302,6 @@ let g:netrw_liststyle=3
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Other Settings {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Make split windows open on right and below by default
 set splitright
@@ -343,11 +344,11 @@ set shell=/usr/bin/bash
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Printoptions {{{
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "When printing, include numbers
 "(only works if compiled with the correct options - not sure that's what's done
 set printoptions=number:y
+
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
