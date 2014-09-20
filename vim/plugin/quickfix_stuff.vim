@@ -1,5 +1,5 @@
 " Qargs command from vimcast 45
-function QuickfixFilenames()
+function s:QuickfixFilenames()
     " Building a hash ensures we get each buffer only once
     let buffer_numbers = {}
     for quickfix_item in getqflist()
@@ -10,12 +10,12 @@ endfunction
 
 
 " Filter quicklist from http://dhruvasagar.com/tag/vim
-function FilterQuickfixListByBuffer(bang, pattern)
+function s:FilterQuickfixListByBuffer(bang, pattern)
     let cmp = a:bang ? '!~#' : '=~#'
     call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) " . cmp . "a:pattern"))
 endfunction
 
-function FilterQuickfixListBySubject(bang, pattern)
+function s:FilterQuickfixListBySubject(bang, pattern)
     let cmp = a:bang ? '!~#' : '=~#'
     call setqflist(filter(getqflist(), "v:val['text'] " . cmp . "a:pattern"))
 endfunction
@@ -23,7 +23,7 @@ endfunction
 
 " Sort and remove duplicates in qflist
 " http://vim.wikia.com/wiki/Automatically_sort_Quickfix_list
-function CompareQuickfixEntries(i1, i2)
+function s:CompareQuickfixEntries(i1, i2)
   if bufname(a:i1.bufnr) == bufname(a:i2.bufnr)
     return a:i1.lnum == a:i2.lnum ? 0 : (a:i1.lnum < a:i2.lnum ? -1 : 1)
   else
@@ -31,8 +31,8 @@ function CompareQuickfixEntries(i1, i2)
   endif
 endfunction
 
-function SortUniqQFList()
-  let sortedList = sort(getqflist(), 'CompareQuickfixEntries')
+function s:SortUniqQFList()
+  let sortedList = sort(getqflist(), 's:CompareQuickfixEntries')
   let uniqedList = []
   let last = ''
   for item in sortedList
@@ -47,7 +47,7 @@ endfunction
 
 
 " Add commands for the functions above.
-command -nargs=0 -bar Qargs execute 'args' QuickfixFilenames()
-command -bang -nargs=1 -complete=file QFilterBuf call FilterQuickfixListByBuffer(<bang>0, <q-args>)
-command -bang -nargs=1 QFilterMatch call FilterQuickfixListBySubject(<bang>0, <q-args>)
-command -bar SortQuickfix call SortUniqQFList()
+command -nargs=0 -bar Qargs execute 'args' s:QuickfixFilenames()
+command -bang -nargs=1 -complete=file QFilterBuf call s:FilterQuickfixListByBuffer(<bang>0, <q-args>)
+command -bang -nargs=1 QFilterMatch call s:FilterQuickfixListBySubject(<bang>0, <q-args>)
+command -bar QuickfixSort call s:SortUniqQFList()

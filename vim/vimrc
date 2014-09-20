@@ -289,6 +289,9 @@ set concealcursor=nc
 " incremental searches
 set incsearch
 
+" I think I'm starting to like this - try for now
+set nowrap
+
 " When running under zsh, have a problem with 'grep -s ...'
 set shell=/usr/bin/bash
 
