@@ -1,4 +1,4 @@
-function! DoWindowSwap(direction)
+function! s:MoveWindow(direction)
     let firstWinNum = winnr()
     let firstBufNum = bufnr("%")
 
@@ -21,8 +21,8 @@ function! DoWindowSwap(direction)
 endfunction
 
 
-nnoremap <silent> <leader>wh :call  DoWindowSwap('h')<CR>
-nnoremap <silent> <leader>wj :call  DoWindowSwap('j')<CR>
-nnoremap <silent> <leader>wk :call  DoWindowSwap('k')<CR>
-nnoremap <silent> <leader>wl :call  DoWindowSwap('l')<CR>
+nnoremap <silent> <leader>wh :call  <SID>MoveWindow('h')<CR>
+nnoremap <silent> <leader>wj :call  <SID>MoveWindow('j')<CR>
+nnoremap <silent> <leader>wk :call  <SID>MoveWindow('k')<CR>
+nnoremap <silent> <leader>wl :call  <SID>MoveWindow('l')<CR>
 
