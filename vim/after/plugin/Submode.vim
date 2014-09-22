@@ -68,6 +68,14 @@ call submode#map('folds', 'n', '', 'k', 'zk')
 call submode#map('folds', 'n', '', '[', '[z')
 call submode#map('folds', 'n', '', ']', ']z')
 
+" windows (I use this submode for motion, so window motion is useful)
+call submode#map('folds', 'n', '', '1', '1<C-w>w')
+call submode#map('folds', 'n', '', '2', '2<C-w>w')
+call submode#map('folds', 'n', '', '3', '3<C-w>w')
+call submode#map('folds', 'n', '', '4', '4<C-w>w')
+call submode#map('folds', 'n', '', '5', '5<C-w>w')
+call submode#map('folds', 'n', '', '6', '6<C-w>w')
+
 " Overall open/close
 call submode#map('folds', 'n', '', 'm', 'zm')
 call submode#map('folds', 'n', '', 'M', 'zM')
