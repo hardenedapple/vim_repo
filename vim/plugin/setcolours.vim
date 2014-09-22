@@ -26,7 +26,7 @@ let s:mycolors = []  " colorscheme names that we use to set color
 
 " Set list of color scheme names that we will use, except
 " argument 'now' actually changes the current color scheme.
-function! s:SetColors(args)
+function s:SetColors(args)
   if len(a:args) == 0
     echo 'Current color scheme names:'
     let i = 0
@@ -52,18 +52,11 @@ function! s:SetColors(args)
   endif
 endfunction
 
-command! -nargs=* SetColors call s:SetColors('<args>')
+command -nargs=* SetColors call s:SetColors('<args>')
 
 " Set next/previous/random (how = 1/-1/0) color from our list of colors.
 " The 'random' index is actually set from the current time in seconds.
-" Global (no 's:') so can easily call from command line.
-function! NextColor(how)
-  call s:NextColor(a:how, 1)
-endfunction
-
-" Helper function for NextColor(), allows echoing of the color name to be
-" disabled.
-function! s:NextColor(how, echo_color)
+function s:NextColor(how, echo_color)
   if len(s:mycolors) == 0
     call s:SetColors('all')
   endif
@@ -100,12 +93,12 @@ function! s:NextColor(how, echo_color)
   endif
 endfunction
 
-nnoremap <F8> :call NextColor(1)<CR>
-nnoremap <S-F8> :call NextColor(-1)<CR>
-nnoremap <C-F8> :call NextColor(0)<CR>
+nnoremap <F8> :call <SID>NextColor(1, 1)<CR>
+nnoremap <S-F8> :call <SID>NextColor(-1, 1)<CR>
+nnoremap <C-F8> :call <SID>NextColor(0, 1)<CR>
 
 " Set color scheme according to current time of day.
-function! s:HourColor()
+function s:HourColor()
   let hr = str2nr(strftime('%H'))
   if hr <= 3
       " Between 12 and 3
