@@ -104,3 +104,6 @@
 [submodule "vim/bundle/abolish"]
 	path = vim/bundle/abolish
 	url = git://github.com/tpope/vim-abolish.git
+[submodule "vim/bundle/sneak"]
+	path = vim/bundle/sneak
+	url = git://github.com/justinmk/vim-sneak.git
