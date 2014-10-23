@@ -293,7 +293,9 @@ set incsearch
 set nowrap
 
 " When running under zsh, have a problem with 'grep -s ...'
-set shell=/usr/bin/bash
+" could do stuff with NO_NOMATCH, but for compatibility with other boxes, just
+" use bash
+set shell=/bin/bash
 
 "}}}
 

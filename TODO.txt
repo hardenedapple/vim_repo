@@ -1,5 +1,6 @@
 To Add:
     Find something to map <BS> to.
+    Set colours for the sneak plugin in my techras colourscheme.
     Find sensible setting for find path that includes current directory and all below.
         i.e. I want a method to add recursive search to a depth of 2 directories.
 
@@ -15,7 +16,7 @@ Possible extras:
     Lisp ftplugin - map C-e and C-y to "move in sexp" up and down respectively.
 
 Plugins possibly to remove:
-    python-mode - cannabalise the motion commands and create a compile file for pylint
+    python-mode - cannabalise the motion commands and create a compile file for pylint2
         What I use:
             Motion commands --> see what I have in patches
             Folding         --> autoload/pymode/folding.vim
