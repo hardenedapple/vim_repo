@@ -92,7 +92,6 @@ set scrolloff=3
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Mappings {{{
 
-noremap <C-c> <ESC>
 let mapleader=" "
 let maplocalleader="\\"
 
