@@ -85,6 +85,17 @@ if &term == "xterm-256color" || &term == "xterm" || &term == "screen-256color"
     autocmd VimLeave * silent !echo -ne "\033]112\007"
 endif
 
+if &term =~ '^screen'
+    " When inside xterm, inside screen, the Shift and Ctrl modifiers don't
+    " work well -- here i'm manually adding the mappings for xterm keys,
+    " Do this as my tmux configuration sets the use of xterm keys for these
+    " modifiers.
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
+
 "Make the cursor always stay 3 lines inside the window when scrolling
 set scrolloff=3
 
