@@ -1,4 +1,3 @@
-
 "gui specific stuff
 "change the font used for gui
 "set guifont=Nimbus\ Mono\ L\ 10
@@ -23,11 +22,8 @@ set guioptions-=i
 set guioptions-=M
 "NOTE: have to have this after all the colour declarations, else they'll
 "      override the settings
-    "colorscheme desert
-colorscheme hybrid
-    "colorscheme pyte
-    "colorscheme pylight
-    "colorscheme techras
+let g:molokai_original = 1
+colorscheme molokai
 
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
