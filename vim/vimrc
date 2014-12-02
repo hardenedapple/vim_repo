@@ -79,7 +79,7 @@ color techras
 if &term == "xterm-256color" || &term == "xterm" || &term == "screen-256color"
     "Make the cursor in command mode be a blinking block
     "and the cursor in insert mode be a solid underscore
-    let &t_SI = "\<Esc>[4 q"
+    let &t_SI = "\<Esc>[5 q"
     let &t_EI = "\<Esc>[1 q"
     "make the cursor change back when leave vim
     autocmd VimLeave * silent !echo -ne "\033]112\007"
