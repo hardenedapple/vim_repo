@@ -14,6 +14,13 @@ CLASHES:
 
 
 NOTES:
+    Sometimes the python foldexpr isn't applied.
+        To reapply, can use a temporary variable with
+            let g:mytempvar="<C-r>=&foldexpr"
+        in a buffer with the correct foldexpr applied, and
+            set foldexpr="<C-r>=g:mytempvar"
+        in the non-working buffer.
+
     The python script to get upgrades is written for python3.
 
     Quite a few things don't work with older versions of vim
