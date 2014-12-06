@@ -8,8 +8,8 @@
 "       <F6> - TlistToggle
 "       <F7> -
 "       <F8> - switch through colours
-"       <F9> - Remove trailing whitespace
-"       <F10> - Dispatch
+"       <F9> - Dispatch
+"       <F10> - Remove trailing whitespace
 "       <F11> - (in C/C++) cscope update
 "       <F12> - ctags update
 
@@ -136,7 +136,7 @@ nnoremap <leader>bs :ls<CR>:b<space>
 nnoremap <silent> <leader>s :w<CR>
 
 " Remove trailing whitespace
-nnoremap <silent> <F9> :%s/\s\+$//<CR>:nohlsearch<CR>
+nnoremap <silent> <F10> :%s/\s\+$//<CR>:nohlsearch<CR>
 
 nnoremap <F12>  :!ctags -R --fields=+iaS --extra=+q .<CR><CR>
 nnoremap <silent> <leader>nh :nohlsearch<CR>

@@ -1,2 +1,2 @@
 " Add mapping for dispatch
-nnoremap <F10> :Dispatch<CR>
+nnoremap <F9> :Dispatch<CR>
