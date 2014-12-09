@@ -235,7 +235,7 @@ function SortByLength(reverse) abort
     endif
 endfunction
 
-command -bang -range LenSort <line1>,<line2>call SortByLength(<bang>0)
+command -bang -range Lensort <line1>,<line2>call SortByLength(<bang>0)
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
