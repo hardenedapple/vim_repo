@@ -110,3 +110,6 @@
 [submodule "vim/bundle/vim-ipython"]
 	path = vim/bundle/vim-ipython
 	url = git://github.com/ivanov/vim-ipython.git
+[submodule "vim/bundle/dentures"]
+	path = vim/bundle/dentures
+	url = git://github.com/qstrahl/vim-dentures.git
