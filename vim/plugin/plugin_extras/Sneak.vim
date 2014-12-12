@@ -14,3 +14,6 @@ nmap ; <Plug>SneakPrevious
 omap ; <Plug>SneakPrevious
 xmap ; <Plug>SneakPrevious
 smap ; <Plug>SneakPrevious
+
+omap u <Plug>Sneak_s
+omap U <Plug>Sneak_S
