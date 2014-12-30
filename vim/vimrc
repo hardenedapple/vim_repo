@@ -209,6 +209,15 @@ command -bar -nargs=* Ssedit call ScratchEdit('split', <q-args>)
 command -bar -nargs=* Svedit call ScratchEdit('vsplit', <q-args>)
 command -bar -nargs=* Stabedit call ScratchEdit('tabe', <q-args>)
 
+" Function to move/copy lines whether they're inside folds or not
+command -nargs=* O call WithOpenFolds(<f-args>)
+
+function WithOpenFolds(command)
+  normal zn
+  execute a:command
+  normal zN
+endfunction
+
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
