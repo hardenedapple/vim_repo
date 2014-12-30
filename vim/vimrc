@@ -110,9 +110,12 @@ let maplocalleader="\\"
 " macro to put spaces around a character - e.g. python operators
 let @s='?\S[=*<+/>-]\Slcl  P:nohlsearch'
 
-"indentation in visual
+" indentation in visual
 vnoremap < <gv
 vnoremap > >gv
+
+" Highlight last modified text
+nnoremap <expr> gV "`[".getregtype(v:register)[0]."`]"
 
 " make Y match other capitals
 nnoremap Y y$
