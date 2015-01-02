@@ -270,8 +270,11 @@ set wildignore=*.o,*.obj,*~,*.swp
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.pyc,__pycache__/
 
-" if ignorecase is on, don't ignore the case when completing a match
+" if ignorecase is on, use the case of the matching pattern to choose the case
+" of the insertion pattern to insert -- I rarely use ignorecase, but when I do,
+" this comes in handy.
 set infercase
+set noignorecase
 
 "}}}
 
