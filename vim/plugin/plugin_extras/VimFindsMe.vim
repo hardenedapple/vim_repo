@@ -32,9 +32,11 @@ endfunction
 " Below does mostly the same as VFMEdit, but it adds all the files from the
 " resulting buffer to the buffer list.
 function! My_vfm_buffer_add_callback()
+  let buf_choice = getline('.')
   for buffer_name in vfm#select_buffer()
     exe 'badd ' . buffer_name
   endfor
+  exe 'buffer ' . buf_choice
 endfunction
 
 function! VimAddTheseBuffers(path) "{{{
