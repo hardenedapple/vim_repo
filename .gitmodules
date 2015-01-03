@@ -113,3 +113,6 @@
 [submodule "vim/bundle/dentures"]
 	path = vim/bundle/dentures
 	url = git://github.com/qstrahl/vim-dentures.git
+[submodule "vim/bundle/vimple"]
+	path = vim/bundle/vimple
+	url = git://github.com/dahu/vimple.git
