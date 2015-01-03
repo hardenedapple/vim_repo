@@ -1,11 +1,12 @@
 " Fugitive Plugin
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
-" Commands from taken from
+" Commands taken from
 " https://github.com/dhruvasagar/dotfiles/blob/master/vim/commands.vim
 command! -bar -nargs=* Gpurr execute 'Git pull --rebase' <q-args> 'origin' fugitive#head()
-command! Gpnp silent Gpull | Gpush
-command! Gprp silent Gpurr | Gpush
+command! -bar -nargs=0 Gpnp silent Gpull | Gpush
+command! -bar -nargs=0 Gprp silent Gpurr | Gpush
+command! -bar Gstaged  Git! diff --cached
 
 
 " Bunch of leader mappings for ease of use
