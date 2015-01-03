@@ -116,3 +116,6 @@
 [submodule "vim/bundle/vimple"]
 	path = vim/bundle/vimple
 	url = git://github.com/dahu/vimple.git
+[submodule "vim/bundle/VimFindsMe"]
+	path = vim/bundle/VimFindsMe
+	url = git://github.com/dahu/VimFindsMe.git
