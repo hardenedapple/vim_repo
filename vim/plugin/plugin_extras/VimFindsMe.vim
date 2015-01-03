@@ -1,7 +1,6 @@
-" Change all the mappings, as the current ones clash
-set path=.,**,/usr/include,,
 let g:vfm_use_system_find=1
 
+" Change all the mappings, as the current ones clash with my Fugitive mappings.
 nmap <silent> <leader>me <Plug>vfm_browse_files
 nmap <silent> <leader>ma <Plug>vfm_browse_args
 nmap <silent> <leader>md <Plug>vfm_browse_dirs

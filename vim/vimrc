@@ -308,6 +308,10 @@ let g:netrw_liststyle=3
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Other Settings {{{
 
+" Make the search path include current directory, directory of current buffer,
+" and directories below.
+set path=.,**,,
+
 "Make split windows open on right and below by default
 set splitright
 set splitbelow

@@ -8,6 +8,9 @@ inoremap <buffer> /*<CR>  /*<CR><CR>/<Esc>kA
 " add opening a block with {<CR>
 inoremap <buffer> {<CR>  {<CR>}<Esc>O
 
+" Add /usr/include/ to the path variable
+set path+=/usr/include
+
 " This function for folding does everything I want, but slows eveything down
 " in large files - If reading large files switch to foldmethod=syntax
 function! FoldBrace()
