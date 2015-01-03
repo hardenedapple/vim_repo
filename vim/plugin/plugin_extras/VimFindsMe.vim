@@ -7,26 +7,12 @@ nmap <silent> <leader>md <Plug>vfm_browse_dirs
 nmap <silent> <leader>mp <Plug>vfm_browse_paths
 nmap <silent> <leader>mm <Plug>vfm_argument
 
-" In the functions below, My_vfm_args_callback() is just s:vfm_args_callback()
-" from vimfindsme.vim, and VimAddTheseBuffers(path) is just
-" VimFindsMeFiles(path) but with a different callback at the end.
-
-" Here I want to do basically the same as :VFMArglist but with buffers.
-" That is, I initialise the VFM list with all existing buffers, and have the
-" resultant buffer the new arglist.
+"--------------------------        Callbacks         --------------------------
+" Copy of vfm_args_callback -- loads all files in the buffer to arglist
 function! My_vfm_args_callback()
   let arg = line('.')
   exe ':args ' . join(vfm#select_buffer(), ' ')
   exe 'argument ' . arg
-endfunction
-
-function! VFMArgsFromBufferList()
-  let auto_act = g:vfm_auto_act_on_single_filter_result
-  let g:vfm_auto_act_on_single_filter_result = 0
-  let buffer_names = map(vimple#ls#new().to_l('listed'), "v:val.name")
-  call vfm#show_list_overlay(buffer_names)
-  let g:vfm_auto_act_on_single_filter_result = auto_act
-  call vfm#overlay_controller({'<enter>' : ':call My_vfm_args_callback()'})
 endfunction
 
 " Remove a whole bunch of buffers at the same time
@@ -36,17 +22,7 @@ function! My_vfm_bufwipe_callback()
   endfor
 endfunction
 
-function! VFMRemoveSomeBuffers()
-  let auto_act = g:vfm_auto_act_on_single_filter_result
-  let g:vfm_auto_act_on_single_filter_result = 0
-  let buffer_names = map(vimple#ls#new().to_l('listed'), "v:val.name")
-  call vfm#show_list_overlay(buffer_names)
-  let g:vfm_auto_act_on_single_filter_result = auto_act
-  call vfm#overlay_controller({'<enter>' : ':call My_vfm_bufwipe_callback()'})
-endfunction
-
-" Below does mostly the same as VFMEdit, but it adds all the files from the
-" resulting buffer to the buffer list.
+" Add a whole load of buffers at the same time
 function! My_vfm_buffer_add_callback()
   let buf_choice = getline('.')
   for buffer_name in vfm#select_buffer()
@@ -55,6 +31,21 @@ function! My_vfm_buffer_add_callback()
   exe 'buffer ' . buf_choice
 endfunction
 
+
+"--------------------------      Initialisation      --------------------------
+" Given a start list and a callback, make a VFM command initialised with the
+" contents of the list, and with the callback mapped to <enter>
+function! VFMCallMultiple(input_list, enter_command)
+  let auto_act = g:vfm_auto_act_on_single_filter_result
+  let g:vfm_auto_act_on_single_filter_result = 0
+  call vfm#show_list_overlay(a:input_list)
+  let g:vfm_auto_act_on_single_filter_result = auto_act
+  call vfm#overlay_controller({'<enter>' : a:enter_command})
+endfunction
+
+
+" Does the same as VimFindsMeFiles, but the <enter> callback at the end badd's
+" all files found and loads the one under the cursor.
 function! VimAddTheseBuffers(path) "{{{
   let paths = filter(split(a:path, '\\\@<!,'), 'v:val !~ "^\s*;\s*$"')
   let cwd = getcwd()
@@ -110,8 +101,8 @@ function! VimAddTheseBuffers(path) "{{{
 endfunction "}}}
 
 command! -nargs=0 -bar VFMBadd call VimAddTheseBuffers(&path)
-command! -nargs=0 -bar VFMAB call VFMArgsFromBufferList()
-command! -nargs=0 -bar VFMBwipe call VFMRemoveSomeBuffers()
+command! -nargs=0 -bar VFMAB call VFMCallMultiple(map(vimple#ls#new().to_l('listed'), 'v:val.name'), ':call My_vfm_args_callback()')
+command! -nargs=0 -bar VFMBwipe call VFMCallMultiple(map(vimple#ls#new().to_l('listed'), 'v:val.name'), ':call My_vfm_bufwipe_callback()')
 nnoremap <silent> <leader>mb :VFMBadd<CR>
 nnoremap <silent> <leader>mc :VFMAB<CR>
 nnoremap <silent> <leader>mw :VFMBwipe<CR>
