@@ -93,7 +93,7 @@ function! VimAddTheseBuffers(path) "{{{
 
 endfunction "}}}
 
-command! -nargs=0 -bar VFMBuffers call VimAddTheseBuffers(&path)
+command! -nargs=0 -bar VFMBadd call VimAddTheseBuffers(&path)
 command! -nargs=0 -bar VFMAB call VFMArgsFromBufferList()
-nnoremap <silent> <leader>mb :VFMBuffers<CR>
+nnoremap <silent> <leader>mb :VFMBadd<CR>
 nnoremap <silent> <leader>mc :VFMAB<CR>
