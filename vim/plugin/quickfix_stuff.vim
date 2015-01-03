@@ -1,4 +1,9 @@
 " Qargs command from vimcast 45
+" Note this function is degenerate with Vimple's QFbufs
+" Also, the command Qargs is degenerate with Vimple's QFargs (though QFargs has
+" more functionality).
+" Despite this, I'm keeping them both, as the "no-plugin" version that I can
+" have by not including the plugin_extras/ and bundle/ directory can use these.
 function s:QuickfixFilenames()
     " Building a hash ensures we get each buffer only once
     let buffer_numbers = {}
