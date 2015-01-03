@@ -29,6 +29,22 @@ function! VFMArgsFromBufferList()
   call vfm#overlay_controller({'<enter>' : ':call My_vfm_args_callback()'})
 endfunction
 
+" Remove a whole bunch of buffers at the same time
+function! My_vfm_bufwipe_callback()
+  for buffer_name in vfm#select_buffer()
+    exe 'bwipe ' . buffer_name
+  endfor
+endfunction
+
+function! VFMRemoveSomeBuffers()
+  let auto_act = g:vfm_auto_act_on_single_filter_result
+  let g:vfm_auto_act_on_single_filter_result = 0
+  let buffer_names = map(vimple#ls#new().to_l('listed'), "v:val.name")
+  call vfm#show_list_overlay(buffer_names)
+  let g:vfm_auto_act_on_single_filter_result = auto_act
+  call vfm#overlay_controller({'<enter>' : ':call My_vfm_bufwipe_callback()'})
+endfunction
+
 " Below does mostly the same as VFMEdit, but it adds all the files from the
 " resulting buffer to the buffer list.
 function! My_vfm_buffer_add_callback()
@@ -95,5 +111,8 @@ endfunction "}}}
 
 command! -nargs=0 -bar VFMBadd call VimAddTheseBuffers(&path)
 command! -nargs=0 -bar VFMAB call VFMArgsFromBufferList()
+command! -nargs=0 -bar VFMBwipe call VFMRemoveSomeBuffers()
 nnoremap <silent> <leader>mb :VFMBadd<CR>
 nnoremap <silent> <leader>mc :VFMAB<CR>
+nnoremap <silent> <leader>mw :VFMBwipe<CR>
+
