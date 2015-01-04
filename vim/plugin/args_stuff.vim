@@ -5,3 +5,12 @@
 " extra functions defined.
 command -nargs=* -complete=buffer Args args <args>
 command -nargs=* -complete=buffer Argadd argadd <args>
+
+" Add a whole load of buffers at the same time
+function MultipleBadd(buffers)
+  for buffer_name in split(a:buffers)
+    exe 'badd ' . buffer_name
+  endfor
+endfunction
+
+command -nargs=+ -complete=file Badd call MultipleBadd('<args>')
