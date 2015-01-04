@@ -44,9 +44,9 @@ function! VFMCallMultiple(input_list, enter_command)
 endfunction
 
 
-" Does the same as VimFindsMeFiles, but the <enter> callback at the end badd's
-" all files found and loads the one under the cursor.
-function! VimAddTheseBuffers(path) "{{{
+" Does the same as VimFindsMeFiles, but the <enter> callback at the end is
+" specified with an argument.
+function! VimFindWithFiles(path, enter_command) "{{{
   let paths = filter(split(a:path, '\\\@<!,'), 'v:val !~ "^\s*;\s*$"')
   let cwd = getcwd()
 
@@ -96,11 +96,11 @@ function! VimAddTheseBuffers(path) "{{{
     let files  = vfm#uniq(sort(dotted + vfm#globpath(join(paths, ','), '**/*', 0, 1)))
     call vfm#show_list_overlay(files)
   endif
-  call vfm#overlay_controller({'<enter>' : ':call My_vfm_buffer_add_callback()'})
+  call vfm#overlay_controller({'<enter>' : a:enter_command})
 
 endfunction "}}}
 
-command! -nargs=0 -bar VFMBadd call VimAddTheseBuffers(&path)
+command! -nargs=0 -bar VFMBadd call VimFindWithFiles(&path, ':call My_vfm_buffer_add_callback()')
 command! -nargs=0 -bar VFMAB call VFMCallMultiple(map(vimple#ls#new().to_l('listed'), 'v:val.name'), ':call My_vfm_args_callback()')
 command! -nargs=0 -bar VFMBwipe call VFMCallMultiple(map(vimple#ls#new().to_l('listed'), 'v:val.name'), ':call My_vfm_bufwipe_callback()')
 nnoremap <silent> <leader>mb :VFMBadd<CR>
