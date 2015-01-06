@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'ctrlp-funky') != -1
+  finish
+endif
+
 let g:ctrlp_funky_syntax_highlight = 1
 
 nnoremap <Leader>cpf :CtrlPFunky<CR>

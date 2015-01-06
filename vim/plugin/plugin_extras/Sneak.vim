@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'sneak') != -1
+  finish
+endif
+
 " Have to switch the mappings for ; and , for my particular keyboard layout
 " Can't use noremap here, doesn't work.
 let g:sneak#streak = 1

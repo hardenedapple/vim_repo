@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'python-mode') != -1
+  finish
+endif
+
 " Python-mode plugin
 
 " These variables don't matter if don't have python-mode installed
@@ -22,6 +26,3 @@ let g:pymode_rope=0
 let g:pymode_run=0
 " map pk to run pymode lint
 nnoremap <leader>pk :PymodeLint<CR>
-"
-
-

@@ -19,6 +19,33 @@ set nocompatible
 runtime bundle/pathogen/autoload/pathogen.vim
 
 " Pathogen plugin {{{
+let g:pathogen_disabled = []
+if v:version < 703
+  let g:pathogen_disabled += ['clang_complete', 'ctrlp', 'ctrlp-funky', 'gundo', 'sneak', 'vimfindsme']
+endif
+if v:version < 702
+  let g:pathogen_disabled += ['airline', 'gnupg']
+endif
+if v:version < 701
+  let g:pathogen_disabled += ['abolish', 'tagbar']
+endif
+if v:version < 700
+  let g:pathogen_disabled += ['commentary', 'dispatch', 'easygrep', 'eunuch',
+        \ 'gitv', 'obsession', 'repeat', 'surround', 'ultisnips', 'snippets',
+        \ 'unimpaired', 'vimple']
+endif
+
+if !has('python')
+  let g:pathogen_disabled += ['jedi', 'vim-ipython', 'clang_complete', 'gundo']
+else
+  " TODO
+  " try to import jedi with vim's python, check for import
+endif
+
+" TODO
+" Test for ipython (both ipython3 and ipython2)
+" Test for clang
+
 execute pathogen#infect()
 call pathogen#helptags()
 " }}}

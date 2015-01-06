@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'jedi') != -1
+  finish
+endif
+
 let g:jedi#auto_initialization = 1 " Maps C-Space to completion.
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_on_dot = 0

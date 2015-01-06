@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'airline') != -1
+  finish
+endif
+
 " set statusline=%<%f\ %h%m%r%{fugitive#statusline()}\ \ \ %{SyntasticStatuslineFlag()}%=%-14.(%l,%c%V%)\ %P
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1

@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'vim-ipython') != -1
+  finish
+endif
+
 let g:ipy_perform_mappings = 0
 let g:ipy_completefunc = 'global'
 

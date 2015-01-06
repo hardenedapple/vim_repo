@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'sideways') != -1
+  finish
+endif
+
 " Sideways mappings
 nnoremap <silent> <leader>ah :SidewaysLeft<CR>
 nnoremap <silent> <leader>al :SidewaysRight<CR>

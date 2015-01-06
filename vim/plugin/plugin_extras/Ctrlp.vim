@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'ctrlp') != -1
+  finish
+endif
+
 " CtrlP plugin
 " Change where ctrlp opens the files, what file it looks for and how it
 " searches
@@ -22,6 +26,3 @@ let g:ctrlp_open_new_file = 'v'
 let g:ctrlp_open_multiple_files = '2tr'
 let g:ctrlp_arg_map = 1
 let g:ctrlp_extensions = ['tag', 'changes', 'line']
-"
-
-

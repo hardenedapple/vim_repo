@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'tagbar') != -1
+  finish
+endif
+
 let g:tagbar_left = 1
 let g:tagbar_autofocus = 1
 let g:tagbar_sort = 0

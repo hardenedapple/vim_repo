@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'fugitive') != -1
+  finish
+endif
+
 " Fugitive Plugin
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
@@ -16,4 +20,3 @@ nnoremap <silent> <leader>gp :Gpush<CR>
 nnoremap <silent> <leader>gf :Gpurr<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gs :Gstatus<CR>
-

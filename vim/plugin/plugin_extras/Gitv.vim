@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'gitv') != -1
+  finish
+endif
+
 " If I didn't already have an autocommand removing fugitive buffers would
 " probably  want
 " let g:Gitv_WipeAllOnClose = 1

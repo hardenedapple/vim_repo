@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'gnupg') != -1
+  finish
+endif
+
 " Tell the GnuPG plugin to armor new files
 " let g:GPGPreferArmor=1
 

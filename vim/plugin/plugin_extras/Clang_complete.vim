@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'clang_complete') != -1
+  finish
+endif
+
 " clang_complete options - using ultisnips
 let g:clang_auto_select=1
 let g:clang_complete_auto=1
@@ -24,4 +28,3 @@ if has('gui_running')
 else
     autocmd FileType c,cpp inoremap <silent> <buffer> <C-@> <C-X><C-U>
 endif
-

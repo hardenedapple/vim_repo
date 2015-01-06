@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'lawrencium') != -1
+  finish
+endif
+
 " Lawrencium Settings
 let g:lawrencium_auto_close_buffers = 1
 

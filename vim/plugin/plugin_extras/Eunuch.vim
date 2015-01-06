@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'eunuch') != -1
+  finish
+endif
+
 " Mappings for Eunuch.vim and a little file handling function
 nnoremap <leader>fr :Unlink<CR>
 nnoremap <leader>fm :Rename 

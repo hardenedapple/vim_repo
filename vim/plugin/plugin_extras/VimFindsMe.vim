@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'vimfindsme') != -1
+  finish
+endif
+
 let g:vfm_use_system_find=1
 
 " Change all the mappings, as the current ones clash with my Fugitive mappings.

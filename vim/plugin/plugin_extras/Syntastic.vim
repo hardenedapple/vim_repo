@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'syntastic') != -1
+  finish
+endif
+
 " Syntastic plugin
 " Get first pylint to check, then if no errors found, check with pep8
 " Check for errors on opening
@@ -31,5 +35,3 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 " Map <leader>ok to check the file
 nnoremap <leader>ok :SyntasticCheck<CR>
 nnoremap <leader>rk :SyntasticReset<CR>
-"
-

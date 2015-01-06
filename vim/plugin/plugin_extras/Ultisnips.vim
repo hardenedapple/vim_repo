@@ -1,3 +1,6 @@
+if index(g:pathogen_disabled, 'ultisnips') != -1
+  finish
+endif
 
 " Ultisnips using python3
 let g:UltiSnipsUsePythonVersion=2
@@ -11,6 +14,3 @@ let g:UltiSnipsListSnippets="<F3>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " let g:UltiSnipRemoveSelectModeMappings=0
-
-"
-
