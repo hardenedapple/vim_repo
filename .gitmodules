@@ -22,11 +22,9 @@
 [submodule "vim/bundle/clang_complete"]
     path = vim/bundle/clang_complete
     url = git://github.com/Rip-Rip/clang_complete.git
-    ignore = dirty
 [submodule "vim/bundle/ultisnips"]
     path = vim/bundle/ultisnips
     url = git://github.com/SirVer/ultisnips.git
-    ignore = dirty
 [submodule "vim/bundle/snippets"]
     path = vim/bundle/snippets
     url = git://github.com/honza/vim-snippets.git
@@ -54,14 +52,12 @@
 [submodule "vim/bundle/submode"]
     path = vim/bundle/submode
     url = git://github.com/kana/vim-submode.git
-    ignore = dirty
 [submodule "vim/bundle/sideways"]
     path = vim/bundle/sideways
     url = git://github.com/AndrewRadev/sideways.vim.git
 [submodule "vim/bundle/sexp"]
     path = vim/bundle/sexp
     url = git://github.com/guns/vim-sexp.git
-    ignore = dirty
 [submodule "vim/bundle/sexp_mappings"]
     path = vim/bundle/sexp_mappings
     url = git://github.com/tpope/vim-sexp-mappings-for-regular-people.git
