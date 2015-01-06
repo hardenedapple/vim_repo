@@ -13,6 +13,7 @@ function ArglistComplete(ArgLead, CmdLine, CursorPos)
 endfunction
 
 command -nargs=1 -bar -complete=customlist,ArglistComplete Argument buffer <args>
+nnoremap <leader>mm :call feedkeys(":Argument \<c-d>")<cr>
 
 " Add a whole load of buffers at the same time
 function MultipleBadd(buffers)
