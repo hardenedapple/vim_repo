@@ -37,13 +37,32 @@ endif
 if !has('python')
   let g:pathogen_disabled += ['jedi', 'vim-ipython', 'clang_complete', 'gundo']
 else
-  " TODO
-  " try to import jedi with vim's python, check for import
+python << EOF
+try:
+  import jedi
+except ImportError:
+  import vim
+  vim.vars['pathogen_disabled'].extend(['jedi'])
+EOF
 endif
 
-" TODO
-" Test for ipython (both ipython3 and ipython2)
-" Test for clang
+function! ExternalProgramMissing(program)
+  silent call system('command -v ' . a:program)
+  return v:shell_error
+endfunction
+
+" Check external dependencies -- clang, ipython, and git
+if ExternalProgramMissing('clang')
+  let g:pathogen_disabled += ['clang_complete']
+endif
+
+if ExternalProgramMissing('ipython3') && ExternalProgramMissing('ipython2')
+  let g:pathogen_disabled += ['vim-ipython']
+endif
+
+if ExternalProgramMissing('git')
+  let g:pathogen_disabled += ['fugitive',  'gitv']
+endif
 
 execute pathogen#infect()
 call pathogen#helptags()
