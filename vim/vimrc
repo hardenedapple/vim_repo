@@ -93,7 +93,7 @@ set tm=500
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Changing the look of the editor {{{
+" Look/Appearance {{{
 
 "Add a foldcolumn
 set foldcolumn=2
@@ -311,7 +311,7 @@ set smarttab
 set shiftround
 set autoread
 set wildmenu
-set wildmode=longest:full
+set wildmode=full
 set wildignore=*.o,*.obj,*~,*.swp
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.pyc,__pycache__/
