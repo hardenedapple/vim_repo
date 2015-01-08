@@ -26,15 +26,18 @@ endfunction
 "--------------------------      Initialisation      --------------------------
 " Given a start list and a callback, make a VFM command initialised with the
 " contents of the list, and with the callback mapped to <enter>
-function VFMCallMultiple(input_list, enter_command)
+function VFMWithBuffers(input_list, controller_hash)
+  if !exists('*vimple#ls#new')
+    echom 'VFMWithBuffers requires vimple to be installed'
+  endif
   let auto_act = g:vfm_auto_act_on_single_filter_result
   let g:vfm_auto_act_on_single_filter_result = 0
   call vfm#show_list_overlay(a:input_list)
   let g:vfm_auto_act_on_single_filter_result = auto_act
-  call vfm#overlay_controller({'<enter>' : a:enter_command})
+  call vfm#overlay_controller(a:controller_hash)
 endfunction
 
 
-command -nargs=0 -bar VFMBwipe call VFMCallMultiple(map(vimple#ls#new().to_l('listed'), 'v:val.name'), ':call My_vfm_bufwipe_callback()')
+command -nargs=0 -bar VFMBwipe call VFMWithBuffers(map(vimple#ls#new().to_l('listed'), 'v:val.name'), {'<enter>' : ':call My_vfm_bufwipe_callback()'})
 nnoremap <silent> <leader>mb :VFMBadd<CR>
 nnoremap <silent> <leader>mw :VFMBwipe<CR>
