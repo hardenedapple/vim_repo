@@ -1,3 +1,10 @@
+" This plugin is in 'after', which means it will be loaded after the submode
+" autoload functions. Hence a better check for the plugin that if it's in
+" pathogen_disabled is whether it's functions exist.
+if !exists('*submode#map')
+  finish
+endif
+
 let g:submode_keep_leaving_key=1
 let g:submode_timeout=0
 let g:submode_keyseqs_to_leave=['<Esc>', '<Enter>', 'q']
