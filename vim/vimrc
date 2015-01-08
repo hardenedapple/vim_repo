@@ -311,6 +311,7 @@ set smarttab
 set shiftround
 set autoread
 set wildmenu
+set wildmode=longest:full
 set wildignore=*.o,*.obj,*~,*.swp
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.pyc,__pycache__/
