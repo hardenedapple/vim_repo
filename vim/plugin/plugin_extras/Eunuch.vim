@@ -7,14 +7,19 @@ nnoremap <leader>fr :Unlink<CR>
 nnoremap <leader>fm :Rename 
 nnoremap <leader>ff :Find 
 
-function! s:DiffWithSaved()
-  let filetype=&ft
+function s:DiffWithSaved()
+  let filetype = &ft
+  let g:diffline = line('.')
   diffthis
-  vnew | r # | normal! 1Gdd
+  vertical new
+  read ++edit #
+  0delete
+  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
+  execute 'setlocal filetype=' . filetype
   diffthis
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+  exe "normal! " . g:diffline . "G"
 endfunction
 
-com! DiffSaved call s:DiffWithSaved()
+command DiffSaved call s:DiffWithSaved()
 
 nnoremap <leader>fd :DiffSaved<CR>
