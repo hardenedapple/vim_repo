@@ -1,7 +1,4 @@
-" This plugin is in 'after', which means it will be loaded after the submode
-" autoload functions. Hence a better check for the plugin that if it's in
-" pathogen_disabled is whether it's functions exist.
-if !exists('*submode#map')
+if index(g:pathogen_disabled, 'submode') != -1
   finish
 endif
 
