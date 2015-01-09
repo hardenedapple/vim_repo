@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'airline') != -1
+  finish
+endif
+
 let g:airline#themes#pylight#palette = {}
 
 function! airline#themes#pylight#refresh()
