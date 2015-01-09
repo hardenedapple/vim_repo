@@ -144,6 +144,11 @@ endif
 
 "Make the cursor always stay 3 lines inside the window when scrolling
 set scrolloff=3
+set nowrap
+
+" Conceal text - define when it's not shown
+set conceallevel=0
+set concealcursor=nc
 
 " }}}
 
@@ -357,46 +362,40 @@ let g:netrw_liststyle=3
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Persistance {{{
 set viminfo='100,<50,s10,h,/50,:50,@50,f1,r/tmp,r/mnt,r/media,n~/.vim/viminfo
+set nobackup
+set history=50
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Other Settings {{{
+" Behaviour {{{
 
 " Make the search path include current directory, directory of current buffer,
 " and directories below.
 set path=.,**,,
 
-"Make split windows open on right and below by default
+" Make split windows open on right and below by default
 set splitright
 set splitbelow
-"Turn off the mouse
+" Turn off the mouse
 set mouse=""
 " Backspaces and History
 set backspace=indent,eol,start
-set history=50
-"Separate windows when scrolling
+" Separate windows when scrolling
 set nocursorbind
 set noscrollbind
-"Allows opening of buffers in the background
-"don't make automatic backups
-set nobackup
+" Buffer switching
 set hidden
 "set bufhidden=hide
 
-"Format options: automatic folding, comment folding etc.
+" Format options: automatic folding, comment folding etc.
 set textwidth=79
 set formatoptions+=crotql
 set virtualedit=block
-set nowrap
 
-"Make automatic open with folds all closed
+" Make automatic open with folds all closed
 " Give me enough time to think aobut which command I want
 set foldlevelstart=0
 set timeoutlen=1000
-
-" Conceal text - define when it's not shown
-set conceallevel=0
-set concealcursor=nc
 
 " incremental searches
 set incsearch
@@ -406,7 +405,7 @@ set incsearch
 " use bash
 set shell=/bin/bash
 
-" Options for future reference:
+" Options for future investigation:
 "   set secure
 "   set exrc
 "   set ttyfast
