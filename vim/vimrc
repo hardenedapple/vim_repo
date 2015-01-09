@@ -387,6 +387,7 @@ set hidden
 set textwidth=79
 set formatoptions+=crotql
 set virtualedit=block
+set nowrap
 
 "Make automatic open with folds all closed
 " Give me enough time to think aobut which command I want
@@ -400,14 +401,15 @@ set concealcursor=nc
 " incremental searches
 set incsearch
 
-" I think I'm starting to like this - try for now
-set nowrap
-
 " When running under zsh, have a problem with 'grep -s ...'
 " could do stuff with NO_NOMATCH, but for compatibility with other boxes, just
 " use bash
 set shell=/bin/bash
 
+" Options for future reference:
+"   set secure
+"   set exrc
+"   set ttyfast
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
