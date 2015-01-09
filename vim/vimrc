@@ -224,16 +224,6 @@ noremap , ;
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Automation {{{
-
-"Automatically save and load folds for text files (program files will
-"have the syntax folding on).
-au BufWinLeave ?*.txt mkview
-au BufWinEnter ?*.txt silent loadview
-"NOTE the regex matches filenames, the ? is there so it doesn't match empty
-"filenames, else there would be an error when opening help
-
-"turn the plugin lookup on
-"turn automatic filetype indentation on
 filetype plugin on
 filetype indent on
 
