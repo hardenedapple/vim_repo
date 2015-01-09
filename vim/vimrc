@@ -355,6 +355,11 @@ let g:netrw_liststyle=3
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Persistance {{{
+set viminfo='100,<50,s10,h,/50,:50,@50,f1,r/tmp,r/mnt,r/media,n~/.vim/viminfo
+"}}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Other Settings {{{
 
 " Make the search path include current directory, directory of current buffer,
