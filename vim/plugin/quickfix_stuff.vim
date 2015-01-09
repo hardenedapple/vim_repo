@@ -50,9 +50,31 @@ function s:SortUniqQFList()
   call setqflist(uniqedList)
 endfunction
 
+" Quickfix saving functions from
+" http://vim.1045645.n5.nabble.com/Saving-the-Quickfix-List-td1179523.html
+function s:SaveQuickFixList(fname)
+ let list = getqflist()
+ for i in range(len(list))
+  if has_key(list[i], 'bufnr')
+   let list[i].filename = fnamemodify(bufname(list[i].bufnr), ':p')
+   unlet list[i].bufnr
+  endif
+ endfor
+ let string = string(list)
+ let lines = split(string, "\n")
+ call writefile(lines, a:fname)
+endfunction
+
+function s:LoadQuickFixList(fname)
+ let lines = readfile(a:fname)
+ let string = join(lines, "\n")
+ call setqflist(eval(string))
+endfunction
 
 " Add commands for the functions above.
 command -nargs=0 -bar Qargs execute 'args' s:QuickfixFilenames()
 command -bang -nargs=1 -complete=file QFilterBuf call s:FilterQuickfixListByBuffer(<bang>0, <q-args>)
 command -bang -nargs=1 QFilterMatch call s:FilterQuickfixListBySubject(<bang>0, <q-args>)
 command -bar QuickfixSort call s:SortUniqQFList()
+command -bar -nargs=1 SaveQuickFixList call s:SaveQuickFixList(<q-args>)
+command -bar -nargs=1 -complete=file LoadQuickFixList call s:LoadQuickFixList(<q-args>)
