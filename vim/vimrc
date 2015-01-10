@@ -65,6 +65,10 @@ if ExternalProgramMissing('ipython3') && ExternalProgramMissing('ipython2')
   let g:pathogen_disabled += ['vim-ipython']
 endif
 
+if ExternalProgramMissing('hg')
+  let g:pathogen_disabled += ['lawrencium']
+endif
+
 if ExternalProgramMissing('git')
   let g:pathogen_disabled += ['fugitive',  'gitv']
 endif
