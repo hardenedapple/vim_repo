@@ -69,6 +69,14 @@ if ExternalProgramMissing('git')
   let g:pathogen_disabled += ['fugitive',  'gitv']
 endif
 
+" Check plugin-plugin dependencies
+if index(g:pathogen_disabled, 'fugitive') != -1
+  let g:pathogen_disabled += ['gitv']
+endif
+if index(g:pathogen_disabled, 'ctrlp') != -1
+  let g:pathogen_disabled += ['ctrlp-funky']
+endif
+
 execute pathogen#infect()
 call pathogen#helptags()
 " }}}
