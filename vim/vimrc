@@ -18,7 +18,12 @@ set all&
 runtime bundle/pathogen/autoload/pathogen.vim
 
 " Pathogen plugin {{{
-let g:pathogen_disabled = []
+" If don't want aky plugins, uncomment the second line here.
+" If want to use completion use
+" vim --cmd 'let g:pathogen_disabled = []' <filename>
+" on the command line.
+let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['clang_complete', 'tagbar'])
+" let g:pathogen_disabled = [ 'abolish', 'airline', 'arduinosyntax', 'clang_complete', 'commentary', 'ctrlp', 'ctrlp-funky', 'dentures', 'dispatch', 'easygrep', 'eunuch', 'exchange', 'fugitive', 'gitv', 'gnupg', 'gundo', 'jedi', 'lawrencium', 'obsession', 'pathogen', 'python-mode', 'repeat', 'sexp', 'sexp_mappings', 'sideways', 'sneak', 'snippets', 'submode', 'surround', 'syntastic', 'tabular', 'tagbar', 'ultisnips', 'unimpaired', 'vimfindsme', 'vim-ipython', 'vimple', 'visualstar', ]
 if v:version < 703
   let g:pathogen_disabled += ['clang_complete', 'ctrlp', 'ctrlp-funky', 'gundo', 'sneak', 'vimfindsme']
 endif
