@@ -1,6 +1,8 @@
 runtime ftplugin/man.vim
 
-" Change the man command.
+" Man command has special account for the '<cword>' argument
+" (expands it itself -- so there's no reason to expand it here)
+
 function s:OpenManThisWindow(man_page)
     " If we start off in a man page, don't want to remove previous window
     if &filetype == "man"
@@ -28,11 +30,11 @@ function s:ToggleManSetting()
     if strlen(mapcheck('K', 'n')) > 0
         unmap <buffer> K
     else
-        nnoremap <buffer> K :call <SID>OpenManThisWindow(expand("<cword>"))<CR>
+        nnoremap <buffer> K :call <SID>OpenManThisWindow("<cword>")<CR>
     endif
 endfunction
 
 nnoremap <silent> <LocalLeader>mo :call <SID>ToggleManSetting()<CR>
-nnoremap <buffer> K :call <SID>OpenManThisWindow(expand("<cword>"))<CR>
+nnoremap <buffer> K :call <SID>OpenManThisWindow("<cword>")<CR>
 
-command -bar -nargs=? VMan call s:OpenManVerticalSplit(<f-args>)
+command -bar -nargs=+ VMan call s:OpenManVerticalSplit(<f-args>)
