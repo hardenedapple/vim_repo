@@ -10,18 +10,23 @@ function s:OpenManThisWindow(man_page)
     else
         let close_prev = 1
     endif
-
+    let current_buffer = bufnr('%')
     exe "Man " . a:man_page
-
+    if current_buffer == bufnr('%')
+      return 1
+    endif
     if close_prev
         exe "wincmd k"
         close
+        exe "wincmd p"
     endif
 endfunction
 
 function s:OpenManVerticalSplit(man_page)
-    exe "wincmd v"
-    call s:OpenManThisWindow(a:man_page)
+    vsplit
+    if s:OpenManThisWindow(a:man_page)
+      close
+    endif
 endfunction
 
 " This might be annoying if the keywordprg  is set elsewhere, so add a mapping
