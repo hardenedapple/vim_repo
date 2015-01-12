@@ -1,12 +1,10 @@
 To Add:
     Find something to map <BS> to.
-    Set colours for the sneak plugin in my techras colourscheme.
-    Find sensible setting for find path that includes current directory and all below.
-        i.e. I want a method to add recursive search to a depth of 2 directories.
 
 To Fix:
-    My OpenManThisWindow function closes the current window if the man page
-        isn't found - add some kind of error check.
+    Syntax highlighting after argdo on first command.
+    Lawrencium error message at end.
+    Submode doesn't work with no file
 
 Repo organisation:
     Find a nice method to update the colorschemes.

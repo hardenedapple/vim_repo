@@ -2,8 +2,8 @@ if index(g:pathogen_disabled, 'easygrep') != -1
   finish
 endif
 
-let EasyGrepMode = 2
-let EasyGrepCommand = 1
-let EasyGrepFilesToExclude = ".svn,.git,.hg"
-let EasyGrepJumpToMatch = 0
-let EasyGrepReplaceAllPerFile = 1
+let g:EasyGrepMode = 2
+let g:EasyGrepCommand = 1
+let g:EasyGrepFilesToExclude = ".svn,.git,.hg"
+let g:EasyGrepJumpToMatch = 0
+let g:EasyGrepReplaceAllPerFile = 1
