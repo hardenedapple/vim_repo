@@ -209,6 +209,8 @@ nnoremap <silent> <leader>s :w<CR>
 " Remove trailing whitespace
 nnoremap <silent> <F10> :%s/\s\+$//<CR>:nohlsearch<CR>
 
+nnoremap <F9> :make<CR>
+
 nnoremap <F12>  :!ctags -R --fields=+iaS --extra=+q .<CR><CR>
 nnoremap <silent> <leader>nh :nohlsearch<CR>
 
