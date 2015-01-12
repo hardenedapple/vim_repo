@@ -9,7 +9,7 @@ nnoremap <leader>ff :Find
 
 function s:DiffWithSaved()
   let filetype = &ft
-  let g:diffline = line('.')
+  let diffline = line('.')
   diffthis
   vertical new
   read ++edit #
@@ -17,7 +17,7 @@ function s:DiffWithSaved()
   setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
   execute 'setlocal filetype=' . filetype
   diffthis
-  exe "normal! " . g:diffline . "G"
+  exe "normal! " . diffline . "G"
 endfunction
 
 command DiffSaved call s:DiffWithSaved()
