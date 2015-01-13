@@ -18,7 +18,6 @@ function s:unique_argadd(name)
   endif
   if position != 0
     execute '0argadd ' . a:name
-    argument 1
   endif
 endfunction
 
@@ -33,8 +32,4 @@ endfunction
 
 augroup arglocal_test
   autocmd BufEnter * call s:new_window_setup()
-  " The line below is a workaround for losing syntax highlighting
-  " It keeps it at the expense of a further flash, and losing the airline
-  " colours.
-  " autocmd BufEnter * syntax on
 augroup END
