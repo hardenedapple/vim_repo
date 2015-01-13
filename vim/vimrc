@@ -51,25 +51,25 @@ except ImportError:
 EOF
 endif
 
-function! ExternalProgramMissing(program)
+function s:external_program_missing(program)
   silent call system('command -v ' . a:program)
   return v:shell_error
 endfunction
 
 " Check external dependencies -- clang, ipython, and git
-if ExternalProgramMissing('clang')
+if s:external_program_missing('clang')
   let g:pathogen_disabled += ['clang_complete']
 endif
 
-if ExternalProgramMissing('ipython3') && ExternalProgramMissing('ipython2')
+if s:external_program_missing('ipython3') && s:external_program_missing('ipython2')
   let g:pathogen_disabled += ['vim-ipython']
 endif
 
-if ExternalProgramMissing('hg')
+if s:external_program_missing('hg')
   let g:pathogen_disabled += ['lawrencium']
 endif
 
-if ExternalProgramMissing('git')
+if s:external_program_missing('git')
   let g:pathogen_disabled += ['fugitive',  'gitv']
 endif
 
