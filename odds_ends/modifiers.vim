@@ -1,4 +1,7 @@
 "------------------      Add modifiers to VFMArgument --------------------
+"
+" All credit to bairui/dahu -- gave this as the answer to a question I asked on
+" freenode #vim 
 let s:cmdmod = ''
 
 function! GetCmdMod()
