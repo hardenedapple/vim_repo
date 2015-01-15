@@ -1,3 +1,7 @@
+if index(g:pathogen_disabled, 'vim-ipython') != -1
+  finish
+endif
+
 " " Add some mappings for vim ipython
 map  <buffer> <silent> <LocalLeader>c <Plug>(IPython-RunFile)
 map  <buffer> <silent> <LocalLeader>l <Plug>(IPython-RunLineAsTopLevel)
