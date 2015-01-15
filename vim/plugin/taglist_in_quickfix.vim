@@ -9,7 +9,7 @@ let s:kind_tag_dict = {
 function s:convert_entry(entry)
   let entry = a:entry
   let entry.pattern = entry.cmd[1:-2]
-  let entry.filename = fnamemodify(entry.filename, ':p')
+  let entry.filename = entry.filename
   let entry.text = get(s:kind_tag_dict, entry.kind, 'unknown tag-kind "' . entry.kind . '"') . ':	' . entry.name
   unlet entry.name entry.kind entry.cmd
   return entry
