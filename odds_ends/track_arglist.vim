@@ -30,6 +30,37 @@ function StopTrackingWindow()
   let w:track_this = 0
 endfunction
 
+function NextArg()
+  if w:track_this
+    let w:track_this = 0
+    if bufname('%') == argv()[-1]
+      argument 1
+    else
+      next
+    endif
+    let w:track_this = 1
+  else
+    buffer #
+  endif
+endfunction
+
+function PrevArg()
+  if w:track_this
+    let w:track_this = 0
+    if bufname('%') == argv()[0]
+      last
+    else
+      prev
+    endif
+    let w:track_this = 1
+  else
+    buffer #
+  endif
+endfunction
+
 augroup arglocal_test
   autocmd BufEnter * call s:new_window_setup()
 augroup END
+
+nmap <leader>xn :call NextArg()<CR>
+nmap <leader>xh :call PrevArg()<CR>
