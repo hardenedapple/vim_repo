@@ -24,20 +24,22 @@ function My_vfm_bufwipe_callback()
 endfunction
 
 "--------------------------      Initialisation      --------------------------
-" Given a start list and a callback, make a VFM command initialised with the
-" contents of the list, and with the callback mapped to <enter>
-function VFMWithBuffers(input_list, controller_hash)
+" Given a callback hash, make a VFM call initialised with all listed buffers,
+" and with the callback hash as local mappings.
+function VFMWithBuffers(controller_hash)
   if !exists('*vimple#ls#new')
     echom 'VFMWithBuffers requires vimple to be installed'
+    return
   endif
+  let input_list = map(vimple#ls#new().to_l('listed'), 'v:val.name')
   let auto_act = g:vfm_auto_act_on_single_filter_result
   let g:vfm_auto_act_on_single_filter_result = 0
-  call vfm#show_list_overlay(a:input_list)
+  call vfm#show_list_overlay(input_list)
   let g:vfm_auto_act_on_single_filter_result = auto_act
   call vfm#overlay_controller(a:controller_hash)
 endfunction
 
 
-command -nargs=0 -bar VFMBwipe call VFMWithBuffers(map(vimple#ls#new().to_l('listed'), 'v:val.name'), {'<enter>' : ':call My_vfm_bufwipe_callback()'})
+command -nargs=0 -bar VFMBwipe call VFMWithBuffers({'<enter>' : ':call My_vfm_bufwipe_callback()'})
 nnoremap <silent> <leader>mb :VFMBadd<CR>
 nnoremap <silent> <leader>mw :VFMBwipe<CR>
