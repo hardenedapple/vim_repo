@@ -9,7 +9,6 @@ function s:put_into_buffer(to_put, position) range
   execute 'buffer ' . a:to_put
   normal zn
   execute a:position . 'ReadIntoBuffer ' . current_buffer . ' ' . a:firstline . ' ' . a:lastline
-  normal zN
   execute 'buffer ' . current_buffer
 endfunction
 
