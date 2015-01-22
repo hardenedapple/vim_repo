@@ -22,7 +22,7 @@ runtime bundle/pathogen/autoload/pathogen.vim
 " If want to use completion use
 " vim --cmd 'let g:pathogen_disabled = []' <filename>
 " on the command line.
-let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['clang_complete', 'tagbar'])
+let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['clang_complete'])
 if v:version < 703
   let g:pathogen_disabled += ['clang_complete', 'ctrlp', 'ctrlp-funky', 'gundo', 'sneak', 'vimfindsme']
 endif
@@ -30,7 +30,7 @@ if v:version < 702
   let g:pathogen_disabled += ['airline', 'gnupg']
 endif
 if v:version < 701
-  let g:pathogen_disabled += ['abolish', 'tagbar']
+  let g:pathogen_disabled += ['abolish']
 endif
 if v:version < 700
   let g:pathogen_disabled += ['commentary', 'dispatch', 'easygrep', 'eunuch',
@@ -80,7 +80,7 @@ if index(g:pathogen_disabled, 'ctrlp') != -1
   let g:pathogen_disabled += ['ctrlp-funky']
 endif
 
-if exists('*pathogen#infect()')
+if exists('*pathogen#infect()') && !exists('g:no_plugins')
   execute pathogen#infect()
   call pathogen#helptags()
 else
@@ -91,7 +91,7 @@ else
         \  'gnupg', 'gundo', 'jedi', 'lawrencium', 'obsession', 'pathogen',
         \  'python-mode', 'repeat', 'sexp', 'sexp_mappings', 'sideways',
         \  'sneak', 'snippets', 'submode', 'surround', 'syntastic',
-        \  'tabular', 'tagbar', 'ultisnips', 'unimpaired', 'vimfindsme',
+        \  'tabular', 'ultisnips', 'unimpaired', 'vimfindsme',
         \  'vim-ipython', 'vimple', 'visualstar', ]
 endif
 " }}}
