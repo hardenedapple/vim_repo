@@ -18,11 +18,9 @@ let g:pymode_syntax_space_errors=0
 
 let g:pymode_run_key='<leader>pr'
 
-"Disable ropevim in favour of jedi vim
+" Disable features I don't need
 let g:pymode_rope=0
-" let g:pymode_rope_extended_complete=1
-" let g:pymode_rope_enable_autoimport=1
-
+let g:pymode_breakpoint = 0
 let g:pymode_run=0
 " map pk to run pymode lint
 nnoremap <leader>pk :PymodeLint<CR>
