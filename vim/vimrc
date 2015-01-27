@@ -212,7 +212,7 @@ nnoremap ` '
 nnoremap <silent> Q :normal n.<CR>
 
 " Quicker looking at buffers
-nnoremap <leader>bs :ls<CR>:b<space>
+nnoremap <leader>b :ls<CR>:b<space>
 
 " Quick save
 nnoremap <silent> <leader>s :w<CR>
