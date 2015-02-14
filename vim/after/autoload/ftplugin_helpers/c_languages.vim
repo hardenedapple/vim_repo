@@ -69,7 +69,7 @@ function ftplugin_helpers#c_languages#Togglenewlineadd()
     if strlen(mapcheck(';', 'i')) > 0
         iunmap <buffer> ;
     else
-        inoremap <buffer><expr> ; CSemi()
+        inoremap <buffer><expr> ; ftplugin_helpers#c_languages#csemi()
     endif
 endfunction
 
