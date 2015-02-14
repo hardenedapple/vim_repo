@@ -12,34 +12,4 @@ nmap <silent> <leader>mp <Plug>vfm_browse_paths
 nmap <silent> <leader>mm <Plug>vfm_argument
 nmap <silent> <leader>mc <Plug>vfm_browse_bufs
 
-" Additional settings, using VimFindsMe as the backbone.
-
-"--------------------------        Callbacks         --------------------------
-
-" Remove a whole bunch of buffers at the same time
-function My_vfm_bufwipe_callback()
-  for buffer_name in vfm#select_buffer()
-    exe 'bwipe ' . buffer_name
-  endfor
-endfunction
-
-"--------------------------      Initialisation      --------------------------
-" Given a callback hash, make a VFM call initialised with all listed buffers,
-" and with the callback hash as local mappings.
-function VFMWithBuffers(controller_hash)
-  if !exists('*vimple#ls#new')
-    echom 'VFMWithBuffers requires vimple to be installed'
-    return
-  endif
-  let input_list = map(vimple#ls#new().to_l('listed'), 'v:val.name')
-  let auto_act = g:vfm_auto_act_on_single_filter_result
-  let g:vfm_auto_act_on_single_filter_result = 0
-  call vfm#show_list_overlay(input_list)
-  let g:vfm_auto_act_on_single_filter_result = auto_act
-  call vfm#overlay_controller(a:controller_hash)
-endfunction
-
-
-command -nargs=0 -bar VFMBwipe call VFMWithBuffers({'<enter>' : ':call My_vfm_bufwipe_callback()'})
 nnoremap <silent> <leader>mb :VFMBadd<CR>
-nnoremap <silent> <leader>mw :VFMBwipe<CR>
