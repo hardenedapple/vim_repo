@@ -8,7 +8,11 @@ let s:kind_tag_dict = {
 
 function s:convert_entry(entry)
   let entry = a:entry
-  let entry.pattern = entry.cmd[1:-2]
+  if !str2nr(entry.cmd)
+    let entry.pattern = entry.cmd[1:-2]
+  else
+    let entry.lnum = str2nr(entry.cmd)
+  endif
   let entry.filename = entry.filename
   let entry.text = get(s:kind_tag_dict, entry.kind, 'unknown tag-kind "' . entry.kind . '"') . ':	' . entry.name
   unlet entry.name entry.kind entry.cmd
