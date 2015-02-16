@@ -22,6 +22,8 @@ function s:OpenManThisWindow(man_page)
     endif
 endfunction
 
+" Doesn't actually have to be a single argument, passing the string '2 write'
+" will look in section '2' for a 'write' entry
 function s:OpenManVerticalSplit(man_page)
     vsplit
     if s:OpenManThisWindow(a:man_page)
@@ -42,4 +44,4 @@ endfunction
 nnoremap <silent> <LocalLeader>mo :call <SID>ToggleManSetting()<CR>
 nnoremap <buffer> K :call <SID>OpenManThisWindow("<cword>")<CR>
 
-command -bar -nargs=+ VMan call s:OpenManVerticalSplit(<f-args>)
+command -bar -nargs=+ VMan call s:OpenManVerticalSplit(<q-args>)
