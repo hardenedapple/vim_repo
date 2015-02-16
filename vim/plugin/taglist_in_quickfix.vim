@@ -9,7 +9,7 @@ let s:kind_tag_dict = {
 function s:convert_entry(entry)
   let entry = a:entry
   if !str2nr(entry.cmd)
-    let entry.pattern = entry.cmd[1:-2]
+    let entry.pattern = '\M' . entry.cmd[1:-2]
   else
     let entry.lnum = str2nr(entry.cmd)
   endif
