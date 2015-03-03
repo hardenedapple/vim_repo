@@ -46,7 +46,10 @@ try:
   import jedi
 except ImportError:
   import vim
-  vim.vars['pathogen_disabled'].extend(['jedi'])
+  try:
+    vim.vars['pathogen_disabled'].extend(['jedi'])
+  except AttributeError:
+    vim.command("let g:pathogen_disabled += ['jedi']")
 EOF
 endif
 
@@ -175,8 +178,10 @@ set scrolloff=3
 set nowrap
 
 " Conceal text - define when it's not shown
-set conceallevel=0
-set concealcursor=nc
+if v:version > 703
+  set conceallevel=0
+  set concealcursor=nc
+endif
 
 " }}}
 
@@ -360,7 +365,10 @@ set noignorecase
 set showcmd
 set showmode
 set cmdheight=2
-set shortmess=aOtTc
+set shortmess=aOtT
+if has('patch-7.4.314')
+  set shortmess+=c
+endif
 set ruler
 set number
 set sessionoptions-=options
@@ -401,7 +409,9 @@ set mouse=""
 " Backspaces and History
 set backspace=indent,eol,start
 " Separate windows when scrolling
-set nocursorbind
+if v:version > 703
+  set nocursorbind
+endif
 set noscrollbind
 " Buffer switching
 set hidden
