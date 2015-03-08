@@ -74,7 +74,7 @@ hi Visual    guibg=#00003f
 hi VisualNOS     gui=bold
 "Not sure what this is - will have to find out
 hi IncSearch     gui=reverse
-hi Search    guibg=#576f2f
+hi Search    guibg=#303030 guifg=NONE
 " }}}
 
 " {{{ Syntax groups
@@ -185,7 +185,7 @@ elseif &t_Co==256
   highlight CursorColumn cterm=NONE ctermfg=NONE ctermbg=236
   highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=234
   highlight Folded cterm=bold ctermfg=100 ctermbg=NONE
-  highlight Search cterm=NONE ctermfg=NONE ctermbg=107
+  highlight Search cterm=NONE ctermfg=NONE ctermbg=235
   highlight Pmenu cterm=NONE ctermfg=NONE ctermbg=darkblue
   highlight Pmenusel cterm=NONE ctermfg=NONE ctermbg=darkmagenta
   highlight StatusLine   cterm=NONE   ctermfg=51     ctermbg=NONE
