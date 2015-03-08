@@ -149,8 +149,8 @@ let g:c_no_comment_fold = 1
 syntax on
 filetype on
 " cursorline/column
-set cursorcolumn
-set cursorline
+set nocursorcolumn
+set nocursorline
 color techras
 " If in xterm, use control sequences to control cursor
 if &term == "xterm-256color" || &term == "xterm" || &term == "screen-256color"
