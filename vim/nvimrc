@@ -1,0 +1,4 @@
+set all&
+let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['clang_complete'])
+runtime vimrc
+" vim: foldmethod=marker
