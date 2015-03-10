@@ -112,3 +112,6 @@
 [submodule "vim/bundle/VimFindsMe"]
 	path = vim/bundle/vimfindsme
 	url = git://github.com/dahu/VimFindsMe.git
+[submodule "vim/bundle/neomake"]
+	path = vim/bundle/neomake
+	url = git@github.com:benekastah/neomake
