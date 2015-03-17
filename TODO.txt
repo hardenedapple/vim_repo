@@ -3,8 +3,18 @@ To Add:
 
 To Fix:
     Syntax highlighting after argdo on first command.
-    Lawrencium error message at end.
+    Lawrencium error message at end or start (not sure which)
     Submode doesn't work with no file
+    Remove all colorschemes I don't use
+        currently use:
+            molokai
+            apprentice
+            hybrid
+            techras
+            autumn
+            pylight
+        Search for others I like
+    Possibly remove the SetColors script
 
 Repo organisation:
     Find a nice method to update the colorschemes.
@@ -40,3 +50,20 @@ Keys I don't use:
     ZQ
     ZZ
     S
+
+
+
+
+Neovim:
+
+Bothers -- 
+    C-w c  and  :close
+        Don't take a count any more
+
+    Error messasge with loadview compared to vim -- has different options, so makes
+    sense that the options don't match.
+    Also causes errors which stop :Gdiff from working.
+
+
+Things to add
+    Use the Alt keys for useful things everywhere (yay for LeoNerds' libtermkey)

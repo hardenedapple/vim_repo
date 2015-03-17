@@ -39,3 +39,16 @@ CREDITS:
         most colors come from vim-colorsamplerpack arch package.
         (colordiff is difference between vim-colorsamplerpack and directory
         that works with set_colors)
+
+Neovim:
+    Tmux escape-time:
+        Neovim distinguishes between Alt-j and <ESC>j in the terminal
+        This is determined by whether the '^[' and 'j' characters come at the
+        same time or one after each other.
+        Tmux has an 'escape-time' variable that does pretty much the same, if
+        the second character comes after this number of milliseconds then the
+        button pressed was an Alt/Function/whatever key.
+        Tmux's default value for this parameter is 500 milliseconds, which is
+        too long for use in vim.
+        Change this whenever using nvim inside terminal.
+
