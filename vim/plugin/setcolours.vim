@@ -93,9 +93,9 @@ function s:NextColor(how, echo_color)
   endif
 endfunction
 
-nnoremap <F8> :call <SID>NextColor(1, 1)<CR>
-nnoremap <S-F8> :call <SID>NextColor(-1, 1)<CR>
-nnoremap <C-F8> :call <SID>NextColor(0, 1)<CR>
+nnoremap <silent> <F8> :call <SID>NextColor(1, 1)<CR>
+nnoremap <silent> <S-F8> :call <SID>NextColor(-1, 1)<CR>
+nnoremap <silent> <C-F8> :call <SID>NextColor(0, 1)<CR>
 
 " Set color scheme according to current time of day.
 function s:HourColor()
