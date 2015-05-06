@@ -183,6 +183,10 @@ if v:version > 703
   set concealcursor=nc
 endif
 
+" Specify some color groups for :match to use
+highlight link match1 ColorColumn
+highlight link match2 Todo
+
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
