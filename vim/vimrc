@@ -408,8 +408,7 @@ set path=.,**,,
 " Make split windows open on right and below by default
 set splitright
 set splitbelow
-" Turn off the mouse
-set mouse=""
+set mouse=a
 " Backspaces and History
 set backspace=indent,eol,start
 " Separate windows when scrolling
