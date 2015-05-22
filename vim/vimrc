@@ -83,7 +83,7 @@ if index(g:pathogen_disabled, 'ctrlp') != -1
   let g:pathogen_disabled += ['ctrlp-funky']
 endif
 
-if exists('*pathogen#infect()') && !exists('g:no_plugins')
+if exists('*pathogen#infect()') && !exists('g:no_plugins') && system('id -u') != 0
   execute pathogen#infect()
   call pathogen#helptags()
 else
