@@ -17,7 +17,9 @@ nnoremap <leader>mm :call feedkeys(":Argument \<c-d>")<cr>
 " Add a whole load of buffers at the same time
 function MultipleBadd(buffers)
   for buffer_name in split(a:buffers)
-    exe 'badd ' . buffer_name
+    for single_file in glob(buffer_name, 0, 1)
+      exe 'badd ' . single_file
+    endfor
   endfor
 endfunction
 
