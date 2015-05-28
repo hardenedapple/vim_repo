@@ -85,7 +85,6 @@ endif
 
 if exists('*pathogen#infect()') && !exists('g:no_plugins') && system('id -u') != 0
   execute pathogen#infect()
-  call pathogen#helptags()
 else
   " If no pathogen, disable all the plugin settings I have.
   let g:pathogen_disabled = [ 'abolish', 'airline', 'arduinosyntax',
