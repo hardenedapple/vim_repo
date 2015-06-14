@@ -336,8 +336,8 @@ command -bang -range Lensort <line1>,<line2>call SortByLength(<bang>0)
 set complete=.,w,b,u,t
 set completeopt=menu
 " Lower priority tab completion
+set suffixes+=.png,.jpg,.fasl,.o,.obj,.gif,.xpm,.pdf,.bak,.info,.out
 "search current and above directory for tag file
-set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
 set tags=./tags;$HOME
 "change how the command line autocomplete works
 "set wildmode=<parameters>
@@ -346,10 +346,7 @@ set shiftround
 set autoread
 set wildmenu
 set wildmode=full
-set wildignore=*.o,*.obj,*~,*.swp
-set wildignore+=*.png,*.jpg,*.gif
-set wildignore+=*.pyc,__pycache__/
-set wildignore+=*.fasl
+set wildignore+=*.pyc,__pycache__/,*~,.*.swp,*.aux,*.log,*.dvi,*.bbl,*.blg,*.brf,*.toc,*.lof
 
 " if ignorecase is on, use the case of the matching pattern to choose the case
 " of the insertion pattern to insert -- I rarely use ignorecase, but when I do,
