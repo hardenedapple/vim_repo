@@ -2,6 +2,10 @@ To Add:
     Find something to map <BS> to.
 
 To Fix:
+    Add function to remove the current element from the quickfix list
+        Need to know how to find what quickfix element I'm currently on
+    Pymode folding sometimes just goes away -- figure out why and when.
+    Neomake errors -- figure out and fix.
     Syntax highlighting after argdo on first command.
     Lawrencium error message at end or start (not sure which)
     Submode doesn't work with no file
