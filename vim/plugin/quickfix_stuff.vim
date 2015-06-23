@@ -71,6 +71,65 @@ function s:LoadQuickFixList(fname)
  call setqflist(eval(string))
 endfunction
 
+
+" Remove the current quickfix item.
+" Useful for marking a quickfix item as 'looked at' when searching for things.
+
+function s:QFitemMatches(qfitem, l, c, b)
+  if a:qfitem['lnum'] == a:l && a:qfitem['col'] == a:c && a:qfitem['bufnr'] == a:b
+    return 1
+  else
+    return 0
+  endif
+endfunction
+
+function s:RemoveCurrentQuickfixItem(bang)
+  " Get the current state
+  let startbuffer = bufnr('%')
+  let startcolumn = virtcol('.')
+  let startline = line('.')
+  let topline = line('w0') + &scrolloff
+  let current_quickfix = getqflist()
+
+  " Get the position of the current quickfix item
+  execute 'keepalt keepjumps cc'
+  let current_col = col('.')
+  let current_line = line('.')
+  let current_bufnr = bufnr('%')
+
+  " Check for the first item, as the loop below wouldn't work if 'item_number'
+  " is 0 on the match
+  let first_qfitem = current_quickfix[0]
+  let item_number = 1
+  if s:QFitemMatches(first_qfitem, current_line, current_col, current_bufnr)
+    call setqflist(current_quickfix[1:], 'r')
+  else
+    for item in current_quickfix
+      if s:QFitemMatches(item, current_line, current_col, current_bufnr)
+        call setqflist(current_quickfix[:item_number-2] + current_quickfix[item_number :], 'r')
+        break
+      endif
+      let item_number +=1
+    endfor
+  endif
+
+  " Make the 'current' quickfix item the next one in the list.
+  execute 'keepalt keepjumps cc' . item_number
+
+  " If the original position was at the item we removed, leave us at the next
+  " position, else move back to where we started
+  if startline == current_line && startbuffer == current_bufnr && a:bang
+    return
+  else
+    " Return to current state
+    execute 'keepalt keepjumps buffer ' . startbuffer
+    execute 'keepjumps normal ' . topline . 'zt'
+    execute 'keepjumps normal ' . startline . 'gg'
+    execute 'keepjumps normal ' . startcolumn . '|'
+  endif
+endfunction
+
+
 " Add commands for the functions above.
 command -nargs=0 -bar Qargs execute 'args' s:QuickfixFilenames()
 command -bang -nargs=1 -complete=file QFilterBuf call s:FilterQuickfixListByBuffer(<bang>0, <q-args>)
@@ -78,3 +137,6 @@ command -bang -nargs=1 QFilterMatch call s:FilterQuickfixListBySubject(<bang>0, 
 command -bar QuickfixSort call s:SortUniqQFList()
 command -bar -nargs=1 SaveQuickFixList call s:SaveQuickFixList(<q-args>)
 command -bar -nargs=1 -complete=file LoadQuickFixList call s:LoadQuickFixList(<q-args>)
+command -bang -bar -nargs=0 QFRemoveCurrent silent call s:RemoveCurrentQuickfixItem(<bang>0)
+
+nnoremap <silent> <leader>qr :<C-u>QFRemoveCurrent!<CR>
