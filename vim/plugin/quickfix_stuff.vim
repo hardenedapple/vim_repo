@@ -2,8 +2,8 @@
 " Note this function is degenerate with Vimple's QFbufs
 " Also, the command Qargs is degenerate with Vimple's QFargs (though QFargs has
 " more functionality).
-" Despite this, I'm keeping them both, as the "no-plugin" version that I can
-" have by not including the plugin_extras/ and bundle/ directory can use these.
+" Despite this, I'm keeping them both, so the "no-plugin" version I get as root
+" still has this ability.
 function s:QuickfixFilenames()
     " Building a hash ensures we get each buffer only once
     let buffer_numbers = {}
@@ -140,3 +140,6 @@ command -bar -nargs=1 -complete=file LoadQuickFixList call s:LoadQuickFixList(<q
 command -bang -bar -nargs=0 QFRemoveCurrent silent call s:RemoveCurrentQuickfixItem(<bang>0)
 
 nnoremap <silent> <leader>qr :<C-u>QFRemoveCurrent!<CR>
+nnoremap <silent> <leader>qs :<C-u>QuickfixSort<CR>
+nnoremap <silent> <leader>qb :QFilterBuf <C-r>%<CR>
+nnoremap <silent> <leader>qd :QFilterBuf! <C-r>%<CR>
