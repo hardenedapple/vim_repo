@@ -75,8 +75,8 @@ endfunction
 " Remove the current quickfix item.
 " Useful for marking a quickfix item as 'looked at' when searching for things.
 
-function s:QFitemMatches(qfitem, l, c, b)
-  if a:qfitem['lnum'] == a:l && a:qfitem['col'] == a:c && a:qfitem['bufnr'] == a:b
+function s:QFitemMatches(qfitem, l, b)
+  if a:qfitem['lnum'] == a:l && a:qfitem['bufnr'] == a:b
     return 1
   else
     return 0
@@ -85,7 +85,7 @@ endfunction
 
 function s:RemoveCurrentQuickfixItem(bang)
   " Get the current state
-  let startbuffer = bufnr('%')
+  let startbufnr = bufnr('%')
   let startcolumn = virtcol('.')
   let startline = line('.')
   let topline = line('w0') + &scrolloff
@@ -93,7 +93,6 @@ function s:RemoveCurrentQuickfixItem(bang)
 
   " Get the position of the current quickfix item
   execute 'keepalt keepjumps cc'
-  let current_col = col('.')
   let current_line = line('.')
   let current_bufnr = bufnr('%')
 
@@ -101,11 +100,11 @@ function s:RemoveCurrentQuickfixItem(bang)
   " is 0 on the match
   let first_qfitem = current_quickfix[0]
   let item_number = 1
-  if s:QFitemMatches(first_qfitem, current_line, current_col, current_bufnr)
+  if s:QFitemMatches(first_qfitem, current_line, current_bufnr)
     call setqflist(current_quickfix[1:], 'r')
   else
     for item in current_quickfix
-      if s:QFitemMatches(item, current_line, current_col, current_bufnr)
+      if s:QFitemMatches(item, current_line, current_bufnr)
         call setqflist(current_quickfix[:item_number-2] + current_quickfix[item_number :], 'r')
         break
       endif
@@ -114,15 +113,17 @@ function s:RemoveCurrentQuickfixItem(bang)
   endif
 
   " Make the 'current' quickfix item the next one in the list.
-  execute 'keepalt keepjumps cc' . item_number
+  if item_number != len(current_quickfix) + 1
+    execute 'keepalt keepjumps cc' . item_number
+  endif
 
   " If the original position was at the item we removed, leave us at the next
   " position, else move back to where we started
-  if startline == current_line && startbuffer == current_bufnr && a:bang
+  if startline == current_line && startbufnr == current_bufnr && a:bang
     return
   else
     " Return to current state
-    execute 'keepalt keepjumps buffer ' . startbuffer
+    execute 'keepalt keepjumps buffer ' . startbufnr
     execute 'keepjumps normal ' . topline . 'zt'
     execute 'keepjumps normal ' . startline . 'gg'
     execute 'keepjumps normal ' . startcolumn . '|'
