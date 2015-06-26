@@ -8,7 +8,7 @@ map  <buffer> <silent> <LocalLeader>. <Plug>(IPython-RunLineAsTopLevel)
 xmap <buffer> <silent> <LocalLeader>. <Plug>(IPython-RunLineAsTopLevel)
 xmap <buffer> <silent> <LocalLeader>o <Plug>(IPython-RunLinesAsTopLevel)
 
-map  <buffer> <silent> <LocalLeader>< <Plug>(IPython-RunLine)
+map  <buffer> <silent> <LocalLeader>> <Plug>(IPython-RunLine)
 xmap <buffer> <silent> <LocalLeader>> <Plug>(IPython-RunLine)
 map  <buffer> <silent> <LocalLeader>O <Plug>(IPython-RunLines)
 xmap <buffer> <silent> <LocalLeader>O <Plug>(IPython-RunLines)
