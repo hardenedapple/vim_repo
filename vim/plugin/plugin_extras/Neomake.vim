@@ -3,4 +3,4 @@ if index(g:pathogen_disabled, 'neomake') != -1
 endif
 
 " Add mapping for dispatch
-nnoremap <F9> :Neomake<CR>
+nnoremap <F9> :Neomake!<CR>
