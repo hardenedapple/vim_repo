@@ -23,6 +23,9 @@ runtime bundle/pathogen/autoload/pathogen.vim
 " vim --cmd 'let g:pathogen_disabled = []' <filename>
 " on the command line.
 let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['clang_complete', 'neomake'])
+if v:version < 704
+  let g:pathogen_disabled += ['ultisnips']
+endif
 if v:version < 703
   let g:pathogen_disabled += ['clang_complete', 'ctrlp', 'ctrlp-funky', 'gundo', 'sneak', 'vimfindsme']
 endif
@@ -34,7 +37,7 @@ if v:version < 701
 endif
 if v:version < 700
   let g:pathogen_disabled += ['commentary', 'dispatch', 'easygrep', 'eunuch',
-        \ 'gitv', 'obsession', 'repeat', 'surround', 'ultisnips', 'snippets',
+        \ 'gitv', 'obsession', 'repeat', 'surround', 'snippets',
         \ 'unimpaired', 'vimple']
 endif
 
