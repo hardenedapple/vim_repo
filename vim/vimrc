@@ -419,6 +419,10 @@ set noscrollbind
 set hidden
 "set bufhidden=hide
 
+" Have the equivalent of programming keyboards when in insert mode, while
+" keeping numbers easy to press in command mode.
+set keymap=shifted_numbers
+
 " Format options: automatic folding, comment folding etc.
 set textwidth=79
 set formatoptions+=crotql
