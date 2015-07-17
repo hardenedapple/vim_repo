@@ -422,7 +422,10 @@ set hidden
 " Have the equivalent of programming keyboards when in insert mode, while
 " keeping numbers easy to press in command mode.
 set keymap=shifted_numbers
-set imsearch=2
+" Don't really know what input method (IM) in the manual is, so don't really
+" want to disable it in case it's something useful, but neovim complains for
+" 'imsearch' = 2, so am using 0 for now.
+set imsearch=0
 
 " Format options: automatic folding, comment folding etc.
 set textwidth=79
