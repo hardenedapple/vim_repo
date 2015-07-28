@@ -13,3 +13,6 @@ endif
 set makeprg=pdflatex\ -interaction\ nonstopmode\ %
 nnoremap [om :set makeprg=pdflatex\ %<CR>
 nnoremap ]om :set makeprg=make<CR>
+
+lnoremap <buffer> [ {
+lnoremap <buffer> ] }
