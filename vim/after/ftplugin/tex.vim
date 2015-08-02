@@ -16,3 +16,5 @@ nnoremap ]om :set makeprg=make<CR>
 
 lnoremap <buffer> [ {
 lnoremap <buffer> ] }
+lnoremap <buffer> { [
+lnoremap <buffer> } ]
