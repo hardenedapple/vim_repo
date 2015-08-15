@@ -63,7 +63,7 @@ hi Title     guifg=#800080
 hi WarningMsg    guifg=#800000
 hi SpecialKey    guifg=#000080
 
-hi MatchParen    guibg=#00ffff
+hi MatchParen    guibg=#00ffff ctermbg=grey
 hi Underlined    guifg=#800080 gui=underline
 hi Directory     guifg=#000080
 " }}}
