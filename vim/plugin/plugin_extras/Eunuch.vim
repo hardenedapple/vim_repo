@@ -13,13 +13,13 @@ function s:DiffWithSaved()
   diffthis
   vertical new
   read ++edit #
-  0delete
+  0delete_
   setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile
   execute 'setlocal filetype=' . filetype
   diffthis
   exe "normal! " . diffline . "G"
 endfunction
 
-command DiffSaved call s:DiffWithSaved()
+command DiffOrig call s:DiffWithSaved()
 
-nnoremap <leader>fd :DiffSaved<CR>
+nnoremap <leader>fd :DiffOrig<CR>

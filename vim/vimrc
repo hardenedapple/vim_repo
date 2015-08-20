@@ -285,7 +285,7 @@ set lazyredraw
 " Scratch file function from http://dhruvasagar.com/tag/vim
 function ScratchEdit(cmd, options)
     exe a:cmd tempname()
-    setl buftype=nofile bufhidden=wipe nobuflisted
+    setlocal buftype=nofile bufhidden=wipe nobuflisted
     if !empty(a:options) | exe 'setl' a:options | endif
 endfunction
 
