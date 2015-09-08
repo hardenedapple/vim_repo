@@ -12,6 +12,10 @@ inoremap <buffer> /8<CR>  /*<Space><Space>*/<Left><Left><Left>
 " add opening a block with {<CR>
 inoremap <buffer> {<CR>  {<CR>}<Esc>O
 
+" Use double quotes much more than single
+lnoremap <buffer> " '
+lnoremap <buffer> ' "
+
 " Add /usr/include/ to the path variable
 set path+=/usr/include
 
