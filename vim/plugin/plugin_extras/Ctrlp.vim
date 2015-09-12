@@ -16,6 +16,7 @@ nnoremap <Leader>cpc :CtrlPChange<CR>
 nnoremap <Leader>cpq :CtrlPQuickfix<CR>
 nnoremap <Leader>cpt :CtrlPTag<CR>
 nnoremap <Leader>cpu :CtrlPUndo<CR>
+nnoremap <Leader>cpm :CtrlPMRU<CR>
 
 let g:ctrlp_switch_buffer = 'Et'
 let g:ctrlp_tabpage_position = 'ac'
