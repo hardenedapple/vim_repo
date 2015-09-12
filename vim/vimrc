@@ -42,7 +42,7 @@ if v:version < 700
 endif
 
 if !has('python')
-  let g:pathogen_disabled += ['jedi', 'vim-ipython', 'clang_complete', 'gundo']
+  let g:pathogen_disabled += ['jedi', 'vim-ipython', 'clang_complete', 'gundo', 'ultisnips']
 else
 python << EOF
 try:
