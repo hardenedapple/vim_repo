@@ -2,7 +2,11 @@
 "change the font used for gui
 "set guifont=Nimbus\ Mono\ L\ 10
 " set guifont=Terminal\ 10
-set guifont=Tamsyn\ 10
+if has('win32')
+  set guifont=Tamsyn7x14:h10:cANSI
+else
+  set guifont=Tamsyn\ 10
+endif
 
 set winaltkeys=no
 
