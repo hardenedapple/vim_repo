@@ -86,7 +86,7 @@ if index(g:pathogen_disabled, 'ctrlp') != -1
   let g:pathogen_disabled += ['ctrlp-funky']
 endif
 
-if exists('*pathogen#infect()') && !exists('g:no_plugins') && system('id -u') != 0
+if exists('*pathogen#infect()') && !exists('g:no_plugins') && (has('win32') || system('id -u') != 0)
   execute pathogen#infect()
 else
   " If no pathogen, disable all the plugin settings I have.
@@ -392,7 +392,12 @@ let g:netrw_liststyle=3
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Persistance {{{
-set viminfo='100,<50,s10,h,/50,:50,@50,f1,r/tmp,r/mnt,r/media,n~/.vim/viminfo
+set viminfo='100,<50,s10,h,/50,:50,@50,f1,r/tmp,r/mnt,r/media
+if has('win32')
+  set viminfo+=n~/vimfiles/viminfo
+else
+  set viminfo+=n~/.vim/viminfo
+endif
 set nobackup
 set history=50
 "}}}
