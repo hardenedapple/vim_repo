@@ -228,6 +228,10 @@ nnoremap <leader>b :ls<CR>:b<space>
 " Quick save
 nnoremap <silent> <leader>s :w<CR>
 
+" Put occurances of current word in quickfix
+command -bar -nargs=1 Occur execute 'vimgrep /\<' . <q-args> . '\>/j ' . expand('%')
+nnoremap <silent> <leader>vh :Occur <C-R><C-W><CR>
+
 " Remove trailing whitespace
 nnoremap <silent> <F10> :%s/\s\+$//<CR>:nohlsearch<CR>
 
