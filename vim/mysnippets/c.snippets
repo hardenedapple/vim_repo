@@ -31,10 +31,3 @@ snippet ch " /* Check ... */ "
 	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
 }
 endsnippet
-
-# Let the cpp Inc snippet overwrite this one
-priority -1
-
-snippet Inc "#include <>"
-#include <${1}.h>
-endsnippet
