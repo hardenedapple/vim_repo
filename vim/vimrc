@@ -396,11 +396,15 @@ let g:netrw_liststyle=3
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Persistance {{{
-set viminfo='100,<50,s10,h,/50,:50,@50,f1,r/tmp,r/mnt,r/media
-if has('win32')
-  set viminfo+=n~/vimfiles/viminfo
+if has('nvim')
+  set shada='100,<50,s10,h,/50,:50,@50,f1,r/tmp,r/mnt,r/media,n~/.config/nvim/neoshada
 else
-  set viminfo+=n~/.vim/viminfo
+  set viminfo='100,<50,s10,h,/50,:50,@50,f1,r/tmp,r/mnt,r/media
+  if has('win32')
+    set viminfo+=n~/vimfiles/viminfo
+  else
+    set viminfo+=n~/.vim/viminfo
+  endif
 endif
 set nobackup
 set history=50
