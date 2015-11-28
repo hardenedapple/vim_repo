@@ -253,8 +253,8 @@ nnoremap <silent> g6 :exe 6 . "wincmd w"<CR>
 
 " Execute current line or current selection as Vim EX commands.
 " (I've just been watching the acme editor introduction)
-nnoremap <F2> :exe getline('.')<CR>
-vnoremap <F2> y:<C-u>exe getreg('"')<CR>
+nnoremap <silent> <F2> :exe getline('.')<CR>
+vnoremap <silent> <F2> y:<C-u>exe getreg('"')<CR>
 
 " In Dvorak, keep completion commands nearer each other
 inoremap <C-b> <C-p>
