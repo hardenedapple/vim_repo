@@ -8,6 +8,8 @@ let g:sneak#streak = 1
 let g:sneak#s_next = 1
 let g:sneak#textobject_z = 0
 
+" For Dvorak keyboard -- make closer matches on easy keys
+let g:sneak#target_labels = "aoeuidhtns._pyfgcrl'qjkxbmwvzAOEUIDHTNS>-PYFGCRL\"QJKXBMWVZ"
 
 nmap , <Plug>SneakNext
 omap , <Plug>SneakNext
