@@ -1,8 +1,10 @@
 function! s:MoveWindow(direction)
+    let firstPosis = getpos('.')
     let firstWinNum = winnr()
     let firstBufNum = bufnr("%")
     " Find the next buffer
     exe "wincmd " . a:direction
+    let secondPosis = getpos('.')
     let secondWinNum = winnr()
     let secondBufNum = bufnr("%")
     " Load first buffer in this window
@@ -11,8 +13,10 @@ function! s:MoveWindow(direction)
     exe firstWinNum . "wincmd w"
     " Load second buffer in current window
     exe 'hide buf' secondBufNum
+    call setpos('.', secondPosis)
     " Go to last window
     exe secondWinNum . "wincmd w"
+    call setpos('.', firstPosis)
 endfunction
 
 
