@@ -61,6 +61,16 @@ function s:NewPrompt()
   startinsert!
 endfunction!
 
+" Don't insert newlines when writing a long command
+setlocal formatoptions-=t
+setlocal formatoptions-=c
+
+" Abuse the comment system to give syntax highlighting (TBD in a syntax file)
+" and automatic insertion of the prompt when hitting <Enter>
+setlocal comments=b:vimshell\:\ >
+setlocal formatoptions+=r
+setlocal formatoptions+=o
+
 nnoremap <buffer> <silent> <C-n> :call <SID>MoveToNextPrompt()<CR>
 nnoremap <buffer> <silent> <C-p> :call <SID>MoveToPrevPrompt()<CR>
 nnoremap <buffer> <silent> <CR>  :call <SID>ReplaceInput()<CR>
