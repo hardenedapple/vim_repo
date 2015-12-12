@@ -120,7 +120,7 @@ set nojoinspaces
 
 "Don't keep bugging me whenever I type something wrong
 set noerrorbells
-"set novisualbells
+set visualbell
 set t_vb=
 set tm=500
 
