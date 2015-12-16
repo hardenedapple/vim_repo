@@ -253,7 +253,13 @@ nnoremap <silent> g6 :exe 6 . "wincmd w"<CR>
 " (I've just been watching the acme editor introduction)
 let g:command_prefix = 'vimcmd: '
 function ParseCommand(line)
-  return a:line[match(a:line, g:command_prefix) + len(g:command_prefix):]
+  let l:command_start = match(a:line, g:command_prefix)
+  if l:command_start != -1
+    return a:line[l:command_start + len(g:command_prefix):]
+  else
+    echom 'Cannot parse line for command, require prefix -- "' . g:command_prefix . '"'
+    return ''
+  endif
 endfunction
 
 nnoremap <silent> <F2> :exe ParseCommand(getline('.'))<CR>
