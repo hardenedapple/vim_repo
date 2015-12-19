@@ -115,3 +115,6 @@
 [submodule "vim/bundle/neomake"]
 	path = vim/bundle/neomake
 	url = git://github.com/benekastah/neomake
+[submodule "vim/bundle/rust-vim"]
+	path = vim/bundle/rust-vim
+	url = git://github.com/rust-lang/rust.vim.git
