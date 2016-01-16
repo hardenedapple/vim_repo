@@ -11,7 +11,7 @@ setlocal formatoptions-=c
 
 " Abuse the comment system to give syntax highlighting (TBD in a syntax file)
 " and automatic insertion of the prompt when hitting <Enter>
-setlocal comments=b:vimshell\:\ >
+setlocal comments=b:vimshell\:\ >\ #,b:vimshell\:\ >
 setlocal formatoptions+=r
 setlocal formatoptions+=o
 

@@ -22,7 +22,11 @@ function ftplugin_helpers#vsh#MoveToPrevPrompt()
 endfunction
 
 function ftplugin_helpers#vsh#ParseVSHCommand(line)
-  return a:line[match(a:line, b:prompt) + len(b:prompt):]
+  let l:command = a:line[match(a:line, b:prompt) + len(b:prompt):]
+  if l:command[0] == '#'
+    return ''
+  endif
+  return l:command
 endfunction
 
 function ftplugin_helpers#vsh#CommandRange()
