@@ -11,12 +11,21 @@ setlocal formatoptions-=c
 
 " Abuse the comment system to give syntax highlighting (TBD in a syntax file)
 " and automatic insertion of the prompt when hitting <Enter>
+" NOTE -- order of the comment definition is important -- means lines with a
+" '#' are recognised as a comment of the first kind rather than the second,
+" which means that pressing <CR> in insert mode when on that line inserts the
+" '#' on the next line (assuming the correct 'formatoptions' settings)
 setlocal comments=b:vimshell\:\ >\ #,b:vimshell\:\ >
 setlocal formatoptions+=r
 setlocal formatoptions+=o
 
-nnoremap <buffer> <silent> <C-n> :call ftplugin_helpers#vsh#MoveToNextPrompt()<CR>
-nnoremap <buffer> <silent> <C-p> :call ftplugin_helpers#vsh#MoveToPrevPrompt()<CR>
+nnoremap <buffer> <silent> <C-n> :call ftplugin_helpers#vsh#MoveToNextPrompt('n')<CR>
+nnoremap <buffer> <silent> <C-p> :call ftplugin_helpers#vsh#MoveToPrevPrompt('n')<CR>
+vnoremap <buffer> <silent> <C-n> :call ftplugin_helpers#vsh#MoveToNextPrompt('v')<CR>
+vnoremap <buffer> <silent> <C-p> :call ftplugin_helpers#vsh#MoveToPrevPrompt('v')<CR>
+onoremap <buffer> <silent> <C-n> :call ftplugin_helpers#vsh#MoveToNextPrompt('o')<CR>
+onoremap <buffer> <silent> <C-p> :call ftplugin_helpers#vsh#MoveToPrevPrompt('o')<CR>
 nnoremap <buffer> <silent> <CR>  :call ftplugin_helpers#vsh#ReplaceInput()<CR>
 nnoremap <buffer> <silent> <localleader>n  :call ftplugin_helpers#vsh#NewPrompt()<CR>
 nnoremap <buffer> <localleader>o  :<C-r>=ftplugin_helpers#vsh#CommandRange()<CR>
+

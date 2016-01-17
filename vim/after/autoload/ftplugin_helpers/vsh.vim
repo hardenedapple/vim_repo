@@ -13,16 +13,29 @@ function ftplugin_helpers#vsh#NextPrompt()
   return l:retval ? l:retval : l:eof + 1
 endfunction
 
-function ftplugin_helpers#vsh#MoveToNextPrompt()
+function ftplugin_helpers#vsh#MoveToNextPrompt(mode)
+  if a:mode == 'v'
+    normal! gv
+  endif
   call search(b:prompt, 'e')
+  if a:mode != 'n'
+    normal! k
+  endif
 endfunction
 
-function ftplugin_helpers#vsh#MoveToPrevPrompt()
+function ftplugin_helpers#vsh#MoveToPrevPrompt(mode)
+  if a:mode == 'v'
+    normal! gv
+  endif
   call search(b:prompt, 'be')
+  if a:mode != 'n'
+    normal! j
+  endif
 endfunction
 
 function ftplugin_helpers#vsh#ParseVSHCommand(line)
   let l:command = a:line[match(a:line, b:prompt) + len(b:prompt):]
+  " Allow notes in the file -- make lines beginning with # a comment.
   if l:command[0] == '#'
     return ''
   endif
