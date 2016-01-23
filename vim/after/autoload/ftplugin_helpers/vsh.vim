@@ -36,6 +36,8 @@ endfunction
 function ftplugin_helpers#vsh#ParseVSHCommand(line)
   let l:command = a:line[match(a:line, b:prompt) + len(b:prompt):]
   " Allow notes in the file -- make lines beginning with # a comment.
+  " Can't just pass the # on to the bash command, as it gets expanded out in
+  " the 'exe' command.
   if l:command[0] == '#'
     return ''
   endif

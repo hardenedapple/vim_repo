@@ -257,13 +257,26 @@ function ParseCommand(line)
   if l:command_start != -1
     return a:line[l:command_start + len(g:command_prefix):]
   else
-    echom 'Cannot parse line for command, require prefix -- "' . g:command_prefix . '"'
+    echom 'Cannot parse line ' . a:line . ' for command, require prefix -- "' . g:command_prefix . '"'
     return ''
   endif
 endfunction
 
-nnoremap <silent> <F2> :exe ParseCommand(getline('.'))<CR>
+function RunCommand(val)
+  if v:count == 0 || a:val
+    let line = getline('.')
+  else
+    let line = getline(v:count)
+  endif
+  execute ParseCommand(l:line)
+endfunction
+
+nnoremap <silent> <F2> :<C-u>call RunCommand(0)<CR>
 vnoremap <silent> <F2> y:<C-u>exe getreg('"')<CR>
+" Want: this command would be better if it didn't modify the search history,
+" however the obvious function to do that may require storing marks to avoid
+" problems with the range that come from changing what's in the file.
+command -range RunCommand execute "<line1>,<line2>g/" . g:command_prefix . "/call RunCommand(1) | nohlsearch"
 
 " In Dvorak, keep completion commands nearer each other
 inoremap <C-b> <C-p>
