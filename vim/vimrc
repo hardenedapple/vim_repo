@@ -252,7 +252,7 @@ nnoremap <silent> g6 :exe 6 . "wincmd w"<CR>
 " Execute current line or current selection as Vim EX commands.
 " (I've just been watching the acme editor introduction)
 let g:command_prefix = 'vimcmd: '
-function ParseCommand(line)
+function s:ParseCommand(line)
   let l:command_start = match(a:line, g:command_prefix)
   if l:command_start != -1
     return a:line[l:command_start + len(g:command_prefix):]
@@ -262,21 +262,33 @@ function ParseCommand(line)
   endif
 endfunction
 
+" NOTE: This function is supposed to recreate the :global command without
+" modifying the search history.
+" I don't like its current implementation (especially artificially moving back
+" one byte so I can search forward), but it seems to work.
+" If I even think of something better I'll do that.
+function MultilineCommand(pattern, command) range
+  let save_mark_e = getpos("'e")
+  call setpos("'e", [bufnr('%'), a:lastline, 0, 0])
+  execute 'goto ' . (line2byte(a:firstline) - 1)
+  while search(a:pattern, '', line("'e")) != 0
+    execute a:command
+  endwhile
+  call setpos("'e", save_mark_e)
+endfunction
+
 function RunCommand(val)
   if v:count == 0 || a:val
     let line = getline('.')
   else
     let line = getline(v:count)
   endif
-  execute ParseCommand(l:line)
+  execute s:ParseCommand(l:line)
 endfunction
 
 nnoremap <silent> <F2> :<C-u>call RunCommand(0)<CR>
 vnoremap <silent> <F2> y:<C-u>exe getreg('"')<CR>
-" Want: this command would be better if it didn't modify the search history,
-" however the obvious function to do that may require storing marks to avoid
-" problems with the range that come from changing what's in the file.
-command -range RunCommand execute "<line1>,<line2>g/" . g:command_prefix . "/call RunCommand(1) | nohlsearch"
+command -range RunCommand <line1>,<line2>call MultilineCommand(g:command_prefix, 'call RunCommand("1")')
 
 " In Dvorak, keep completion commands nearer each other
 inoremap <C-b> <C-p>

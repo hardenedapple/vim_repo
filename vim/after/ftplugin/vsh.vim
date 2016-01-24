@@ -32,4 +32,4 @@ nnoremap <buffer> <localleader>o  :<C-r>=ftplugin_helpers#vsh#CommandRange()<CR>
 " Want: this command would be better if it didn't modify the search history,
 " however the obvious function to do that may require storing marks to avoid
 " problems with the range that come from changing what's in the file.
-command -range Rerun execute "<line1>,<line2>g/" . b:prompt . "/call ftplugin_helpers#vsh#ReplaceInput() | nohlsearch"
+command -range Rerun <line1>,<line2>call ftplugin_helpers#vsh#AllCommands()
