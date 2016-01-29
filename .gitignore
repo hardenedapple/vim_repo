@@ -1,5 +1,5 @@
 *.swp
-vim/view
-vim/viminfo
-vim/.netrw*
-vim/neoshada
+view
+viminfo
+.netrw*
+neoshada

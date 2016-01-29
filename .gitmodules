@@ -1,120 +1,117 @@
 [submodule "vim/bundle/surround"]
-    path = vim/bundle/surround
+	path = bundle/surround
     url = git://github.com/tpope/vim-surround.git
 [submodule "vim/bundle/python-mode"]
-    path = vim/bundle/python-mode
+	path = bundle/python-mode
     url = git://github.com/klen/python-mode.git
 [submodule "vim/bundle/repeat"]
-    path = vim/bundle/repeat
+	path = bundle/repeat
     url = git://github.com/tpope/vim-repeat.git
 [submodule "vim/bundle/syntastic"]
-    path = vim/bundle/syntastic
+	path = bundle/syntastic
     url = git://github.com/scrooloose/syntastic.git
 [submodule "vim/bundle/fugitive"]
-    path = vim/bundle/fugitive
+	path = bundle/fugitive
     url = git://github.com/tpope/vim-fugitive.git
 [submodule "vim/bundle/gundo"]
-    path = vim/bundle/gundo
+	path = bundle/gundo
     url = git://github.com/sjl/gundo.vim.git
 [submodule "vim/bundle/unimpaired"]
-    path = vim/bundle/unimpaired
+	path = bundle/unimpaired
     url = git://github.com/tpope/vim-unimpaired.git
 [submodule "vim/bundle/clang_complete"]
-    path = vim/bundle/clang_complete
+	path = bundle/clang_complete
     url = git://github.com/Rip-Rip/clang_complete.git
 [submodule "vim/bundle/ultisnips"]
-    path = vim/bundle/ultisnips
+	path = bundle/ultisnips
     url = git://github.com/SirVer/ultisnips.git
 [submodule "vim/bundle/snippets"]
-    path = vim/bundle/snippets
+	path = bundle/snippets
     url = git://github.com/honza/vim-snippets.git
 [submodule "vim/bundle/gnupg"]
-    path = vim/bundle/gnupg
+	path = bundle/gnupg
     url = git://github.com/jamessan/vim-gnupg.git
 [submodule "vim/bundle/eunuch"]
-    path = vim/bundle/eunuch
+	path = bundle/eunuch
     url = git://github.com/tpope/vim-eunuch.git
-[submodule "vim/bundle/ctrlspace"]
-    path = vim/bundle/ctrlspace
-    url = git://github.com/szw/vim-ctrlspace.git
 [submodule "vim/bundle/pathogen"]
-    path = vim/bundle/pathogen
+	path = bundle/pathogen
     url = git://github.com/tpope/vim-pathogen.git
 [submodule "vim/bundle/commentary"]
-    path = vim/bundle/commentary
+	path = bundle/commentary
     url = git://github.com/tpope/vim-commentary.git
 [submodule "vim/bundle/tabular"]
-    path = vim/bundle/tabular
+	path = bundle/tabular
     url = git://github.com/godlygeek/tabular.git
 [submodule "vim/bundle/dispatch"]
-    path = vim/bundle/dispatch
+	path = bundle/dispatch
     url = git://github.com/tpope/vim-dispatch.git
 [submodule "vim/bundle/submode"]
-    path = vim/bundle/submode
+	path = bundle/submode
     url = git://github.com/kana/vim-submode.git
 [submodule "vim/bundle/sideways"]
-    path = vim/bundle/sideways
+	path = bundle/sideways
     url = git://github.com/AndrewRadev/sideways.vim.git
 [submodule "vim/bundle/sexp"]
-    path = vim/bundle/sexp
+	path = bundle/sexp
     url = git://github.com/guns/vim-sexp.git
 [submodule "vim/bundle/sexp_mappings"]
-    path = vim/bundle/sexp_mappings
+	path = bundle/sexp_mappings
     url = git://github.com/tpope/vim-sexp-mappings-for-regular-people.git
 [submodule "vim/bundle/gitv"]
-	path = vim/bundle/gitv
+	path = bundle/gitv
 	url = git://github.com/gregsexton/gitv.git
 [submodule "vim/bundle/easygrep"]
-	path = vim/bundle/easygrep
+	path = bundle/easygrep
 	url = git://github.com/dkprice/vim-easygrep.git
 [submodule "vim/bundle/obsession"]
-	path = vim/bundle/obsession
+	path = bundle/obsession
 	url = git://github.com/tpope/vim-obsession.git
 [submodule "vim/bundle/jedi"]
-	path = vim/bundle/jedi
+	path = bundle/jedi
 	url = git://github.com/davidhalter/jedi-vim.git
 [submodule "vim/bundle/lawrencium"]
-	path = vim/bundle/lawrencium
+	path = bundle/lawrencium
 	url = git://github.com/ludovicchabant/vim-lawrencium.git
 [submodule "vim/bundle/exchange"]
-	path = vim/bundle/exchange
+	path = bundle/exchange
 	url = git://github.com/tommcdo/vim-exchange.git
 [submodule "vim/bundle/visualstar"]
-	path = vim/bundle/visualstar
+	path = bundle/visualstar
 	url = git://github.com/thinca/vim-visualstar.git
 [submodule "vim/bundle/airline"]
-	path = vim/bundle/airline
+	path = bundle/airline
 	url = git://github.com/bling/vim-airline.git
 [submodule "vim/bundle/ctrlp"]
-	path = vim/bundle/ctrlp
+	path = bundle/ctrlp
 	url = git://github.com/kien/ctrlp.vim.git
 [submodule "vim/bundle/ctrlp-funky"]
-	path = vim/bundle/ctrlp-funky
+	path = bundle/ctrlp-funky
 	url = git://github.com/tacahiroy/ctrlp-funky.git
 [submodule "vim/bundle/arduinosyntax"]
-	path = vim/bundle/arduinosyntax
+	path = bundle/arduinosyntax
 	url = git://github.com/sudar/vim-arduino-syntax.git
 [submodule "vim/bundle/abolish"]
-	path = vim/bundle/abolish
+	path = bundle/abolish
 	url = git://github.com/tpope/vim-abolish.git
 [submodule "vim/bundle/sneak"]
-	path = vim/bundle/sneak
+	path = bundle/sneak
 	url = git://github.com/justinmk/vim-sneak.git
 [submodule "vim/bundle/vim-ipython"]
-	path = vim/bundle/vim-ipython
+	path = bundle/vim-ipython
 	url = git://github.com/ivanov/vim-ipython.git
 [submodule "vim/bundle/dentures"]
-	path = vim/bundle/dentures
+	path = bundle/dentures
 	url = git://github.com/qstrahl/vim-dentures.git
 [submodule "vim/bundle/vimple"]
-	path = vim/bundle/vimple
+	path = bundle/vimple
 	url = git://github.com/dahu/vimple.git
 [submodule "vim/bundle/VimFindsMe"]
-	path = vim/bundle/vimfindsme
+	path = bundle/vimfindsme
 	url = git://github.com/dahu/VimFindsMe.git
 [submodule "vim/bundle/neomake"]
-	path = vim/bundle/neomake
+	path = bundle/neomake
 	url = git://github.com/benekastah/neomake
 [submodule "vim/bundle/rust-vim"]
-	path = vim/bundle/rust-vim
+	path = bundle/rust-vim
 	url = git://github.com/rust-lang/rust.vim.git
