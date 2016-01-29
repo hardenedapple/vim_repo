@@ -20,10 +20,10 @@ NOTES:
         in a buffer with the correct foldexpr applied, and
             set foldexpr="<C-r>=g:mytempvar"
         in the non-working buffer.
-
-    The python script to get upgrades is written for python3.
+        I've yet to look into why this happens.
 
     Quite a few things don't work with older versions of vim
+        I check for this in my vimrc, but it does mean features are lost
         see the plugins respective websites
 
     Can't get clang_complete to work with vim compiled with only python3
@@ -37,8 +37,8 @@ CREDITS:
     Everything else comes from someone else - I've just collected them.
     Things hard to google:
         most colors come from vim-colorsamplerpack arch package.
-        (colordiff is difference between vim-colorsamplerpack and directory
-        that works with set_colors)
+        (odds_ends/colordiff is difference between vim-colorsamplerpack and
+        directory that works with set_colors)
 
 Neovim:
     Tmux escape-time:
