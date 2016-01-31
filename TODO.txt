@@ -5,6 +5,9 @@ To Fix:
     Pymode folding sometimes just goes away -- figure out why and when.
     Neomake errors -- figure out and fix.
     Syntax highlighting after argdo on first command.
+    Neovim ':Man' opens in a new tab
+    Neovim 'paste' keeps the language toggle, and insert mode mappings
+    Have a look at syntax checking capabilities of Neomake -- can it replace Syntastic?
     Lawrencium error message at end or start (not sure which)
     Submode doesn't work with no file
     Remove all colorschemes I don't use
@@ -58,10 +61,7 @@ Keys I don't use:
 
 Neovim:
 
-Bothers -- 
-    C-w c  and  :close
-        Don't take a count any more
-
+Bothers --
     Error messasge with loadview compared to vim -- has different options, so makes
     sense that the options don't match.
     Also causes errors which stop :Gdiff from working.
