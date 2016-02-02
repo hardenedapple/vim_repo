@@ -264,13 +264,17 @@ endfunction
 
 " NOTE: This function is supposed to recreate the :global command without
 " modifying the search history.
-" I don't like its current implementation (especially artificially moving back
-" one byte so I can search forward), but it seems to work.
-" If I even think of something better I'll do that.
+" I don't like its current implementation, especially artificially moving back
+" one byte so I can search forward.
+" Even worse than that, this misses at least one corner case where it misses a
+" match at the start of the first line as you can't "goto 0".
+" If I think of something better I'll do that, but as it's "good enough", I
+" won't spend much time on it.
 function MultilineCommand(pattern, command) range
   let save_mark_e = getpos("'e")
   call setpos("'e", [bufnr('%'), a:lastline, 0, 0])
-  execute 'goto ' . (line2byte(a:firstline) - 1)
+  " This is where the function misses it's corner case.
+  execute 'goto ' . (line2byte(a:firstline) - 1 || 1)
   while search(a:pattern, '', line("'e")) != 0
     execute a:command
   endwhile
