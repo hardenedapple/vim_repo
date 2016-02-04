@@ -5,8 +5,10 @@ To Fix:
     Pymode folding sometimes just goes away -- figure out why and when.
     Neomake errors -- figure out and fix.
     Syntax highlighting after argdo on first command.
+    vsh filetype CommandRange function includes last line if the last line is
+        an empty prompt and there is no text between the current line and it.
+    MultilineCommand edge case first line of file matches at the start of the line.
     Neovim ':Man' opens in a new tab
-    Neovim 'paste' keeps the language toggle, and insert mode mappings
     Have a look at syntax checking capabilities of Neomake -- can it replace Syntastic?
     Lawrencium error message at end or start (not sure which)
     Submode doesn't work with no file
