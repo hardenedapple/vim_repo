@@ -1,8 +1,11 @@
 "Probable only work on writing at work (on big screen)
-setlocal textwidth=125
+" Turns out, now I've left uni, writing LaTeX is done on my laptop, and I hate
+" this alternate textwidth.
+" (I should have guessed that really)
+" setlocal textwidth=125
 
 setlocal shiftwidth=2
-setlocal iskeyword+=:
+setlocal iskeyword+=:,_
 
 setlocal wildignore-=*.png,*.jpg,*.gif
 "Change the colorscheme to one better for tex
@@ -18,3 +21,7 @@ lnoremap <buffer> [ {
 lnoremap <buffer> ] }
 lnoremap <buffer> { [
 lnoremap <buffer> } ]
+lnoremap <buffer> ~ `
+lnoremap <buffer> ` ~
+lnoremap <buffer> : ;
+lnoremap <buffer> ; :
