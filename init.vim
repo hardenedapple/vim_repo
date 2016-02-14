@@ -4,6 +4,8 @@ let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['clang_complete', 'dispa
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 imap <a-O> <ESC>O
 imap <a-o> <ESC>o
+" Vimple doesn't support neovim, but so far there's only error message coming
+" from it, this variable stops it.
 let vimple_init_vn = 0
 runtime vimrc
 " vim: foldmethod=marker
