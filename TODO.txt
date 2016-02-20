@@ -25,6 +25,19 @@ To Fix:
             pylight
         Search for others I like
     Possibly remove the SetColors script
+    Sneak has some problems with the keymap option
+        Shifted keymap
+
+        1) Complains not found rather than just inserting at point
+        2) When using '.' on a cu<position> command, sneak gets into an infinite loop.
+        3) Only when using *change*, not just any operator.
+        4) Requires tpope/repeat to also be active.
+
+        Also
+        1) Would be nice to not ignore the keymap when repeating a macro -- more of a
+            general vim problem than anything else.
+
+        2) Why is vim interruptable with Ctrl-C, while neovim is not.
 
 Repo organisation:
     Find a nice method to update the colorschemes.
