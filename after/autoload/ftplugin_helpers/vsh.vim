@@ -70,19 +70,6 @@ function ftplugin_helpers#vsh#ReplaceInput()
   endif
 endfunction
 
-" NOTE: this function could be implemented better with one from my vimrc, but
-" since I sometimes have one file without the other I'll accept the duplication
-" for now.
-function ftplugin_helpers#vsh#AllCommands() range
-  let save_mark_e = getpos("'e")
-  call setpos("'e", [bufnr('%'), a:lastline, 0, 0])
-  execute 'goto ' . (line2byte(a:firstline) - 1)
-  while search(b:prompt, '', line("'e")) != 0
-    call ftplugin_helpers#vsh#ReplaceInput()
-  endwhile
-  call setpos("'e", save_mark_e)
-endfunction
-
 function ftplugin_helpers#vsh#NewPrompt()
   put = b:prompt
   startinsert!

@@ -262,25 +262,6 @@ function s:ParseCommand(line)
   endif
 endfunction
 
-" NOTE: This function is supposed to recreate the :global command without
-" modifying the search history.
-" I don't like its current implementation, especially artificially moving back
-" one byte so I can search forward.
-" Even worse than that, this misses at least one corner case where it misses a
-" match at the start of the first line as you can't "goto 0".
-" If I think of something better I'll do that, but as it's "good enough", I
-" won't spend much time on it.
-function MultilineCommand(pattern, command) range
-  let save_mark_e = getpos("'e")
-  call setpos("'e", [bufnr('%'), a:lastline, 0, 0])
-  " This is where the function misses it's corner case.
-  execute 'goto ' . (line2byte(a:firstline) - 1 || 1)
-  while search(a:pattern, '', line("'e")) != 0
-    execute a:command
-  endwhile
-  call setpos("'e", save_mark_e)
-endfunction
-
 function RunCommand(val)
   if v:count == 0 || a:val
     let line = getline('.')
@@ -292,7 +273,7 @@ endfunction
 
 nnoremap <silent> <F2> :<C-u>call RunCommand(0)<CR>
 vnoremap <silent> <F2> y:<C-u>exe getreg('"')<CR>
-command -range RunCommand <line1>,<line2>call MultilineCommand(g:command_prefix, 'call RunCommand("1")')
+command -range RunCommand execute 'keeppatterns' <line1> . ',' . <line2> . 'global/' . g:command_prefix . '/call RunCommand("1")'
 
 " In Dvorak, keep completion commands nearer each other
 inoremap <C-b> <C-p>
