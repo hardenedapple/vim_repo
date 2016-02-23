@@ -224,7 +224,7 @@ nnoremap <silent> Q :normal n.<CR>
 nnoremap <leader>b :ls<CR>:b<space>
 
 " Quick save
-nnoremap <silent> <leader>s :w<CR>
+nnoremap <silent> <leader>s :up<CR>
 
 " Put occurances of current word in quickfix
 command -bar -nargs=1 Occur execute 'vimgrep /\<' . <q-args> . '\>/j ' . expand('%')
