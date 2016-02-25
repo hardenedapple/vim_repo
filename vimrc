@@ -94,10 +94,10 @@ else
         \  'clang_complete', 'commentary', 'ctrlp', 'ctrlp-funky', 'dentures',
         \  'dispatch', 'easygrep', 'eunuch', 'exchange', 'fugitive', 'gitv',
         \  'gnupg', 'gundo', 'jedi', 'lawrencium', 'obsession', 'pathogen',
-        \  'python-mode', 'repeat', 'sexp', 'sexp_mappings', 'sideways',
-        \  'sneak', 'snippets', 'submode', 'surround', 'syntastic', 'tabular',
-        \  'ultisnips', 'unimpaired', 'vimfindsme', 'vim-ipython', 'vimple',
-        \  'visualstar', ]
+        \  'python-mode', 'repeat', 'neomake', 'sexp', 'sexp_mappings',
+        \  'sideways', 'sneak', 'snippets', 'submode', 'surround', 'syntastic',
+        \  'tabular', 'ultisnips', 'unimpaired', 'vimfindsme', 'vim-ipython',
+        \  'vimple', 'visualstar', ]
 endif
 " }}}
 
