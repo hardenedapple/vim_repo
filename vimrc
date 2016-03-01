@@ -93,8 +93,8 @@ else
   let g:pathogen_disabled = [ 'abolish', 'airline', 'arduinosyntax',
         \  'clang_complete', 'commentary', 'ctrlp', 'ctrlp-funky', 'dentures',
         \  'dispatch', 'easygrep', 'eunuch', 'exchange', 'fugitive', 'gitv',
-        \  'gnupg', 'gundo', 'jedi', 'lawrencium', 'obsession', 'pathogen',
-        \  'python-mode', 'repeat', 'neomake', 'sexp', 'sexp_mappings',
+        \  'gnupg', 'gundo', 'jedi', 'lawrencium', 'neomake', 'obsession',
+        \  'pathogen', 'python-mode', 'repeat', 'sexp', 'sexp_mappings',
         \  'sideways', 'sneak', 'snippets', 'submode', 'surround', 'syntastic',
         \  'tabular', 'ultisnips', 'unimpaired', 'vimfindsme', 'vim-ipython',
         \  'vimple', 'visualstar', ]
