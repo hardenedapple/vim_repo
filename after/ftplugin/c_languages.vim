@@ -16,9 +16,6 @@ inoremap <buffer> {<CR>  {<CR>}<Esc>O
 lnoremap <buffer> " '
 lnoremap <buffer> ' "
 
-" Add /usr/include/ to the path variable
-set path+=/usr/include
-
 set foldexpr=ftplugin_helpers#c_languages#fold_brace()
 
 " The function I've defined works nicely with pretty much all folding styles
