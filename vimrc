@@ -227,8 +227,8 @@ nnoremap <leader>b :ls<CR>:b<space>
 nnoremap <silent> <leader>s :up<CR>
 
 " Put occurances of current word in quickfix
-command -bar -nargs=1 Occur execute 'vimgrep /\<' . <q-args> . '\>/j ' . expand('%')
-nnoremap <silent> <leader>vh :Occur <C-R><C-W><CR>
+command -bang -bar -nargs=1 Occur execute 'silent vimgrep /' . substitute('<bang>', '!', '\\<', '') . <q-args> . substitute('<bang>', '!', '\\>', '') . '/j ' . expand('%') . ' | copen'
+nnoremap <silent> <leader>vh :Occur! <C-R><C-W><CR>
 
 " Remove trailing whitespace
 nnoremap <silent> <F10> :%s/\s\+$//<CR>:nohlsearch<CR>
