@@ -1,7 +1,12 @@
 To Add:
     Find something to map <BS> to.
+    Allow navigation (and opening folds) via mouse
+        Have a look at what 'acme' does, and what 'vim' already does.
 
 To Fix:
+    When using sneak-stream in C files, the folds close after selection.
+        This basically means it doesn't save keystrokes, because I have to
+        expand the fold immediately after moving.
     When recording macros and the keymap option is set, running the macro
         ignores the keymap option.
     Pymode folding sometimes just goes away -- figure out why and when.
