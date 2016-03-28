@@ -4,6 +4,8 @@ let s:kind_tag_dict = {
       \ 'f' : 'function',
       \ 'm' : 'method',
       \ 'c' : 'class',
+      \ 'v' : 'variable',
+      \ 'F' : 'file',
       \ }
 
 function s:convert_entry(entry)
