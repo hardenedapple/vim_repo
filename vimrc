@@ -15,6 +15,13 @@
 
 
 set all&
+let g:os = substitute(system('uname'), '\n', '', '')
+if g:os == "SunOS"
+  let g:working_on_solaris = 1
+else
+  let g:working_on_solaris = 0
+endif
+
 runtime bundle/pathogen/autoload/pathogen.vim
 
 " Pathogen plugin {{{
@@ -56,25 +63,20 @@ except ImportError:
 EOF
 endif
 
-function s:external_program_missing(program)
-  silent call system('command -v ' . a:program)
-  return v:shell_error
-endfunction
-
 " Check external dependencies -- clang, ipython, and git
-if s:external_program_missing('clang')
+if helpers#external_program_missing('clang')
   let g:pathogen_disabled += ['clang_complete']
 endif
 
-if s:external_program_missing('ipython3') && s:external_program_missing('ipython2')
+if helpers#external_program_missing('ipython3') && helpers#external_program_missing('ipython2')
   let g:pathogen_disabled += ['vim-ipython']
 endif
 
-if s:external_program_missing('hg')
+if helpers#external_program_missing('hg')
   let g:pathogen_disabled += ['lawrencium']
 endif
 
-if s:external_program_missing('git')
+if helpers#external_program_missing('git')
   let g:pathogen_disabled += ['fugitive',  'gitv']
 endif
 
@@ -232,10 +234,21 @@ nnoremap <silent> <leader>vh :Occur! <C-R><C-W><CR>
 
 " Remove trailing whitespace
 nnoremap <silent> <F10> :%s/\s\+$//<CR>:nohlsearch<CR>
+if !helpers#external_program_missing('ctags')
+  if g:working_on_solaris
+    " NOTE -- for Solaris I have to manually make sure the ctags version I'm
+    " using is the gnu version they give by linking /usr/gnu/bin/ctags into
+    " ~/bin/ctags.
+    " Even then it's not the same kind I get on Linux, so I need different
+    " flags.
+    nnoremap <F12>  :!ctags -tdT --globals --members *.c *.h <CR> <CR>
+  else
+    nnoremap <F12>  :!ctags -R --fields=+iaS --extra=+qf .<CR><CR>
+  endif
+endif
 
 nnoremap <F9> :make<CR>
 
-nnoremap <F12>  :!ctags -R --fields=+iaS --extra=+qf .<CR><CR>
 nnoremap <silent> <leader>nh :nohlsearch<CR>
 
 nnoremap <silent> <leader>cl :setlocal completeopt+=longest<CR>
@@ -498,5 +511,11 @@ set printoptions=number:y
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" {{{ Solaris Options
+if g:os == 'SunOS'
+  set grepprg=ggrep\ -n\ $*\ /dev/null
+  set makeprg=gmake
+endif
+" }}}
 
 " vim: foldmethod=marker
