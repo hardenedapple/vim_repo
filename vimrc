@@ -1,7 +1,7 @@
 "This is my vim Customisation file.
 " NOTE: Function keys
 "       <F1> - Help (as usual for vim)
-"       <F2> -
+"       <F2> - Run vimcmd on this line.
 "       <F3> - Ultisnips list completions
 "       <F4> -
 "       <F5> - GundoToggle
@@ -231,6 +231,12 @@ nnoremap <silent> <leader>s :up<CR>
 " Put occurances of current word in quickfix
 command -bang -bar -nargs=1 Occur execute 'silent vimgrep /' . substitute('<bang>', '!', '\\<', '') . <q-args> . substitute('<bang>', '!', '\\>', '') . '/j ' . expand('%') . ' | copen'
 nnoremap <silent> <leader>vh :Occur! <C-R><C-W><CR>
+
+" Mouse mappings -- for code browsing when not changing anything.
+" NOTE: <LeftMouse> just goes to that position, g<RightMouse> pops the tag
+" stack.
+nnoremap <RightMouse> <LeftMouse><C-]>
+nnoremap <MiddleMouse> <LeftMouse>:Occur! <C-R><C-W><CR>
 
 " Remove trailing whitespace
 nnoremap <silent> <F10> :%s/\s\+$//<CR>:nohlsearch<CR>
