@@ -1,6 +1,7 @@
 " Search for a certain tag, save all the results as a quickfix list.
 
 let s:kind_tag_dict = {
+      \ 'd' : 'define',
       \ 'f' : 'function',
       \ 'm' : 'method',
       \ 'c' : 'class',
