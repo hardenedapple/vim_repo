@@ -14,6 +14,7 @@ To Fix:
     Syntax highlighting after argdo on first command.
     vsh filetype CommandRange function includes last line if the last line is
         an empty prompt and there is no text between the current line and it.
+    Neovim doesn't accept my <LeftRelease> mapping.
     Neovim ':Man' opens in a new tab
     Neovim airline statusline when split windows extends into other window
         shows a function name including syntastic
