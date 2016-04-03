@@ -235,11 +235,19 @@ nnoremap <silent> <leader>vh :Occur! <C-R><C-W><CR>
 " Mouse mappings -- for code browsing when not changing anything.
 " NOTE: <LeftMouse> just goes to that position, g<RightMouse> pops the tag
 " stack.
-nnoremap <RightMouse> <LeftMouse><C-]>
-nnoremap <MiddleMouse> <LeftMouse>:Occur! <C-R><C-W><CR>
+" Currently, I have a problem in Man pages -- g<RightMouse> is supposed to pop
+" the tag stack, but ftplugin/man.vim overrides C-t to go back to the previous
+" man page.
+" Hence in man pages, the g<RightMouse> mapping just doesn't work.
+nnoremap <RightMouse> <LeftMouse>:silent call helpers#plumb_this()<CR>
+nnoremap q<RightMouse> <C-O>
+nnoremap q<LeftMouse> <C-I>
+nnoremap f<RightMouse> <LeftMouse>:silent Occur <C-R><C-W><CR>
+nnoremap F<RightMouse> <LeftMouse>:silent Occur! <C-R><C-W><CR>
 
 " Remove trailing whitespace
 nnoremap <silent> <F10> :%s/\s\+$//<CR>:nohlsearch<CR>
+
 if !helpers#external_program_missing('ctags')
   if g:working_on_solaris
     " NOTE -- for Solaris I have to manually make sure the ctags version I'm
@@ -276,7 +284,6 @@ function s:ParseCommand(line)
   if l:command_start != -1
     return a:line[l:command_start + len(g:command_prefix):]
   else
-    echom 'Cannot parse line ' . a:line . ' for command, require prefix -- "' . g:command_prefix . '"'
     return ''
   endif
 endfunction
@@ -287,12 +294,18 @@ function RunCommand(val)
   else
     let line = getline(v:count)
   endif
-  execute s:ParseCommand(l:line)
+  let commandLine = s:ParseCommand(l:line)
+  if l:commandLine == ''
+    echom 'Cannot parse line ' . l:line . ' for command, require prefix -- "' . g:command_prefix . '"'
+  else
+    execute l:commandLine
+  endif
 endfunction
 
 nnoremap <silent> <F2> :<C-u>call RunCommand(0)<CR>
 vnoremap <silent> <F2> y:<C-u>exe getreg('"')<CR>
 command -range RunCommand execute 'keeppatterns' <line1> . ',' . <line2> . 'global/' . g:command_prefix . '/call RunCommand("1")'
+nnoremap <MiddleMouse> <LeftMouse>:silent RunCommand<CR>
 
 " In Dvorak, keep completion commands nearer each other
 inoremap <C-b> <C-p>
