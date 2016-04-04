@@ -237,7 +237,7 @@ nnoremap <silent> <leader>vh :Occur! <C-R><C-W><CR>
 " stack.
 " g<LeftMouse> already follows the current tag, but I'm trying to follow what
 " acme does because I've already learned that.
-noremap <LeftRelease> <LeftRelease>"*ygv
+vnoremap <LeftRelease> <LeftRelease>"*ygv
 
 " Currently, I have a problem in Man pages -- g<RightMouse> is supposed to pop
 " the tag stack, but ftplugin/man.vim overrides C-t to go back to the previous
