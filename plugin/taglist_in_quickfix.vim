@@ -38,5 +38,7 @@ function s:TagSelectToQuickfix(pattern, bang)
 endfunction
 
 command -bang -bar -nargs=? TQFSelect call s:TagSelectToQuickfix(<q-args>, '<bang>')
+
+nnoremap <leader>vt :silent TQFSelect! <C-R><C-W><CR>
 nnoremap t<RightMouse> <LeftMouse>:silent TQFSelect <C-R><C-W><CR>
 nnoremap T<RightMouse> <LeftMouse>:silent TQFSelect! <C-R><C-W><CR>
