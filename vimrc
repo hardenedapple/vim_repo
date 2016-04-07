@@ -233,21 +233,21 @@ command -bang -bar -nargs=1 Occur execute 'silent vimgrep /' . substitute('<bang
 nnoremap <silent> <leader>vh :Occur! <C-R><C-W><CR>
 
 " Mouse mappings -- for code browsing when not changing anything.
-" NOTE: <LeftMouse> just goes to that position, g<RightMouse> pops the tag
-" stack.
-" g<LeftMouse> already follows the current tag, but I'm trying to follow what
-" acme does because I've already learned that.
+" NOTE: <LeftMouse> just goes to that position, this should be kept constant.
 vnoremap <LeftRelease> <LeftRelease>"*ygv
 
-" Currently, I have a problem in Man pages -- g<RightMouse> is supposed to pop
-" the tag stack, but ftplugin/man.vim overrides C-t to go back to the previous
-" man page.
-" Hence in man pages, the g<RightMouse> mapping just doesn't work.
 nnoremap <RightMouse> <LeftMouse>:silent call helpers#plumb_this()<CR>
 nnoremap q<RightMouse> <C-O>
 nnoremap q<LeftMouse> <C-I>
 nnoremap f<RightMouse> <LeftMouse>:silent Occur <C-R><C-W><CR>
 nnoremap F<RightMouse> <LeftMouse>:silent Occur! <C-R><C-W><CR>
+" NOTE: in order to make this mapping work with ftplugin/man.vim reading man
+" pages, I have to use nmap.
+" This is because it maps <C-T> to 'go back a man page', which I need to use,
+" and the function that implements that functionality is script-local.
+" Hence -- watch out for this, be careful to not map <LeftMouse> to anything
+" that will change this behaviour.
+nmap '<LeftMouse> <LeftMouse><C-T>
 
 " Remove trailing whitespace
 nnoremap <silent> <F10> :%s/\s\+$//<CR>:nohlsearch<CR>
