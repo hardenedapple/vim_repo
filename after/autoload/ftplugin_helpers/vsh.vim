@@ -62,6 +62,9 @@ endfunction
 
 function ftplugin_helpers#vsh#ReplaceInput()
   let l:command = ftplugin_helpers#vsh#ParseVSHCommand(getline(ftplugin_helpers#vsh#CurrentPrompt()))
+  if l:command == ''
+    return
+  endif
   let l:command_range = ftplugin_helpers#vsh#CommandRange()
   if l:command_range
     exe l:command_range . '! ' . l:command
