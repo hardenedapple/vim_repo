@@ -1,5 +1,11 @@
 runtime ftplugin/man.vim
 
+" Can't do the alternate position man pages with neovim.
+" Instead neovim opens up the man page in a new tab.
+if has('nvim')
+  finish
+endif
+
 " Man command has special account for the '<cword>' argument
 " (expands it itself -- so there's no reason to expand it here)
 
@@ -35,11 +41,17 @@ endfunction
 " to change it.
 function s:UseVimForMan()
   nnoremap <buffer> K :call <SID>OpenManThisWindow("<cword>")<CR>
+  " To get this command to work in neovim (not that I ever use it in neovim),
+  " you need the following instead.
+  " nnoremap <buffer> K :call <SID>OpenManThisWindow("<C-R>=expand("<cword>")<CR>")<CR>
 endfunction
 
 nnoremap <silent> [om :call <SID>UseVimForMan()<CR>
 nnoremap <silent> ]om :unmap <buffer> K<CR>
 
 nnoremap <buffer> K :call <SID>OpenManThisWindow("<cword>")<CR>
+  " To get this command to work in neovim (not that I ever use it in neovim),
+  " you need the following instead.
+  " nnoremap <buffer> K :call <SID>OpenManThisWindow("<C-R>=expand("<cword>")<CR>")<CR>
 
 command -bar -nargs=+ VMan call s:OpenManVerticalSplit(<q-args>)
