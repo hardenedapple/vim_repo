@@ -37,7 +37,7 @@ if v:version < 703
   let g:pathogen_disabled += ['clang_complete', 'ctrlp', 'ctrlp-funky', 'gundo', 'sneak', 'vimfindsme']
 endif
 if v:version < 702
-  let g:pathogen_disabled += ['airline', 'gnupg']
+  let g:pathogen_disabled += ['gnupg']
 endif
 if v:version < 701
   let g:pathogen_disabled += ['abolish']
@@ -92,7 +92,7 @@ if exists('*pathogen#infect()') && !exists('g:no_plugins') && (has('win32') || s
   execute pathogen#infect()
 else
   " If no pathogen, disable all the plugin settings I have.
-  let g:pathogen_disabled = [ 'abolish', 'airline', 'arduinosyntax',
+  let g:pathogen_disabled = [ 'abolish', 'arduinosyntax',
         \  'clang_complete', 'commentary', 'ctrlp', 'ctrlp-funky', 'dentures',
         \  'dispatch', 'easygrep', 'eunuch', 'exchange', 'fugitive', 'gitv',
         \  'gnupg', 'gundo', 'jedi', 'lawrencium', 'neomake', 'obsession',
