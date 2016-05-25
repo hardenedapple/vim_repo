@@ -40,9 +40,6 @@
 [submodule "vim/bundle/commentary"]
 	path = bundle/commentary
     url = git://github.com/tpope/vim-commentary.git
-[submodule "vim/bundle/tabular"]
-	path = bundle/tabular
-    url = git://github.com/godlygeek/tabular.git
 [submodule "vim/bundle/dispatch"]
 	path = bundle/dispatch
     url = git://github.com/tpope/vim-dispatch.git
