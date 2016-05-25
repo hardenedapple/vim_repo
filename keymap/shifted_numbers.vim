@@ -1,4 +1,4 @@
-let b:keymap_name = "programming"
+let b:keymap_name = "shifted_numbers"
 loadkeymap
 1 !
 2 @
