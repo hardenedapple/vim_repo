@@ -192,7 +192,7 @@ highlight link match1 ColorColumn
 highlight link match2 Todo
 
 " Define the statusline.
-set statusline=%<\ %f\ %n\ %h%m%r%=%k\ %-14.(%l,%c%V%)\ %P
+set statusline=%<\ %f\ #%n\ %h%m%r%=%k\ %-14.(%l,%c%V%)\ %P
 
 " }}}
 
