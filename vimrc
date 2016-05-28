@@ -311,7 +311,11 @@ endfunction
 
 nnoremap <silent> <F2> :<C-u>call RunCommand(0)<CR>
 vnoremap <silent> <F2> y:<C-u>exe getreg('"')<CR>
-command -range RunCommand execute 'keeppatterns' <line1> . ',' . <line2> . 'global/' . g:command_prefix . '/call RunCommand("1")'
+if exists(":keeppatterns")
+  command -range RunCommand execute 'keeppatterns' <line1> . ',' . <line2> . 'global/' . g:command_prefix . '/call RunCommand("1")'
+else
+  command -range RunCommand execute <line1> . ',' . <line2> . 'global/' . g:command_prefix . '/call RunCommand("1")'
+endif
 nnoremap <MiddleMouse> <LeftMouse>:silent RunCommand<CR>
 
 " In Dvorak, keep completion commands nearer each other
