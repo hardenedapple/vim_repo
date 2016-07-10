@@ -447,8 +447,6 @@ set ruler
 set number
 set sessionoptions-=options
 
-set keywordprg=:Man
-
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
