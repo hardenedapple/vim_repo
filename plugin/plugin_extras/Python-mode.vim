@@ -15,6 +15,10 @@ let g:pymode_lint_cwindow = 1
 " don't highlight spaces at end of line - when typing is annoying
 let g:pymode_lint_on_write = 0
 let g:pymode_syntax_space_errors=0
+" I have nothing against automatically removing whitespace, but the way it's
+" done also sets my previous 'replace' pattern, so that the & key acts
+" strangely.
+let g:pymode_trim_whitespaces = 0
 
 let g:pymode_run_key='<leader>pr'
 
