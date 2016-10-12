@@ -1,12 +1,5 @@
 runtime ftplugin/man.vim
 
-" Can't do the alternate position man pages with neovim.
-" Instead neovim opens up the man page in a new tab.
-if has('nvim')
-  set keywordprg=:Man
-  finish
-endif
-
 " Man command has special account for the '<cword>' argument
 " (expands it itself -- so there's no reason to expand it here)
 
