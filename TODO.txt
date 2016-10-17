@@ -4,9 +4,20 @@ To Add:
         Have a look at what 'acme' does, and what 'vim' already does.
 
 To Fix:
-    When using sneak-stream in C files, the folds close after selection.
+    Python-mode ^A when a number at the end of the line, removes space before
+        the number.
+        Something to do with setting the cursor position in indentexpr.
+        Doing git-bisect found the problem in commit
+        906eff560e0ab1ce037b6f7088ffb23aa9a4959a
+    Python-mode after saving file, the ':s' command now replaces matching
+        pattern with nothing.
+        Can't find any way to save the previous replace pattern (other than a
+        hack with s/^/~/ and exe 's/^/'oldpattern'/')
+        Have registered a feature request with neovim.
+    When using sneak-streak in C files, the folds close after selection.
         This basically means it doesn't save keystrokes, because I have to
         expand the fold immediately after moving.
+    When using [e and ]e inside folds it closes stuff
     When recording macros and the keymap option is set, running the macro
         ignores the keymap option.
     Pymode folding sometimes just goes away -- figure out why and when.
@@ -15,9 +26,10 @@ To Fix:
     vsh filetype CommandRange function includes last line if the last line is
         an empty prompt and there is no text between the current line and it.
     Neovim doesn't accept my <LeftRelease> mapping.
+        This seems to be a problem with that key and not with the mapping I'm
+        asking for (many different mappings all don't work).
+        Attempting to map <RightRelease> also doesn't work.
     Neovim ':Man' opens in a new tab
-    Neovim airline statusline when split windows extends into other window
-        shows a function name including syntastic
     Have a look at syntax checking capabilities of Neomake -- can it replace Syntastic?
     Lawrencium error message at end or start (not sure which)
     Submode doesn't work with no file
