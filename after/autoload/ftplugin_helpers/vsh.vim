@@ -13,7 +13,13 @@ function ftplugin_helpers#vsh#NextPrompt()
   return l:retval ? l:retval : l:eof + 1
 endfunction
 
+" Skipping whitespace doesn't do much most of the time, but it means that we
+" don't need to include a trailing space in the b:prompt variable, the cursor
+" position is a little nicer for changing a previous command when using the
+" two move funtions below, and a prompt without a command or trailing
+" whitespace isn't overwritten by the output of a command above it.
 function ftplugin_helpers#vsh#MoveToNextPrompt(mode)
+  call search('\v\s*($|\S)', 'ezW')
   if a:mode == 'v'
     normal! gv
   endif
@@ -21,9 +27,11 @@ function ftplugin_helpers#vsh#MoveToNextPrompt(mode)
   if a:mode != 'n'
     normal! k
   endif
+  call search('\v\s*($|\S)', 'ezW')
 endfunction
 
 function ftplugin_helpers#vsh#MoveToPrevPrompt(mode)
+  call search('\v\s*($|\S)', 'bezW')
   if a:mode == 'v'
     normal! gv
   endif
@@ -31,6 +39,7 @@ function ftplugin_helpers#vsh#MoveToPrevPrompt(mode)
   if a:mode != 'n'
     normal! j
   endif
+  call search('\v\s*($|\S)', 'ezW')
 endfunction
 
 function ftplugin_helpers#vsh#ParseVSHCommand(line)
@@ -38,7 +47,7 @@ function ftplugin_helpers#vsh#ParseVSHCommand(line)
   " Allow notes in the file -- make lines beginning with # a comment.
   " Can't just pass the # on to the bash command, as it gets expanded out in
   " the 'exe' command.
-  if l:command[0] == '#'
+  if l:command =~ '\s*#'
     return ''
   endif
   return l:command
@@ -74,7 +83,7 @@ function ftplugin_helpers#vsh#ReplaceInput()
 endfunction
 
 function ftplugin_helpers#vsh#NewPrompt()
-  put = b:prompt
+  put = b:prompt . ' '
   startinsert!
 endfunction
 

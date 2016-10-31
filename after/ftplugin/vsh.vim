@@ -3,7 +3,7 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
-let b:prompt = 'vimshell: > '
+let b:prompt = 'vimshell: >'
 
 " Don't insert newlines when writing a long command
 setlocal formatoptions-=t
