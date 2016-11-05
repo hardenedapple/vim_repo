@@ -5,6 +5,11 @@ let b:did_ftplugin = 1
 
 let b:prompt = 'vimshell: >'
 
+" Get a process for this job
+if !get(b:, 'vsh_job', 0)
+  call ftplugin_helpers#vsh#StartSubprocess()
+endif
+
 " Don't insert newlines when writing a long command
 setlocal formatoptions-=t
 setlocal formatoptions-=c
