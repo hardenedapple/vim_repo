@@ -485,6 +485,9 @@ set history=50
 " and directories below.
 set path=.,**,,
 
+" Internal :Man command
+set keywordprg=:Man
+
 " Make split windows open on right and below by default
 set splitright
 set splitbelow
