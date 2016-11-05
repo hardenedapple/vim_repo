@@ -34,18 +34,20 @@ endfunction
 " This might be annoying if the keywordprg  is set elsewhere, so add a mapping
 " to change it.
 function s:UseVimForMan()
-  nnoremap <buffer> K :call <SID>OpenManThisWindow("<cword>")<CR>
-  " To get this command to work in neovim (not that I ever use it in neovim),
-  " you need the following instead.
-  " nnoremap <buffer> K :call <SID>OpenManThisWindow("<C-R>=expand("<cword>")<CR>")<CR>
+  if has('nvim')
+    nnoremap <buffer> K :call <SID>OpenManThisWindow("<C-R>=expand("<cword>")<CR>")<CR>
+  else
+    nnoremap <buffer> K :call <SID>OpenManThisWindow("<cword>")<CR>
+  endif
 endfunction
 
-nnoremap <silent> [om :call <SID>UseVimForMan()<CR>
-nnoremap <silent> ]om :unmap <buffer> K<CR>
+nnoremap <silent> [ok :call <SID>UseVimForMan()<CR>
+nnoremap <silent> ]ok :unmap <buffer> K<CR>
 
-nnoremap <buffer> K :call <SID>OpenManThisWindow("<cword>")<CR>
-  " To get this command to work in neovim (not that I ever use it in neovim),
-  " you need the following instead.
-  " nnoremap <buffer> K :call <SID>OpenManThisWindow("<C-R>=expand("<cword>")<CR>")<CR>
+if has('nvim')
+  nnoremap <buffer> K :call <SID>OpenManThisWindow("<C-R>=expand("<cword>")<CR>")<CR>
+else
+  nnoremap <buffer> K :call <SID>OpenManThisWindow("<cword>")<CR>
+endif
 
 command -bar -nargs=+ VMan call s:OpenManVerticalSplit(<q-args>)
