@@ -34,7 +34,8 @@ nnoremap <buffer> <silent> <CR>  :call ftplugin_helpers#vsh#ReplaceInput()<CR>
 nnoremap <buffer> <silent> <localleader>n  :call ftplugin_helpers#vsh#NewPrompt()<CR>
 nnoremap <buffer> <localleader>o  :<C-r>=ftplugin_helpers#vsh#CommandRange()<CR>
 
-" Want: this command would be better if it didn't modify the search history,
-" however the obvious function to do that may require storing marks to avoid
-" problems with the range that come from changing what's in the file.
+" This command is much more well-behaved in the memory-less version.
+" We can't tell what output belongs to what command in the full-featured
+" version, so output goes all over the place, but the commands do get run in
+" the correct order, so it's still useful to a point.
 command -buffer -range Rerun execute 'keeppatterns ' . <line1> . ',' . <line2> . 'global/' . b:prompt . '/call ftplugin_helpers#vsh#ReplaceInput()'

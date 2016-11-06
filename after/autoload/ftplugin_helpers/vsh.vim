@@ -43,9 +43,6 @@ function ftplugin_helpers#vsh#MoveToNextPrompt(mode)
   "   If there are spaces between the prompt and the command line then skip
   "   them until reach the first character in the command.
   "   If there is no command after the prompt, move to the end of the line.
-  " TODO
-  "   Make sure that don't end up on the next line if there is nothing after
-  "   the prompt.
   if a:mode == 'v'
     normal! gv
   endif
@@ -122,7 +119,7 @@ function ftplugin_helpers#vsh#ReplaceInput()
   call ftplugin_helpers#vsh#RunCommand(ftplugin_helpers#vsh#CommandRange(), l:command)
 endfunction
 
-if !has('nvim')
+if !has('nvim') || !has('python3')
   function ftplugin_helpers#vsh#StartSubprocess()
   endfunction
 
@@ -134,6 +131,7 @@ if !has('nvim')
     endif
   endfunction
 else
+  let s:plugin_path = escape(expand('<sfile>:p:h'), '\ ')
   " TODO
   "   Definite things to fix
   "     - Kill shell process when buffer is unloaded
@@ -211,6 +209,8 @@ else
     else
       let b:vsh_job = job_id
     endif
+
+    exe 'py3file ' . s:plugin_path . '/vsh.py'
   endfunction
 
   function ftplugin_helpers#vsh#RunCommand(command_range, command)
@@ -247,20 +247,7 @@ else
     "     from the bash shell?
     "       Yes, if the bash process is just a subprocess and not in a new
     "       pseudo terminal.
-
-    " TODO Save user state -- jumps, buffer, position, marks
-    let curbuffer = bufnr('%')
-    if bufexists(self.buffer)
-      exe 'keepjumps keepalt buffer ' . self.buffer
-      " TODO  Can't keep using a mark that the user can modify
-      'd
-      normal $
-      call ftplugin_helpers#vsh#MoveToNextPrompt('n')
-      put! =a:data
-      exe 'keepjumps keepalt buffer ' . curbuffer
-    else
-      echoerr 'Vsh output coming while no valid buffer remaining'
-    endif
+    python3 vsh_insert_text(vim.eval('a:data'), vim.eval('self.buffer'))
   endfunction
     
 endif
