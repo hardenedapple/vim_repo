@@ -144,7 +144,6 @@ else
   "         but switching to that buffer would cause problems.
   "     - Fix where the data is put into the buffer
   "       . Don't use a mark that the user can modify
-  "       . Ensure you go into the correct buffer.
   "     - Make text object for a command and inner command ('ac', 'ic').
   "       Inner command is just the output of the command, a command includes
   "       the prompt.
@@ -154,31 +153,18 @@ else
   "     output?
   "     How should the user use interactive programs?
 
-  " NOTE
-  "   Differences if I use a pseudo terminal.
-  "      - Can send ^D ^C ^Z ^/ etc to the process, and the pty will figure out
-  "        what I want to do.
-  "      - ? Is stdout going to be buffered differently (line-wise instead of
-  "        entire chunk) ?
-  "      - Will have to set terminal settings like no special characters.
-  "      - 
-
-  " XXX In the future there may be an option to just echo the data, but this
-  " shouldn't be difficult to add given the structure I'm thinking of.
+  " XXX In the future there may be an option to put output into echo area, but
+  " this shouldn't be difficult to add given the structure I'm thinking of.
   "
   " TODO
-  "   Remember where the current position is
+  "   Better remembering of current position.
 
-  " TODO Things to check:
-  "   What happens if my callback is called from the job when I'm in a different
-  "   buffer?
-  "     What buffer does this callback execute in?
-  "     Would switching buffer switch what buffer the user is in?
-  "
   let s:callbacks = {
         \ 'on_stdout': function('ftplugin_helpers#vsh#InsertText'),
         \ 'on_stderr': function('ftplugin_helpers#vsh#InsertText'),
-        \ 'on_exit': function('ftplugin_helpers#vsh#SubprocessClosed')
+        \ 'on_exit': function('ftplugin_helpers#vsh#SubprocessClosed'),
+        \ 'pty': 1,
+        \ 'TERM': 'dumb'
         \ }
 
   " TODO
@@ -201,7 +187,8 @@ else
     endif
     0 mark d
 
-    let job_id = jobstart(['bash'], extend({'buffer': bufnr('%')}, s:callbacks))
+    let start_script = s:plugin_path . '/vsh_shell_start'
+    let job_id = jobstart([start_script], extend({'buffer': bufnr('%')}, s:callbacks))
     if job_id == 0
       echoerr "Too many jobs started, can't start another."
     elseif job_id == -1
@@ -210,14 +197,16 @@ else
       let b:vsh_job = job_id
     endif
 
-    exe 'py3file ' . s:plugin_path . '/vsh.py'
+    if !exists('g:vsh_py_loaded')
+      exe 'py3file ' . s:plugin_path . '/vsh.py'
+    endif
   endfunction
 
   function ftplugin_helpers#vsh#RunCommand(command_range, command)
-    if a:command_range
-      exe a:command_range . 'd'
-      normal k
-    endif
+    " TODO Ensure this isn't in the last command history
+    " Either find a way to remove these lines without changing the cursor
+    " position, or do it in python (which can do the above).
+    python3 vsh_clear_output(int(vim.eval("line('.')")))
     mark d
     let retval = jobsend(b:vsh_job, a:command . "\n")
     if retval == 0
@@ -228,9 +217,9 @@ else
   function ftplugin_helpers#vsh#SubprocessClosed(job_id, data, event)
     " Callback is run in the users current buffer, not the buffer that
     " the job is started in
-    " TODO
-    "   Remove variable from buffer self.buffer.
-    "     Don't know how to check whether self.buffer exists before j
+    " XXX Can't run a python function here (which would be easier to ensure we
+    " don't change user state) because on closing nvim this callback is called
+    " after the channel to the python interpreter has been closed.
     let curbuffer = bufnr('%')
     if bufexists(self.buffer)
       exe 'keepjumps keepalt buffer ' . self.buffer
@@ -242,14 +231,18 @@ else
   endfunction
 
   function ftplugin_helpers#vsh#InsertText(job_id, data, event)
-    " TODO Distinguish between stdout and stderr data?
-    "     Would I get stderr data from subprocesses of the bash shell as stderr
-    "     from the bash shell?
-    "       Yes, if the bash process is just a subprocess and not in a new
-    "       pseudo terminal.
     python3 vsh_insert_text(vim.eval('a:data'), vim.eval('self.buffer'))
   endfunction
-    
+
+  function ftplugin_helpers#vsh#SendControlChar(char)
+    let chardict = {
+          \ 'c': '',
+          \ 'd': '',
+          \ 'z': '',
+          \ '\': ''
+          \ }
+    call jobsend(b:vsh_job, chardict[a:char])
+  endfunction
 endif
 
 

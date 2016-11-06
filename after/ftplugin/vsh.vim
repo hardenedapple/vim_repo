@@ -20,7 +20,7 @@ setlocal formatoptions-=c
 " '#' are recognised as a comment of the first kind rather than the second,
 " which means that pressing <CR> in insert mode when on that line inserts the
 " '#' on the next line (assuming the correct 'formatoptions' settings)
-setlocal comments=b:vimshell\:\ >\ #,b:vimshell\:\ >
+setlocal comments=:vimshell\:\ >\ #,:vimshell\:\ >
 setlocal formatoptions+=r
 setlocal formatoptions+=o
 
@@ -32,7 +32,21 @@ onoremap <buffer> <silent> <C-n> :call ftplugin_helpers#vsh#MoveToNextPrompt('o'
 onoremap <buffer> <silent> <C-p> :call ftplugin_helpers#vsh#MoveToPrevPrompt('o')<CR>
 nnoremap <buffer> <silent> <CR>  :call ftplugin_helpers#vsh#ReplaceInput()<CR>
 nnoremap <buffer> <silent> <localleader>n  :call ftplugin_helpers#vsh#NewPrompt()<CR>
+
+" TODO Add a text object that selects the current CommandRange() (and command
+" line if using the 'a').
 nnoremap <buffer> <localleader>o  :<C-r>=ftplugin_helpers#vsh#CommandRange()<CR>
+
+" TODO Make shortcut to call ftplugin_helpers#vsh#ReplaceInput() and then
+" ftplugin_helpers#vsh#MoveToNextPrompt()
+
+" Send control characters to the underlying terminal -- it will turn these into
+" signals sent to the process in the forground.
+" NOTE this map is ran as if typed at the command line, since C_d
+nnoremap <buffer> <silent> <localleader>cc :call ftplugin_helpers#vsh#SendControlChar('c')<CR>
+nnoremap <buffer> <silent> <localleader>cd :call ftplugin_helpers#vsh#SendControlChar('d')<CR>
+nnoremap <buffer> <silent> <localleader>c\ :call ftplugin_helpers#vsh#SendControlChar('\')<CR>
+nnoremap <buffer> <silent> <localleader>cz :call ftplugin_helpers#vsh#SendControlChar('z')<CR>
 
 " This command is much more well-behaved in the memory-less version.
 " We can't tell what output belongs to what command in the full-featured
