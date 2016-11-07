@@ -24,18 +24,18 @@ setlocal comments=:vimshell\:\ >\ #,:vimshell\:\ >
 setlocal formatoptions+=r
 setlocal formatoptions+=o
 
-nnoremap <buffer> <silent> <C-n> :call ftplugin_helpers#vsh#MoveToNextPrompt('n')<CR>
-nnoremap <buffer> <silent> <C-p> :call ftplugin_helpers#vsh#MoveToPrevPrompt('n')<CR>
-vnoremap <buffer> <silent> <C-n> :call ftplugin_helpers#vsh#MoveToNextPrompt('v')<CR>
-vnoremap <buffer> <silent> <C-p> :call ftplugin_helpers#vsh#MoveToPrevPrompt('v')<CR>
-onoremap <buffer> <silent> <C-n> :call ftplugin_helpers#vsh#MoveToNextPrompt('o')<CR>
-onoremap <buffer> <silent> <C-p> :call ftplugin_helpers#vsh#MoveToPrevPrompt('o')<CR>
+nnoremap <buffer> <silent> <C-n> :<C-U>call ftplugin_helpers#vsh#MoveToNextPrompt('n', v:count1)<CR>
+nnoremap <buffer> <silent> <C-p> :<C-U>call ftplugin_helpers#vsh#MoveToPrevPrompt('n', v:count1)<CR>
+vnoremap <buffer> <silent> <C-n> :<C-U>call ftplugin_helpers#vsh#MoveToNextPrompt('v', v:count1)<CR>
+vnoremap <buffer> <silent> <C-p> :<C-U>call ftplugin_helpers#vsh#MoveToPrevPrompt('v', v:count1)<CR>
+onoremap <buffer> <silent> <C-n> :<C-U>call ftplugin_helpers#vsh#MoveToNextPrompt('o', v:count1)<CR>
+onoremap <buffer> <silent> <C-p> :<C-U>call ftplugin_helpers#vsh#MoveToPrevPrompt('o', v:count1)<CR>
 nnoremap <buffer> <silent> <CR>  :call ftplugin_helpers#vsh#ReplaceInput()<CR>
-nnoremap <buffer> <silent> <localleader>n  :call ftplugin_helpers#vsh#NewPrompt()<CR>
+nnoremap <buffer> <silent> <localleader>n  :<C-U>call ftplugin_helpers#vsh#NewPrompt(1, v:count1)<CR>
 
 " TODO Add a text object that selects the current CommandRange() (and command
 " line if using the 'a').
-nnoremap <buffer> <localleader>o  :<C-r>=ftplugin_helpers#vsh#CommandRange()<CR>
+nnoremap <buffer> <localleader>o  :<C-U><C-r>=ftplugin_helpers#vsh#CommandRange()<CR>
 
 " TODO Make shortcut to call ftplugin_helpers#vsh#ReplaceInput() and then
 " ftplugin_helpers#vsh#MoveToNextPrompt()
@@ -43,10 +43,10 @@ nnoremap <buffer> <localleader>o  :<C-r>=ftplugin_helpers#vsh#CommandRange()<CR>
 " Send control characters to the underlying terminal -- it will turn these into
 " signals sent to the process in the forground.
 " NOTE this map is ran as if typed at the command line, since C_d
-nnoremap <buffer> <silent> <localleader>cc :call ftplugin_helpers#vsh#SendControlChar('c')<CR>
-nnoremap <buffer> <silent> <localleader>cd :call ftplugin_helpers#vsh#SendControlChar('d')<CR>
-nnoremap <buffer> <silent> <localleader>c\ :call ftplugin_helpers#vsh#SendControlChar('\')<CR>
-nnoremap <buffer> <silent> <localleader>cz :call ftplugin_helpers#vsh#SendControlChar('z')<CR>
+nnoremap <buffer> <silent> <localleader>cc :<C-U>call ftplugin_helpers#vsh#SendControlChar('c')<CR>
+nnoremap <buffer> <silent> <localleader>cd :<C-U>call ftplugin_helpers#vsh#SendControlChar('d')<CR>
+nnoremap <buffer> <silent> <localleader>c\ :<C-U>call ftplugin_helpers#vsh#SendControlChar('\')<CR>
+nnoremap <buffer> <silent> <localleader>cz :<C-U>call ftplugin_helpers#vsh#SendControlChar('z')<CR>
 
 " This command is much more well-behaved in the memory-less version.
 " We can't tell what output belongs to what command in the full-featured

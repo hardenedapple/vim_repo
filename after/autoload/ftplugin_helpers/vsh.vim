@@ -19,9 +19,9 @@ endfunction
 " above it.
 function s:MoveToPromptStart()
   let promptline = line('.')
-  normal w
+  normal! w
   if line('.') != promptline
-    normal k$
+    normal! k$
   endif
 endfunction
 
@@ -36,7 +36,7 @@ endfunction
 "
 "
 
-function ftplugin_helpers#vsh#MoveToNextPrompt(mode)
+function ftplugin_helpers#vsh#MoveToNextPrompt(mode, count)
   " Description:
   "   Searches forward until the next prompt in the current buffefr.
   "   Moves the cursor to the start of the command in that buffer.
@@ -46,28 +46,54 @@ function ftplugin_helpers#vsh#MoveToNextPrompt(mode)
   if a:mode == 'v'
     normal! gv
   endif
-  call search(b:prompt, 'eW')
+
+  " Multiple times if given a count
+  let index = 0
+  while l:index < a:count
+    if search(b:prompt, 'eW') == 0
+      break
+    endif
+    let l:index += 1
+  endwhile
+
   if a:mode != 'n'
     normal! k
+  else
+    call s:MoveToPromptStart()
   endif
-  call s:MoveToPromptStart()
 endfunction
 
-function ftplugin_helpers#vsh#MoveToPrevPrompt(mode)
+function ftplugin_helpers#vsh#MoveToPrevPrompt(mode, count)
   " For description see above.
   let origcol = virtcol('.')
-  normal 0
+  normal! 0
   if a:mode == 'v'
     normal! gv
   endif
+
+  " TODO if count == 0 then just go to start of prompt.
+  "      will make a shortcut in the ftplugin (something like \s) to do that
+
+  " If there is no previous prompt, do nothing.
   if search(b:prompt, 'beW') == 0
-    exe 'normal ' . origcol . '|'
+    exe 'normal! ' . origcol . '|'
     return
   endif
+
+  " Multiple times if given a count.
+  let index = 1
+  while l:index < a:count
+    if search(b:prompt, 'beW') == 0
+      break
+    endif
+    let l:index += 1
+  endwhile
+
   if a:mode != 'n'
-    normal! j
+    normal! j0
+  else
+    call s:MoveToPromptStart()
   endif
-  call s:MoveToPromptStart()
 endfunction
 
 function ftplugin_helpers#vsh#ParseVSHCommand(line)
@@ -253,7 +279,15 @@ else
 endif
 
 
-function ftplugin_helpers#vsh#NewPrompt()
+function ftplugin_helpers#vsh#NewPrompt(skip_output, count)
+  if a:skip_output
+    call ftplugin_helpers#vsh#MoveToNextPrompt('n', a:count)
+    " Just in case we were at the start of a line just before the first prompt
+    " in the file: don't want to ring the bell.
+    if line('.') != 1
+      silent normal! k
+    endif
+  endif
   put = b:prompt . ' '
   startinsert!
 endfunction
