@@ -224,8 +224,15 @@ else
     if bufexists(self.buffer)
       exe 'keepjumps keepalt buffer ' . self.buffer
       let b:vsh_job = 0
+      let b:initialised = 0
       exe 'keepjumps keepalt buffer ' . curbuffer
     else
+      " If the buffer is wiped (:bw), and then we close nvim(1), then this
+      " condition is called.
+      " XXX -- in 'release version' I'd remove this complaint as there's no
+      " problem just not doing anything in this case.
+      " At the moment I'm leaving it to get alerted about the order these
+      " things are called in.
       echoerr 'No valid buffer to close with'
     endif
   endfunction

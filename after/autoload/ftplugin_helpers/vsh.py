@@ -32,7 +32,7 @@ def vsh_insert_text(data, insert_buf):
         return
 
     # Don't print out the starting prompt of the shell.
-    if 'initialised' not in vsh_buf.vars:
+    if 'initialised' not in vsh_buf.vars or not vsh_buf.vars['initialised']:
         vsh_buf.vars['initialised'] = 1
         # TODO Find a better way to check this is just the starting prompt of
         # the shell. This seems brittle.
