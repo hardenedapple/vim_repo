@@ -111,4 +111,4 @@
 	url = git://github.com/rust-lang/rust.vim.git
 [submodule "bundle/vsh"]
 	path = bundle/vsh
-	url = git@github.com:hardenedapple/vsh.git
+	url = git://github.com/hardenedapple/vsh.git
