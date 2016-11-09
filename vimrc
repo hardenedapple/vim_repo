@@ -506,10 +506,16 @@ set hidden
 " Have the equivalent of programming keyboards when in insert mode, while
 " keeping numbers easy to press in command mode.
 set keymap=shifted_numbers
-" Don't really know what input method (IM) in the manual is, so don't really
-" want to disable it in case it's something useful, but neovim complains for
-" 'imsearch' = 2, so am using 0 for now.
-set imsearch=0
+" To make things explicit, setting 'iminsert' to 1 (setting 'keymap' already
+" sets 'iminsert' to 1 implicitly).
+set iminsert=1
+" Search patterns follow whether I'm currently typing in shifted keys or not.
+set imsearch=-1
+" Don't switch numbers and symbols for command line -- more often using a range
+" than not.
+" This is the default, so there's no reason to use this, but it serves as a
+" reminder.
+set noimcmdline
 
 " Format options: automatic folding, comment folding etc.
 set textwidth=79
