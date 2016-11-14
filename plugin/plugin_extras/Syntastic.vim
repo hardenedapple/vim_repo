@@ -28,9 +28,11 @@ let g:syntastic_stl_format='%W{[Warn: %w]}%E{[Err: %e]}'
 " Active check ruby and lua - configuration files
 " passive => only check when call ':SyntasticCheck'
 " active  => check when save and load file
-let g:syntastic_mode_map = { 'mode': 'passive',
-                            \ 'active_filetypes': ['ruby', 'lua'],
-                            \ 'passive_filetypes': [] }
+let g:syntastic_mode_map = {
+      \ 'mode': 'passive',
+      \ 'active_filetypes': [],
+      \ 'passive_filetypes': []
+      \ }
 "
 " Map <leader>ok to check the file
 nnoremap <leader>ok :SyntasticCheck<CR>

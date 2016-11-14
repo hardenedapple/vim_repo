@@ -5,24 +5,24 @@
 " Despite this, I'm keeping them both, so the "no-plugin" version I get as root
 " still has this ability.
 function s:QuickfixFilenames()
-    " Building a hash ensures we get each buffer only once
-    let buffer_numbers = {}
-    for quickfix_item in getqflist()
-        let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
-    endfor
-    return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
+  " Building a hash ensures we get each buffer only once
+  let buffer_numbers = {}
+  for quickfix_item in getqflist()
+    let buffer_numbers[quickfix_item['bufnr']] = bufname(quickfix_item['bufnr'])
+  endfor
+  return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
 endfunction
 
 
 " Filter quicklist from http://dhruvasagar.com/tag/vim
 function s:FilterQuickfixListByBuffer(bang, pattern)
-    let cmp = a:bang ? '!~#' : '=~#'
-    call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) " . cmp . "a:pattern"))
+  let cmp = a:bang ? '!~#' : '=~#'
+  call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) " . cmp . "a:pattern"))
 endfunction
 
 function s:FilterQuickfixListBySubject(bang, pattern)
-    let cmp = a:bang ? '!~#' : '=~#'
-    call setqflist(filter(getqflist(), "v:val['text'] " . cmp . "a:pattern"))
+  let cmp = a:bang ? '!~#' : '=~#'
+  call setqflist(filter(getqflist(), "v:val['text'] " . cmp . "a:pattern"))
 endfunction
 
 
@@ -53,22 +53,22 @@ endfunction
 " Quickfix saving functions from
 " http://vim.1045645.n5.nabble.com/Saving-the-Quickfix-List-td1179523.html
 function s:SaveQuickFixList(fname)
- let list = getqflist()
- for i in range(len(list))
-  if has_key(list[i], 'bufnr')
-   let list[i].filename = fnamemodify(bufname(list[i].bufnr), ':p')
-   unlet list[i].bufnr
-  endif
- endfor
- let string = string(list)
- let lines = split(string, "\n")
- call writefile(lines, a:fname)
+  let list = getqflist()
+  for i in range(len(list))
+    if has_key(list[i], 'bufnr')
+      let list[i].filename = fnamemodify(bufname(list[i].bufnr), ':p')
+      unlet list[i].bufnr
+    endif
+  endfor
+  let string = string(list)
+  let lines = split(string, "\n")
+  call writefile(lines, a:fname)
 endfunction
 
 function s:LoadQuickFixList(fname)
- let lines = readfile(a:fname)
- let string = join(lines, "\n")
- call setqflist(eval(string))
+  let lines = readfile(a:fname)
+  let string = join(lines, "\n")
+  call setqflist(eval(string))
 endfunction
 
 

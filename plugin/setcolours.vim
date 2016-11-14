@@ -101,22 +101,22 @@ nnoremap <silent> <C-F8> :call <SID>NextColor(0, 1)<CR>
 function s:HourColor()
   let hr = str2nr(strftime('%H'))
   if hr <= 3
-      " Between 12 and 3
+    " Between 12 and 3
     let i = 0
   elseif hr <= 7
-      " Between 3 and 7
+    " Between 3 and 7
     let i = 1
   elseif hr <= 14
-      " Between 7 and 2
+    " Between 7 and 2
     let i = 2
   elseif hr <= 18
-      " Between 2 and 6
+    " Between 2 and 6
     let i = 3
   elseif hr <= 21
-      " Between 6 and 9
+    " Between 6 and 9
     let i = 4
   else
-      " Between 9 and 12
+    " Between 9 and 12
     let i = 5
   endif
   let nowcolors = 'elflord satori newspaper imperial desert techras'

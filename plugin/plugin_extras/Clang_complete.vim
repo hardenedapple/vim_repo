@@ -24,7 +24,7 @@ let g:clang_user_options="|| exit 0"
 autocmd FileType c,cpp setlocal concealcursor+=iv
 " Map ctrl-space to the completion
 if has('gui_running')
-    autocmd FileType c,cpp inoremap <silent> <buffer> <C-Space> <C-X><C-U>
+  autocmd FileType c,cpp inoremap <silent> <buffer> <C-Space> <C-X><C-U>
 else
-    autocmd FileType c,cpp inoremap <silent> <buffer> <C-@> <C-X><C-U>
+  autocmd FileType c,cpp inoremap <silent> <buffer> <C-@> <C-X><C-U>
 endif

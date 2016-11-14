@@ -6,9 +6,9 @@ endif
 " Change where ctrlp opens the files, what file it looks for and how it
 " searches
 if has("gui_running") || has('nvim')
-    let g:ctrlp_map = "<C-Space>"
+  let g:ctrlp_map = "<C-Space>"
 else
-    let g:ctrlp_map = "<Nul>"
+  let g:ctrlp_map = "<Nul>"
 endif
 
 nnoremap <Leader>cpb :CtrlPBuffer<CR>

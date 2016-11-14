@@ -18,7 +18,7 @@ let g:tex_isk="48-57,a-z,A-Z,192-255,:,_"
 setlocal wildignore-=*.png,*.jpg,*.gif
 "Change the colorscheme to one better for tex
 if has('gui_running')
-    colorscheme autumn
+  colorscheme autumn
 endif
 
 set makeprg=pdflatex\ -interaction\ nonstopmode\ %

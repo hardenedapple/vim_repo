@@ -1,5 +1,5 @@
 if exists("b:did_plugin")
-    finish
+  finish
 endif
 
 runtime! ftplugin/c.vim ftplugin/c_*.vim ftplugin/c/*.vim

@@ -159,23 +159,23 @@ set nocursorline
 color techras
 " If in xterm, use control sequences to control cursor
 if &term == "xterm-256color" || &term == "xterm" || &term == "screen-256color"
-    "Make the cursor in command mode be a blinking block
-    "and the cursor in insert mode be a solid underscore
-    let &t_SI = "\<Esc>[5 q"
-    let &t_EI = "\<Esc>[1 q"
-    "make the cursor change back when leave vim
-    autocmd VimLeave * silent !echo -ne "\033]112\007"
+  "Make the cursor in command mode be a blinking block
+  "and the cursor in insert mode be a solid underscore
+  let &t_SI = "\<Esc>[5 q"
+  let &t_EI = "\<Esc>[1 q"
+  "make the cursor change back when leave vim
+  autocmd VimLeave * silent !echo -ne "\033]112\007"
 endif
 
 if &term =~ '^screen'
-    " When inside xterm, inside screen, the Shift and Ctrl modifiers don't
-    " work well -- here i'm manually adding the mappings for xterm keys,
-    " Do this as my tmux configuration sets the use of xterm keys for these
-    " modifiers.
-    execute "set <xUp>=\e[1;*A"
-    execute "set <xDown>=\e[1;*B"
-    execute "set <xRight>=\e[1;*C"
-    execute "set <xLeft>=\e[1;*D"
+  " When inside xterm, inside screen, the Shift and Ctrl modifiers don't
+  " work well -- here i'm manually adding the mappings for xterm keys,
+  " Do this as my tmux configuration sets the use of xterm keys for these
+  " modifiers.
+  execute "set <xUp>=\e[1;*A"
+  execute "set <xDown>=\e[1;*B"
+  execute "set <xRight>=\e[1;*C"
+  execute "set <xLeft>=\e[1;*D"
 endif
 
 "Make the cursor always stay 3 lines inside the window when scrolling
@@ -342,11 +342,12 @@ filetype indent on
 
 " Set scripts to be executable from the shell
 function MakeExecutableIfScript()
-    if getline(1) =~ "^#!"
-        if getline(1) =~ "/bin/"
-            silent !chmod +x <afile>
-        endif
+  let firstline = getline(1)
+  if l:firstline =~ "^#!"
+    if l:firstline =~ "/bin/"
+      silent !chmod +x <afile>
     endif
+  endif
 endfunction
 
 au BufWritePost * call MakeExecutableIfScript()
@@ -356,9 +357,9 @@ set lazyredraw
 
 " Scratch file function from http://dhruvasagar.com/tag/vim
 function ScratchEdit(cmd, options)
-    exe a:cmd tempname()
-    setlocal buftype=nofile bufhidden=wipe nobuflisted
-    if !empty(a:options) | exe 'setl' a:options | endif
+  exe a:cmd tempname()
+  setlocal buftype=nofile bufhidden=wipe nobuflisted
+  if !empty(a:options) | exe 'setl' a:options | endif
 endfunction
 
 command -bar -nargs=* Sedit call ScratchEdit('edit', <q-args>)
@@ -380,25 +381,25 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Filters {{{
 function CompareLength(line1, line2) abort
-    let [length1, length2] = [strchars(a:line1), strchars(a:line2)]
-    if length1 < length2
-        return 1
+  let [length1, length2] = [strchars(a:line1), strchars(a:line2)]
+  if length1 < length2
+    return 1
+  else
+    if length1 > length2
+      return -1
     else
-        if length1 > length2
-            return -1
-        else
-            return 0
-        endif
+      return 0
     endif
+  endif
 endfunction
 
 function SortByLength(reverse) abort
-    let lines_to_sort = getline(a:firstline, a:lastline)
-    if a:reverse
-        call setline(a:firstline, reverse(sort(lines_to_sort, "CompareLength")))
-    else
-        call setline(a:firstline, sort(lines_to_sort, "CompareLength"))
-    endif
+  let lines_to_sort = getline(a:firstline, a:lastline)
+  if a:reverse
+    call setline(a:firstline, reverse(sort(lines_to_sort, "CompareLength")))
+  else
+    call setline(a:firstline, sort(lines_to_sort, "CompareLength"))
+  endif
 endfunction
 
 command -bang -range Lensort <line1>,<line2>call SortByLength(<bang>0)
