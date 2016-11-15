@@ -4,6 +4,41 @@ To Add:
         Have a look at what acme(1) does, and what vim(1) already does.
 
 To Fix:
+    Folds close after certain commands:
+        :move +
+            Foldmethod marker, syntax, foldexpr, indent -- always closes folds.
+            foldmethod=manual -- doesn't close fold
+    When recording macros and the keymap option is set, running the macro
+        ignores the keymap option.
+        macros are ran like a mapping
+        Only matters when iminsert=1 or imsearch is not 0 or 2
+    Why does the backtick-expansion not work on Linux?
+        Is the statement that it works on Unix literally Unix?
+    Pymode folding sometimes just goes away -- figure out why and when.
+    Syntax highlighting after argdo on first command.
+        This is something to do with when the syntax parsing happens -- I
+        remember bairui pointing something out on #vim.
+        Basically if a buffer has an argument applied to it using :bufdo or
+        :argdo before it gets viewed then the syntax doesn't get applied to it.
+    Neovim doesn't accept my <LeftRelease> mapping.
+        This seems to be a problem with that key and not with the mapping I'm
+        asking for (many different mappings all don't work).
+        Attempting to map <RightRelease> also doesn't work.
+    Have a look at syntax checking capabilities of Neomake -- can it replace Syntastic?
+    Heard there is a version of ctrlp that is more maintained -- have a look
+    Remove all colorschemes I don't use
+        currently use:
+            molokai
+            apprentice
+            hybrid
+            techras
+            autumn
+            pylight
+        Search for others I like
+    Possibly remove the SetColors script
+
+
+Strange un-reproducible things I noticed once:
     Half of 'scrollbind' setting functionality happening with 'noscrollbind'
     set.
         A strange thing I noticed once: I used :Gblame to see when a line was
@@ -17,40 +52,6 @@ To Fix:
         Scrolling wasn't bound completely, only vertical scrolling once one
         window had reached the end of the buffer.
         Jumping was bound together.
-    Folds close after certain commands:
-        :move +
-            Foldmethod marker, syntax, foldexpr, indent -- always closes folds.
-        When using [e and ]e inside folds it closes stuff
-            This is simply because it uses the :move command, which closes folds
-            for some reason.
-            I don't know why that command closes folds -- apparently it's a vim bug
-            Is it reported in neovim?
-    When recording macros and the keymap option is set, running the macro
-        ignores the keymap option.
-        macros are ran like a mapping
-        Only matters when iminsert=1 or imsearch is not 0 or 2
-    Pymode folding sometimes just goes away -- figure out why and when.
-    Syntax highlighting after argdo on first command.
-    Neovim doesn't accept my <LeftRelease> mapping.
-        This seems to be a problem with that key and not with the mapping I'm
-        asking for (many different mappings all don't work).
-        Attempting to map <RightRelease> also doesn't work.
-    Have a look at syntax checking capabilities of Neomake -- can it replace Syntastic?
-    Heard there is a version of ctrlp that is more maintained -- have a look
-    Lawrencium error message at end or start (not sure which)
-        Observe this by checking the value of v:errmsg just after starting vim
-            "lawrencium: No Mercurial repository found above: ..."
-    Remove all colorschemes I don't use
-        currently use:
-            molokai
-            apprentice
-            hybrid
-            techras
-            autumn
-            pylight
-        Search for others I like
-    Possibly remove the SetColors script
-
 
 Bug raised, not fixing myself just yet:
     Python-mode ^A when a number at the end of the line, removes space before
@@ -70,6 +71,9 @@ Bug raised, not fixing myself just yet:
         This means the syntax folds get unfolded and reinitialised.
         Counter this by switching foldmethod to manual and then back.
            Don't know if there's a better way.
+    Lawrencium error message at start of vim if not in mercurial repository.
+        Comes from the lawrencium#setup_buffer_commands() function, that calls
+        lawrencium#hg_repo() which calls lawrencium#throw() only to be caught.
 
 Repo organisation:
     Find a nice method to update the colorschemes.
