@@ -507,6 +507,14 @@ set hidden
 " Have the equivalent of programming keyboards when in insert mode, while
 " keeping numbers easy to press in command mode.
 set keymap=shifted_numbers
+" {{{ Add _/- swapping
+" We add these swaps here rather than include them in the 'keymap' to allow
+" filetype plugins to unmap them with the commands
+" lnoremap <buffer> - -
+" lnoremap <buffer> _ _
+lnoremap _ -
+lnoremap - _
+" }}}
 " To make things explicit, setting 'iminsert' to 1 (setting 'keymap' already
 " sets 'iminsert' to 1 implicitly).
 set iminsert=1
