@@ -1,4 +1,6 @@
-runtime ftplugin/man.vim
+if !has('nvim')
+  runtime ftplugin/man.vim
+endif
 
 " Man command has special account for the '<cword>' argument
 " (expands it itself -- so there's no reason to expand it here)
@@ -35,19 +37,19 @@ endfunction
 " to change it.
 function s:UseVimForMan()
   if has('nvim')
-    nnoremap <buffer> K :call <SID>OpenManThisWindow("<C-R>=expand("<cword>")<CR>")<CR>
+    nnoremap <buffer> <silent> K :call <SID>OpenManThisWindow("<C-R>=expand("<cword>")<CR>")<CR>
   else
-    nnoremap <buffer> K :call <SID>OpenManThisWindow("<cword>")<CR>
+    nnoremap <buffer> <silent> K :call <SID>OpenManThisWindow("<cword>")<CR>
   endif
 endfunction
 
 nnoremap <silent> [ok :call <SID>UseVimForMan()<CR>
 nnoremap <silent> ]ok :unmap <buffer> K<CR>
 
-if has('nvim')
-  nnoremap <buffer> K :call <SID>OpenManThisWindow("<C-R>=expand("<cword>")<CR>")<CR>
-else
-  nnoremap <buffer> K :call <SID>OpenManThisWindow("<cword>")<CR>
-endif
+call s:UseVimForMan()
 
-command -bar -nargs=+ VMan call s:OpenManVerticalSplit(<q-args>)
+if has('nvim')
+  command -bar -nargs=+ VMan exe 'vert Man ' . <q-args>
+else
+  command -bar -nargs=+ VMan call s:OpenManVerticalSplit(<q-args>)
+endif
