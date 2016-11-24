@@ -16,7 +16,7 @@ xmap <buffer> <silent> <LocalLeader>O <Plug>(IPython-RunLines)
 map  <buffer> <silent> <LocalLeader>i <Plug>(IPython-OpenPyDoc)
 map  <buffer> <silent> <LocalLeader>u <Plug>(IPython-UpdateShell)
 
-nmap <buffer> <silent> <LocalLeader>o :set operatorfunc=PyrunThis<CR>g@
+nnoremap <buffer> <silent> <LocalLeader>o :<C-U>set operatorfunc=PyrunThis<CR>g@
 
 " "" Example of how to quickly clear the current plot with a keystroke
 " "map  <buffer> <silent> <F12>          <Plug>(IPython-PlotClearCurrent)

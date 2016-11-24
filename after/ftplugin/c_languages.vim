@@ -23,4 +23,4 @@ set foldexpr=ftplugin_helpers#c_languages#fold_brace()
 " Hence, by default have foldmethod as syntax.
 set foldmethod=syntax
 
-nnoremap <buffer> <silent> <LocalLeader>n :call ftplugin_helpers#c_languages#Togglenewlineadd()<CR>
+nnoremap <buffer> <silent> <LocalLeader>n :<C-U>call ftplugin_helpers#c_languages#Togglenewlineadd()<CR>

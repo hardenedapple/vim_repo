@@ -142,5 +142,5 @@ command -bang -bar -nargs=0 QFRemoveCurrent silent call s:RemoveCurrentQuickfixI
 
 nnoremap <silent> <leader>qr :<C-u>QFRemoveCurrent!<CR>
 nnoremap <silent> <leader>qs :<C-u>QuickfixSort<CR>
-nnoremap <silent> <leader>qb :QFilterBuf <C-r>%<CR>
-nnoremap <silent> <leader>qd :QFilterBuf! <C-r>%<CR>
+nnoremap <silent> <leader>qb :<C-U>QFilterBuf <C-r>%<CR>
+nnoremap <silent> <leader>qd :<C-U>QFilterBuf! <C-r>%<CR>

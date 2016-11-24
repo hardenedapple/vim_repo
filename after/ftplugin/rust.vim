@@ -12,5 +12,5 @@ lunmap <buffer> "
 setlocal formatoptions+=t
 
 " add a simple toggle for test scripts
-nnoremap <buffer> [om :set makeprg=rustc\ -g\ %\ -o\ %:r<CR>
-nnoremap <buffer> ]om :set makeprg=cargo<CR>
+nnoremap <buffer> [om :<C-U>set makeprg=rustc\ -g\ %\ -o\ %:r<CR>
+nnoremap <buffer> ]om :<C-U>set makeprg=cargo<CR>

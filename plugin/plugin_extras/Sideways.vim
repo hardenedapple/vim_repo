@@ -3,8 +3,8 @@ if index(g:pathogen_disabled, 'sideways') != -1
 endif
 
 " Sideways mappings
-nnoremap <silent> <leader>ah :SidewaysLeft<CR>
-nnoremap <silent> <leader>al :SidewaysRight<CR>
+nnoremap <silent> <leader>ah :<C-U>SidewaysLeft<CR>
+nnoremap <silent> <leader>al :<C-U>SidewaysRight<CR>
 
 " Text object of an argument
 omap aa <Plug>SidewaysArgumentTextobjA

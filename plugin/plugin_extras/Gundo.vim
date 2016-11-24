@@ -3,4 +3,4 @@ if index(g:pathogen_disabled, 'gundo') != -1
 endif
 
 " Gundo plugin
-nnoremap <F5> :GundoToggle<CR>
+nnoremap <F5> :<C-U>GundoToggle<CR>

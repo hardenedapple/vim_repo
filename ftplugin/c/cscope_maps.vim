@@ -91,14 +91,14 @@ if has("cscope")
     " go back to where you were before the search.
     "
 
-    nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-    nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-\>s :<C-U>cs find s <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-\>g :<C-U>cs find g <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-\>c :<C-U>cs find c <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-\>t :<C-U>cs find t <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-\>e :<C-U>cs find e <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-\>f :<C-U>cs find f <C-R>=expand("<cfile>")<CR><CR>
+    nnoremap <C-\>i :<C-U>cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nnoremap <C-\>d :<C-U>cs find d <C-R>=expand("<cword>")<CR><CR>
 
     "NOTE: For the split window things below I switched vertical
     "      and horizontal commands, but the comments are the the same
@@ -120,24 +120,24 @@ if has("cscope")
     "   <C-_> is only equivalent to <C-/>  in the terminal
     "   In gvim <C-/> is unmappable - as far as I can tell
 
-    nmap <C-_>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-_>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-_>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-_>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-_>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-_>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
-    nmap <C-_>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-_>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_>s :<C-U>vert scs find s <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_>g :<C-U>vert scs find g <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_>c :<C-U>vert scs find c <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_>t :<C-U>vert scs find t <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_>e :<C-U>vert scs find e <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_>f :<C-U>vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+    nnoremap <C-_>i :<C-U>vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nnoremap <C-_>d :<C-U>vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
 
-    nmap <C-_><C-_>s :scs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-_><C-_>g :scs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-_><C-_>c :scs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-_><C-_>t :scs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-_><C-_>e :scs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-_><C-_>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
-    nmap <C-_><C-_>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-_><C-_>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_><C-_>s :<C-U>scs find s <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_><C-_>g :<C-U>scs find g <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_><C-_>c :<C-U>scs find c <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_><C-_>t :<C-U>scs find t <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_><C-_>e :<C-U>scs find e <C-R>=expand("<cword>")<CR><CR>
+    nnoremap <C-_><C-_>f :<C-U>scs find f <C-R>=expand("<cfile>")<CR><CR>
+    nnoremap <C-_><C-_>i :<C-U>scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    nnoremap <C-_><C-_>d :<C-U>scs find d <C-R>=expand("<cword>")<CR><CR>
 
 
     """"""""""""" key map timeouts

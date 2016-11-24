@@ -20,8 +20,8 @@ function! s:MoveWindow(direction)
 endfunction
 
 
-nnoremap <silent> <leader>wh :call  <SID>MoveWindow('h')<CR>
-nnoremap <silent> <leader>wj :call  <SID>MoveWindow('j')<CR>
-nnoremap <silent> <leader>wk :call  <SID>MoveWindow('k')<CR>
-nnoremap <silent> <leader>wl :call  <SID>MoveWindow('l')<CR>
+nnoremap <silent> <leader>wh :<C-U>call  <SID>MoveWindow('h')<CR>
+nnoremap <silent> <leader>wj :<C-U>call  <SID>MoveWindow('j')<CR>
+nnoremap <silent> <leader>wk :<C-U>call  <SID>MoveWindow('k')<CR>
+nnoremap <silent> <leader>wl :<C-U>call  <SID>MoveWindow('l')<CR>
 

@@ -11,12 +11,12 @@ else
   let g:ctrlp_map = "<Nul>"
 endif
 
-nnoremap <Leader>cpb :CtrlPBuffer<CR>
-nnoremap <Leader>cpc :CtrlPChange<CR>
-nnoremap <Leader>cpq :CtrlPQuickfix<CR>
-nnoremap <Leader>cpt :CtrlPTag<CR>
-nnoremap <Leader>cpu :CtrlPUndo<CR>
-nnoremap <Leader>cpm :CtrlPMRU<CR>
+nnoremap <Leader>cpb :<C-U>CtrlPBuffer<CR>
+nnoremap <Leader>cpc :<C-U>CtrlPChange<CR>
+nnoremap <Leader>cpq :<C-U>CtrlPQuickfix<CR>
+nnoremap <Leader>cpt :<C-U>CtrlPTag<CR>
+nnoremap <Leader>cpu :<C-U>CtrlPUndo<CR>
+nnoremap <Leader>cpm :<C-U>CtrlPMRU<CR>
 
 let g:ctrlp_switch_buffer = 'Et'
 let g:ctrlp_tabpage_position = 'ac'

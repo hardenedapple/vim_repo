@@ -235,24 +235,24 @@ endfunction
 nnoremap <silent> Q :<C-U>call <SID>Again()<CR>
 
 " Quicker looking at buffers
-nnoremap <leader>b :ls<CR>:b<space>
+nnoremap <leader>b :<C-U>ls<CR>:b<space>
 
 " Quick save
-nnoremap <silent> <leader>s :up<CR>
+nnoremap <silent> <leader>s :<C-U>update<CR>
 
 " Put occurances of current word in quickfix
 command -bang -bar -nargs=1 Occur execute 'silent vimgrep /' . substitute('<bang>', '!', '\\<', '') . <q-args> . substitute('<bang>', '!', '\\>', '') . '/j ' . expand('%') . ' | copen'
-nnoremap <silent> <leader>vh :Occur! <C-R><C-W><CR>
+nnoremap <silent> <leader>vh :<C-U>Occur! <C-R><C-W><CR>
 
 " Mouse mappings -- for code browsing when not changing anything.
 " NOTE: <LeftMouse> just goes to that position, this should be kept constant.
 vnoremap <LeftRelease> <LeftRelease>"*ygv
 
-nnoremap <RightMouse> <LeftMouse>:silent call helpers#plumb_this()<CR>
+nnoremap <RightMouse> <LeftMouse>:<C-U>silent call helpers#plumb_this()<CR>
 nnoremap q<RightMouse> <C-O>
 nnoremap q<LeftMouse> <C-I>
-nnoremap f<RightMouse> <LeftMouse>:silent Occur <C-R><C-W><CR>
-nnoremap F<RightMouse> <LeftMouse>:silent Occur! <C-R><C-W><CR>
+nnoremap f<RightMouse> <LeftMouse>:<C-U>silent Occur <C-R><C-W><CR>
+nnoremap F<RightMouse> <LeftMouse>:<C-U>silent Occur! <C-R><C-W><CR>
 " NOTE: in order to make this mapping work with ftplugin/man.vim reading man
 " pages, I have to use nmap.
 " This is because it maps <C-T> to 'go back a man page', which I need to use,
@@ -262,7 +262,7 @@ nnoremap F<RightMouse> <LeftMouse>:silent Occur! <C-R><C-W><CR>
 nmap '<LeftMouse> <LeftMouse><C-T>
 
 " Remove trailing whitespace
-nnoremap <silent> <F10> :%s/\s\+$//<CR>:nohlsearch<CR>
+nnoremap <silent> <F10> :<C-U>%s/\s\+$//<CR>:nohlsearch<CR>
 
 if !helpers#external_program_missing('ctags')
   if g:working_on_solaris
@@ -271,26 +271,26 @@ if !helpers#external_program_missing('ctags')
     " ~/bin/ctags.
     " Even then it's not the same kind I get on Linux, so I need different
     " flags.
-    nnoremap <F12>  :!ctags -tdT --globals --members *.c *.h <CR> <CR>
+    nnoremap <F12>  :<C-U>!ctags -tdT --globals --members *.c *.h <CR> <CR>
   else
-    nnoremap <F12>  :!ctags -R --fields=+iaS --extra=+qf .<CR><CR>
+    nnoremap <F12>  :<C-U>!ctags -R --fields=+iaS --extra=+qf .<CR><CR>
   endif
 endif
 
-nnoremap <F9> :make<CR>
+nnoremap <F9> :<C-U>make<CR>
 
-nnoremap <silent> <leader>nh :nohlsearch<CR>
+nnoremap <silent> <leader>nh :<C-U>nohlsearch<CR>
 
-nnoremap <silent> <leader>cl :setlocal completeopt+=longest<CR>
-nnoremap <silent> <leader>cn :setlocal completeopt-=longest<CR>
+nnoremap <silent> <leader>cl :<C-U>setlocal completeopt+=longest<CR>
+nnoremap <silent> <leader>cn :<C-U>setlocal completeopt-=longest<CR>
 
 " Choose windows based on number
-nnoremap <silent> g1 :exe 1 . "wincmd w"<CR>
-nnoremap <silent> g2 :exe 2 . "wincmd w"<CR>
-nnoremap <silent> g3 :exe 3 . "wincmd w"<CR>
-nnoremap <silent> g4 :exe 4 . "wincmd w"<CR>
-nnoremap <silent> g5 :exe 5 . "wincmd w"<CR>
-nnoremap <silent> g6 :exe 6 . "wincmd w"<CR>
+nnoremap <silent> g1 :<C-U>exe 1 . "wincmd w"<CR>
+nnoremap <silent> g2 :<C-U>exe 2 . "wincmd w"<CR>
+nnoremap <silent> g3 :<C-U>exe 3 . "wincmd w"<CR>
+nnoremap <silent> g4 :<C-U>exe 4 . "wincmd w"<CR>
+nnoremap <silent> g5 :<C-U>exe 5 . "wincmd w"<CR>
+nnoremap <silent> g6 :<C-U>exe 6 . "wincmd w"<CR>
 
 " Execute current line or current selection as Vim EX commands.
 " (I've just been watching the acme editor introduction)

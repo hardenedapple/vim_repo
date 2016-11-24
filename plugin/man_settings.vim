@@ -37,14 +37,14 @@ endfunction
 " to change it.
 function s:UseVimForMan()
   if has('nvim')
-    nnoremap <buffer> <silent> K :call <SID>OpenManThisWindow("<C-R>=expand("<cword>")<CR>")<CR>
+    nnoremap <buffer> <silent> K :<C-U>call <SID>OpenManThisWindow("<C-R>=expand("<cword>")<CR>")<CR>
   else
-    nnoremap <buffer> <silent> K :call <SID>OpenManThisWindow("<cword>")<CR>
+    nnoremap <buffer> <silent> K :<C-U>call <SID>OpenManThisWindow("<cword>")<CR>
   endif
 endfunction
 
-nnoremap <silent> [ok :call <SID>UseVimForMan()<CR>
-nnoremap <silent> ]ok :unmap <buffer> K<CR>
+nnoremap <silent> [ok :<C-U>call <SID>UseVimForMan()<CR>
+nnoremap <silent> ]ok :<C-U>unmap <buffer> K<CR>
 
 call s:UseVimForMan()
 

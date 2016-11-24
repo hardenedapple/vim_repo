@@ -12,4 +12,4 @@ nmap <silent> <leader>mp <Plug>vfm_browse_paths
 nmap <silent> <leader>mm <Plug>vfm_argument
 nmap <silent> <leader>mc <Plug>vfm_browse_bufs
 
-nnoremap <silent> <leader>mb :VFMBadd<CR>
+nnoremap <silent> <leader>mb :<C-U>VFMBadd<CR>

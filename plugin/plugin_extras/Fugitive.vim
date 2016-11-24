@@ -14,9 +14,9 @@ command! -bar Gstaged  Git! diff --cached
 
 
 " Bunch of leader mappings for ease of use
-nnoremap <silent> <leader>gw :Gwrite<CR>
-nnoremap <silent> <leader>gd :Gdiff<CR>
-nnoremap <silent> <leader>gp :Gpush<CR>
-nnoremap <silent> <leader>gf :Gpurr<CR>
-nnoremap <silent> <leader>gc :Gcommit<CR>
-nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gw :<C-U>Gwrite<CR>
+nnoremap <silent> <leader>gd :<C-U>Gdiff<CR>
+nnoremap <silent> <leader>gp :<C-U>Gpush<CR>
+nnoremap <silent> <leader>gf :<C-U>Gpurr<CR>
+nnoremap <silent> <leader>gc :<C-U>Gcommit<CR>
+nnoremap <silent> <leader>gs :<C-U>Gstatus<CR>

@@ -3,9 +3,9 @@ if index(g:pathogen_disabled, 'eunuch') != -1
 endif
 
 " Mappings for Eunuch.vim and a little file handling function
-nnoremap <leader>fr :Unlink<CR>
-nnoremap <leader>fm :Rename 
-nnoremap <leader>ff :Find 
+nnoremap <leader>fr :<C-U>Unlink<CR>
+nnoremap <leader>fm :<C-U>Rename 
+nnoremap <leader>ff :<C-U>Find 
 
 function s:DiffWithSaved()
   let filetype = &ft
@@ -22,4 +22,4 @@ endfunction
 
 command DiffOrig call s:DiffWithSaved()
 
-nnoremap <leader>fd :DiffOrig<CR>
+nnoremap <leader>fd :<C-U>DiffOrig<CR>

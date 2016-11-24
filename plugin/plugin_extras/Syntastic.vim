@@ -35,5 +35,5 @@ let g:syntastic_mode_map = {
       \ }
 "
 " Map <leader>ok to check the file
-nnoremap <leader>ok :SyntasticCheck<CR>
-nnoremap <leader>rk :SyntasticReset<CR>
+nnoremap <leader>ok :<C-U>SyntasticCheck<CR>
+nnoremap <leader>rk :<C-U>SyntasticReset<CR>

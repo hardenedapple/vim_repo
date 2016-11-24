@@ -84,4 +84,4 @@ augroup arglocal_test
   autocmd BufEnter * call s:new_window_setup()
 augroup END
 
-nnoremap <leader>la :call LocalArgument()<CR>
+nnoremap <leader>la :<C-U>call LocalArgument()<CR>

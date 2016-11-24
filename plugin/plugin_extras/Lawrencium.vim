@@ -10,11 +10,11 @@ command! -bar -nargs=* Hgpull execute 'Hg pull' <q-args>
 
 
 " Bunch of leader mappings for ease of use
-nnoremap <silent> <leader>hd :Hgvdiff<CR>
-nnoremap <silent> <leader>hp :Hgpush<CR>
-nnoremap <silent> <leader>hf :Hgpull<CR>
-nnoremap <silent> <leader>hc :Hgcommit<CR>
-nnoremap <silent> <leader>hs :Hgstatus<CR>
-nnoremap <silent> <leader>hg :Hglog<CR>
-nnoremap <silent> <leader>hv :Hglogthis<CR>
-nnoremap <silent> <leader>hq :Hgqseries<CR>
+nnoremap <silent> <leader>hd :<C-U>Hgvdiff<CR>
+nnoremap <silent> <leader>hp :<C-U>Hgpush<CR>
+nnoremap <silent> <leader>hf :<C-U>Hgpull<CR>
+nnoremap <silent> <leader>hc :<C-U>Hgcommit<CR>
+nnoremap <silent> <leader>hs :<C-U>Hgstatus<CR>
+nnoremap <silent> <leader>hg :<C-U>Hglog<CR>
+nnoremap <silent> <leader>hv :<C-U>Hglogthis<CR>
+nnoremap <silent> <leader>hq :<C-U>Hgqseries<CR>

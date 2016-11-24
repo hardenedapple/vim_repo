@@ -27,4 +27,4 @@ let g:pymode_rope=0
 let g:pymode_breakpoint = 0
 let g:pymode_run=0
 " map pk to run pymode lint
-nnoremap <leader>pk :PymodeLint<CR>
+nnoremap <leader>pk :<C-U>PymodeLint<CR>

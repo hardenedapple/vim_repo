@@ -22,8 +22,8 @@ if has('gui_running')
 endif
 
 set makeprg=pdflatex\ -interaction\ nonstopmode\ %
-nnoremap [om :set makeprg=pdflatex\ %<CR>
-nnoremap ]om :set makeprg=make<CR>
+nnoremap [om :<C-U>set makeprg=pdflatex\ %<CR>
+nnoremap ]om :<C-U>set makeprg=make<CR>
 
 lnoremap <buffer> [ {
 lnoremap <buffer> ] }

@@ -3,4 +3,4 @@ if index(g:pathogen_disabled, 'dispatch') != -1
 endif
 
 " Add mapping for dispatch
-nnoremap <F9> :Dispatch<CR>
+nnoremap <F9> :<C-U>Dispatch<CR>

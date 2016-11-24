@@ -1,6 +1,6 @@
 " add a simple toggle for test scripts
-nnoremap <buffer> [om :set makeprg=javac\ %<CR>
-nnoremap <buffer> ]om :set makeprg=make<CR>
+nnoremap <buffer> [om :<C-U>set makeprg=javac\ %<CR>
+nnoremap <buffer> ]om :<C-U>set makeprg=make<CR>
 
 runtime! ftplugin/c_languages.vim
 
