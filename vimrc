@@ -224,7 +224,15 @@ noremap ' `
 noremap ` '
 
 " Mapping from vimcast 62
-nnoremap <silent> Q :normal n.<CR>
+function s:Again()
+  let numtimes = v:count1
+  let i = 0
+  while i < l:numtimes
+    normal! n.
+    let i += 1
+  endwhile
+endfunction
+nnoremap <silent> Q :<C-U>call <SID>Again()<CR>
 
 " Quicker looking at buffers
 nnoremap <leader>b :ls<CR>:b<space>
