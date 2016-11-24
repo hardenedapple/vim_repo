@@ -1,17 +1,25 @@
 To Add:
     Find something to map <BS> to.
+    Interface to info files -- (i.e. similar to :Man).
+    Use neovim async for grepprg
+        See grepper https://github.com/mhinz/vim-grepper
     Allow navigation via mouse
         Have a look at what acme(1) does, and what vim(1) already does.
 
 To Fix:
+    Replacing visual selection with contents of '.' register.
+        Just doesn't work -- I reckon I can figure out why.
+    Unimpaired [<space> and ]<space> messes with markers '[ and ']
     Folds close after certain commands:
         :move +
             Foldmethod marker, syntax, foldexpr, indent -- always closes folds.
             foldmethod=manual -- doesn't close fold
-    When recording macros and the keymap option is set, running the macro
-        ignores the keymap option.
-        macros are ran like a mapping
-        Only matters when iminsert=1 or imsearch is not 0 or 2
+    The . redo redo should run the same mappings instead of their actions.
+        Creating text objects is pretty cool, but when you try to redo an action
+        on them with the . redo it just removes the area of text where the
+        previous text object was instead of the same text object type.
+        I'll have a look into this.
+        Maybe see if repeat.vim can do this in a plugin.
     Why does the backtick-expansion not work on Linux?
         Is the statement that it works on Unix literally Unix?
     Pymode folding sometimes just goes away -- figure out why and when.
