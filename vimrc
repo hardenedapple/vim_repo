@@ -520,6 +520,11 @@ set keymap=shifted_numbers
 " filetype plugins to unmap them with the commands
 " lnoremap <buffer> - -
 " lnoremap <buffer> _ _
+" This doesn't work if the swaps are defined in 'keymap' because the 'keymap'
+" option is set *after* the ftplugins in the after/ directory are loaded, and
+" they are buffer-local.
+" The 'keymap' mapings hence override the mappings defined in the
+" after/ftplugin/ directory.
 lnoremap _ -
 lnoremap - _
 " }}}
