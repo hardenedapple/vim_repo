@@ -2,14 +2,14 @@ if index(g:pathogen_disabled, 'ctrlp') != -1
   finish
 endif
 
-" CtrlP plugin
-" Change where ctrlp opens the files, what file it looks for and how it
-" searches
-if has("gui_running") || has('nvim')
-  let g:ctrlp_map = "<C-Space>"
-else
-  let g:ctrlp_map = "<Nul>"
-endif
+" I can't tell for certain what key will come when pressing Ctrl-Space.
+" On the same version of neovim I get two different values depending on which
+" laptop I'm running the program on -- I don't know where the difference comes
+" from.
+" Hence, just map CtrlP to <Nul> and have any occurance of C-Space converted to
+" that.
+nmap <C-Space> <Nul>
+let g:ctrlp_map = "<Nul>"
 
 nnoremap <Leader>cpb :<C-U>CtrlPBuffer<CR>
 nnoremap <Leader>cpc :<C-U>CtrlPChange<CR>
