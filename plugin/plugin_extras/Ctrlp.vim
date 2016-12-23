@@ -2,12 +2,6 @@ if index(g:pathogen_disabled, 'ctrlp') != -1
   finish
 endif
 
-" I can't tell for certain what key will come when pressing Ctrl-Space.
-" On the same version of neovim I get two different values depending on which
-" laptop I'm running the program on -- I don't know where the difference comes
-" from.
-" Hence, just map CtrlP to <Nul> and have any occurance of C-Space converted to
-" that.
 nmap <C-Space> <Nul>
 let g:ctrlp_map = "<Nul>"
 
