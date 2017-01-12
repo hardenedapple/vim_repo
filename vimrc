@@ -2,7 +2,7 @@
 " NOTE: Function keys
 "       <F1> - Help (as usual for vim)
 "       <F2> - Run vimcmd on this line.
-"       <F3> - Ultisnips list completions
+"     i_<F3> - Ultisnips list completions
 "       <F4> -
 "       <F5> - GundoToggle
 "       <F6>
@@ -296,26 +296,50 @@ nnoremap <silent> g6 :<C-U>exe 6 . "wincmd w"<CR>
 " (I've just been watching the acme editor introduction)
 let g:command_prefix = 'vimcmd: '
 function s:ParseCommand(line)
+  let come_here_prefix = substitute(g:command_prefix, ':', ';', '')
+  let come_and_stay_prefix = substitute(g:command_prefix, ':', '!', '')
+
   let l:command_start = match(a:line, g:command_prefix)
   if l:command_start != -1
-    return a:line[l:command_start + len(g:command_prefix):]
-  else
-    return ''
-  endif
+    return [0, a:line[l:command_start + len(g:command_prefix):]]
+  end
+
+  let l:command_start = match(a:line, come_here_prefix)
+  if l:command_start != -1
+    return [1, a:line[l:command_start + len(g:command_prefix):]]
+  end
+
+  let l:command_start = match(a:line, come_and_stay_prefix)
+  if l:command_start != -1
+    return [2, a:line[l:command_start + len(g:command_prefix):]]
+  end
+
+  return [0, '']
 endfunction
 
 function RunCommand(val)
+  let orig_vcount = 0
   if v:count == 0 || a:val
     let line = getline('.')
   else
-    let line = getline(v:count)
+    let orig_vcount = v:count
+    let line = getline(orig_vcount)
   endif
+
   let commandLine = s:ParseCommand(l:line)
-  if l:commandLine == ''
+  if l:commandLine[1] == ''
     echom 'Cannot parse line ' . l:line . ' for command, require prefix -- "' . g:command_prefix . '"'
-  else
-    execute l:commandLine
-  endif
+  end
+
+  if l:commandLine[0] > 0 && orig_vcount
+    exe orig_vcount
+  end
+
+  execute l:commandLine[1]
+
+  if l:commandLine[0] > 1 && !a:val
+    exe "''"
+  end
 endfunction
 
 nnoremap <silent> <F2> :<C-u>call RunCommand(0)<CR>
