@@ -3,9 +3,10 @@ if index(g:pathogen_disabled, 'sneak') != -1
 endif
 
 " Have to switch the mappings for ; and , for my particular keyboard layout
-" Can't use noremap here, doesn't work.
+" Can't use noremap here as it doesn't work, and I'm staying away from the
+" 'langmap' option as 'langnoremap' and the like appear to be a minefield.
 let g:sneak#streak = 1
-let g:sneak#s_next = 1
+let g:sneak#s_next = 0
 let g:sneak#textobject_z = 0
 
 " For Dvorak keyboard -- make closer matches on easy keys
