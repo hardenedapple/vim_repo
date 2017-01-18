@@ -52,7 +52,7 @@ endfunction
 
 " Quickfix saving functions from
 " http://vim.1045645.n5.nabble.com/Saving-the-Quickfix-List-td1179523.html
-function s:SaveQuickFixList(fname)
+function s:QuickFixSave(fname)
   let list = getqflist()
   for i in range(len(list))
     if has_key(list[i], 'bufnr')
@@ -65,7 +65,7 @@ function s:SaveQuickFixList(fname)
   call writefile(lines, a:fname)
 endfunction
 
-function s:LoadQuickFixList(fname)
+function s:QuickFixRead(fname)
   let lines = readfile(a:fname)
   let string = join(lines, "\n")
   call setqflist(eval(string))
@@ -136,8 +136,8 @@ command -nargs=0 -bar Qargs execute 'args' s:QuickfixFilenames()
 command -bang -nargs=1 -complete=file QFilterBuf call s:FilterQuickfixListByBuffer(<bang>0, <q-args>)
 command -bang -nargs=1 QFilterMatch call s:FilterQuickfixListBySubject(<bang>0, <q-args>)
 command -bar QuickfixSort call s:SortUniqQFList()
-command -bar -nargs=1 SaveQuickFixList call s:SaveQuickFixList(<q-args>)
-command -bar -nargs=1 -complete=file LoadQuickFixList call s:LoadQuickFixList(<q-args>)
+command -bar -nargs=1 QuickFixSave call s:QuickFixSave(<q-args>)
+command -bar -nargs=1 -complete=file QuickFixRead call s:QuickFixRead(<q-args>)
 command -bang -bar -nargs=0 QFRemoveCurrent silent call s:RemoveCurrentQuickfixItem(<bang>0)
 
 nnoremap <silent> <leader>qr :<C-u>QFRemoveCurrent!<CR>
