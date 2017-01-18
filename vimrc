@@ -581,6 +581,30 @@ set incsearch
 " use bash
 set shell=/bin/bash
 
+" Cscope settings
+if has('cscope')
+  set cscopetag
+  set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
+  set cscoperelative
+  set cscopetagorder=0
+  set cscopepathcomp=3
+  set cscopeverbose
+  " Search through all upper levels to find the cscope database (taken from
+  " vim.wikia.com/wiki/Autoloading_Cscope_Database)
+  function LoadCscope()
+    let db = findfile("cscope.out", ".;")
+    if (!empty(db))
+      let path = strpart(db, 0, match(db, "/cscope.out$"))
+      set nocscopeverbose " suppress 'duplicate connection' error
+      exe "cs add " . db . " " . path
+      set cscopeverbose
+    endif
+  endfunction
+  " Call the function on startup so that '-t' can use any found database
+  " call LoadCscope()
+endif
+
+
 " Options for future investigation:
 "   set secure
 "   set exrc
