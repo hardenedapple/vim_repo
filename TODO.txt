@@ -7,21 +7,85 @@ To Add:
         Have a look at what acme(1) does, and what vim(1) already does.
 
 To Fix:
-    Replacing visual selection with contents of '.' register.
-        Just doesn't work -- I reckon I can figure out why.
-    Unimpaired [<space> and ]<space> messes with markers '[ and ']
+    i_CTRL-S waits for input from user???
+        Figure out why, and what it does, and everything else.
+    :tags command shows incorrect tag name next to the tag position
+    ctags -- use a tag file, then :cd, then navigate to another tag.
+        I got an error doing this once.
+    The mapping `cw` `dwi` breaks the `.` command
+        Probably have to make it a function and (maybe) use the repeat plugin.
+    The % operator appears to be linewise when the current cursor is on
+    whitespace before the line start and before the opening bracket, charwise
+    otherwise?
+        `test.txt`
+        ```
+            hello(function
+                call)
+        ```
+        Running `d%` when in the whitespace before the line removes all text.
+        Running `d%` when in the `hello` word removes text from the cursor to
+        the end of the bracket.
+    vim-exchange
+        Highlighting doesn't happen when cursor is in a tab character.
+    vim-sneak
+        Reads with 'keymap' enabled, but passes keys across in command mode
+        (i.e. with 'keymap' disabled and with 'langmap' enabled).
+        This is confusing, but I don't know what to do about it.
+    vim-sneak
+        When foldmethod=marker, but default is that foldmethod=syntax
+        it resets to foldmethod=syntax
+    vim-sneak
+        Using '-' as a key character jumps to somewhere completely different.
+    vim-repeat and vim-surround
+        repeating ysf)`  repeats as ysf)'
+        doesn't happen for yse` ysiw` or anything else I've tried
+        doesn't appear to be affected by 'iminsert', though only tried by
+        toggling it once already set.
+    Lose submode modes when losing focus because of the <FocusLost> key passed
+    to neovim.
+        (I think this is the case -- the mode isn't lost in vim, and
+        <FocusLost> isn't inserted into the buffer in vim with C-v)
+    C-v block insert with autoindent
+        Example file:
+            function s:createColorGroups()
+              let colornumbers = ['Black', 'DarkBlue', 'DarkGreen', 'DarkCyan', 'DarkRed',
+              'DarkMagenta', 'Brown', 'DarkYellow', 'LightGray', 'LightGrey', 'Gray',
+              'Grey', 'DarkGray', 'DarkGrey', 'Blue', 'LightBlue', 'Green', 'LightGreen',
+              'Cyan', 'LightCyan', 'Red', 'LightRed', 'Magenta', 'LightMagenta', 'Yellow',
+              'LightYellow', 'White']
+            endfunction
+        Move to the 'DarkMagenta' line, create a visual block of those elements
+        in the list, press 'I\  <esc>'.
+        Observation:
+            The '\' character makes the indent get recalculated, after leaving
+            insert mode there is a bunch of stuff out of place.
+    C-vC-j inserts C-@ into the buffer, C-vC-<space> inserts a space, C-vC-@
+    inserts a space into the buffer.
+        Should be able to insert C-j into the buffer.
+    Search pattern highligt:
+        Search for X number of lines and move to the end
+        Highlight of the search pattern works down from when the search was
+        initiated.
+        Sometimes end up on different lines to those that are highlighted
+        because of other motion.
+        `test.txt`
+        ```
+        Hello there
+        Hello there
+        Hello there
+        Hello there
+        Hello there
+        Hello there
+        Hello there
+        ```
+
+        `/\(Hello.*\n\)\{2}/e`
     Folds close after certain commands:
         :move +
+            This is hard-coded to do this in order to avoid a different
+            problem.
             Foldmethod marker, syntax, foldexpr, indent -- always closes folds.
             foldmethod=manual -- doesn't close fold
-    The . redo redo should run the same mappings instead of their actions.
-        Creating text objects is pretty cool, but when you try to redo an action
-        on them with the . redo it just removes the area of text where the
-        previous text object was instead of the same text object type.
-        I'll have a look into this.
-        Maybe see if repeat.vim can do this in a plugin.
-    Why does the backtick-expansion not work on Linux?
-        Is the statement that it works on Unix literally Unix?
     Pymode folding sometimes just goes away -- figure out why and when.
     Syntax highlighting after argdo on first command.
         This is something to do with when the syntax parsing happens -- I
@@ -47,6 +111,10 @@ To Fix:
 
 
 Strange un-reproducible things I noticed once:
+    Error to do with EPIPE after i_CTRL-R +
+        This happened when writing a git commit message opened with 'cc' in the
+            :Gstatus window.
+        Was attempting to insert a URL copied from firefox
     Half of 'scrollbind' setting functionality happening with 'noscrollbind'
     set.
         A strange thing I noticed once: I used :Gblame to see when a line was
@@ -72,13 +140,6 @@ Bug raised, not fixing myself just yet:
         Can't find any way to save the previous replace pattern (other than a
         hack with s/^/~/ and exe 's/^/'oldpattern'/')
         Have registered a feature request with neovim.
-    When using sneak-streak in C files, the folds close after selection.
-        I believe this is because C files have a foldmethod=syntax
-        In order to handle something with concealed characters, sneak streak
-        removes the syntax while working and turns it back on when it's done.
-        This means the syntax folds get unfolded and reinitialised.
-        Counter this by switching foldmethod to manual and then back.
-           Don't know if there's a better way.
     Lawrencium error message at start of vim if not in mercurial repository.
         Comes from the lawrencium#setup_buffer_commands() function, that calls
         lawrencium#hg_repo() which calls lawrencium#throw() only to be caught.
