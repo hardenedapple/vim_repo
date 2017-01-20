@@ -223,6 +223,14 @@ nnoremap cw dwi
 noremap ' `
 noremap ` '
 
+" Some stuff from https://github.com/mhinz/vim-galore
+" n always forwards, N always backwards
+nnoremap <expr> n 'nN'[v:searchforward]
+nnoremap <expr> n 'Nn'[v:searchforward]
+" C-l
+nnoremap <C-l> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
+nnoremap <leader>em  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
+
 " Mapping from vimcast 62
 function s:Again()
   let numtimes = v:count1
