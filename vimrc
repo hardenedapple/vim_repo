@@ -225,8 +225,8 @@ noremap ` '
 
 " Some stuff from https://github.com/mhinz/vim-galore
 " n always forwards, N always backwards
-nnoremap <expr> n 'nN'[v:searchforward]
 nnoremap <expr> n 'Nn'[v:searchforward]
+nnoremap <expr> N 'nN'[v:searchforward]
 " C-l
 nnoremap <C-l> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
 nnoremap <leader>em  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
