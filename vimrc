@@ -608,8 +608,8 @@ if has('cscope')
       set cscopeverbose
     endif
   endfunction
-  " Call the function on startup so that '-t' can use any found database
-  " call LoadCscope()
+  " Call the function on startup.
+  call LoadCscope()
 endif
 
 
