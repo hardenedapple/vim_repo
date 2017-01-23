@@ -39,6 +39,6 @@ endfunction
 
 command -bang -bar -nargs=? TQFSelect call s:TagSelectToQuickfix(<q-args>, '<bang>')
 
-nnoremap <leader>vt :<C-U>silent TQFSelect! <C-R><C-W><CR>
+nnoremap <leader>st :<C-U>silent TQFSelect! <C-R><C-W><CR>
 nnoremap t<RightMouse> <LeftMouse>:<C-U>silent TQFSelect <C-R><C-W><CR>
 nnoremap T<RightMouse> <LeftMouse>:<C-U>silent TQFSelect! <C-R><C-W><CR>

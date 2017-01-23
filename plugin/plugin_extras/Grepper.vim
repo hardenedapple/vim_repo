@@ -18,9 +18,6 @@ let g:grepper.tools = ['grep', 'git', 'ag', 'ack', 'findstr']
 nmap <leader>so <plug>(GrepperOperator)
 xmap <leader>so <plug>(GrepperOperator)
 
-nnoremap <leader>ss :Grepper -tool grep <CR>
-nnoremap <leader>sg :Grepper -tool git <CR>
-
 command Todo :Grepper
       \ -noprompt
       \ -tool git
@@ -33,6 +30,11 @@ endfunction
 
 command GrepHere call GrepHere()
 
-command BufGrep :Grepper
+command GrepBufs :Grepper
       \ -buffers
       \ -query
+
+nnoremap <leader>ss :Grepper -tool grep <CR>
+nnoremap <leader>sg :Grepper -tool git <CR>
+nnoremap <leader>sd :GrepHere <CR>
+nnoremap <leader>sb :GrepBufs <CR>
