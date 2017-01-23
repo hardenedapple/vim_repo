@@ -29,7 +29,7 @@ runtime bundle/pathogen/autoload/pathogen.vim
 " If want to use completion use
 " vim --cmd 'let g:pathogen_disabled = []' <filename>
 " on the command line.
-let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['clang_complete', 'neomake'])
+let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['clang_complete', 'neomake', 'grepper'])
 if v:version < 704
   let g:pathogen_disabled += ['ultisnips']
 endif
@@ -246,7 +246,7 @@ nnoremap <silent> Q :<C-U>call <SID>Again()<CR>
 nnoremap <leader>b :<C-U>ls<CR>:b<space>
 
 " Quick save
-nnoremap <silent> <leader>s :<C-U>update<CR>
+nnoremap <silent> <leader>u :<C-U>update<CR>
 
 " Put occurances of current word in quickfix
 command -bang -bar -nargs=1 Occur execute 'silent vimgrep /' . substitute('<bang>', '!', '\\<', '') . <q-args> . substitute('<bang>', '!', '\\>', '') . '/j ' . expand('%') . ' | copen'
