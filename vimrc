@@ -29,12 +29,12 @@ runtime bundle/pathogen/autoload/pathogen.vim
 " If want to use completion use
 " vim --cmd 'let g:pathogen_disabled = []' <filename>
 " on the command line.
-let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['clang_complete', 'neomake', 'grepper'])
+let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['neomake', 'grepper'])
 if v:version < 704
   let g:pathogen_disabled += ['ultisnips']
 endif
 if v:version < 703
-  let g:pathogen_disabled += ['clang_complete', 'ctrlp', 'ctrlp-funky', 'gundo', 'sneak', 'vimfindsme']
+  let g:pathogen_disabled += ['ctrlp', 'ctrlp-funky', 'gundo', 'sneak', 'vimfindsme']
 endif
 if v:version < 702
   let g:pathogen_disabled += ['gnupg']
@@ -49,7 +49,7 @@ if v:version < 700
 endif
 
 if !has('python')
-  let g:pathogen_disabled += ['jedi', 'vim-ipython', 'clang_complete', 'gundo', 'ultisnips']
+  let g:pathogen_disabled += ['jedi', 'vim-ipython', 'gundo', 'ultisnips']
 else
 python << EOF
 try:
@@ -61,11 +61,6 @@ except ImportError:
   except AttributeError:
     vim.command("let g:pathogen_disabled += ['jedi']")
 EOF
-endif
-
-" Check external dependencies -- clang, ipython, and git
-if helpers#external_program_missing('clang')
-  let g:pathogen_disabled += ['clang_complete']
 endif
 
 if helpers#external_program_missing('ipython3') && helpers#external_program_missing('ipython2')
@@ -93,7 +88,7 @@ if exists('*pathogen#infect()') && !exists('g:no_plugins') && (has('win32') || s
 else
   " If no pathogen, disable all the plugin settings I have.
   let g:pathogen_disabled = [ 'abolish', 'arduinosyntax',
-        \  'clang_complete', 'commentary', 'ctrlp', 'ctrlp-funky', 'dentures',
+        \  'commentary', 'ctrlp', 'ctrlp-funky', 'dentures',
         \  'dispatch', 'easygrep', 'eunuch', 'exchange', 'fugitive', 'gitv',
         \  'gnupg', 'gundo', 'jedi', 'lawrencium', 'neomake', 'obsession',
         \  'pathogen', 'python-mode', 'repeat', 'rust-vim',

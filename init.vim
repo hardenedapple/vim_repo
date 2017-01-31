@@ -1,5 +1,5 @@
 set all&
-let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['clang_complete', 'dispatch', 'easygrep'])
+let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['dispatch', 'easygrep'])
 " Set an environment variable to use the t_SI/t_EI hack
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 inoremap <a-O> <ESC>O
