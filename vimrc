@@ -49,18 +49,7 @@ if v:version < 700
 endif
 
 if !has('python')
-  let g:pathogen_disabled += ['jedi', 'vim-ipython', 'gundo', 'ultisnips']
-else
-python << EOF
-try:
-  import jedi
-except ImportError:
-  import vim
-  try:
-    vim.vars['pathogen_disabled'].extend(['jedi'])
-  except AttributeError:
-    vim.command("let g:pathogen_disabled += ['jedi']")
-EOF
+  let g:pathogen_disabled += ['vim-ipython', 'gundo', 'ultisnips']
 endif
 
 if helpers#external_program_missing('ipython3') && helpers#external_program_missing('ipython2')
@@ -90,7 +79,7 @@ else
   let g:pathogen_disabled = [ 'abolish', 'arduinosyntax',
         \  'commentary', 'ctrlp', 'ctrlp-funky', 'dentures',
         \  'dispatch', 'easygrep', 'eunuch', 'exchange', 'fugitive', 'gitv',
-        \  'gnupg', 'gundo', 'jedi', 'lawrencium', 'neomake', 'obsession',
+        \  'gnupg', 'gundo', 'lawrencium', 'neomake', 'obsession',
         \  'pathogen', 'python-mode', 'repeat', 'rust-vim',
         \  'sexp', 'sexp_mappings',
         \  'sideways', 'sneak', 'snippets', 'submode', 'surround', 'syntastic',

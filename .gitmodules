@@ -61,9 +61,6 @@
 [submodule "bundle/obsession"]
 	path = bundle/obsession
 	url = git://github.com/tpope/vim-obsession.git
-[submodule "bundle/jedi"]
-	path = bundle/jedi
-	url = git://github.com/davidhalter/jedi-vim.git
 [submodule "bundle/lawrencium"]
 	path = bundle/lawrencium
 	url = git://github.com/ludovicchabant/vim-lawrencium.git
