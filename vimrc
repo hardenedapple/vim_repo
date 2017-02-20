@@ -469,6 +469,8 @@ set ruler
 set number
 set sessionoptions-=options
 
+" Default for vim, but neovim turns it off.
+set belloff=
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
