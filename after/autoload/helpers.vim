@@ -3,6 +3,22 @@ function helpers#external_program_missing(program)
   return v:shell_error
 endfunction
 
+function helpers#working_environment(buffer_specific)
+  if a:buffer_specific
+    if expand('%:p') =~? '\(gnu\|gdb\|less\|binutils\)'
+      return 'gnu'
+    elseif expand('%:p') =~? 'vim'
+      return 'vim'
+    elseif expand('%:p') =~? 'solaris'
+      return 'solaris'
+    endif
+  endif
+  if g:os == "SunOS"
+    return 'solaris'
+  endif
+  return 'default'
+endfunction
+
 " Stuff copied from the 'man.vim' default ftplugin.
 " I just want to check if a man page exists, and they've already done the hard
 " work with the functions there, but unfortunately, the functions are private.
@@ -11,7 +27,7 @@ endfunction
 let s:man_sect_arg = ""
 let s:man_find_arg = "-w"
 try
-  if !has("win32") && $OSTYPE !~ 'cygwin\|linux' && g:os =~ "SunOS" && system('uname -r') =~ "^5"
+  if !has("win32") && $OSTYPE !~ 'cygwin\|linux' && system('uname -s') =~ "SunOS" && system('uname -r') =~ "^5"
     let s:man_sect_arg = "-s"
     let s:man_find_arg = "-l"
   endif
@@ -74,7 +90,7 @@ function helpers#plumb_this()
   endif
 
   " Taken from the 'man.vim' default ftplugin.
-  " vimcmd: edit /usr/share/vim/vim74/ftplugin/man.vim
+  " vimcmd: edit /usr/share/vim/vim*/ftplugin/man.vim
   if &ft == 'man'
     let old_isk = &iskeyword
     setl iskeyword+=(,)

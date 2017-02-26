@@ -15,12 +15,20 @@
 
 
 set all&
-let g:os = substitute(system('uname'), '\n', '', '')
-if g:os == "SunOS"
-  let g:working_on_solaris = 1
+" I haven't had a chance to try out these tests, so I don't actually know if
+" this is a nice way of distinguishing things. It looks like it would work.
+let os_features = ['mac', 'macunix', 'win32', 'win32unix', 'win64']
+if has('unix')
+  let g:os = substitute(system('uname'), '\n', '', '')
 else
-  let g:working_on_solaris = 0
+  for feature in os_features
+    if has(feature)
+      let g:os = feature
+      break
+    endif
+  endfor
 endif
+let g:working_on_solaris = helpers#working_environment(0) == 'solaris'
 
 runtime bundle/pathogen/autoload/pathogen.vim
 
@@ -432,7 +440,7 @@ command -bang -range Lensort <line1>,<line2>call SortByLength(<bang>0)
 set complete=.,w,b,u,t
 set completeopt=menu
 " Lower priority tab completion
-set suffixes+=.png,.jpg,.fasl,.o,.obj,.gif,.xpm,.pdf,.bak,.info,.out
+set suffixes+=.log,.bak,.out,.info,.png,.jpg,.fasl,.o,.obj,.gif,.xpm,.pdf
 "search current and above directory for tag file
 set tags=./tags;$HOME
 "change how the command line autocomplete works
@@ -442,7 +450,7 @@ set shiftround
 set autoread
 set wildmenu
 set wildmode=full
-set wildignore+=*.pyc,__pycache__/,*~,.*.swp,*.aux,*.log,*.dvi,*.bbl,*.blg,*.brf,*.toc,*.lof
+set wildignore+=*.pyc,__pycache__/,*~,.*.swp,*.aux,*.dvi,*.bbl,*.blg,*.brf,*.toc,*.lof
 
 " if ignorecase is on, use the case of the matching pattern to choose the case
 " of the insertion pattern to insert -- I rarely use ignorecase, but when I do,
