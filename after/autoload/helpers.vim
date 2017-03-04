@@ -19,6 +19,18 @@ function helpers#working_environment(buffer_specific)
   return 'default'
 endfunction
 
+function helpers#toggle_underscore()
+  let mapdict = maparg('-', 'l', 0, 1)
+  if mapdict['buffer']
+    lunmap <buffer> _
+    lunmap <buffer> -
+  else
+    lnoremap <buffer> - -
+    lnoremap <buffer> _ _
+  endif
+endfunction
+
+
 " Stuff copied from the 'man.vim' default ftplugin.
 " I just want to check if a man page exists, and they've already done the hard
 " work with the functions there, but unfortunately, the functions are private.

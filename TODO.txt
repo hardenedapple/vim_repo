@@ -7,8 +7,10 @@ To Add:
         Have a look at what acme(1) does, and what vim(1) already does.
 
 To Fix:
-    i_CTRL-S waits for input from user???
-        Figure out why, and what it does, and everything else.
+    vim-sneak, ',' and ';' break 'ct,' and 'ct;' mappings.
+        Instead of going up to the character specified, they go to one
+        character before the one specified.
+    Be able to view quickfix buffer in current window.
     :tags command shows incorrect tag name next to the tag position
     ctags -- use a tag file, then :cd, then navigate to another tag.
         I got an error doing this once.
@@ -86,6 +88,9 @@ To Fix:
             problem.
             Foldmethod marker, syntax, foldexpr, indent -- always closes folds.
             foldmethod=manual -- doesn't close fold
+    :append doesn't call changed_lines()
+    :append leaves the cursor in the insert shape
+    :append when typing blank lines it doesn't show them in the echo area.
     Pymode folding sometimes just goes away -- figure out why and when.
     Syntax highlighting after argdo on first command.
         This is something to do with when the syntax parsing happens -- I

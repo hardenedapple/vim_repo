@@ -30,6 +30,6 @@ elseif s:project == 'gnu'
   setlocal cinoptions=>4,n-2,{2,^-2,:2,=2,g0,h2,p5,t0,+2,(0,u0,w1,m1
 elseif s:project == 'vim'
   setlocal shiftwidth=2
-  setlocal tabstop=2
+  setlocal tabstop=8
   setlocal softtabstop=2
 endif
