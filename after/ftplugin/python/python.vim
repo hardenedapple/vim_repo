@@ -15,6 +15,8 @@ lnoremap <buffer> : ;
 " https://groups.google.com/forum/?_escaped_fragment_=topic/vim_use/-pbK15zfqts#!topic/vim_use/-pbK15zfqts
 call setreg('d', '/TODOc//e', 'c')
 
+BracelessEnable +indent +fold
+
 if exists(':Tabularize')
     AddTabularPattern!  docstring_varnames /:\zs /l0c0l0
 endif
