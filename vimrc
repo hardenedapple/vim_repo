@@ -84,11 +84,11 @@ if exists('*pathogen#infect()') && !exists('g:no_plugins') && (has('win32') || s
   execute pathogen#infect()
 else
   " If no pathogen, disable all the plugin settings I have.
-  let g:pathogen_disabled = [ 'abolish', 'arduinosyntax', 'braceless',
+  let g:pathogen_disabled = [ 'abolish', 'arduinosyntax',
         \  'commentary', 'ctrlp', 'ctrlp-funky', 'dentures',
         \  'dispatch', 'easygrep', 'eunuch', 'exchange', 'fugitive', 'gitv',
         \  'gnupg', 'gundo', 'lawrencium', 'neomake', 'obsession',
-        \  'pathogen', 'repeat', 'rust-vim',
+        \  'pathogen', 'python-mode', 'repeat', 'rust-vim',
         \  'sexp', 'sexp_mappings',
         \  'sideways', 'sneak', 'snippets', 'submode', 'surround', 'syntastic',
         \  'tabular', 'ultisnips', 'unimpaired', 'vimfindsme', 'vim-ipython',
@@ -357,7 +357,6 @@ noremap <silent> gk @='4k'<CR>
 " For my specific keyboard layout
 noremap <leader>' :
 noremap <leader>z :
-noremap <BS> :
 
 noremap ; ,
 noremap , ;
