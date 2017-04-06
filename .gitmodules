@@ -46,12 +46,6 @@
 [submodule "bundle/sideways"]
 	path = bundle/sideways
     url = git://github.com/AndrewRadev/sideways.vim.git
-[submodule "bundle/sexp"]
-	path = bundle/sexp
-    url = git://github.com/guns/vim-sexp.git
-[submodule "bundle/sexp_mappings"]
-	path = bundle/sexp_mappings
-    url = git://github.com/tpope/vim-sexp-mappings-for-regular-people.git
 [submodule "bundle/gitv"]
 	path = bundle/gitv
 	url = git://github.com/gregsexton/gitv.git
