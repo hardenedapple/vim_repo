@@ -602,6 +602,10 @@ if has('cscope')
   call LoadCscope()
 endif
 
+" Setting for TOhtml command
+" I try to avoid Javascript (for no real reason) whenever I can.
+let g:html_number_lines = 0
+let g:html_line_ids = 0
 
 " Options for future investigation:
 "   set secure
