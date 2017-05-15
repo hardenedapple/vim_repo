@@ -345,6 +345,11 @@ if exists(":keeppatterns")
 else
   command -range RunCommand execute <line1> . ',' . <line2> . 'global/' . g:command_prefix . '/call RunCommand("1")'
 endif
+" Save the current line as a vimcmd so I can reference it in some other file.
+" Thought about having a full pathname, so the cwd of the vim process doesn't
+" matter, but a) I don't like the look of it, and b) it makes moving entire
+" directories a pain.
+nnoremap <silent><leader>es :<C-U>let @" = 'vimcmd: e +' . line('.') . ' ' . expand('%')<CR>
 nnoremap <MiddleMouse> <LeftMouse>:silent RunCommand<CR>
 
 " In Dvorak, keep completion commands nearer each other
