@@ -149,15 +149,6 @@ filetype on
 set nocursorcolumn
 set nocursorline
 color techras
-" If in xterm, use control sequences to control cursor
-if &term == "xterm-256color" || &term == "xterm" || &term == "screen-256color"
-  "Make the cursor in command mode be a blinking block
-  "and the cursor in insert mode be a solid underscore
-  let &t_SI = "\<Esc>[5 q"
-  let &t_EI = "\<Esc>[1 q"
-  "make the cursor change back when leave vim
-  autocmd VimLeave * silent !echo -ne "\033]112\007"
-endif
 
 if &term =~ '^screen'
   " When inside xterm, inside screen, the Shift and Ctrl modifiers don't
