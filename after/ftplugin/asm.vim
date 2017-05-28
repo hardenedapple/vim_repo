@@ -12,6 +12,7 @@ lmap <buffer> : ;
 " Will see if things change when the abstraction levels increase.
 setlocal iminsert=0
 
+if exists(':NasmSetup') | finish | endif
 " Expect to add to these in the future (which is why I'm creating commands in
 " the first place).
 command -buffer NasmSetup setlocal commentstring=;\ %s
