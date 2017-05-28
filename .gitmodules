@@ -100,3 +100,6 @@
 [submodule "bundle/grepper"]
 	path = bundle/grepper
 	url = git://github.com/mhinz/vim-grepper.git
+[submodule "bundle/tabular"]
+	path = bundle/tabular
+	url = git://github.com/godlygeek/tabular.git
