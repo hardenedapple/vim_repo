@@ -57,11 +57,7 @@ if v:version < 700
 endif
 
 if !has('python')
-  let g:pathogen_disabled += ['vim-ipython', 'gundo', 'ultisnips']
-endif
-
-if helpers#external_program_missing('ipython3') && helpers#external_program_missing('ipython2')
-  let g:pathogen_disabled += ['vim-ipython']
+  let g:pathogen_disabled += ['gundo', 'ultisnips']
 endif
 
 if helpers#external_program_missing('hg')
@@ -91,7 +87,7 @@ else
         \  'pathogen', 'python-mode', 'repeat', 'rust-vim',
         \  'sexp', 'sexp_mappings',
         \  'sideways', 'sneak', 'snippets', 'submode', 'surround', 'syntastic',
-        \  'tabular', 'ultisnips', 'unimpaired', 'vimfindsme', 'vim-ipython',
+        \  'tabular', 'ultisnips', 'unimpaired', 'vimfindsme',
         \  'vimple', 'visualstar', ]
 endif
 " }}}
