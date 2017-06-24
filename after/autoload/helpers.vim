@@ -30,6 +30,25 @@ function helpers#toggle_underscore()
   endif
 endfunction
 
+function helpers#kill_slow_stuff()
+  " Try a bunch of things to improve the performance of files:help 
+
+  " Repeated call of the Vimple autocmd slows performance in large files.
+  autocmd! Vimple                CursorMovedI
+  " " The below are all autocmds I currently have on intensive triggers
+  " autocmd! neomake               CursorMoved
+  " autocmd! matchparen            CursorMoved
+  " autocmd! matchparen            CursorMovedI
+  " autocmd! matchparen            TextChanged
+  " autocmd! matchparen            TextChangedI
+  " autocmd! UltiSnips_AutoTrigger InsertCharPre
+  " autocmd! UltiSnips_AutoTrigger TextChangedI
+
+  " Fold recalculation, and indentexpr are known performance hotspots.
+  setlocal foldmethod=manual
+  setlocal indentexpr=
+endfunction
+
 
 " Stuff copied from the 'man.vim' default ftplugin.
 " I just want to check if a man page exists, and they've already done the hard
