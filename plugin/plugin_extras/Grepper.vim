@@ -3,7 +3,7 @@ if index(g:pathogen_disabled, 'grepper') != -1
 endif
 
 " Set global grepper options.
-runtime autoload/grepper.vim
+runtime plugin/grepper.vim
 
 " Possibly stop us from being put into the quickfix window.
 " let g:grepper.switch = 0
