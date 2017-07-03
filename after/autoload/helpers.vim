@@ -19,6 +19,10 @@ function helpers#working_environment(buffer_specific)
   return 'default'
 endfunction
 
+" These are ***not*** the same function with different hard-coded values
+" toggle_underscore() works with a mapping that is global, and overriden in the
+" local buffer by mapping characters to themselves.
+" toggle_colon() works by creating / removing a local map.
 function helpers#toggle_underscore()
   let mapdict = maparg('-', 'l', 0, 1)
   if mapdict['buffer']
@@ -27,6 +31,17 @@ function helpers#toggle_underscore()
   else
     lnoremap <buffer> - -
     lnoremap <buffer> _ _
+  endif
+endfunction
+
+function helpers#toggle_colon()
+  let mapdict = maparg(';', 'l', 0, 1)
+  if has_key(mapdict, 'buffer')
+    lunmap <buffer> ;
+    lunmap <buffer> :
+  else
+    lnoremap <buffer> ; :
+    lnoremap <buffer> : ;
   endif
 endfunction
 
