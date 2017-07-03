@@ -37,7 +37,7 @@ runtime bundle/pathogen/autoload/pathogen.vim
 " If want to use completion use
 " vim --cmd 'let g:pathogen_disabled = []' <filename>
 " on the command line.
-let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['neomake', 'grepper'])
+let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['neomake', 'grepper', 'vsh'])
 if v:version < 704
   let g:pathogen_disabled += ['ultisnips']
 endif
