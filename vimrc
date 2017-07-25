@@ -276,6 +276,8 @@ nnoremap <silent> g4 :<C-U>exe 4 . "wincmd w"<CR>
 nnoremap <silent> g5 :<C-U>exe 5 . "wincmd w"<CR>
 nnoremap <silent> g6 :<C-U>exe 6 . "wincmd w"<CR>
 
+nnoremap <leader>p, :keeppatterns s/,/,\r/g<CR>
+
 " Execute current line or current selection as Vim EX commands.
 " (I've just been watching the acme editor introduction)
 let g:command_prefix = 'vimcmd: '
