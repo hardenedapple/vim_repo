@@ -20,11 +20,7 @@ let g:pymode_syntax_space_errors=0
 " strangely.
 let g:pymode_trim_whitespaces = 0
 
-let g:pymode_run_key='<leader>pr'
-
 " Disable features I don't need
 let g:pymode_rope=0
 let g:pymode_breakpoint = 0
 let g:pymode_run=0
-" map pk to run pymode lint
-nnoremap <leader>pk :<C-U>PymodeLint<CR>
