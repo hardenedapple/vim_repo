@@ -14,7 +14,10 @@
 "       <F12> - ctags update
 
 
-set all&
+" Don't remove settings from init.vim if under nvim.
+if !has('nvim')
+  set all&
+endif
 " I haven't had a chance to try out these tests, so I don't actually know if
 " this is a nice way of distinguishing things. It looks like it would work.
 let os_features = ['mac', 'macunix', 'win32', 'win32unix', 'win64']
