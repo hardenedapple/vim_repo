@@ -75,16 +75,40 @@ endfunction
 " Remove the current quickfix item.
 " Useful for marking a quickfix item as 'looked at' when searching for things.
 
-function s:QFitemMatches(qfitem, l, b)
-  if a:qfitem['lnum'] == a:l && a:qfitem['bufnr'] == a:b
+function s:QFitemMatches(qfitem, l, b, c)
+  let col_matches = a:qfitem['col'] == a:c
+  let line_buf_matches = (a:qfitem['lnum'] == a:l && a:qfitem['bufnr'] == a:b)
+  if line_buf_matches && col_matches
     return 1
-  else
-    return 0
   endif
+  return 0
 endfunction
 
-function s:RemoveCurrentQuickfixItem(bang)
-  " Get the current state
+function s:RemoveCurrentQuickfixItem(jump)
+  " NOTE:
+  "  This function exhibits some known problematic behaviour that I don't know
+  "  how to avoid.
+  "  If the "current" item in the quickfix list is an invalid entry (e.g. extra
+  "  diagnostic from a C compiler), yet the cursor happens to be in the place
+  "  that it would be when jumping to a different error in the list, then that
+  "  other error is deleted.
+  "
+  "  This comes from the basic problem that the only way I know of to find the
+  "  "current" error is to jump there and see what position I end up in, then
+  "  search the quickfix list for an error matching that position.
+  "
+  "  We could avoid this by jumping to the current error, recording where we
+  "  ended up, moving somewhere else and jumping to the current error again.
+  "  If we ended up in te same place after the first and second time, then we
+  "  must have been moved by the `:cc` command, otherwise we must be on an
+  "  invalid line in the quickfix list.
+  "
+  "  If we were on an invalid line then there would be nothing we could do, and
+  "  we would simply have to exit without having done anything.
+  "
+  "  I'm not doing this because it's ugly ... though having a known problem in
+  "  the code is also ugly, so maybe I'm being silly.
+
   let startbufnr = bufnr('%')
   let startcolumn = virtcol('.')
   let startline = line('.')
@@ -92,34 +116,63 @@ function s:RemoveCurrentQuickfixItem(bang)
   let current_quickfix = getqflist()
 
   " Get the position of the current quickfix item
-  execute 'keepalt keepjumps cc'
+  " This is ugly by neccessity: As far as I know, there's no way to find the
+  " quickfix item that is "current" without jumping there (with :cc).
+  "
+  " NOTE:
+  "   Even with this I could have simply not moved because the 'current' item
+  "   is invalid (e.g. some extra information after a clang error message).
+  keepalt keepjumps cc
   let current_line = line('.')
   let current_bufnr = bufnr('%')
+  let current_column = virtcol('.')
 
-  " Check for the first item, as the loop below wouldn't work if 'item_number'
-  " is 0 on the match
-  let first_qfitem = current_quickfix[0]
-  let item_number = 1
-  if s:QFitemMatches(first_qfitem, current_line, current_bufnr)
-    call setqflist(current_quickfix[1:], 'r')
-  else
-    for item in current_quickfix
-      if s:QFitemMatches(item, current_line, current_bufnr)
-        call setqflist(current_quickfix[:item_number-2] + current_quickfix[item_number :], 'r')
+  " Remove this item from the quickfix list, and all subsequent items that
+  " aren't valid.
+  " We are assuming that all invalid items after the current one are
+  " lines of information about the given error.
+  " This is often the case for clang output as an example.
+  let cur_index = 0
+  let in_err = v:false
+  let err_start = -1
+  for item in current_quickfix
+    if in_err
+      if item['valid']
         break
       endif
-      let item_number +=1
-    endfor
+    elseif s:QFitemMatches(item, current_line, current_bufnr, current_column)
+      let err_start = cur_index
+      let in_err = v:true
+    endif
+    let cur_index +=1
+  endfor
+
+  " Catch the case where the "current" error line is an invalid one, and the
+  " cursor is not currently on an error occurance.
+  " Do nothing ... there's no way to figure out which item in the quickfix list
+  " we're currently on unless it's a valid item.
+  if err_start == -1
+    echomsg "Can't find which item is \"current\": Probably an invalid entry."
+    return
   endif
+
+  " cur_index is either the index of the next valid item in the quickfix list,
+  " or one past the end of the list
+  " Either way we need to remove all items in the range [err_start, cur_index)
+  call remove(current_quickfix, err_start, cur_index - 1)
+  call setqflist(current_quickfix, 'r')
 
   " Make the 'current' quickfix item the next one in the list.
-  if item_number != len(current_quickfix) + 1
-    execute 'keepalt keepjumps cc' . item_number
+  " If this item was the last element in the list, go back to the last.
+  if err_start < len(current_quickfix)
+    execute 'keepalt keepjumps cc ' . (err_start + 1)
+  else
+    keepalt keepjumps clast
   endif
 
-  " If the original position was at the item we removed, leave us at the next
-  " position, else move back to where we started
-  if startline == current_line && startbufnr == current_bufnr && a:bang
+  " Either jump back to where we started or leave us at the new place depending
+  " on given argument.
+  if a:jump
     return
   else
     " Return to current state
@@ -138,7 +191,7 @@ command -bang -nargs=1 QFilterMatch call s:FilterQuickfixListBySubject(<bang>0, 
 command -bar QuickfixSort call s:SortUniqQFList()
 command -bar -nargs=1 QuickFixSave call s:QuickFixSave(<q-args>)
 command -bar -nargs=1 -complete=file QuickFixRead call s:QuickFixRead(<q-args>)
-command -bang -bar -nargs=0 QFRemoveCurrent silent call s:RemoveCurrentQuickfixItem(<bang>0)
+command -bang -bar -nargs=0 QFRemoveCurrent call s:RemoveCurrentQuickfixItem(<bang>0)
 
 nnoremap <silent> <leader>qr :<C-u>QFRemoveCurrent!<CR>
 nnoremap <silent> <leader>qs :<C-u>QuickfixSort<CR>
