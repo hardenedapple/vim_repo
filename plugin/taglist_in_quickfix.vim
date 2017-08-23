@@ -34,6 +34,7 @@ function s:TagSelectToQuickfix(pattern, bang)
     let availableTags = filter(availableTags, 'v:val["name"] == "' . a:pattern . '"')
   endif
   call setqflist(map(availableTags, 's:convert_entry(v:val)'))
+  call helpers#open_list_unobtrusively('', 'copen')
   copen
 endfunction
 

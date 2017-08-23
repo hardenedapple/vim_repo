@@ -11,6 +11,8 @@ function helpers#working_environment(buffer_specific)
       return 'vim'
     elseif expand('%:p') =~? 'solaris'
       return 'solaris'
+    elseif expand('%:p') =~? 'cpython'
+      return 'python'
     endif
   endif
   if g:os == "SunOS"
@@ -46,7 +48,7 @@ function helpers#toggle_colon()
 endfunction
 
 function helpers#kill_slow_stuff()
-  " Try a bunch of things to improve the performance of files:help 
+  " Try a bunch of things to improve the performance of editing files.
 
   " Repeated call of the Vimple autocmd slows performance in large files.
   autocmd! Vimple                CursorMovedI
@@ -166,5 +168,46 @@ function helpers#plumb_this()
 
   " By default, search for the text
   call search('\<' . l:smallword . '\>',  'sw')
+endfunction
+
+" Directly taken from neomake/autoload/neomake.vim
+" This lets us open the quickfix window without moving the cursor and without
+" changing the previous window.
+let s:prev_windows = []
+function s:save_prev_windows() abort
+    let aw = winnr('#')
+    let pw = winnr()
+    if exists('*win_getid')
+        let aw_id = win_getid(aw)
+        let pw_id = win_getid(pw)
+    else
+        let aw_id = 0
+        let pw_id = 0
+    endif
+    call add(s:prev_windows, [aw, pw, aw_id, pw_id])
+endfunction
+
+function s:restore_prev_windows() abort
+    let [aw, pw, aw_id, pw_id] = remove(s:prev_windows, 0)
+    if winnr() != pw
+        " Go back, maintaining the '#' window (CTRL-W_p).
+        if pw_id
+            let aw = win_id2win(aw_id)
+            let pw = win_id2win(pw_id)
+        endif
+        if pw
+            if aw
+                exec aw . 'wincmd w'
+            endif
+            exec pw . 'wincmd w'
+        endif
+    endif
+endfunction
+
+function helpers#open_list_unobtrusively(height, method) abort
+  " Use height == '' for default height.
+  call s:save_prev_windows()
+  exe a:method . a:height
+  call s:restore_prev_windows()
 endfunction
 

@@ -231,11 +231,16 @@ nnoremap <leader>b :<C-U>ls<CR>:b<space>
 nnoremap <silent> <leader>u :<C-U>update<CR>
 
 " Put occurances of current word in quickfix
-command -bang -bar -nargs=1 Occur execute 'silent vimgrep /' . substitute('<bang>', '!', '\\<', '') . <q-args> . substitute('<bang>', '!', '\\>', '') . '/j ' . expand('%') . ' | copen'
-nnoremap <silent> <leader>sh :<C-U>Occur! <C-R><C-W><CR>
+" Used to have '| copen' at the end of this, but then the cursor jumps to the
+" quickfix window.
+command -bang -bar -nargs=1 Occur execute 'silent vimgrep /' . substitute('<bang>', '!', '\\<', '') . <q-args> . substitute('<bang>', '!', '\\>', '') . '/j ' . expand('%') ' | call helpers#open_list_unobtrusively("", "copen")'
+nnoremap <silent> <leader>sh :<C-U>Occur <C-R><C-W><CR>
 
 " Mouse mappings -- for code browsing when not changing anything.
 " NOTE: <LeftMouse> just goes to that position, this should be kept constant.
+" Reminder: While the Shift/Alt/Control mappings work really well in emacs, I
+" can't have them here because I usually run vim in an xterm, and the XTerm
+" menus are behind those mappings.
 vnoremap <LeftRelease> <LeftRelease>"*ygv
 
 nnoremap <RightMouse> <LeftMouse>:<C-U>silent call helpers#plumb_this()<CR>
