@@ -210,6 +210,9 @@ noremap ` '
 nnoremap <C-l> :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>
 nnoremap <leader>em  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 
+" Edit the current makeprg
+nnoremap <leader>ec  :<C-U><C-R><C-R>='let &makeprg="' . &makeprg . '"'<CR><C-F><left>
+
 " Mapping from vimcast 62
 function s:Again()
   let numtimes = v:count1
