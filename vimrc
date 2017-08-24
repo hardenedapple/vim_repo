@@ -427,7 +427,7 @@ function CompareLength(line1, line2) abort
   endif
 endfunction
 
-function SortByLength(reverse) abort
+function SortByLength(reverse) range abort
   let lines_to_sort = getline(a:firstline, a:lastline)
   if a:reverse
     call setline(a:firstline, reverse(sort(lines_to_sort, "CompareLength")))
