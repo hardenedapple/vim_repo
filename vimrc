@@ -437,6 +437,32 @@ function SortByLength(reverse) range abort
 endfunction
 
 command -bang -range Lensort <line1>,<line2>call SortByLength(<bang>0)
+
+" NOTE: it appears that a `range` attribute on one function doesn't get passed
+" over vimL calls.
+" In other words, executing `call ReplaceText(lines)` in the ReplaceReg()
+" function doesn't give ReplaceText() the correct a:firstline and a:lastline
+" arguments.
+" This is why there's this implementation function that takes range arguments
+" explicitly.
+function ReplaceShared(lines, first, last) abort
+  call append(a:last, a:lines)
+  " Question is: Do I want to same the original lines?
+  " I'm currently leaning towards "yes", but I may get annoyed by this in the
+  " future.
+  execute 'silent 'a:first.','.a:last.'d'
+  echom (a:last - a:first + 1) . ' lines replaced with ' . len(a:lines) . ' lines'
+endfunction
+function ReplaceText(lines) range abort
+  call ReplaceShared(a:lines, a:firstline, a:lastline)
+endfunction
+function ReplaceReg(...) range abort
+  let register = a:0 == '' ? v:register : a:1
+  call ReplaceShared(getreg(register, 1, v:true), a:firstline, a:lastline)
+endfunction
+
+command -bar -register -range ReplaceReg <line1>,<line2>call ReplaceReg(<reg>)
+command -bar -range -nargs=+ Replace <args>call ReplaceText(getline(<line1>,<line2>))
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
