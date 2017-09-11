@@ -59,8 +59,12 @@ if v:version < 700
         \ 'unimpaired', 'vimple']
 endif
 
-if !has('python')
+if !has('python') && !has('python3')
   let g:pathogen_disabled += ['gundo', 'ultisnips']
+endif
+
+if !has('python3')
+  let g:pathogen_disabled += ['vsh']
 endif
 
 if helpers#external_program_missing('hg')
@@ -69,6 +73,10 @@ endif
 
 if helpers#external_program_missing('git')
   let g:pathogen_disabled += ['fugitive',  'gitv']
+endif
+
+if helpers#external_program_missing('clang')
+  let g:pathogen_disabled += ['rtags']
 endif
 
 " Check plugin-plugin dependencies
@@ -92,7 +100,8 @@ else
         \  'sexp', 'sexp_mappings',
         \  'sideways', 'sneak', 'snippets', 'submode', 'surround', 'syntastic',
         \  'tabular', 'ultisnips', 'unimpaired', 'vimfindsme',
-        \  'vimple', 'visualstar', ]
+        \  'vimple', 'visualstar',
+        \  'rtags', ]
 endif
 " }}}
 

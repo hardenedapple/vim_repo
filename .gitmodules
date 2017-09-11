@@ -106,3 +106,6 @@
 [submodule "bundle/linediff"]
 	path = bundle/linediff
 	url = git://github.com/AndrewRadev/linediff.vim
+[submodule "bundle/rtags"]
+	path = bundle/rtags
+	url = git://github.com/hardenedapple/vim-rtags.git
