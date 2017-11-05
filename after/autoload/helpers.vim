@@ -3,6 +3,45 @@ function helpers#external_program_missing(program)
   return v:shell_error
 endfunction
 
+function s:save_colorscheme(synID)
+  " As far as I can tell, the bg#, fg# and sp# give no more information than
+  " bg, fg, and sp. When the color was specified with a RGB value, the
+  " un-hashed versions give the hash anyway.
+  let highlight_colors = ['fg', 'bg', 'sp']
+  let highlight_attributes = ['bold', 'italic', 'reverse', 'inverse', 'standout', 'underline', 'undercurl']
+
+  let cterm_highlights = []
+  let term_highlights = []
+  let gui_highlights = []
+  for color in highlight_colors
+    call add(cterm_highlights, ['cterm' . color, synIDattr(a:synID, color, 'cterm')])
+    call add(term_highlights, ['term' . color, synIDattr(a:synID, color, 'term')])
+    call add(gui_highlights, ['gui' . color, synIDattr(a:synID, color, 'gui')])
+  endfor
+
+  call add(cterm_highlights, ['cterm', join(filter(copy(highlight_attributes), 'synIDattr(a:synID, v:val, "cterm")'), ',')])
+  call add(term_highlights, ['term', join(filter(copy(highlight_attributes), 'synIDattr(a:synID, v:val, "term")'), ',')])
+  call add(gui_highlights, ['gui', join(filter(copy(highlight_attributes), 'synIDattr(a:synID, v:val, "gui")'), ',')])
+
+  let all_highlights = cterm_highlights
+  call extend(all_highlights, gui_highlights)
+  call extend(all_highlights, term_highlights)
+
+  let search_highlight_original = {}
+  for [key, value] in all_highlights
+    let search_highlight_original[key] = value
+  endfor
+  return search_highlight_original
+endfunction
+
+function s:set_colorscheme(group_name, colorset)
+  for [key, value] in items(colorset)
+    if value !=# ''
+      execute 'highlight ' . a:group_name . '=' . value
+    endif
+  endfor
+endfunction
+
 function helpers#where_cursor()
   " Draw attention to the current cursor position.
   " Mainly for when I've done some sort of jump and can't find it.
@@ -25,35 +64,7 @@ function helpers#default_search()
   " Reset the color of the search highlighting to the bright yellow, and store
   " the current color for resetting in the future.
   let synID = synIDtrans(hlID('Search'))
-
-  " As far as I can tell, the bg#, fg# and sp# give no more information than
-  " bg, fg, and sp. When the color was specified with a RGB value, the
-  " un-hashed versions give the hash anyway.
-  let highlight_colors = ['fg', 'bg', 'sp']
-  let highlight_attributes = ['bold', 'italic', 'reverse', 'inverse', 'standout', 'underline', 'undercurl']
-
-  let cterm_highlights = []
-  let term_highlights = []
-  let gui_highlights = []
-  for color in highlight_colors
-    call add(cterm_highlights, ['cterm' . color, synIDattr(synID, color, 'cterm')])
-    call add(term_highlights, ['term' . color, synIDattr(synID, color, 'term')])
-    call add(gui_highlights, ['gui' . color, synIDattr(synID, color, 'gui')])
-  endfor
-
-  call add(cterm_highlights, ['cterm', join(filter(copy(highlight_attributes), 'synIDattr(synID, v:val, "cterm")'), ',')])
-  call add(term_highlights, ['term', join(filter(copy(highlight_attributes), 'synIDattr(synID, v:val, "term")'), ',')])
-  call add(gui_highlights, ['gui', join(filter(copy(highlight_attributes), 'synIDattr(synID, v:val, "gui")'), ',')])
-
-  let all_highlights = cterm_highlights
-  call extend(all_highlights, gui_highlights)
-  call extend(all_highlights, term_highlights)
-
-  let search_highlight_original = {}
-  for [key, value] in all_highlights
-    let search_highlight_original[key] = value
-  endfor
-  let g:search_highlight_original = search_highlight_original
+  let g:search_highlight_original = s:save_colorscheme(synID)
   " Just hard-code this, as the color is bright.
   " In the future I'll probably want to do something clever, but at the moment
   " I have no idea what I'll want to do.
