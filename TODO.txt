@@ -1,12 +1,53 @@
 To Add:
+    Documentation about my config
+        Store information about what mappings I've added, what customisation
+        I've added etc.
+        This will be useful for reminders and for anyone else wanting to
+        understand what I've done.
+    Check for windows
+        disable those plugins that require a *nix environment.
+        Implement helpers#external_program_missing() for windows.
+            this currently just uses the `command` command, which isn't
+            available on windows.
+    Emacs frames see if any work on that is being made.
+        https://github.com/neovim/neovim/issues/2161
+        https://github.com/neovim/neovim/pull/6619
+        It seems like @teto might know something about it.
+        Have a look at the current implementation of screens, and whether it
+        can be/is getting externalised.
+        @justinmk uses an autocmd around `rshada | wshada` that gets a lot of
+        the functionality needed.
+        Have a look at that.
     Find something to map <BS> to.
-    Interface to info files -- (i.e. similar to :Man).
+    Make a better interface for working with hex-dumps
+        - Search hex ignoring line breaks (and ascii/offsets if using xxd)
+        - Search ascii only (ignoring line breaks, offsets, and hex)
+        - Maybe achieve the above by splitting the ascii, hex, and offsets into
+          different windows
+        - Improved versions of `go` and `:goto` that go to the hex position of
+          that part of the original file instead of that position in the
+          hexdump.
+    Literate programming for vim?
+        https://github.com/zyedidia/Literate
+        https://github.com/zyedidia/literate.vim
     Use neovim async for grepprg
         See grepper https://github.com/mhinz/vim-grepper
+        Works but I don't really like the interface.
     Allow navigation via mouse
         Have a look at what acme(1) does, and what vim(1) already does.
+        helpers#plumb_this() should leave the mouse above the cursor.
+    'includeexpr' for lua, and other filetypes where gf in general doesn't
+        work.
 
 To Fix:
+    :dp and :dl print/list the line just below the ones just deleted.
+        This may be the point of the commands, but I don't understand it if
+        that's the case.
+    vim-abolish switching between words-like-this-multi and words_like_this_multi
+        doesn't appear to be able to handle words with more than three parts.
+        i.e. words-like-this and words_like_this can be switched fine.
+    zb if folded and current line can't be scrolled past half way (but were
+    folds open it could).
     vim-sneak, ',' and ';' break 'ct,' and 'ct;' mappings.
         Instead of going up to the character specified, they go to one
         character before the one specified.
@@ -33,16 +74,12 @@ To Fix:
         Reads with 'keymap' enabled, but passes keys across in command mode
         (i.e. with 'keymap' disabled and with 'langmap' enabled).
         This is confusing, but I don't know what to do about it.
-    vim-sneak
-        When foldmethod=marker, but default is that foldmethod=syntax
-        it resets to foldmethod=syntax
-    vim-sneak
-        Using '-' as a key character jumps to somewhere completely different.
     vim-repeat and vim-surround
         repeating ysf)`  repeats as ysf)'
         doesn't happen for yse` ysiw` or anything else I've tried
         doesn't appear to be affected by 'iminsert', though only tried by
         toggling it once already set.
+        (this line)  (is a test for the above)
     Lose submode modes when losing focus because of the <FocusLost> key passed
     to neovim.
         (I think this is the case -- the mode isn't lost in vim, and
@@ -82,16 +119,9 @@ To Fix:
         ```
 
         `/\(Hello.*\n\)\{2}/e`
-    Folds close after certain commands:
-        :move +
-            This is hard-coded to do this in order to avoid a different
-            problem.
-            Foldmethod marker, syntax, foldexpr, indent -- always closes folds.
-            foldmethod=manual -- doesn't close fold
     :append doesn't call changed_lines()
     :append leaves the cursor in the insert shape
     :append when typing blank lines it doesn't show them in the echo area.
-    Pymode folding sometimes just goes away -- figure out why and when.
     Syntax highlighting after argdo on first command.
         This is something to do with when the syntax parsing happens -- I
         remember bairui pointing something out on #vim.
@@ -134,35 +164,17 @@ Strange un-reproducible things I noticed once:
         window had reached the end of the buffer.
         Jumping was bound together.
 
-Bug raised, not fixing myself just yet:
-    Python-mode ^A when a number at the end of the line, removes space before
-        the number.
-        Something to do with setting the cursor position in indentexpr.
-        Doing git-bisect found the problem in commit
-        906eff560e0ab1ce037b6f7088ffb23aa9a4959a
-    Python-mode after saving file, the ':s' command now replaces matching
-        pattern with nothing.
-        Can't find any way to save the previous replace pattern (other than a
-        hack with s/^/~/ and exe 's/^/'oldpattern'/')
-        Have registered a feature request with neovim.
-    Lawrencium error message at start of vim if not in mercurial repository.
-        Comes from the lawrencium#setup_buffer_commands() function, that calls
-        lawrencium#hg_repo() which calls lawrencium#throw() only to be caught.
-
 Repo organisation:
     Find a nice method to update the colorschemes.
     Keep a list of all changed/added keybord shortcuts.
 
-Possible extras:
-    Lisp ftplugin - map C-e and C-y to "move in sexp" up and down respectively.
-
 Plugins possibly to remove:
-    python-mode - cannabalise the motion commands and create a compile file for pylint2
+    python-mode - cannabalise the motion commands instead of using the
+    Braceless stuff?
         What I use:
             Motion commands --> see what I have in patches
             Folding         --> autoload/pymode/folding.vim
                                 Maybe modify this a bit to take account of closures
-            Lint            --> Make a compiler file for pylint2 and python2-pep8
 
 
 Keys that are valid mappings (i.e. don't directly overwrite anything):
@@ -178,20 +190,10 @@ Keys that are valid mappings (i.e. don't directly overwrite anything):
 
 Keys I don't use:
     spelling mappings (actually, just very rarely use them)
-    Q
     gQ
-    ZQ
-    ZZ
-    S
 
 
 Neovim:
 
 Things to add
     Use the Alt keys for useful things everywhere (yay for LeoNerds' libtermkey)
-    Make the equivalent of the :terminal buffer that allows modification of the
-    buffer.
-        i.e. I want something like the acme(1) win(1) buffer.
-        This is different to my vsh stuff because all output from the terminal
-        and input into the terminal would be done at the end of the buffer.
-        I imagine this would be more useful depending on what you want to do.
