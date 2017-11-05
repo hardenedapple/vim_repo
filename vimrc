@@ -284,6 +284,9 @@ endif
 nnoremap <F9> :<C-U>make<CR>
 
 nnoremap <silent> <leader>nh :<C-U>nohlsearch<CR>
+nnoremap <silent> <leader>ny :<C-U>call helpers#default_search()<CR>
+nnoremap <silent> <leader>ng :<C-U>call helpers#restore_search()<CR>
+nnoremap <silent> <leader>nw :<C-U>call helpers#where_cursor()<CR>
 
 nnoremap <silent> <leader>cl :<C-U>setlocal completeopt+=longest<CR>
 nnoremap <silent> <leader>cn :<C-U>setlocal completeopt-=longest<CR>

@@ -3,6 +3,77 @@ function helpers#external_program_missing(program)
   return v:shell_error
 endfunction
 
+function helpers#where_cursor()
+  " Draw attention to the current cursor position.
+  " Mainly for when I've done some sort of jump and can't find it.
+  for _ in range(0, 5)
+    let &cursorline = !&cursorline
+    let &cursorcolumn = !&cursorcolumn
+    redraw
+    sleep 20m
+  endfor
+endfunction
+
+function helpers#default_search()
+  if has_key(g:, 'search_highlight_original')
+    " If the previous stored items already exists, we assume the highlights are
+    " already set to bright yellow.
+    " This means that we don't overwrite the previously stored colors with the
+    " bright yellow if this function is called twice.
+    return
+  endif
+  " Reset the color of the search highlighting to the bright yellow, and store
+  " the current color for resetting in the future.
+  let synID = synIDtrans(hlID('Search'))
+
+  " As far as I can tell, the bg#, fg# and sp# give no more information than
+  " bg, fg, and sp. When the color was specified with a RGB value, the
+  " un-hashed versions give the hash anyway.
+  let highlight_colors = ['fg', 'bg', 'sp']
+  let highlight_attributes = ['bold', 'italic', 'reverse', 'inverse', 'standout', 'underline', 'undercurl']
+
+  let cterm_highlights = []
+  let term_highlights = []
+  let gui_highlights = []
+  for color in highlight_colors
+    call add(cterm_highlights, ['cterm' . color, synIDattr(synID, color, 'cterm')])
+    call add(term_highlights, ['term' . color, synIDattr(synID, color, 'term')])
+    call add(gui_highlights, ['gui' . color, synIDattr(synID, color, 'gui')])
+  endfor
+
+  call add(cterm_highlights, ['cterm', join(filter(copy(highlight_attributes), 'synIDattr(synID, v:val, "cterm")'), ',')])
+  call add(term_highlights, ['term', join(filter(copy(highlight_attributes), 'synIDattr(synID, v:val, "term")'), ',')])
+  call add(gui_highlights, ['gui', join(filter(copy(highlight_attributes), 'synIDattr(synID, v:val, "gui")'), ',')])
+
+  let all_highlights = cterm_highlights
+  call extend(all_highlights, gui_highlights)
+  call extend(all_highlights, term_highlights)
+
+  let search_highlight_original = {}
+  for [key, value] in all_highlights
+    let search_highlight_original[key] = value
+  endfor
+  let g:search_highlight_original = search_highlight_original
+  " Just hard-code this, as the color is bright.
+  " In the future I'll probably want to do something clever, but at the moment
+  " I have no idea what I'll want to do.
+  highlight Search cterm=NONE ctermfg=NONE ctermbg=11 gui=NONE guifg=NONE guibg=Yellow term=NONE
+endfunction
+
+function helpers#restore_search()
+  " Restore the original highlight attributes of the Search group as stored by
+  " helpers#default_search()
+  if !has_key(g:, 'search_highlight_original')
+    return
+  endif
+  for [key, value] in items(g:search_highlight_original)
+    if value !=# ''
+      execute 'highlight Search ' . key . '=' . value
+    endif
+  endfor
+  unlet g:search_highlight_original
+endfunction
+
 function helpers#working_environment(buffer_specific)
   if a:buffer_specific
     if expand('%:p') =~? '\(gnu\|gdb\|less\|binutils\)'
