@@ -5,12 +5,16 @@
 inoremap <buffer> /*  /*<Space><Space>*/<Left><Left><Left>
 if stridx(&formatoptions, 'r') != -1
   inoremap <buffer> /*<CR>  /*<CR><CR>/<Esc>kA 
+else
+  inoremap <buffer> /*<CR>  /*<CR><C-U> */<Esc>O
 endif
 
 " Assuming my default keymap is in place.
 inoremap <buffer> /8  /*<Space><Space>*/<Left><Left><Left>
 if stridx(&formatoptions, 'r') != -1
   inoremap <buffer> /8<CR>  /*<CR><CR>/<Esc>kA 
+else
+  inoremap <buffer> /8<CR>  /*<CR><C-U> */<Esc>O
 endif
 
 " add opening a block with {<CR>
