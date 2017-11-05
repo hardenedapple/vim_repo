@@ -42,15 +42,26 @@ function s:set_colorscheme(group_name, colorset)
   endfor
 endfunction
 
+function s:toggle_cursorcrosshairs(timer_id)
+  let &cursorline = !&cursorline
+  let &cursorcolumn = !&cursorcolumn
+endfunction
+
 function helpers#where_cursor()
   " Draw attention to the current cursor position.
   " Mainly for when I've done some sort of jump and can't find it.
-  for _ in range(0, 5)
-    let &cursorline = !&cursorline
-    let &cursorcolumn = !&cursorcolumn
-    redraw
-    sleep 20m
-  endfor
+  "
+  " TODO May want to change the color to make this clearer what's happening.
+  " NOTE
+  "   Before I had a loop doing `redraw` and `sleep 80m`. This wasn't
+  "   acceptable because the `redraw` took different times depending on the
+  "   filetype and what sort of things had to be calculated while the
+  "   `sleep 80m` just added a constant time to that.
+  "   Using timer_start(), the timer is (in neovim at least) added into vims
+  "   event queue, and the redraw is invoked automatically when vim goes back
+  "   to waiting for input from the user.
+  "   This means the wait time is much more consistent.
+  let timer_id = timer_start(100, function('s:toggle_cursorcrosshairs'), { 'repeat': 6 })
 endfunction
 
 function helpers#default_search()
