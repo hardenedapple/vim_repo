@@ -242,8 +242,8 @@ nnoremap <silent> <leader>u :<C-U>update<CR>
 " Put occurances of current word in quickfix
 " Used to have '| copen' at the end of this, but then the cursor jumps to the
 " quickfix window.
-command -bang -bar -nargs=1 Occur execute 'silent vimgrep /' . substitute('<bang>', '!', '\\<', '') . <q-args> . substitute('<bang>', '!', '\\>', '') . '/j ' . expand('%') ' | call helpers#open_list_unobtrusively("", "copen")'
-nnoremap <silent> <leader>sh :<C-U>Occur <C-R><C-W><CR>
+command -range=% -bang -bar -nargs=1 Occur execute 'silent vimgrep /' . substitute('<bang>', '!', '\\<', '') . <q-args> . substitute('<bang>', '!', '\\>', '') . '/j ' . expand('%') ' | <line1>,<line2>QFilterRange | call helpers#open_list_unobtrusively("", "copen")'
+nnoremap <silent> <leader>sh :Occur <C-R><C-W><CR>
 
 " Mouse mappings -- for code browsing when not changing anything.
 " NOTE: <LeftMouse> just goes to that position, this should be kept constant.

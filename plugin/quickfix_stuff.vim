@@ -25,6 +25,9 @@ function s:FilterQuickfixListBySubject(bang, pattern)
   call setqflist(filter(getqflist(), "v:val['text'] " . cmp . "a:pattern"))
 endfunction
 
+function s:FilterQuickfixListByPosition(bang, line1, line2)
+  call setqflist(filter(getqflist(), { index, value -> xor(a:bang, value['lnum'] >= a:line1 && value['lnum'] <= a:line2) }))
+endfunction
 
 " Sort and remove duplicates in qflist
 " http://vim.wikia.com/wiki/Automatically_sort_Quickfix_list
@@ -188,6 +191,7 @@ endfunction
 command -nargs=0 -bar Qargs execute 'args' s:QuickfixFilenames()
 command -bang -nargs=1 -complete=file QFilterBuf call s:FilterQuickfixListByBuffer(<bang>0, <q-args>)
 command -bang -nargs=1 QFilterMatch call s:FilterQuickfixListBySubject(<bang>0, <q-args>)
+command -range -bang -bar QFilterRange call s:FilterQuickfixListByPosition(<bang>0, <line1>, <line2>)
 command -bar QuickfixSort call s:SortUniqQFList()
 command -bar -nargs=1 QuickFixSave call s:QuickFixSave(<q-args>)
 command -bar -nargs=1 -complete=file QuickFixRead call s:QuickFixRead(<q-args>)
