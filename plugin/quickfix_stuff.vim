@@ -1,3 +1,10 @@
+" TODO Look into moving all these functions into the autoload directory.
+" That way other parts of my config could use this functionality.
+" I need this in the FilterQuickfixListByPosition() function, but don't expect
+" I'll need it anywhere else.
+" On the other hand ... I really don't like the idea of splitting the functions
+" based on which I need elsewhere. It seems like they should all be together..
+"
 " Qargs command from vimcast 45
 " Note this function is degenerate with Vimple's QFbufs
 " Also, the command Qargs is degenerate with Vimple's QFargs (though QFargs has
@@ -23,10 +30,6 @@ endfunction
 function s:FilterQuickfixListBySubject(bang, pattern)
   let cmp = a:bang ? '!~#' : '=~#'
   call setqflist(filter(getqflist(), "v:val['text'] " . cmp . "a:pattern"))
-endfunction
-
-function s:FilterQuickfixListByPosition(bang, line1, line2)
-  call setqflist(filter(getqflist(), { index, value -> xor(a:bang, value['lnum'] >= a:line1 && value['lnum'] <= a:line2) }))
 endfunction
 
 " Sort and remove duplicates in qflist
@@ -191,7 +194,7 @@ endfunction
 command -nargs=0 -bar Qargs execute 'args' s:QuickfixFilenames()
 command -bang -nargs=1 -complete=file QFilterBuf call s:FilterQuickfixListByBuffer(<bang>0, <q-args>)
 command -bang -nargs=1 QFilterMatch call s:FilterQuickfixListBySubject(<bang>0, <q-args>)
-command -range -bang -bar QFilterRange call s:FilterQuickfixListByPosition(<bang>0, <line1>, <line2>)
+command -range -bang -bar QFilterRange call helpers#FilterQuickfixListByPosition(<bang>0, <line1>, <line2>, v:true)
 command -bar QuickfixSort call s:SortUniqQFList()
 command -bar -nargs=1 QuickFixSave call s:QuickFixSave(<q-args>)
 command -bar -nargs=1 -complete=file QuickFixRead call s:QuickFixRead(<q-args>)

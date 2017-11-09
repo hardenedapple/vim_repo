@@ -304,3 +304,9 @@ function helpers#open_list_unobtrusively(height, method) abort
   call s:restore_prev_windows()
 endfunction
 
+" Quickfix functions
+function helpers#FilterQuickfixListByPosition(bang, line1, line2, new_list)
+  call setqflist(filter(getqflist(), { index, value -> xor(a:bang, value['lnum'] >= a:line1 && value['lnum'] <= a:line2) }),
+        \ a:new_list ? ' ' : 'r')
+endfunction
+
