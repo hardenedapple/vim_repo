@@ -7,21 +7,25 @@ endif
 
 function s:OpenManThisWindow(man_page)
   " If we start off in a man page, don't want to remove previous window
-  if &filetype == "man"
-    let close_prev = 0
-  else
-    let close_prev = 1
-  endif
-  let current_buffer = bufnr('%')
+  " We can't tell by checking anything to do with the current buffer, because
+  " if a man page is open in another window the then :Man will show the new
+  " page in that window, moving us there.
+  "
+  " The only real way to tell if we've opened another window is to count the
+  " number of windows before and after.
+  let window_count = winnr('$')
+  let curwin = winnr()
   exe "Man " . a:man_page
-  if current_buffer == bufnr('%')
+  if window_count == winnr('$')
     return 1
   endif
-  if close_prev
-    exe "wincmd k"
-    close
-    exe "wincmd p"
-  endif
+
+  " Close the window that we were in before this new one was opened.
+  " n.b. I had  `wincmd k`, `close`, 'wincmd p` before.
+  " I don't know if that was for any reason ... I've changed it to this because
+  " it looks like it will be neater and not mess around with any convenience
+  " variables.
+  exe curwin . 'close'
 endfunction
 
 " Doesn't actually have to be a single argument, passing the string '2 write'
