@@ -242,8 +242,40 @@ nnoremap <silent> <leader>u :<C-U>update<CR>
 " Put occurances of current word in quickfix
 " Used to have '| copen' at the end of this, but then the cursor jumps to the
 " quickfix window.
-command -range=% -bang -bar -nargs=1 Occur execute 'silent vimgrep /' . substitute('<bang>', '!', '\\<', '') . <q-args> . substitute('<bang>', '!', '\\>', '') . '/j ' . expand('%') ' | call helpers#FilterQuickfixListByPosition(0, <line1>, <line2>, v:false) | call helpers#open_list_unobtrusively("", "copen")'
-nnoremap <silent> <leader>sh :Occur <C-R><C-W><CR>
+"
+" I have two versions because with the vimgrep version we're stuck when working
+" in buffers that don't have an underlying file, or with files that have
+" strange names.
+" The function version is really slow in large files (e.g. 300,000 lines in
+" some weechat logs).
+" The function is mostly taken from man#show_toc()
+function OccurSearch(pattern, word_match) abort range
+  let pattern = a:word_match ? '\<' . a:pattern . '\>' : a:pattern
+  let bufname = bufname('%')
+  let info = getqflist({'title': 1})
+  let title = 'Occur: '. bufname . ' ' . pattern . ' ' . a:firstline . ',' . a:lastline
+  if info.title ==# title
+    copen
+    return
+  endif
+
+  let entries = []
+  let lnum = a:firstline
+  while lnum && lnum <= a:lastline
+    let text = getline(lnum)
+    if text =~# pattern
+      call add(entries, {'bufnr': bufnr('%'), 'lnum': lnum, 'text': text})
+    endif
+    let lnum = lnum + 1
+  endwhile
+
+  call setqflist(entries, ' ')
+  call setqflist([], 'a', {'title': title})
+  copen
+endfunction
+command -range=% -bang -bar -nargs=1 Occur <line1>,<line2>call OccurSearch(<q-args>, <bang>0)
+command -range=% -bang -bar -nargs=1 OccurFast execute 'silent vimgrep /' . substitute('<bang>', '!', '\\<', '') . <q-args> . substitute('<bang>', '!', '\\>', '') . '/j ' . expand('%') ' | call helpers#FilterQuickfixListByPosition(0, <line1>, <line2>, v:false) | call helpers#open_list_unobtrusively("", "copen")'
+nnoremap <silent> <leader>sh :OccurFast <C-R><C-W><CR>
 
 " Mouse mappings -- for code browsing when not changing anything.
 " NOTE: <LeftMouse> just goes to that position, this should be kept constant.
