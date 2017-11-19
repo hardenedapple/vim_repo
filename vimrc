@@ -653,7 +653,11 @@ set incsearch
 " When running under zsh, have a problem with 'grep -s ...'
 " could do stuff with NO_NOMATCH, but for compatibility with other boxes, just
 " use bash
-set shell=/bin/bash
+if has('unix')
+  set shell=bash
+elseif has('win32')
+  set shell=powershell.exe
+endif
 
 " Cscope settings
 if has('cscope')
