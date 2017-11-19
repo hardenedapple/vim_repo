@@ -20,7 +20,7 @@ if !has('nvim')
 endif
 " I haven't had a chance to try out these tests, so I don't actually know if
 " this is a nice way of distinguishing things. It looks like it would work.
-let os_features = ['mac', 'macunix', 'win32', 'win32unix', 'win64']
+let os_features = ['mac', 'macunix', 'win64', 'win32unix', 'win32']
 if has('unix')
   let g:os = substitute(system('uname'), '\n', '', '')
 else
@@ -708,6 +708,13 @@ set printoptions=number:y
 if g:os == 'SunOS'
   set grepprg=ggrep\ -n\ $*\ /dev/null
   set makeprg=gmake
+endif
+" }}}
+
+" {{{ Windows options
+if has('win32')
+  noremap <C-6> <C-^>
+  noremap! <C-6> <C-^>
 endif
 " }}}
 
