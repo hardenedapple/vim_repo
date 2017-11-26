@@ -490,11 +490,15 @@ command -bang -range Lensort <line1>,<line2>call SortByLength(<bang>0)
 " This is why there's this implementation function that takes range arguments
 " explicitly.
 function ReplaceShared(lines, first, last) abort
-  call append(a:last, a:lines)
-  " Question is: Do I want to same the original lines?
+  " Question is: Do I want to save the original lines?
   " I'm currently leaning towards "yes", but I may get annoyed by this in the
   " future.
   execute 'silent 'a:first.','.a:last.'d'
+  call append(a:first - 1, a:lines)
+  " Want to leave '[ and '] surrounding the text we just inserted.
+  " Putting '] on the last inserted character matches the behaviour of 'p' on a
+  " linewise register.
+  call setpos("']", [0, a:first + len(a:lines) - 1, len(a:lines[-1]), 0])
   echom (a:last - a:first + 1) . ' lines replaced with ' . len(a:lines) . ' lines'
 endfunction
 function ReplaceText(lines) range abort
