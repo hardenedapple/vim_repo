@@ -20,6 +20,24 @@ function s:QuickfixFilenames()
   return join(map(values(buffer_numbers), 'fnameescape(v:val)'))
 endfunction
 
+" We don't handle keeping the original users state here.
+" This is partly because it's a futile task
+" `keepjumps` just doesn't work with `buffer +<lnum> <bufnum>`
+" and partly because we're emulating the `argdo`, `bufdo` and `windo`
+" behaviour, which requires leaving the cursor at the last position where the
+" given command was run.
+function s:ForEachQuickfixItem(cmdstring)
+  for item in getqflist()
+    if item['bufnr'] == 0
+      continue
+    endif
+    exe 'buffer +' . item['lnum'] . ' ' . item['bufnr']
+    normal zn
+    exe a:cmdstring
+    normal zN
+  endfor
+endfunction
+
 
 " Filter quicklist from http://dhruvasagar.com/tag/vim
 function s:FilterQuickfixListByBuffer(bang, pattern)
@@ -199,6 +217,7 @@ command -bar QuickfixSort call s:SortUniqQFList()
 command -bar -nargs=1 QuickFixSave call s:QuickFixSave(<q-args>)
 command -bar -nargs=1 -complete=file QuickFixRead call s:QuickFixRead(<q-args>)
 command -bang -bar -nargs=0 QFRemoveCurrent call s:RemoveCurrentQuickfixItem(<bang>0)
+command -nargs=1 -complete=command QFdoItem call s:ForEachQuickfixItem(<q-args>)
 
 nnoremap <silent> <leader>qr :<C-u>QFRemoveCurrent!<CR>
 nnoremap <silent> <leader>qs :<C-u>QuickfixSort<CR>
