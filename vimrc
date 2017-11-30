@@ -594,9 +594,11 @@ set history=50
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Behaviour {{{
 
-" Make the search path include current directory, directory of current buffer,
-" and directories below.
-set path=.,**,,
+" " Make the search path include current directory, directory of current buffer,
+" " and directories below.
+" " Previously I've used **, but for now I'm trying out using the default.
+" " This should ensure that searching never
+" set path=.,**,,
 
 " Internal :Man command
 set keywordprg=:Man
