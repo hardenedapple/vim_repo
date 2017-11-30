@@ -249,7 +249,7 @@ nnoremap <silent> <leader>u :<C-U>update<CR>
 " The function version is really slow in large files (e.g. 300,000 lines in
 " some weechat logs).
 " The function is mostly taken from man#show_toc()
-function OccurSearch(pattern, word_match) abort range
+function OccurSearch(pattern, word_match, add) abort range
   let pattern = a:word_match ? '\<' . a:pattern . '\>' : a:pattern
   let bufname = bufname('%')
   let info = getqflist({'title': 1})
@@ -269,11 +269,13 @@ function OccurSearch(pattern, word_match) abort range
     let lnum = lnum + 1
   endwhile
 
-  call setqflist(entries, ' ')
+  call setqflist(entries, a:add ? 'a' : ' ')
   call setqflist([], 'a', {'title': title})
   copen
 endfunction
-command -range=% -bang -bar -nargs=1 Occur <line1>,<line2>call OccurSearch(<q-args>, <bang>0)
+
+command -range=% -bang -bar -nargs=1 Occur <line1>,<line2>call OccurSearch(<q-args>, <bang>0, 0)
+command -range=% -bang -bar -nargs=1 Occuradd <line1>,<line2>call OccurSearch(<q-args>, <bang>0, 1)
 command -range=% -bang -bar -nargs=1 OccurFast execute 'silent vimgrep /' . substitute('<bang>', '!', '\\<', '') . <q-args> . substitute('<bang>', '!', '\\>', '') . '/j ' . expand('%') ' | call helpers#FilterQuickfixListByPosition(0, <line1>, <line2>, v:false) | call helpers#open_list_unobtrusively("", "copen")'
 nnoremap <silent> <leader>sh :OccurFast <C-R><C-W><CR>
 
