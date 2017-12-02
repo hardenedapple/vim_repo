@@ -100,7 +100,16 @@ endfunction
 " Useful for marking a quickfix item as 'looked at' when searching for things.
 
 function s:QFitemMatches(qfitem, l, b, c)
-  let col_matches = a:qfitem['col'] == a:c
+  " If the column is 0, then the cursor is left at the start of the text on
+  " the relevant line and virtcol('.') can return pretty much anything.
+  " I could get the current line, and find the start of text to check that
+  " we're pointing at the correct column.
+  " I suspect that would have some other problems, as I don't think putting the
+  " cursor on the start of the current column is anything stable to be
+  " scripting against.
+  " Hence we just ignore the column if the quickfix item doesn't specify any
+  " particular column.
+  let col_matches = a:qfitem['col'] == a:c || a:qfitem['col'] == 0
   let line_buf_matches = (a:qfitem['lnum'] == a:l && a:qfitem['bufnr'] == a:b)
   if line_buf_matches && col_matches
     return 1
