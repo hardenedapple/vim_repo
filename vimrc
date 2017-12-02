@@ -254,7 +254,11 @@ function OccurSearch(pattern, word_match, add) abort range
   let bufname = bufname('%')
   let info = getqflist({'title': 1})
   let title = 'Occur: '. bufname . ' ' . pattern . ' ' . a:firstline . ',' . a:lastline
-  if info.title ==# title
+  " Using get() is required for vim in case the quickfix dictionary returned
+  " doesn't have a title.
+  " One time when this happens is just after starting the program up.
+  " This isn't a worry in neovim.
+  if get(info, 'title', '') ==# title
     copen
     return
   endif
