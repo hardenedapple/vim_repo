@@ -195,6 +195,9 @@ set statusline=%<\ %f\ #%n\ %h%m%r%=%k\ %-14.(%l,%c%V%)\ %P
 let mapleader=" "
 let maplocalleader="\\"
 
+" Don't timeout waiting for key mappings.
+set notimeout
+
 " macro to put spaces around a character - e.g. python operators
 let @s='?\S[=*<+/>-]\Slcl  P:nohlsearch'
 
