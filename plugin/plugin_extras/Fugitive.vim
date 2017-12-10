@@ -17,6 +17,5 @@ command! -bar Gstaged  Git! diff --cached
 nnoremap <silent> <leader>gw :<C-U>Gwrite<CR>
 nnoremap <silent> <leader>gd :<C-U>Gdiff<CR>
 nnoremap <silent> <leader>gp :<C-U>Gpush<CR>
-nnoremap <silent> <leader>gf :<C-U>Gpurr<CR>
 nnoremap <silent> <leader>gc :<C-U>Gcommit<CR>
 nnoremap <silent> <leader>gs :<C-U>Gstatus<CR>
