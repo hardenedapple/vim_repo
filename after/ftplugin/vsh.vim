@@ -10,3 +10,6 @@ nnoremap <silent><buffer> <localleader>q :call helpers#toggle_colon()<CR>
 " When completing filenames in things like `dd if=...` I want to remove the '='
 " sign from isfname.
 setlocal isfname-==
+
+" Want `tabstop` to be 8 for output, but want 4 for when typing commands.
+setlocal softtabstop=4
