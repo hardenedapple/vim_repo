@@ -286,26 +286,6 @@ command -range=% -bang -bar -nargs=1 Occuradd <line1>,<line2>call OccurSearch(<q
 command -range=% -bang -bar -nargs=1 OccurFast execute 'silent vimgrep /' . substitute('<bang>', '!', '\\<', '') . <q-args> . substitute('<bang>', '!', '\\>', '') . '/j ' . expand('%') ' | call helpers#FilterQuickfixListByPosition(0, <line1>, <line2>, v:false) | call helpers#open_list_unobtrusively("", "copen")'
 nnoremap <silent> <leader>sh :OccurFast <C-R><C-W><CR>
 
-" Mouse mappings -- for code browsing when not changing anything.
-" NOTE: <LeftMouse> just goes to that position, this should be kept constant.
-" Reminder: While the Shift/Alt/Control mappings work really well in emacs, I
-" can't have them here because I usually run vim in an xterm, and the XTerm
-" menus are behind those mappings.
-vnoremap <LeftRelease> <LeftRelease>"*ygv
-
-nnoremap <RightMouse> <LeftMouse>:<C-U>silent call helpers#plumb_this()<CR>
-nnoremap q<RightMouse> <C-O>
-nnoremap q<LeftMouse> <C-I>
-nnoremap f<RightMouse> <LeftMouse>:<C-U>silent Occur <C-R><C-W><CR>
-nnoremap F<RightMouse> <LeftMouse>:<C-U>silent Occur! <C-R><C-W><CR>
-" NOTE: in order to make this mapping work with ftplugin/man.vim reading man
-" pages, I have to use nmap.
-" This is because it maps <C-T> to 'go back a man page', which I need to use,
-" and the function that implements that functionality is script-local.
-" Hence -- watch out for this, be careful to not map <LeftMouse> to anything
-" that will change this behaviour.
-nmap '<LeftMouse> <LeftMouse><C-T>
-
 " Remove trailing whitespace
 nnoremap <silent> <F10> :<C-U>%s/\s\+$//<CR>:nohlsearch<CR>
 
