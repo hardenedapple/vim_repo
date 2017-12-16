@@ -437,7 +437,9 @@ function MakeExecutableIfScript()
   endif
 endfunction
 
-au BufWritePost * call MakeExecutableIfScript()
+if !has('win32')
+  au BufWritePost * call MakeExecutableIfScript()
+endif
 
 " When executing automatic commands, wait until finished
 set lazyredraw
