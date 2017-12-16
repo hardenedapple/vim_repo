@@ -64,6 +64,27 @@ function s:StartSpellFix()
   endif
 endfunction
 
+function s:RevertSpellFix()
+  call systemlist('git checkout --force '. s:original_commit)
+  call systemlist('git stash pop --index')
+  unlet s:original_commit
+  execute 'b ' . s:orig_buf
+  unlet s:orig_buf
+  call setpos('.', s:orig_pos)
+  unlet s:orig_pos
+endfunction
+
+function s:QuitSpellFix()
+  if get(s:, 'original_commit', '') == ''
+    echoerr 'QuitSpellFix must be called after StartSpellFix'
+    echoerr 'QuitSpellFix can not find an internal variable that StartSpellFix sets'
+    echoerr 'Exiting without taking action'
+    return
+  endif
+
+  call s:RevertSpellFix()
+endfunction
+
 function s:FinishSpellFix()
   if get(s:, 'original_commit', '') == ''
     echoerr 'FinishSpellFix must be called after StartSpellFix'
@@ -81,14 +102,20 @@ function s:FinishSpellFix()
     let unique_id = output[0]
     if len(unique_id) == 40
       call systemlist('git checkout -b spelling-correction'. unique_id)
-      call systemlist('git commit -m "spelling correction '. unique_id . '"')
-      call systemlist('git checkout --force '. s:original_commit)
-      call systemlist('git stash pop --index')
-      unlet s:original_commit
-      execute 'b ' . s:orig_buf
-      unlet s:orig_buf
-      call setpos('.', s:orig_pos)
-      unlet s:orig_pos
+      let continue = 2
+      if v:shell_error
+        echoerr 'git checkout -b spelling-correction' . unique_id . ' failed'
+        echoerr 'has this spelling correction already been made?'
+        let continue = confirm('What do you want to do?',
+              \ "&Revert without commiting spellfix\n&Commit on current branch\n&Do nothing",
+              \ 3)
+      endif
+      if continue == 2
+        call systemlist('git commit -m "spelling correction '. unique_id . '"')
+      endif
+      if continue != 3
+        call s:RevertSpellFix()
+      endif
     else
       echoerr 'Found invalid length patch-id' . unique_id
     endif
@@ -101,5 +128,7 @@ endfunction
 
 command -nargs=0 Gspellfixstart call s:StartSpellFix()
 command -nargs=0 Gspellfixend call s:FinishSpellFix()
+command -nargs=0 Gspellfixquit call s:QuitSpellFix()
 nnoremap <silent> <leader>gf :<C-U>Gspellfixstart<CR>
 nnoremap <silent> <leader>gx :<C-U>Gspellfixend<CR>
+nnoremap <silent> <leader>gq :<C-U>Gspellfixquit<CR>
