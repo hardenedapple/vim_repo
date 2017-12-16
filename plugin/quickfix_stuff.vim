@@ -204,7 +204,12 @@ command -bang -nargs=1 -complete=file QFilterBuf call s:FilterQuickfixListByBuff
 command -bang -nargs=1 QFilterMatch call s:FilterQuickfixListBySubject(<bang>0, <q-args>)
 command -range -bang -bar QFilterRange call helpers#FilterQuickfixListByPosition(<bang>0, <line1>, <line2>, v:true)
 command -bar QuickfixSort call s:SortUniqQFList()
-command -bar -nargs=1 QuickFixSave call s:QuickFixSave(<q-args>)
+" Originally I decided not to have file completion QuickFixSave is usually
+" creating a new file, and file completion implies I should be overwriting
+" one.
+" On the other hand completion for directories is much too useful for this
+" command to ignore.
+command -bar -nargs=1 -complete=file QuickFixSave call s:QuickFixSave(<q-args>)
 command -bar -nargs=1 -complete=file QuickFixRead call s:QuickFixRead(<q-args>)
 command -bang -bar -nargs=0 QFRemoveCurrent call s:RemoveCurrentQuickfixItem(<bang>0)
 
