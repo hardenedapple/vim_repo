@@ -27,6 +27,14 @@ function s:convert_entry(entry)
   return entry
 endfunction
 
+" This function exposes the functionality of converting a taglist into a
+" quickfix list.
+" This is useful when manually examining large taglist returns (e.g. there's a
+" lot of functions with the same name because of C++).
+function TQFSetQuickfix(taglist)
+  call setqflist(map(taglist, { index, value -> s:convert_entry(value) }))
+endfunction
+
 function s:TagSelectToQuickfix(pattern, bang)
   let pattern = empty(a:pattern) ? '.' : a:pattern
   let availableTags = taglist(pattern)
