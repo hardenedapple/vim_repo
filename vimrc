@@ -261,7 +261,7 @@ function OccurSearch(pattern, word_match, add) abort range
   " doesn't have a title.
   " One time when this happens is just after starting the program up.
   " This isn't a worry in neovim.
-  if get(info, 'title', '') ==# title
+  if get(info, 'title', '') ==# title && !a:add
     return
   endif
 
