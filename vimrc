@@ -262,7 +262,6 @@ function OccurSearch(pattern, word_match, add) abort range
   " One time when this happens is just after starting the program up.
   " This isn't a worry in neovim.
   if get(info, 'title', '') ==# title
-    copen
     return
   endif
 
@@ -278,7 +277,6 @@ function OccurSearch(pattern, word_match, add) abort range
 
   call setqflist(entries, a:add ? 'a' : ' ')
   call setqflist([], 'a', {'title': title})
-  copen
 endfunction
 
 command -range=% -bang -bar -nargs=1 Occur <line1>,<line2>call OccurSearch(<q-args>, <bang>0, 0)
