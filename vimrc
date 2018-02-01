@@ -276,7 +276,9 @@ function OccurSearch(pattern, word_match, add) abort range
   endwhile
 
   call setqflist(entries, a:add ? 'a' : ' ')
-  call setqflist([], 'a', {'title': title})
+  if !a:add
+    call setqflist([], 'a', {'title': title})
+  endif
 endfunction
 
 command -range=% -bang -bar -nargs=1 Occur <line1>,<line2>call OccurSearch(<q-args>, <bang>0, 0)
