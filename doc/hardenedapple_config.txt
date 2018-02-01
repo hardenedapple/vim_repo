@@ -1,0 +1,174 @@
+*hardenedapple_config.txt*  Personal Config. *config* *Config*
+
+Contents~
+            *config-contents*
+Settings    |config-settings|
+Functions   |config-functions|
+Commands    |config-commands|
+Mappings    |config-mappings|
+Filetypes   |config-ftplugins| |config-filetypes|
+Config      |config-config|
+
+==============================================================================
+Settings~
+
+            *config-settings*
+This section contains information and thoughts about some of the settings I
+have.
+I skip most settings, as they can be found in the vimrc. The settings
+described here are those that are rare, require some interdependence on other
+settings, or I'm not actually sure that I like.
+
+*config-keymap*
+I use 'keymap' to be able to quickly toggle between "programmers" keyboard
+(where the number keys and their shifted equivalents are swapped) and
+standard.
+This is not the way that it was designed, but as I don't write in other
+languages as a rule I repurpose it.
+
+I find this setting very useful, reducing the need to press shift for many
+programming languages. Moreover, when I do need to type in numbers, I can
+quickly toggle the mappings with |i_CTRL-^|.
+
+The biggest problem with this setting is that the translation is done when
+recording macros, but not when replaying them.
+I have a patch that removes this problem at the cost of introducing bacwards
+incompatability by removing the |:lnoremap| command.
+
+
+
+==============================================================================
+==============================================================================
+Functions~
+
+*config-hlsearch*
+I have hlsearch set, but because the default bright yellow hurts my eyes and
+makes some of the writing unreadable I have it set at a dull grey in my
+colorscheme.
+
+This has the downside that the search matches are not as easy to see as
+otherwise but does mean I don't always have to disable the hlsearch before
+continuing work, as the screen is useable with the highlights there.
+
+In order to get the best of both worlds, I have a mapping that highlights
+search matches in bright colors and stores the original colors so that a
+second mapping can reset them once asked.
+
+TODO This may be better if made symmetric so there's no special difference
+between the bright colors and dull colors.
+i.e. there's just a bright color setting and a dull color setting instead of
+a "turn on bright colors temporarily" setting and a "revert to dull colors".
+Maybe could do this with highlight links.
+
+Mappings related to this functionality are:
+*config-<leader>nh* does |:nohlsearch|
+*config-<leader>ny* sets the search highlighting to a bright color (yellow)
+*config-<leader>ng* sets the search highlighting back to the default
+*config-<leader>nw* toggles highlighting the cursorline and cursorcolumn a few
+                    times in order to identify where the cursor is at the moment.
+
+*config-TQFSetQuickfix*
+This function takes a list in the format returned by the |taglist()| function,
+and sets the quickfix list to match those items.
+The functionality provided is to convert the items from the |taglist()|
+function into items in the format required by the |setqflist()| function.
+
+*config-helpers#external_program_missing()*
+This function takes a string and returns a boolean indicating whether that
+string exists as a unix command in the current `$PATH`.
+
+==============================================================================
+Commands~
+
+            *config-commands*
+*config-:Occur*
+This command is the equivalent of a |:grep| command, but it works on the
+buffer instead of the underlying file and can take a range.
+This is mainly useful for searching for occurances of a local variable in a
+function, but is also useful when searching buffers that don't have underlying
+files.
+Since it can search buffers that don't have underlying files, this can be
+nicer with |:bufdo|.
+
+*config-:Occuradd*
+Does the same as |config-:Occur|, but adds to the quickfix list instead of
+overwriting it.
+One other difference is that, like |:grepadd| and |:vimgrepadd|, it doesn't
+change the title of the quickfix list from the original.
+
+*config-:OccurFast*
+This does the same as |config-:Occur| but uses |:vimgrep| instead of a vimL
+coded search.
+This is different to |:vimgrep| as the command immediately filters the
+quickfix based on the given range.
+The benefit of this implementation over |config-:Occur| is that it is
+significantly faster, but it has a downside that it needs the current buffer
+to be visiting an existing file.
+
+There is a mapping of *config-<leader>sh* that runs |config-:OccurFast| on the
+word under the cursor.
+
+*config-:Replace*
+Given a range, and an argument that designates a second range, this command
+replaces the text in the argument range with the text in in the standard vim
+range used.
+Example >
+    :10,13Replace /hello/;+10
+<
+The above replaces the text between the next occurance of the word `hello` and
+the ten lines after it with the text between the lines `10` and `13`.
+
+*config-:ReplaceReg*
+This function takes a range and a register.
+It replaces the text in the range specified with the text in the given
+register.
+Example >
+    "x:10,12ReplaceReg
+<
+Replaces the text between the lines `10` and `12` with the text in register
+`x`.
+
+==============================================================================
+VimCmd~
+
+            *config-vimcmd*
+
+*config-RunCommand* *config-<F2>*
+To add a small amount of wealth to the text of my programs in vim I've added
+some commands and mappings that allow leaving relevant vim commands in
+comments next to the program text they're useful with regards to.
+
+This can be useful to define a `make` command in small programs where writing
+a Makefile is OTT, to store a vim command that changes the program/script
+between a few different versions, or to leave a description of some
+interesting commands to run that provide more information on how the given
+program behaves.
+
+The command parses the current line (or all lines in a given range) and treats
+all text after the string `vimcmd` as a command to parse and execute.
+There are three different versions distinguished by the character immediately
+following `vimcmd`.
+`vimcmd:` indicates that the command should be executed without any extra
+positioning of the cursor (outside those that the command will do).
+`vimcmd;` indicates that the cursor should be moved to the line with the
+command before the command is executed.
+`vimcmd!` indicates that the cursor should both be moved to the command line
+before command execution, and repositioned back on that line command
+execution.
+
+*config-<leader>es*
+This mapping creates a `vimcmd` string referencing the current file and line
+number and stores it in the unnamed register.
+This is to help storing references to other files when describing the
+interdependence of different functions.
+
+==============================================================================
+Config~
+
+            *config-config*
+This section describes the automatic choices that my config makes depending on
+the OS, environment and files opened excluding filetype differences.
+
+
+
+ vim:tw=78:et:ft=help:norl:
