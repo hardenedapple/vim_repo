@@ -529,6 +529,37 @@ set wildignore+=*.pyc,__pycache__/,*~,.*.swp,*.aux,*.dvi,*.bbl,*.blg,*.brf,*.toc
 set infercase
 set noignorecase
 
+" TODO Make this work on the word just before the cursor instead of simply the
+" last word on the command line.
+" TODO Is there any way to make things like `:b %:h/Lib/%:t:r.cpp` work?
+function s:expand_commandline()
+  " This function doesn't make sense to be called outside of command line mode:
+  " 1) The method it takes to find the last expression uses `getcmdline()`.
+  " 2) In a normal buffer it's easier to select what you just inserted, and
+  " expand it, you can just wait until your edit finishes and do that in normal
+  " mode.
+  " 3) I don't find myself wanting to expand vimL ex
+  if mode() != 'c'
+    return ''
+  endif
+  let currentline = getcmdline()
+  let last_element = split(currentline)[-1]
+  let expanded_element = expand(last_element)
+  " expand() returns empty if it doesn't recognise the argument.
+  if expanded_element == ''
+    return ''
+  endif
+  " Can't simply join() the split line for fear of removing spaces that matter.
+  " :somecommand "  " %:h
+  " Could use something like
+  " return "\<C-u>" . currentline[:- len(last_element) - 1] . expanded_element
+  " But I like the below as it matches what I would do manually
+  " (i.e. I type out the expression, then go "bother", delete it, and insert
+  " the expansion instead).
+  return repeat("\<BS>", len(last_element)) . expanded_element
+endfunction
+cnoremap <expr> <C-x> <SID>expand_commandline()
+
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

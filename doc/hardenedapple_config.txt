@@ -163,6 +163,20 @@ This is to help storing references to other files when describing the
 interdependence of different functions.
 
 ==============================================================================
+Mappings~
+
+            *config-mappings*
+*config-cmap* *config-cmappings* *config-cnoremap*
+*config-c_CTRL-X*
+The mapping |c_CTRL-X| attempts to expand with |expand()| the last word typed
+on the command line.
+The idea being that you can shorten typing when selecting buffers that use
+a subpart of the buffer you're currently in, or other similar tasks.
+TODO I intend to make this work on the word just before the cursor, rather
+than the last word on the command line.
+TODO Is there any way to make things like `:b %:h/Lib/%:t:r.cpp` work?
+
+==============================================================================
 Config~
 
             *config-config*
