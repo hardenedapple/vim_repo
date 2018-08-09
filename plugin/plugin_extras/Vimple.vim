@@ -22,3 +22,15 @@ function s:put_into_buffer(to_put, position) range
 endfunction
 
 command -nargs=+ -complete=buffer -range PutIntoBuffer :<line1>,<line2>call s:put_into_buffer(<f-args>)
+
+" Delete all buffers with filenames matching a regular expression.
+function DelBufsMatching(regex, bang)
+  call g:vimple#bl.update()
+  if a:bang
+    let filtered_list = filter(g:vimple#bl.to_l(), { idx, val -> match(val['name'], a:regex) == -1 })
+  else
+    let filtered_list = filter(g:vimple#bl.to_l(), { idx, val -> match(val['name'], a:regex) != -1 })
+  endif
+  let number_string = join(map(filtered_list, { idx, val -> val['number'] }))
+  execute 'bd ' . number_string
+endfunction
