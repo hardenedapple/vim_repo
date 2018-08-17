@@ -108,13 +108,14 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Manage spaces and tabs {{{
 
-"stay indented when getting new line
+" Indentation settings taken from GNU coding standards
+" (may as well have them everywhere rather than rely on telling which files are
+" for GNU and which aren't).
 set autoindent
-set shiftwidth=4
-
-"make a tab change to 4 spaces
-set expandtab
-set tabstop=4
+set noexpandtab
+set shiftwidth=2
+set tabstop=8
+set softtabstop=2
 
 " Insert double spaces for a new sentence.  This is the GNU comment style.
 " Previously I didn't like it, but I'm now used to it.
