@@ -307,7 +307,7 @@ if !helpers#external_program_missing('ctags')
     " flags.
     nnoremap <F12>  :<C-U>!ctags -tdT --globals --members *.c *.h <CR> <CR>
   else
-    nnoremap <F12>  :<C-U>!ctags -R --fields=+iaS --extra=+qf .<CR><CR>
+    nnoremap <F12>  :<C-U>!ctags-exuberant -R --fields=+iaS --extra=+qf .<CR><CR>
   endif
 endif
 
