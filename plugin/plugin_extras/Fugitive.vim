@@ -20,6 +20,9 @@ nnoremap <silent> <leader>gp :<C-U>Git push<CR>
 nnoremap <silent> <leader>gc :<C-U>Git commit<CR>
 nnoremap <silent> <leader>gs :<C-U>Git<CR>
 
+command! -bar -nargs=1 GNUgrep execute 'Ggrep ' . <q-args> . ' -- ''./*'' '':(exclude)*ChangeLog*'' '':(exclude)*.po'' '':(exclude)*testsuite*'' '':(exclude)*.texi'''
+
+
 " Helper function for dealing with spelling mistakes
 function s:StartSpellFix()
   if get(s:, 'original_commit', '') != ''
