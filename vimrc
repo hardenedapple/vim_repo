@@ -116,7 +116,10 @@ set shiftwidth=4
 set expandtab
 set tabstop=4
 
-set nojoinspaces
+" Insert double spaces for a new sentence.  This is the GNU comment style.
+" Previously I didn't like it, but I'm now used to it.
+" set nojoinspaces
+set joinspaces
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -671,7 +674,7 @@ set formatoptions+=crotql
 set virtualedit=block
 
 " Make automatic open with folds all closed
-" Give me enough time to think aobut which command I want
+" Give me enough time to think about which command I want
 set foldlevelstart=0
 set timeoutlen=1000
 
