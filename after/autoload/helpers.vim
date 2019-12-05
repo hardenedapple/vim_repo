@@ -98,7 +98,7 @@ endfunction
 
 function helpers#working_environment(buffer_specific)
   if a:buffer_specific
-    if expand('%:p') =~? '\(gnu\|gdb\|less\|binutils\)'
+    if expand('%:p') =~? '\(gnu\|gcc\|gdb\|less\|binutils\)'
       return 'gnu'
     elseif expand('%:p') =~? 'vim'
       return 'vim'
