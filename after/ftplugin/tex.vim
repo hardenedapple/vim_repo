@@ -15,7 +15,10 @@ setlocal shiftwidth=2
 " setlocal iskeyword+=:,_
 let g:tex_isk="48-57,a-z,A-Z,192-255,:,_"
 
-setlocal wildignore-=*.png,*.jpg,*.gif
+" See :help remove-option-flags` for why these are in different lines.
+setlocal wildignore-=*.png
+setlocal wildignore-=*.jpg
+setlocal wildignore-=*.gif
 "Change the colorscheme to one better for tex
 if has('gui_running')
   colorscheme autumn

@@ -26,7 +26,13 @@ elseif s:project == 'gnu'
   setlocal shiftwidth=2
   setlocal tabstop=8
   setlocal softtabstop=2
-  setlocal formatoptions-=ro
+  " vimcmd: vert help fo-table
+  " Seems that `set formatoptions-=roc` only works if the format options are in
+  " that order already.  That's not guaranteed, so it's best to remove each
+  " option one at a time.  (see `:help remove-option-flags`).
+  setlocal formatoptions-=r
+  setlocal formatoptions-=o
+  setlocal formatoptions-=c
   setlocal cinoptions=>4,n-2,{2,^-2,:2,=2,g0,h2,p5,t0,+2,(0,u0,w1,m1
 elseif s:project == 'vim'
   setlocal shiftwidth=2
