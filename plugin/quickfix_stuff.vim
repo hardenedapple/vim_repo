@@ -200,7 +200,7 @@ endfunction
 
 " Add commands for the functions above.
 command -nargs=0 -bar Qargs execute 'args' s:QuickfixFilenames()
-command -bang -nargs=1 -complete=file QFilterBuf call s:FilterQuickfixListByBuffer(<bang>0, <q-args>)
+command -bang -nargs=1 QFilterBuf call s:FilterQuickfixListByBuffer(<bang>0, <q-args>)
 command -bang -nargs=1 QFilterMatch call s:FilterQuickfixListBySubject(<bang>0, <q-args>)
 command -range -bang -bar QFilterRange call helpers#FilterQuickfixListByPosition(<bang>0, <line1>, <line2>, v:true)
 command -bar QFSort call s:SortUniqQFList()
