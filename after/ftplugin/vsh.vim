@@ -13,3 +13,8 @@ setlocal isfname-==
 
 " Want `tabstop` to be 8 for output, but want 4 for when typing commands.
 setlocal softtabstop=4
+
+" Really don't want spaces turned into tabs, as this ends up replacing the
+" spaces after a prompt with a tab hence making that line not match the prompt
+" regex any more.
+setlocal expandtab
