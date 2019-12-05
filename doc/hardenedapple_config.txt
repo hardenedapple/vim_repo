@@ -77,6 +77,12 @@ function into items in the format required by the |setqflist()| function.
 This function takes a string and returns a boolean indicating whether that
 string exists as a unix command in the current `$PATH`.
 
+*config-DelBufsMatching()*
+Takes a regular expression and deletes all buffers whose filename matches that
+regular expression.
+If provided with a second argument that is "truthy", then this deletes all
+buffers whose filename does not match a regular expression.
+
 ==============================================================================
 Commands~
 
