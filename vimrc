@@ -290,7 +290,13 @@ command -range=% -bang -bar -nargs=1 OccurFast execute 'silent vimgrep /' . subs
 nnoremap <silent> <leader>sh :OccurFast <C-R><C-W><CR>
 
 " Remove trailing whitespace
-nnoremap <silent> <F10> :<C-U>%s/\s\+$//<CR>:nohlsearch<CR>
+" Purposefully set mappings to not remove any automatic range added.
+" For the `nnoremap` version this allows pressing things like `4<F10>` to clear
+" whitespace from the next 4 lines.
+" For the `vnoremap` version this leaves the current visual range as the range
+" the mapping will act on.
+nnoremap <silent> <F10> :s/\s\+$//<CR>:nohlsearch<CR>
+vnoremap <silent> <F10> :s/\s\+$//<CR>:nohlsearch<CR>
 
 if !helpers#external_program_missing('ctags')
   if g:working_on_solaris
