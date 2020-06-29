@@ -177,6 +177,19 @@ than the last word on the command line.
 TODO Is there any way to make things like `:b %:h/Lib/%:t:r.cpp` work?
 
 ==============================================================================
+Quickfix List from TagList~
+
+            *config-TQF* *config-quickfix-from-taglist*
+*config-:TQFSelect*
+This command searches for tags matching the given string using the |taglist()|
+function and then sets the quickfix list to a list pointing to each of those
+places.
+
+*config-TQFSetQuickfix()*
+This function takes a list in the format returned by |taglist()| and sets the
+quickfix list to a list pointing to the same elements.
+
+==============================================================================
 Config~
 
             *config-config*
