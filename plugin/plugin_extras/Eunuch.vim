@@ -23,3 +23,8 @@ endfunction
 command DiffOrig call s:DiffWithSaved()
 
 nnoremap <leader>fd :<C-U>DiffOrig<CR>
+
+" Really don't like the :W command.
+" I often type W when I mean w, and that ends up saving a bunch of temporary
+" changes in all my open windows.
+command W write
