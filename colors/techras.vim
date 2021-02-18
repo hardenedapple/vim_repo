@@ -172,7 +172,7 @@ if &t_Co==8
   highlight CursorLine cterm=bold ctermfg=NONE ctermbg=DarkBlue
   highlight Folded cterm=bold ctermfg=blue ctermbg=NONE
   highlight StatusLine cterm=NONE ctermbg=NONE ctermfg=DarkCyan
-  highlight StatusLineNC cterm=NONE ctermbg=NONE ctermfg=DarkGray
+  highlight StatusLineNC cterm=NONE ctermbg=NONE ctermfg=Gray
   highlight Comment      cterm=NONE ctermfg=6
   highlight FoldColumn cterm=NONE ctermfg=Cyan ctermbg=NONE
   highlight String       cterm=NONE        ctermfg=1      ctermbg=NONE
