@@ -189,7 +189,7 @@ elseif &t_Co==256
   highlight Pmenu cterm=NONE ctermfg=NONE ctermbg=darkblue
   highlight Pmenusel cterm=NONE ctermfg=NONE ctermbg=darkmagenta
   highlight StatusLine   cterm=NONE   ctermfg=51     ctermbg=NONE
-  highlight StatusLineNC cterm=NONE ctermbg=NONE ctermfg=236
+  highlight StatusLineNC cterm=NONE ctermbg=NONE ctermfg=Gray
   highlight DiffAdd      cterm=NONE        ctermfg=NONE   ctermbg=22
   highlight DiffChange   cterm=NONE        ctermfg=NONE   ctermbg=53
   highlight DiffText     cterm=bold        ctermfg=NONE   ctermbg=23
