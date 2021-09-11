@@ -638,11 +638,13 @@ set splitbelow
 set mouse=a
 " Backspaces and History
 set backspace=indent,eol,start
+
 " Separate windows when scrolling
 if v:version > 703
   set nocursorbind
 endif
 set noscrollbind
+command Unbind windo set nocursorbind noscrollbind
 " Buffer switching
 set hidden
 "set bufhidden=hide

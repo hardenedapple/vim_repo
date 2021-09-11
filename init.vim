@@ -1,4 +1,5 @@
-set all&
+" https://github.com/neovim/neovim/issues/11066 means I can't use this.
+" set all&
 let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['dispatch', 'easygrep'])
 inoremap <a-O> <ESC>O
 inoremap <a-o> <ESC>o
