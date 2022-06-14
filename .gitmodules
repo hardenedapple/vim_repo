@@ -1,111 +1,111 @@
 [submodule "bundle/surround"]
-	path = bundle/surround
-    url = git://github.com/tpope/vim-surround.git
+  path = bundle/surround
+  url = git@github.com:tpope/vim-surround.git
 [submodule "bundle/python-mode"]
-	path = bundle/python-mode
-    url = git://github.com/klen/python-mode.git
+  path = bundle/python-mode
+  url = git@github.com:klen/python-mode.git
 [submodule "bundle/repeat"]
-	path = bundle/repeat
-    url = git://github.com/tpope/vim-repeat.git
+  path = bundle/repeat
+  url = git@github.com:tpope/vim-repeat.git
 [submodule "bundle/syntastic"]
-	path = bundle/syntastic
-    url = git://github.com/scrooloose/syntastic.git
+  path = bundle/syntastic
+  url = git@github.com:scrooloose/syntastic.git
 [submodule "bundle/fugitive"]
-	path = bundle/fugitive
-    url = git://github.com/tpope/vim-fugitive.git
+  path = bundle/fugitive
+  url = git@github.com:tpope/vim-fugitive.git
 [submodule "bundle/gundo"]
-	path = bundle/gundo
-    url = git://github.com/sjl/gundo.vim.git
+  path = bundle/gundo
+  url = git@github.com:sjl/gundo.vim.git
 [submodule "bundle/unimpaired"]
-	path = bundle/unimpaired
-    url = git://github.com/tpope/vim-unimpaired.git
+  path = bundle/unimpaired
+  url = git@github.com:tpope/vim-unimpaired.git
 [submodule "bundle/ultisnips"]
-	path = bundle/ultisnips
-    url = git://github.com/SirVer/ultisnips.git
+  path = bundle/ultisnips
+  url = git@github.com:SirVer/ultisnips.git
 [submodule "bundle/snippets"]
-	path = bundle/snippets
-    url = git://github.com/honza/vim-snippets.git
+  path = bundle/snippets
+  url = git@github.com:honza/vim-snippets.git
 [submodule "bundle/gnupg"]
-	path = bundle/gnupg
-    url = git://github.com/jamessan/vim-gnupg.git
+  path = bundle/gnupg
+  url = git@github.com:jamessan/vim-gnupg.git
 [submodule "bundle/eunuch"]
-	path = bundle/eunuch
-    url = git://github.com/tpope/vim-eunuch.git
+  path = bundle/eunuch
+  url = git@github.com:tpope/vim-eunuch.git
 [submodule "bundle/pathogen"]
-	path = bundle/pathogen
-    url = git://github.com/tpope/vim-pathogen.git
+  path = bundle/pathogen
+  url = git@github.com:tpope/vim-pathogen.git
 [submodule "bundle/commentary"]
-	path = bundle/commentary
-    url = git://github.com/tpope/vim-commentary.git
+  path = bundle/commentary
+  url = git@github.com:tpope/vim-commentary.git
 [submodule "bundle/dispatch"]
-	path = bundle/dispatch
-    url = git://github.com/tpope/vim-dispatch.git
+  path = bundle/dispatch
+  url = git@github.com:tpope/vim-dispatch.git
 [submodule "bundle/submode"]
-	path = bundle/submode
-    url = git://github.com/kana/vim-submode.git
+  path = bundle/submode
+  url = git@github.com:kana/vim-submode.git
 [submodule "bundle/sideways"]
-	path = bundle/sideways
-    url = git://github.com/AndrewRadev/sideways.vim.git
+  path = bundle/sideways
+  url = git@github.com:AndrewRadev/sideways.vim.git
 [submodule "bundle/gitv"]
-	path = bundle/gitv
-	url = git://github.com/gregsexton/gitv.git
+  path = bundle/gitv
+  url = git@github.com:gregsexton/gitv.git
 [submodule "bundle/easygrep"]
-	path = bundle/easygrep
-	url = git://github.com/dkprice/vim-easygrep.git
+  path = bundle/easygrep
+  url = git@github.com:dkprice/vim-easygrep.git
 [submodule "bundle/obsession"]
-	path = bundle/obsession
-	url = git://github.com/tpope/vim-obsession.git
+  path = bundle/obsession
+  url = git@github.com:tpope/vim-obsession.git
 [submodule "bundle/lawrencium"]
-	path = bundle/lawrencium
-	url = git://github.com/ludovicchabant/vim-lawrencium.git
+  path = bundle/lawrencium
+  url = git@github.com:ludovicchabant/vim-lawrencium.git
 [submodule "bundle/exchange"]
-	path = bundle/exchange
-	url = git://github.com/tommcdo/vim-exchange.git
+  path = bundle/exchange
+  url = git@github.com:tommcdo/vim-exchange.git
 [submodule "bundle/visualstar"]
-	path = bundle/visualstar
-	url = git://github.com/thinca/vim-visualstar.git
+  path = bundle/visualstar
+  url = git@github.com:thinca/vim-visualstar.git
 [submodule "bundle/ctrlp"]
-	path = bundle/ctrlp
-	url = git://github.com/kien/ctrlp.vim.git
+  path = bundle/ctrlp
+  url = git@github.com:kien/ctrlp.vim.git
 [submodule "bundle/ctrlp-funky"]
-	path = bundle/ctrlp-funky
-	url = git://github.com/tacahiroy/ctrlp-funky.git
+  path = bundle/ctrlp-funky
+  url = git@github.com:tacahiroy/ctrlp-funky.git
 [submodule "bundle/arduinosyntax"]
-	path = bundle/arduinosyntax
-	url = git://github.com/sudar/vim-arduino-syntax.git
+  path = bundle/arduinosyntax
+  url = git@github.com:sudar/vim-arduino-syntax.git
 [submodule "bundle/abolish"]
-	path = bundle/abolish
-	url = git://github.com/tpope/vim-abolish.git
+  path = bundle/abolish
+  url = git@github.com:tpope/vim-abolish.git
 [submodule "bundle/sneak"]
-	path = bundle/sneak
-	url = git://github.com/justinmk/vim-sneak.git
+  path = bundle/sneak
+  url = git@github.com:justinmk/vim-sneak.git
 [submodule "bundle/dentures"]
-	path = bundle/dentures
-	url = git://github.com/qstrahl/vim-dentures.git
+  path = bundle/dentures
+  url = git@github.com:qstrahl/vim-dentures.git
 [submodule "bundle/vimple"]
-	path = bundle/vimple
-	url = git://github.com/dahu/vimple.git
+  path = bundle/vimple
+  url = git@github.com:dahu/vimple.git
 [submodule "bundle/VimFindsMe"]
-	path = bundle/vimfindsme
-	url = git://github.com/dahu/VimFindsMe.git
+  path = bundle/vimfindsme
+  url = git@github.com:dahu/VimFindsMe.git
 [submodule "bundle/neomake"]
-	path = bundle/neomake
-	url = git://github.com/benekastah/neomake
+  path = bundle/neomake
+  url = git@github.com:benekastah/neomake
 [submodule "bundle/rust-vim"]
-	path = bundle/rust-vim
-	url = git://github.com/rust-lang/rust.vim.git
+  path = bundle/rust-vim
+  url = git@github.com:rust-lang/rust.vim.git
 [submodule "bundle/vsh"]
-	path = bundle/vsh
-	url = git://github.com/hardenedapple/vsh.git
+  path = bundle/vsh
+  url = git@github.com:hardenedapple/vsh.git
 [submodule "bundle/grepper"]
-	path = bundle/grepper
-	url = git://github.com/mhinz/vim-grepper.git
+  path = bundle/grepper
+  url = git@github.com:mhinz/vim-grepper.git
 [submodule "bundle/tabular"]
-	path = bundle/tabular
-	url = git://github.com/godlygeek/tabular.git
+  path = bundle/tabular
+  url = git@github.com:godlygeek/tabular.git
 [submodule "bundle/linediff"]
-	path = bundle/linediff
-	url = git://github.com/AndrewRadev/linediff.vim
+  path = bundle/linediff
+  url = git@github.com:AndrewRadev/linediff.vim
 [submodule "bundle/rtags"]
-	path = bundle/rtags
-	url = git://github.com/hardenedapple/vim-rtags.git
+  path = bundle/rtags
+  url = git@github.com:hardenedapple/vim-rtags.git
