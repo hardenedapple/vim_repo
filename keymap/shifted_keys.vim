@@ -1,4 +1,4 @@
-let b:keymap_name = "shifted_numbers"
+let b:keymap_name = "shifted_keys"
 loadkeymap
 1 !
 2 @
@@ -20,3 +20,5 @@ $ 4
 * 8
 ( 9
 ) 0
+_ -
+- _

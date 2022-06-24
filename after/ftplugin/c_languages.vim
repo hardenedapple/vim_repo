@@ -20,10 +20,6 @@ endif
 " add opening a block with {<CR>
 inoremap <buffer> {<CR>  {<CR>}<Esc>O
 
-" Use double quotes much more than single
-lnoremap <buffer> " '
-lnoremap <buffer> ' "
-
 setlocal foldexpr=ftplugin_helpers#c_languages#fold_brace()
 " Only used for adding markers for folding, and the vim-commentary plugin.
 " I find this value more useful for the plugin.

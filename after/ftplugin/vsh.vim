@@ -1,10 +1,8 @@
-" Shell commands often use - and rarely use _
-lnoremap <buffer> - -
-lnoremap <buffer> _ _
-
-" On the other hand ... I reasonably often run interpreters in the vsh buffer,
-" when this is the case I'd like to change the mappings for that language.
-nnoremap <silent><buffer> <localleader>u :call helpers#toggle_underscore()<CR>
+" I reasonably often run interpreters in the vsh buffer.  Especially with
+" python, having shift for colons is tedious enough to have a special-case.
+" When running an interpreter in one window and editing a python file in the
+" other things are easier if both have the modification between colon and
+" semicolon applied.
 nnoremap <silent><buffer> <localleader>q :call helpers#toggle_colon()<CR>
 
 " When completing filenames in things like `dd if=...` I want to remove the '='

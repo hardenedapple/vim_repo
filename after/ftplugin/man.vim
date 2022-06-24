@@ -10,10 +10,10 @@ if !has('nvim')
   setlocal nolist
   setlocal nomodifiable
 endif
-lnoremap <buffer> - -
-lnoremap <buffer> _ _
-lnoremap <buffer> ; :
-lnoremap <buffer> : ;
+
+" Usually the shifted_keys keymap doesn't provide any benefit since I'm not
+" typing into a man page.
+setlocal iminsert=0
 
 " I don't like 'q' closing the buffer.
 " I can close the buffer myself perfectly fine, and with 'q' mapped, then I

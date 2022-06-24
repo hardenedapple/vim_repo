@@ -5,8 +5,6 @@ set comments+=b:;
 " Apparently for GNU assembler on ARM this would be @ instead ...
 " I'll cross that bridge when I come to it.
 set commentstring=#\ %s
-lmap <buffer> ; :
-lmap <buffer> : ;
 
 " Usually doesn't provide any benefit due to the amount of literal numbers.
 " Will see if things change when the abstraction levels increase.

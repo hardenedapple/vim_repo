@@ -651,20 +651,7 @@ set hidden
 
 " Have the equivalent of programming keyboards when in insert mode, while
 " keeping numbers easy to press in command mode.
-set keymap=shifted_numbers
-" {{{ Add _/- swapping
-" We add these swaps here rather than include them in the 'keymap' to allow
-" filetype plugins to unmap them with the commands
-" lnoremap <buffer> - -
-" lnoremap <buffer> _ _
-" This doesn't work if the swaps are defined in 'keymap' because the 'keymap'
-" option is set *after* the ftplugins in the after/ directory are loaded, and
-" they are buffer-local.
-" The 'keymap' mapings hence override the mappings defined in the
-" after/ftplugin/ directory.
-lnoremap _ -
-lnoremap - _
-" }}}
+set keymap=shifted_keys
 " To make things explicit, setting 'iminsert' to 1 (setting 'keymap' already
 " sets 'iminsert' to 1 implicitly).
 set iminsert=1

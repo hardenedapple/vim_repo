@@ -30,10 +30,14 @@ I find this setting very useful, reducing the need to press shift for many
 programming languages. Moreover, when I do need to type in numbers, I can
 quickly toggle the mappings with |i_CTRL-^|.
 
-The biggest problem with this setting is that the translation is done when
-recording macros, but not when replaying them.
-I have a patch that removes this problem at the cost of introducing bacwards
-incompatability by removing the |:lnoremap| command.
+There are a few problems around here.  The first is that on older neovim's the
+translation is done when recording macros, but not when replaying them, but
+this is fixed in later versions.
+The second is simply in choosing the best set of mappings to include.  Some
+languages use curly braces a lot more than square ones, some use double-quotes
+much more than single ones, some use colons much more than semicolons.
+Originally I had different settings for different languages, but that gets
+confusing.  Currently trying to avoid changes unless very helpful.
 
 
 
