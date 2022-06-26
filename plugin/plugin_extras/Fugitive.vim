@@ -8,17 +8,17 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " Commands taken from
 " https://github.com/dhruvasagar/dotfiles/blob/master/vim/commands.vim
 command! -bar -nargs=* Gpurr execute 'Git pull --rebase' <q-args> 'origin' fugitive#head()
-command! -bar -nargs=0 Gpnp silent Gpull | Gpush
-command! -bar -nargs=0 Gprp silent Gpurr | Gpush
+command! -bar -nargs=0 Gpnp silent Git pull | Git push
+command! -bar -nargs=0 Gprp silent Gpurr | Git push
 command! -bar Gstaged  Git! diff --cached
 
 
 " Bunch of leader mappings for ease of use
 nnoremap <silent> <leader>gw :<C-U>Gwrite<CR>
-nnoremap <silent> <leader>gd :<C-U>Gdiff<CR>
-nnoremap <silent> <leader>gp :<C-U>Gpush<CR>
-nnoremap <silent> <leader>gc :<C-U>Gcommit<CR>
-nnoremap <silent> <leader>gs :<C-U>Gstatus<CR>
+nnoremap <silent> <leader>gd :<C-U>Gdiffsplit<CR>
+nnoremap <silent> <leader>gp :<C-U>Git push<CR>
+nnoremap <silent> <leader>gc :<C-U>Git commit<CR>
+nnoremap <silent> <leader>gs :<C-U>Git<CR>
 
 " Helper function for dealing with spelling mistakes
 function s:StartSpellFix()
@@ -51,8 +51,8 @@ function s:StartSpellFix()
     echoerr 'Could not record current position of HEAD'
   endif
   execute cd . ' ' . dir
-  " Don't want to run Gdiff, *then* cd because we'd have to mess around with
-  " figuring out which window to leave the user in etc for if we had to do
+  " Don't want to run Gdiffsplit, *then* cd because we'd have to mess around
+  " with figuring out which window to leave the user in etc for if we had to do
   " 'lcd'.
   if worked
     Gedit :0
