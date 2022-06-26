@@ -28,3 +28,6 @@ command! -bar TriAltEncodings read! sve-testcase --version=tri-alt <cword>
 command! -bar ExtendTypes call ExtendTypes()
 command! -bar -nargs=1 Replicate call ReplicateTests(@x, <q-args>)
 command! -bar SubMask call CreateMaskNOpcode(expand('<cword>'))
+
+" command! -bar -nargs=1 Ldgrep execute 'Ggrep ' . <q-args> . ' -- ''./*'' '':(exclude)*ChangeLog*'' '':(exclude)*.po'' '':(exclude)*testsuite*'' '':(exclude)*.texi'''
+command! LDQFFilterBuf QFilterBuf! \(ChangeLog\|bfd/coff\|bfd/ecoff\|bfd/elf-m10\|bfd/elf32-\|bfd/elf64\|bfd/elfnn-\(aarch64\)\@!\|bfd/elfxx-\(aarch64\|target\)\@!\|bfd/pdp\|bfd/mach\|bfd/vms-alpha\|bfd/ihex\|bfd/mmo\|bfd/pef\|bfd/peicode\|bfd/som\|^gdb\|^binutils\|^gas\|^gold\|^sim\|^libiberty\|armelf.em\|cskyelf.em\|hppaelf.em\|m68hc1xelf.em\|metagelf.em\|mipself.em\|nios2elf.em\|ppc64elf.em\|xtensaelf.em\|aout-target\|aoutx\|hppabsd-core\|hpux-core\|irix-core\|libaout\|osf-core\|sc5-core\|verilog\|arc-got\|cpu-ns32k\|elf-hppa\|elf-nacl\|elf-vxworks\|elfn32-mips\|bfd\/pe-\|emultempl\/aix\.em\|emultempl\/alphaelf\.em\|emultempl\/armcoff\|emultempl\/avrelf\|emultempl\/cr16elf\|emultempl\/crxelf\|emultempl\/mmix-\|emultempl\/mmo\.em\|emultempl\/msp430\.em\|emultempl\/pe.em\|emultempl\/needrelax\.em\|emultempl\/vxworks\.em\|aix386-core\)
