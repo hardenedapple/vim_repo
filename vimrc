@@ -98,7 +98,7 @@ else
         \  'neomake', 'obsession',
         \  'pathogen', 'python-mode', 'repeat', 'rust-vim',
         \  'sexp', 'sexp_mappings',
-        \  'sideways', 'sneak', 'snippets', 'submode', 'surround', 'syntastic',
+        \  'sideways', 'sneak', 'snippets', 'submode', 'surround',
         \  'tabular', 'ultisnips', 'unimpaired', 'vimfindsme',
         \  'vimple', 'visualstar',
         \  'rtags', ]
