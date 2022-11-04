@@ -106,96 +106,31 @@ endif
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Manage spaces and tabs {{{
-
-" Indentation settings taken from GNU coding standards
-" (may as well have them everywhere rather than rely on telling which files are
-" for GNU and which aren't).
-set autoindent
-set noexpandtab
-set shiftwidth=2
-set tabstop=8
-set softtabstop=2
-
-" Insert double spaces for a new sentence.  This is the GNU comment style.
-" Previously I didn't like it, but I'm now used to it.
-" set nojoinspaces
-set joinspaces
-" }}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Errorbells {{{
-
-"Don't keep bugging me whenever I type something wrong
-set noerrorbells
-set visualbell
-set t_vb=
-set tm=500
-
-" }}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Look/Appearance {{{
-
-"Add a foldcolumn
-set foldcolumn=2
-"set the characters seperating multiple vim windows to blank space
-set fillchars=vert:\ 
-"can use set fillchars+=diff:\\ to make deleted lines in diffmode
-"have the '\' character along them instead of the '-' character
-
-" Always show filename
-set ls=2
-
-"Highlights all occurances of the last search pattern
-" but let Space in command mode turn off the highlighting
-set hlsearch
-
-" If in C and using syntax folding, don't fold comments
-" (is here not after/ftplugin as has to be active when syntax/c.vim is read)
-let g:c_no_comment_fold = 1
-
-"get vim to automatically highlight based on syntax and file extension
-syntax on
-filetype on
-" cursorline/column
-set nocursorcolumn
-set nocursorline
-color techras
-
-if &term =~ '^screen'
-  " When inside xterm, inside screen, the Shift and Ctrl modifiers don't
-  " work well -- here i'm manually adding the mappings for xterm keys,
-  " Do this as my tmux configuration sets the use of xterm keys for these
-  " modifiers.
-  execute "set <xUp>=\e[1;*A"
-  execute "set <xDown>=\e[1;*B"
-  execute "set <xRight>=\e[1;*C"
-  execute "set <xLeft>=\e[1;*D"
-endif
-
-"Make the cursor always stay 3 lines inside the window when scrolling
-set scrolloff=3
-set nowrap
-
-" Conceal text - define when it's not shown
-if v:version > 703
-  set conceallevel=0
-  set concealcursor=nc
-endif
-
-" Specify some color groups for :match to use
-highlight link match1 ColorColumn
-highlight link match2 Todo
-
-" Define the statusline.
-set statusline=%<\ %f\ #%n\ %h%m%r%=%k\ %-14.(%l,%c%V%)\ %P
-
-" }}}
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Mappings {{{
 
+" N.b. due to a different order between ftplugin and plugin getting loaded
+" after a recent neovim change, if we set `mapleader` *after* running
+" `syntax on` then since our vsh plugin will be loaded before `mapleader` is
+" set it will not have access to the correct key on which to store mappings.
+"
+" Putting maps on <Leader> uses `\` by default if these variables are not
+" defined (which is problematic for `mapleader` for me).
+"
+" There's not really anything that vsh can do for this.  I want to put mappings
+" on <Leader> and <localleader>.  When those are not defined they should go on
+" the default as per vim defaults.  There's not really a way to tell from the
+" plugin whether `mapleader` was totally going to be defined later on, or
+" whether the defaults were what the end-user wanted.
+"
+" Hence the only thing for it is for an end user (i.e. a users vimrc) to ensure
+" that `mapleader` is set before the vsh plugin is loaded (or for that matter
+" any other plugins which put mappings on <leader> and <localleader>).  Since
+" it's the `syntax on` part of this vimrc which triggers loading the ftplugin
+" for the filetype specified on the command line, and it's the ftplugin for vsh
+" that ends up defining mappings, we ensure that these lines are before
+" `syntax on` below.
+"
+" (For ordering behaviour see https://github.com/neovim/neovim/issues/19008)
 let mapleader=" "
 let maplocalleader="\\"
 
@@ -411,6 +346,94 @@ noremap ; ,
 noremap , ;
 
 "}}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Manage spaces and tabs {{{
+
+" Indentation settings taken from GNU coding standards
+" (may as well have them everywhere rather than rely on telling which files are
+" for GNU and which aren't).
+set autoindent
+set noexpandtab
+set shiftwidth=2
+set tabstop=8
+set softtabstop=2
+
+" Insert double spaces for a new sentence.  This is the GNU comment style.
+" Previously I didn't like it, but I'm now used to it.
+" set nojoinspaces
+set joinspaces
+" }}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Errorbells {{{
+
+"Don't keep bugging me whenever I type something wrong
+set noerrorbells
+set visualbell
+set t_vb=
+set tm=500
+
+" }}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Look/Appearance {{{
+
+"Add a foldcolumn
+set foldcolumn=2
+"set the characters seperating multiple vim windows to blank space
+set fillchars=vert:\ 
+"can use set fillchars+=diff:\\ to make deleted lines in diffmode
+"have the '\' character along them instead of the '-' character
+
+" Always show filename
+set ls=2
+
+"Highlights all occurances of the last search pattern
+" but let Space in command mode turn off the highlighting
+set hlsearch
+
+" If in C and using syntax folding, don't fold comments
+" (is here not after/ftplugin as has to be active when syntax/c.vim is read)
+let g:c_no_comment_fold = 1
+
+"get vim to automatically highlight based on syntax and file extension
+syntax on
+filetype on
+" cursorline/column
+set nocursorcolumn
+set nocursorline
+color techras
+
+if &term =~ '^screen'
+  " When inside xterm, inside screen, the Shift and Ctrl modifiers don't
+  " work well -- here i'm manually adding the mappings for xterm keys,
+  " Do this as my tmux configuration sets the use of xterm keys for these
+  " modifiers.
+  execute "set <xUp>=\e[1;*A"
+  execute "set <xDown>=\e[1;*B"
+  execute "set <xRight>=\e[1;*C"
+  execute "set <xLeft>=\e[1;*D"
+endif
+
+"Make the cursor always stay 3 lines inside the window when scrolling
+set scrolloff=3
+set nowrap
+
+" Conceal text - define when it's not shown
+if v:version > 703
+  set conceallevel=0
+  set concealcursor=nc
+endif
+
+" Specify some color groups for :match to use
+highlight link match1 ColorColumn
+highlight link match2 Todo
+
+" Define the statusline.
+set statusline=%<\ %f\ #%n\ %h%m%r%=%k\ %-14.(%l,%c%V%)\ %P
+
+" }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Automation {{{
