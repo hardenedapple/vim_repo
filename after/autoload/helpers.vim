@@ -142,6 +142,10 @@ function helpers#kill_slow_stuff()
   " Fold recalculation, and indentexpr are known performance hotspots.
   setlocal foldmethod=manual
   setlocal indentexpr=
+	" Avoid attempting to complete based on other buffers or other windows.
+	" Hence completion is no longer such a problem when you have a very large
+	" file in some buffer.
+	setlocal complete=.,t
 endfunction
 
 
