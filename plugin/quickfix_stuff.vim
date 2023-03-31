@@ -139,7 +139,7 @@ function s:RemoveCurrentQuickfixItem(jump)
   keepalt keepjumps cc
   let current_line = line('.')
   let current_bufnr = bufnr('%')
-  let current_column = virtcol('.')
+  let current_column = col('.')
 
   " Remove this item from the quickfix list, and all subsequent items that
   " aren't valid.
