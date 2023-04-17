@@ -40,7 +40,7 @@ runtime bundle/pathogen/autoload/pathogen.vim
 " If want to use completion use
 " vim --cmd 'let g:pathogen_disabled = []' <filename>
 " on the command line.
-let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['neomake', 'grepper', 'vsh', 'python-mode'])
+let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['neomake', 'grepper', 'python-mode'])
 if v:version < 704
   let g:pathogen_disabled += ['ultisnips']
 endif
@@ -73,10 +73,6 @@ endif
 
 if helpers#external_program_missing('git')
   let g:pathogen_disabled += ['fugitive',  'gitv']
-endif
-
-if helpers#external_program_missing('clang')
-  let g:pathogen_disabled += ['rtags']
 endif
 
 " Check plugin-plugin dependencies
