@@ -58,3 +58,7 @@ elseif s:project == 'vim'
   setlocal tabstop=8
   setlocal softtabstop=2
 endif
+
+" Disable so can use LSP.  I don't really use the default one and would like
+" LSP via clang to set this by default.
+set omnifunc=
