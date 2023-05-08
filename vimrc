@@ -99,6 +99,7 @@ else
         \  'vimple', 'visualstar',
         \  'rtags', ]
 endif
+
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -129,6 +130,11 @@ endif
 " (For ordering behaviour see https://github.com/neovim/neovim/issues/19008)
 let mapleader=" "
 let maplocalleader="\\"
+" My preference for the insert-mode completions.
+" I like this better since I like to have "<TAB>" available for indentation.
+" This would be in a file named plugin/plugin_extras/Vsh.vim but for the same
+" issue as above.
+let g:vsh_i_completions = '<C-q>'
 
 " Don't timeout waiting for key mappings.
 set notimeout
