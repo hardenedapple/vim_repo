@@ -87,6 +87,14 @@ regular expression.
 If provided with a second argument that is "truthy", then this deletes all
 buffers whose filename does not match a regular expression.
 
+*config-kill_slow_stuff()*
+Over time I may notice different things causing slowness in my config.  I'm
+likely to forget these and also likely to hit them in future sessions.  This
+function can be called to change settings such that those things which cause
+slowness are gone.  The implementation (in .vim/after/autoload/helpers.vim)
+can be read as a reminder when attempting more fine-grained performance
+improvement.
+
 ==============================================================================
 Commands~
 
@@ -207,5 +215,23 @@ This section describes the automatic choices that my config makes depending on
 the OS, environment and files opened excluding filetype differences.
 
 
+==============================================================================
+Reminders~
+
+            *config-reminders*
+Describing some things that I find useful to remember, even if they are not
+actually things specific to my config.
+
+*config-$DISPLAY*
+I reasonably often connect to the same vim session over different SSH
+connections (sometimes local, sometimes over an SSH connection, that SSH
+connection often is closed and restarted later).  Even though the X clipboard
+is forwarded in my setup, that doesn't change the environment variables inside
+vim (since vim had already started).  It is easy to change the `$DISPLAY`
+environment variable in vim with `let $DISPLAY='<found outside of vim>'`, but
+sometimes that doesn't work on its own.
+
+It can be helpful to also run `unlet $XAUTHORITY`, since this sometimes blocks
+clipboard actions after the `$DISPLAY` environment variable has been changed.
 
  vim:tw=78:et:ft=help:norl:
