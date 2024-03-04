@@ -46,7 +46,7 @@ vim.keymap.set('n', '<localleader>l',
 		vim.lsp.start({
 			name = 'clangd LSP server',
 			cmd = {'clangd'},
-			root_dir = vim.fs.dirname(vim.fs.find({'.git'}, { upward = true })[1])
+			root_dir = vim.fs.dirname(vim.fs.find({'compile_commands.json'}, { upward = true })[1])
 			-- temporarily hard-coding for llvm.
 			-- root_dir = vim.fs.dirname('/home/matmal01/Documents/work/llvm-builddir')
 		})
