@@ -20,15 +20,20 @@ endif
 " add opening a block with {<CR>
 inoremap <buffer> {<CR>  {<CR>}<Esc>O
 
-setlocal foldexpr=ftplugin_helpers#c_languages#fold_brace()
 " Only used for adding markers for folding, and the vim-commentary plugin.
 " I find this value more useful for the plugin.
 setlocal commentstring=//\ %s
 
-" The function I've defined works nicely with pretty much all folding styles
-" but is slow if there are too many folds above where you're writing.
-" Hence, by default have foldmethod as syntax.
-setlocal foldmethod=syntax
+if has('nvim')
+	setlocal foldmethod=expr
+	setlocal foldexpr=nvim_treesitter#foldexpr()
+else
+	" The function I've defined works nicely with pretty much all folding styles
+	" but is slow if there are too many folds above where you're writing.
+	" Hence, by default have foldmethod as syntax.
+	setlocal foldmethod=syntax
+	setlocal foldexpr=ftplugin_helpers#c_languages#fold_brace()
+endif
 
 nnoremap <buffer> <silent> <LocalLeader>n :<C-U>call ftplugin_helpers#c_languages#Togglenewlineadd()<CR>
 

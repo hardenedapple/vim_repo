@@ -40,7 +40,7 @@ runtime bundle/pathogen/autoload/pathogen.vim
 " If want to use completion use
 " vim --cmd 'let g:pathogen_disabled = []' <filename>
 " on the command line.
-let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['neomake', 'grepper', 'python-mode'])
+let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['neomake', 'grepper', 'python-mode', 'nvim-treesitter'])
 if v:version < 704
   let g:pathogen_disabled += ['ultisnips']
 endif
@@ -751,7 +751,9 @@ let g:html_expand_tabs = 0
 
 "When printing, include numbers
 "(only works if compiled with the correct options - not sure that's what's done
-set printoptions=number:y
+if !has('nvim')
+	set printoptions=number:y
+endif
 
 " }}}
 
