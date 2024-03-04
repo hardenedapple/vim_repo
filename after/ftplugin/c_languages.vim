@@ -35,8 +35,6 @@ else
 	setlocal foldexpr=ftplugin_helpers#c_languages#fold_brace()
 endif
 
-nnoremap <buffer> <silent> <LocalLeader>n :<C-U>call ftplugin_helpers#c_languages#Togglenewlineadd()<CR>
-
 set formatoptions+=t
 let s:project = helpers#working_environment(1)
 if s:project == 'solaris'
