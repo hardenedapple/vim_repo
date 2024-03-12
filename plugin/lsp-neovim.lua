@@ -27,6 +27,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		vim.keymap.set('n', '<localleader>w', vim.lsp.buf.workspace_symbol, { buffer = args.buf })
 		vim.keymap.set('n', '<localleader>i', vim.lsp.buf.implementation, { buffer = args.buf })
 		vim.keymap.set('n', '<localleader>s', vim.lsp.buf.signature_help, { buffer = args.buf })
+		vim.keymap.set('n', '<localleader>d', vim.diagnostic.open_float, { buffer = args.buf })
 		vim.keymap.set('i', '<C-q>', vim.lsp.buf.signature_help, { buffer = args.buf })
 		-- TODO
 		--    vim.lsp.buf.workspace_symbol  (can I use this instead of TQFSelect?)
