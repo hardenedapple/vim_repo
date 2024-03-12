@@ -26,7 +26,7 @@ setlocal commentstring=//\ %s
 
 if has('nvim')
 	setlocal foldmethod=expr
-	setlocal foldexpr=nvim_treesitter#foldexpr()
+	lua vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 else
 	" The function I've defined works nicely with pretty much all folding styles
 	" but is slow if there are too many folds above where you're writing.
