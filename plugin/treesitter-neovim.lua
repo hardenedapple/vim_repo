@@ -43,31 +43,3 @@ require'nvim-treesitter.configs'.setup {
 		end,
   },
 }
-
-function c_treesitter_foldtext()
-  local root = vim.treesitter.get_parser(0)
-	local curnode
-			= vim.treesitter.get_node({ bufnr = 0, pos = {vim.v.foldstart-1, 0}})
-	local parent = curnode:parent()
-	if parent:type() ~= 'function_definition' or curnode == parent:field('body')[1] then
-		return vim.fn.foldtext()
-	end
-	local retstring = nil
-	for node,field in parent:iter_children() do
-		if field == 'body' then
-			break
-		end
-		local full_node_text = vim.treesitter.get_node_text(node, 0, {})
-		local text_to_add = string.gsub(full_node_text, "%s+", " ")
-		if retstring then
-			retstring = retstring .. ' ' .. text_to_add
-		else
-			retstring = text_to_add
-		end
-	end
-	return string.format('+%s %d lines: %s',
-				vim.v.folddashes,
-				-- +1 just to match what builtin vim `foldtext()` returns.
-				vim.v.foldend - vim.v.foldstart + 1,
-				retstring)
-end

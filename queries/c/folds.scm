@@ -1,5 +1,7 @@
 ;; Copy-paste of the folds.scm file from treesitter standard.
-;; *Except* that I removed the comment folding.
+;; *Except* that I removed the comment folding and fold the function *body*
+;; rather than the entire function.
+
 [
   (for_statement)
   (if_statement)
@@ -7,7 +9,6 @@
   (do_statement)
   (switch_statement)
   (case_statement)
-  (function_definition)
   (struct_specifier)
   (enum_specifier)
   (preproc_if)
@@ -21,4 +22,7 @@
 
 (compound_statement
   (compound_statement) @fold)
+(function_definition
+  body: (_) @fold)
+
 
