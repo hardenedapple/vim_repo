@@ -1,6 +1,6 @@
 " https://github.com/neovim/neovim/issues/11066 means I can't use this.
 " set all&
-let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['dispatch', 'easygrep', 'python-mode'])
+let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['dispatch', 'easygrep', 'python-mode', 'sideways'])
 inoremap <a-O> <ESC>O
 inoremap <a-o> <ESC>o
 " Vimple doesn't support neovim, but so far there's only error message coming

@@ -1,0 +1,62 @@
+From f5a7b9beea630fb71bd000717fe7f94f1cc4cabf Mon Sep 17 00:00:00 2001
+From: Matthew Malcomson <matthew.malcomson@arm.com>
+Date: Sun, 24 Mar 2024 22:07:04 +0000
+Subject: [PATCH] Remove unimpaired mappings for buffer and options
+
+I don't use this functionality and the keymappings get in the way of
+having other mappings around.  Hence remove them.
+
+It's a bit unfortunate that I've not yet found a way to remove these
+mappings elsewhere.  Am not happy about carrying around a patch for a
+plugin.
+---
+ plugin/unimpaired.vim | 26 +++++++++++++-------------
+ 1 file changed, 13 insertions(+), 13 deletions(-)
+
+diff --git a/plugin/unimpaired.vim b/plugin/unimpaired.vim
+index 81e19a4..57b38cd 100644
+--- a/plugin/unimpaired.vim
++++ b/plugin/unimpaired.vim
+@@ -70,7 +70,7 @@ function! s:MapNextFamily(map, cmd, current) abort
+ endfunction
+ 
+ call s:MapNextFamily('a', '' , 'argument')
+-call s:MapNextFamily('b', 'b', 'buffer')
++" call s:MapNextFamily('b', 'b', 'buffer')
+ call s:MapNextFamily('l', 'l', 'll')
+ call s:MapNextFamily('q', 'c', 'cc')
+ call s:MapNextFamily('t', 't', 'trewind')
+@@ -358,18 +358,18 @@ nmap <script> <Plug>(unimpaired-enable)t  :<C-U>set colorcolumn=<C-R>=<SID>Color
+ nmap <script> <Plug>(unimpaired-disable)t :<C-U>set colorcolumn=<C-R>=<SID>ColorColumn(1)<CR><CR>
+ nmap <script> <Plug>(unimpaired-toggle)t  :<C-U>set colorcolumn=<C-R>=<SID>ColorColumn(!empty(&cc))<CR><CR>
+ 
+-exe s:Map('n', 'yo', '<Plug>(unimpaired-toggle)')
+-exe s:Map('n', '[o', '<Plug>(unimpaired-enable)')
+-exe s:Map('n', ']o', '<Plug>(unimpaired-disable)')
+-exe s:Map('n', 'yo<Esc>', '<Nop>')
+-exe s:Map('n', '[o<Esc>', '<Nop>')
+-exe s:Map('n', ']o<Esc>', '<Nop>')
+-exe s:Map('n', '=s', '<Plug>(unimpaired-toggle)')
+-exe s:Map('n', '<s', '<Plug>(unimpaired-enable)')
+-exe s:Map('n', '>s', '<Plug>(unimpaired-disable)')
+-exe s:Map('n', '=s<Esc>', '<Nop>')
+-exe s:Map('n', '<s<Esc>', '<Nop>')
+-exe s:Map('n', '>s<Esc>', '<Nop>')
++" exe s:Map('n', 'yo', '<Plug>(unimpaired-toggle)')
++" exe s:Map('n', '[o', '<Plug>(unimpaired-enable)')
++" exe s:Map('n', ']o', '<Plug>(unimpaired-disable)')
++" exe s:Map('n', 'yo<Esc>', '<Nop>')
++" exe s:Map('n', '[o<Esc>', '<Nop>')
++" exe s:Map('n', ']o<Esc>', '<Nop>')
++" exe s:Map('n', '=s', '<Plug>(unimpaired-toggle)')
++" exe s:Map('n', '<s', '<Plug>(unimpaired-enable)')
++" exe s:Map('n', '>s', '<Plug>(unimpaired-disable)')
++" exe s:Map('n', '=s<Esc>', '<Nop>')
++" exe s:Map('n', '<s<Esc>', '<Nop>')
++" exe s:Map('n', '>s<Esc>', '<Nop>')
+ 
+ function! s:RestorePaste() abort
+   if exists('s:paste')
+-- 
+2.34.1
+

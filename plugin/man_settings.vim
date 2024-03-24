@@ -47,8 +47,8 @@ function s:UseVimForMan()
   endif
 endfunction
 
-nnoremap <silent> [ok :<C-U>call <SID>UseVimForMan()<CR>
-nnoremap <silent> ]ok :<C-U>unmap <buffer> K<CR>
+nnoremap <silent> <leader>ok :<C-U>call <SID>UseVimForMan()<CR>
+nnoremap <silent> <leader>ok :<C-U>unmap <buffer> K<CR>
 
 call s:UseVimForMan()
 
