@@ -228,6 +228,9 @@ elseif &t_Co==256
   highlight TabLine      cterm=NONE        ctermfg=NONE   ctermbg=236
   highlight TabLineFill  cterm=NONE        ctermfg=NONE   ctermbg=236
   highlight TabLineSel   cterm=NONE        ctermfg=11     ctermbg=236
+	if has('nvim')
+		highlight NormalFloat ctermbg=235
+	endif
 endif
 
 
