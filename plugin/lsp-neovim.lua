@@ -42,18 +42,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	end,
 })
 
--- Really need to figure out an interface to this that will work nicer.
--- Either do something like Emacs does by automatically associating all source
--- files in a given git repository with the same server (and automatically
--- connecting to a server for each one).
--- Or have some sort of easy selection deciding which server to use for the
--- current buffer whenever I say "use LSP here please".
---
 -- For the moment this will likely work, since I only work on large C/C++
--- projects in git.  Will need to figure something out for
--- `compile_commands.json` from a completely different build directory a la GCC
--- and binutils (have hacked a binutils behaviour together before, need a more
--- robust approach).
+-- projects in git.
 --
 -- TODO This autocmd seems to trigger everywhere it should *except* for opening
 -- the very first file.
@@ -92,3 +82,22 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	}
 )
 
+-- Really need a get-out clause for plain tags.
+-- Am getting bad results from both sides enough that having both helps
+-- dramatically.
+function do_with_plaintags(command)
+	local bufnr = vim.api.nvim_get_current_buf()
+	local l_tagfunc = vim.bo[bufnr].tagfunc
+	if l_tagfunc then
+		vim.bo[bufnr].tagfunc = ''
+	end
+	vim.cmd(command)
+	if l_tagfunc then
+		vim.bo[bufnr].tagfunc = l_tagfunc
+	end
+end
+
+-- N.b. I do wonder about completely disabling the `formatexpr` feature, but
+-- using gw for the moment is good enough.
+-- (Hopefully things will naturally progress so that the formatexpr provided by
+-- the LSP server will get better and better and I'll just see the benefits).
