@@ -118,31 +118,38 @@ require'nvim-treesitter.configs'.setup {
 		--    c     i       s     z D         I           S
 		-- So keys that are "free" for loops and conditionals:
 		--		  g h j k r v w E F G H J K N O R U V W X Y Z
+		--
+		-- It turns out that I don't like overriding these mappings.
+		-- Biggest reason is that in large C/C++ files they're quite slow, so I
+		-- want `[[` (which I used quite often) to stay around.
+		--
+		-- That said, I tend not to use the builtin `[m` mappings for functions, so
+		-- I think putting the motions there should be safe.
 		move = {
 			enable = true,
 			set_jumps = true, -- whether to set jumps in the jumplist
 			goto_next_start = {
 				-- N.b. I have checked that my VSH mappings override this.
-				["]m"] = "@class.outer",
-				["]]"] = "@function.outer",
+				["]g"] = "@class.outer",
+				["]m"] = "@function.outer",
 				["]j"] = "@loop.outer",
 				["]k"] = "@conditional.outer",
 			},
 			goto_next_end = {
-				["]M"] = "@class.outer",
-				["]["] = "@function.outer",
+				["]G"] = "@class.outer",
+				["]M"] = "@function.outer",
 				["]J"] = "@loop.outer",
 				["]K"] = "@conditional.outer",
 			},
 			goto_previous_start = {
-				["[m"] = "@class.outer",
-				["[["] = "@function.outer",
+				["[g"] = "@class.outer",
+				["[m"] = "@function.outer",
 				["[j"] = "@loop.outer",
 				["[k"] = "@conditional.outer",
 			},
 			goto_previous_end = {
-				["[M"] = "@class.outer",
-				["[]"] = "@function.outer",
+				["[G"] = "@class.outer",
+				["[M"] = "@function.outer",
 				["[J"] = "@loop.outer",
 				["[K"] = "@conditional.outer",
 			},
