@@ -55,9 +55,20 @@ require'nvim-treesitter.configs'.setup {
 				["ia"] = "@parameter.inner",
 
 				-- For C/C++ probably not that useful (can always use a{ or a}, but
-				-- maybe helpful for other languages.
+				-- maybe helpful for other languages.  This overrides the `ab` standard
+				-- default vim mapping, but I happen to use the `a(` mnemonic so am not
+				-- bothered by that.
 				["ab"] = "@block.outer",
 				["ib"] = "@block.inner",
+
+				["ak"] = "@conditional.outer",
+				["ik"] = "@conditional.inner",
+
+				["aj"] = "@loop.outer",
+				["ij"] = "@loop.inner",
+
+				["a/"] = "@comment.outer",
+				["i/"] = "@comment.inner",
       },
       -- You can choose the select mode (default is charwise 'v')
       --
