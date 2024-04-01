@@ -36,11 +36,9 @@ let g:working_on_solaris = helpers#working_environment(0) == 'solaris'
 runtime bundle/pathogen/autoload/pathogen.vim
 
 " Pathogen plugin {{{
-" If don't want aky plugins, uncomment the second line here.
-" If want to use completion use
-" vim --cmd 'let g:pathogen_disabled = []' <filename>
-" on the command line.
-let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['neomake', 'grepper', 'python-mode', 'nvim-treesitter'])
+let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['neomake', 'grepper',
+			\ 'python-mode', 'nvim-treesitter', 'nvim-treesitter-context',
+			\ 'nvim-treesitter-textobjects'])
 if v:version < 704
   let g:pathogen_disabled += ['ultisnips']
 endif
