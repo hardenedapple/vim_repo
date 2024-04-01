@@ -64,38 +64,6 @@ function helpers#where_cursor()
   let timer_id = timer_start(100, function('s:toggle_cursorcrosshairs'), { 'repeat': 6 })
 endfunction
 
-function helpers#default_search()
-  if has_key(g:, 'search_highlight_original')
-    " If the previous stored items already exists, we assume the highlights are
-    " already set to bright yellow.
-    " This means that we don't overwrite the previously stored colors with the
-    " bright yellow if this function is called twice.
-    return
-  endif
-  " Reset the color of the search highlighting to the bright yellow, and store
-  " the current color for resetting in the future.
-  let synID = synIDtrans(hlID('Search'))
-  let g:search_highlight_original = s:save_colorscheme(synID)
-  " Just hard-code this, as the color is bright.
-  " In the future I'll probably want to do something clever, but at the moment
-  " I have no idea what I'll want to do.
-  highlight Search cterm=NONE ctermfg=NONE ctermbg=11 gui=NONE guifg=NONE guibg=Yellow term=NONE
-endfunction
-
-function helpers#restore_search()
-  " Restore the original highlight attributes of the Search group as stored by
-  " helpers#default_search()
-  if !has_key(g:, 'search_highlight_original')
-    return
-  endif
-  for [key, value] in items(g:search_highlight_original)
-    if value !=# ''
-      execute 'highlight Search ' . key . '=' . value
-    endif
-  endfor
-  unlet g:search_highlight_original
-endfunction
-
 function helpers#working_environment(buffer_specific)
   if a:buffer_specific
     if expand('%:p') =~? '\(gnu\|gcc\|gdb\|less\|binutils\)'
