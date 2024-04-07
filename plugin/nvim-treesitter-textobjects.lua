@@ -129,7 +129,6 @@ require'nvim-treesitter.configs'.setup {
 			enable = true,
 			set_jumps = true, -- whether to set jumps in the jumplist
 			goto_next_start = {
-				-- N.b. I have checked that my VSH mappings override this.
 				["]g"] = "@class.outer",
 				["]m"] = "@function.outer",
 				["]j"] = "@loop.outer",

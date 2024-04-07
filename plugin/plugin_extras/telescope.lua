@@ -29,6 +29,9 @@ require('telescope').setup{
 }
 require('telescope').load_extension('fzy_native')
 require('telescope').load_extension('project')
+-- This isn't doing what I want yet.
+-- I was hoping it would handle the standard vim completion interface, but it
+-- doesn't do that -- it handles some subset (see `:help vim.ui.select()`).
 require('telescope').load_extension('ui-select')
 
 local builtin = require('telescope.builtin')
