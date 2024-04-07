@@ -109,3 +109,18 @@
 [submodule "bundle/nvim-treesitter-textobjects"]
 	path = bundle/nvim-treesitter-textobjects
 	url = git@github.com:nvim-treesitter/nvim-treesitter-textobjects.git
+[submodule "bundle/plenary"]
+	path = bundle/plenary
+	url = git@github.com:nvim-lua/plenary.nvim
+[submodule "bundle/telescope"]
+	path = bundle/telescope
+	url = git@github.com:nvim-lua/telescope.nvim
+[submodule "bundle/telescope-project"]
+	path = bundle/telescope-project
+	url = git@github.com:nvim-telescope/telescope-project.nvim
+[submodule "bundle/telescope-fzy-native"]
+	path = bundle/telescope-fzy-native
+	url = git@github.com:nvim-telescope/telescope-fzy-native.nvim
+[submodule "bundle/telescope-ui-select"]
+	path = bundle/telescope-ui-select
+	url = git@github.com:nvim-telescope/telescope-ui-select.nvim
