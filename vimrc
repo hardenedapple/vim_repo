@@ -37,7 +37,7 @@ runtime bundle/pathogen/autoload/pathogen.vim
 
 " Pathogen plugin {{{
 let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['neomake', 'grepper',
-			\ 'python-mode', 'nvim-treesitter', 'nvim-treesitter-context',
+			\ 'nvim-treesitter', 'nvim-treesitter-context',
 			\ 'nvim-treesitter-textobjects', 'plenary', 'telescope', 'telescope-project',
 			\ 'telescope-fzy-native', 'telescope-ui-select'])
 if v:version < 704
