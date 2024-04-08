@@ -39,8 +39,8 @@ vim.keymap.set('n', '<leader>cpf', builtin.find_files, {})
 vim.keymap.set('n', '<leader>cpg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>cpb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>cph', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>cpt', builtin.lsp_workspace_symbols, {})
-vim.keymap.set('n', '<leader>cpp', builtin.treesitter, {})
+vim.keymap.set('n', '<leader>cp]', builtin.lsp_workspace_symbols, {})
+vim.keymap.set('n', '<leader>cpt', builtin.treesitter, {})
 vim.keymap.set('n', '<leader>cpj', builtin.jumplist, {})
 
 local project = require('telescope').extensions.project
