@@ -5,14 +5,6 @@ endif
 " Fugitive Plugin
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
-" Commands taken from
-" https://github.com/dhruvasagar/dotfiles/blob/master/vim/commands.vim
-command! -bar -nargs=* Gpurr execute 'Git pull --rebase' <q-args> 'origin' fugitive#head()
-command! -bar -nargs=0 Gpnp silent Git pull | Git push
-command! -bar -nargs=0 Gprp silent Gpurr | Git push
-command! -bar Gstaged  Git! diff --cached
-
-
 " Bunch of leader mappings for ease of use
 nnoremap <silent> <leader>gw :<C-U>Gwrite<CR>
 nnoremap <silent> <leader>gd :<C-U>Gdiffsplit<CR>
