@@ -124,6 +124,3 @@
 [submodule "bundle/telescope-ui-select"]
 	path = bundle/telescope-ui-select
 	url = git@github.com:nvim-telescope/telescope-ui-select.nvim
-[submodule "bundle/wilder"]
-	path = bundle/wilder
-	url = git@github.com:gelguy/wilder.nvim

@@ -526,7 +526,11 @@ set smarttab
 set shiftround
 set autoread
 set wildmenu
-set wildmode=full
+" Have too often not *quite* gotten what I want, this at least limits things
+" down before choosing one.  N.b. could also use `CTRL-E` in order to
+" discontinue a given completion.
+set wildmode=longest:full,full
+set wildcharm=<C-Z>
 set wildignore+=*.pyc,__pycache__/,*~,.*.swp,*.aux,*.dvi,*.bbl,*.blg,*.brf,*.toc,*.lof
 
 " if ignorecase is on, use the case of the matching pattern to choose the case
