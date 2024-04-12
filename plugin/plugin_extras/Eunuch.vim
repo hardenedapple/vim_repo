@@ -28,3 +28,6 @@ nnoremap <leader>fd :<C-U>DiffOrig<CR>
 " I often type W when I mean w, and that ends up saving a bunch of temporary
 " changes in all my open windows.
 command W write
+" Found out there's some mapping in insert mode.  This doesn't play well with
+" nvim-orgmode.  Disabling it since I don't *think* I use it.
+let g:eunuch_no_maps=1

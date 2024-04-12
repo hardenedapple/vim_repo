@@ -39,7 +39,7 @@ require'nvim-treesitter.configs'.setup {
 		-- Have not yet trial and errored where the limit is, but I definitely saw
 		-- slowness in aarch64.cc (which is ~35000 lines long)
 		disable = function (lang, bufnr)
-			return (lang == "cpp" or lang == "c") and vim.api.nvim_buf_line_count(bufnr) > 10000
+			return (lang == "cpp" or lang == "c" or lang == "org") and vim.api.nvim_buf_line_count(bufnr) > 10000
 		end,
   },
 }

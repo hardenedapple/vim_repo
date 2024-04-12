@@ -39,7 +39,7 @@ runtime bundle/pathogen/autoload/pathogen.vim
 let g:pathogen_disabled = get(g:, 'pathogen_disabled', ['neomake', 'grepper',
 			\ 'nvim-treesitter', 'nvim-treesitter-context',
 			\ 'nvim-treesitter-textobjects', 'plenary', 'telescope', 'telescope-project',
-			\ 'telescope-fzy-native', 'telescope-ui-select', 'wilder'])
+			\ 'telescope-fzy-native', 'telescope-ui-select', 'orgmode'])
 if v:version < 704
   let g:pathogen_disabled += ['ultisnips']
 endif
