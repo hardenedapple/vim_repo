@@ -17,8 +17,8 @@
 --     @class.inner
 --     @class.outer
 --     @comment.inner      <-- Currently have a poor substitute for comment
---														 textobjects in Commentary plugin, would like
---														 a better implementation.
+--                             textobjects in Commentary plugin, would like
+--                             a better implementation.
 --     @comment.outer
 --     @conditional.inner
 --     @conditional.outer
@@ -47,28 +47,35 @@ require'nvim-treesitter.configs'.setup {
         -- You can use the capture groups defined in textobjects.scm
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
+        -- Would in general prefer to have "ac" and "ic" for selecting a class,
+        -- but since I use the `[c` and `]c` mappings often for moving between
+        -- changes (in diff-mode) I don't want them for class text motions.
+        -- Since I'll be using `[g` and `]g` for class motions, I choose to use
+        -- `ig` and `ag` for class text objects.  This is a little unintuitive,
+        -- but once I get familiar with the bindings the consistency makes
+        -- things easier to remember.
+        ["ag"] = "@class.outer",
+        ["ig"] = "@class.inner",
         -- -- You can also use captures from other query groups like `locals.scm`
         -- ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
-				["aa"] = "@parameter.outer",
-				["ia"] = "@parameter.inner",
+        ["aa"] = "@parameter.outer",
+        ["ia"] = "@parameter.inner",
 
-				-- For C/C++ probably not that useful (can always use a{ or a}, but
-				-- maybe helpful for other languages.  This overrides the `ab` standard
-				-- default vim mapping, but I happen to use the `a(` mnemonic so am not
-				-- bothered by that.
-				["ab"] = "@block.outer",
-				["ib"] = "@block.inner",
+        -- For C/C++ probably not that useful (can always use a{ or a}, but
+        -- maybe helpful for other languages.  This overrides the `ab` standard
+        -- default vim mapping, but I happen to use the `a(` mnemonic so am not
+        -- bothered by that.
+        ["ab"] = "@block.outer",
+        ["ib"] = "@block.inner",
 
-				["ak"] = "@conditional.outer",
-				["ik"] = "@conditional.inner",
+        ["ak"] = "@conditional.outer",
+        ["ik"] = "@conditional.inner",
 
-				["aj"] = "@loop.outer",
-				["ij"] = "@loop.inner",
+        ["aj"] = "@loop.outer",
+        ["ij"] = "@loop.inner",
 
-				["a/"] = "@comment.outer",
-				["i/"] = "@comment.inner",
+        ["a/"] = "@comment.outer",
+        ["i/"] = "@comment.inner",
       },
       -- You can choose the select mode (default is charwise 'v')
       --
@@ -104,54 +111,54 @@ require'nvim-treesitter.configs'.setup {
       },
     },
 
-		-- N.b. Redefining motion commands so that `[m' etc act on classes and `[['
-		-- etc act on functions.  Doing this mostly because the standard `[['
-		-- motions in C files act on functions (even though everything is only
-		-- defined by "curly brace as first character on the line", that's how
-		-- things end up) and I'm not inclined to put these more useful actions on
-		-- less familiar (and I believe less easy to type) keybindings.
-		-- Moreover, the amount of times I actually want to jump to the
-		-- beginning/end of a class are pretty limited.
-		-- Keys following `[' not currently defined in mappings:
-		--		c g h i j k r s v w z D E F G H I J K N O R S U V W X Y Z
-		-- Standard key sequences (i.e. vim default keymappings):
-		--    c     i       s     z D         I           S
-		-- So keys that are "free" for loops and conditionals:
-		--		  g h j k r v w E F G H J K N O R U V W X Y Z
-		--
-		-- It turns out that I don't like overriding these mappings.
-		-- Biggest reason is that in large C/C++ files they're quite slow, so I
-		-- want `[[` (which I used quite often) to stay around.
-		--
-		-- That said, I tend not to use the builtin `[m` mappings for functions, so
-		-- I think putting the motions there should be safe.
-		move = {
-			enable = true,
-			set_jumps = true, -- whether to set jumps in the jumplist
-			goto_next_start = {
-				["]g"] = "@class.outer",
-				["]m"] = "@function.outer",
-				["]j"] = "@loop.outer",
-				["]k"] = "@conditional.outer",
-			},
-			goto_next_end = {
-				["]G"] = "@class.outer",
-				["]M"] = "@function.outer",
-				["]J"] = "@loop.outer",
-				["]K"] = "@conditional.outer",
-			},
-			goto_previous_start = {
-				["[g"] = "@class.outer",
-				["[m"] = "@function.outer",
-				["[j"] = "@loop.outer",
-				["[k"] = "@conditional.outer",
-			},
-			goto_previous_end = {
-				["[G"] = "@class.outer",
-				["[M"] = "@function.outer",
-				["[J"] = "@loop.outer",
-				["[K"] = "@conditional.outer",
-			},
-		},
-	},
+    -- N.b. Redefining motion commands so that `[m' etc act on classes and `[['
+    -- etc act on functions.  Doing this mostly because the standard `[['
+    -- motions in C files act on functions (even though everything is only
+    -- defined by "curly brace as first character on the line", that's how
+    -- things end up) and I'm not inclined to put these more useful actions on
+    -- less familiar (and I believe less easy to type) keybindings.
+    -- Moreover, the amount of times I actually want to jump to the
+    -- beginning/end of a class are pretty limited.
+    -- Keys following `[' not currently defined in mappings:
+    --    c g h i j k r s v w z D E F G H I J K N O R S U V W X Y Z
+    -- Standard key sequences (i.e. vim default keymappings):
+    --    c     i       s     z D         I           S
+    -- So keys that are "free" for loops and conditionals:
+    --      g h j k r v w E F G H J K N O R U V W X Y Z
+    --
+    -- It turns out that I don't like overriding these mappings.
+    -- Biggest reason is that in large C/C++ files they're quite slow, so I
+    -- want `[[` (which I used quite often) to stay around.
+    --
+    -- That said, I tend not to use the builtin `[m` mappings for functions, so
+    -- I think putting the motions there should be safe.
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        ["]g"] = "@class.outer",
+        ["]m"] = "@function.outer",
+        ["]j"] = "@loop.outer",
+        ["]k"] = "@conditional.outer",
+      },
+      goto_next_end = {
+        ["]G"] = "@class.outer",
+        ["]M"] = "@function.outer",
+        ["]J"] = "@loop.outer",
+        ["]K"] = "@conditional.outer",
+      },
+      goto_previous_start = {
+        ["[g"] = "@class.outer",
+        ["[m"] = "@function.outer",
+        ["[j"] = "@loop.outer",
+        ["[k"] = "@conditional.outer",
+      },
+      goto_previous_end = {
+        ["[G"] = "@class.outer",
+        ["[M"] = "@function.outer",
+        ["[J"] = "@loop.outer",
+        ["[K"] = "@conditional.outer",
+      },
+    },
+  },
 }
