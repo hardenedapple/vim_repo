@@ -29,6 +29,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		vim.keymap.set('n', '<localleader>s', vim.lsp.buf.signature_help, { buffer = args.buf })
 		vim.keymap.set('n', '<localleader>d', vim.diagnostic.open_float, { buffer = args.buf })
 		vim.keymap.set('i', '<C-q>', vim.lsp.buf.signature_help, { buffer = args.buf })
+		vim.lsp.inlay_hint.enable()
 		-- TODO
 		--    vim.lsp.buf.workspace_symbol  (can I use this instead of TQFSelect?)
 		--       N.b. it looks like TQFSelect will always use the actual taglist,
