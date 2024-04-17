@@ -302,9 +302,6 @@ endif
 nnoremap <silent><leader>es :<C-U>let @" = 'vimcmd: e +' . line('.') . ' ' . expand('%')<CR>
 nnoremap <MiddleMouse> <LeftMouse>:silent RunCommand<CR>
 
-" In Dvorak, keep completion commands nearer each other
-inoremap <C-b> <C-p>
-
 " j and k keys below the 4 key in Dvorak
 noremap <silent> gj @='4j'<CR>
 noremap <silent> gk @='4k'<CR>
