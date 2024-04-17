@@ -146,6 +146,37 @@ Example >
 Replaces the text between the lines `10` and `12` with the text in register
 `x`.
 
+*config-:Args*
+This command runs precisely `:args` with its arguments.  The only
+difference being that it uses buffer completion rather than filename
+completion (allowing changing the argument list based on existing buffers).
+Example >
+    :Args <TAB>
+<
+Gives buffer-name completion for the `:args` command.
+
+*config-:Argadd*
+This command runs precisely `:argadd` with its arguments.  The only
+difference being that it uses buffer completion rather than filename
+completion (allowing changing the argument list based on existing buffers).
+Example >
+    :Argadd <TAB>
+<
+Gives buffer-name completion for the `:argadd` command.
+
+*config-:Argument*
+This command provides completion based on the current argument list in order
+to jump to a given buffer.  It runs `:buffer` with the argument given, but
+with command line completion based on the current argument list.
+
+*config-:Badd*
+This command allows adding multiple buffers to the buffer list without loading
+them or polluting the argument list.
+Example >
+    :Badd file1 file2 file3
+<
+Loads file1, file2, and file3 without changing the argument list.
+
 ==============================================================================
 VimCmd~
 
