@@ -56,6 +56,10 @@ vim.keymap.set('n', '<leader>cpj', builtin.jumplist, {})
 local project = require('telescope').extensions.project
 vim.keymap.set('n', '<leader>cpc', project.project, {})
 
+require('telescope').load_extension('arglist')
+local arglist = require('telescope-arglist')
+vim.keymap.set('n', '<leader>cpa', arglist.arglist, {})
+
 -- Experimented with `telescope-cmdline`.  Did not like the limitation around
 -- special forms for buffers.  Not using it for that reason.
 -- TODO in order to get `%:h` working:

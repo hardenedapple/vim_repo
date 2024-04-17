@@ -127,3 +127,6 @@
 [submodule "bundle/undotree"]
 	path = bundle/undotree
 	url = git@github.com:mbbill/undotree
+[submodule "bundle/telescope-arglist"]
+	path = bundle/telescope-arglist
+	url = git@github.com:sam4llis/telescope-arglist.nvim
