@@ -1,6 +1,7 @@
 -- Mostly want to just use the default mappings.
 require('orgmode').setup({
 	org_adapt_indentation = false,
+	org_startup_indented = true,
 	org_edit_src_content_indentation = 2,
 })
 
