@@ -54,7 +54,7 @@ vim.keymap.set('n', '<leader>cpt', builtin.treesitter, {})
 vim.keymap.set('n', '<leader>cpj', builtin.jumplist, {})
 
 local project = require('telescope').extensions.project
-vim.keymap.set('n', '<leader>cpc', project.project, {})
+vim.keymap.set('n', '<leader>cpp', project.project, {})
 
 require('telescope').load_extension('arglist')
 local arglist = require('telescope-arglist')
