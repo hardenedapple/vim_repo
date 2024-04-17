@@ -57,6 +57,11 @@ vim.keymap.set('n', '<leader>cpj', builtin.jumplist, {})
 
 local project = require('telescope').extensions.project
 vim.keymap.set('n', '<leader>cpp', project.project, {})
+-- Buffers for "current working directory" while files searching in "same
+-- directory as buffer" because file opening defaults to cwd.
+-- Putting this under the "project" extension because it "fits" there in my
+-- mind.
+vim.keymap.set('n', '<leader>cpd', function () builtin.buffers({ cwd_only = true }) end, {})
 
 require('telescope').load_extension('arglist')
 local arglist = require('telescope-arglist')
