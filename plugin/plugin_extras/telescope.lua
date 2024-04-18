@@ -1,4 +1,44 @@
+local actions = require("telescope.actions")
+local action_state = require("telescope.actions.state")
 local action_layout = require("telescope.actions.layout")
+local from_entry = require("telescope.from_entry")
+local transform_mod = require("telescope.actions.mt").transform_mod
+
+-- Copied from telescope actions directly.
+local append_to_history = function(prompt_bufnr)
+  action_state
+    .get_current_history()
+    :append(action_state.get_current_line(), action_state.get_current_picker(prompt_bufnr))
+end
+
+local function args_selection(prompt_bufnr, cmd)
+	local picker = action_state.get_current_picker(prompt_bufnr)
+	local args = {}
+	for _, entry in ipairs(picker:get_multi_selection()) do
+		table.insert(args, from_entry.path(entry))
+	end
+	local prompt = picker:_get_prompt()
+	actions.close(prompt_bufnr)
+	local argcmd = string.format([[%s %s]], cmd, table.concat(args, " "))
+	vim.cmd(argcmd)
+end
+
+local arglist_actions = {}
+
+arglist_actions.set_args = {
+	pre = append_to_history,
+	action = function (prompt_bufnr)
+		args_selection (prompt_bufnr, "args")
+	end,
+}
+arglist_actions.argadd = {
+	pre = append_to_history,
+	action = function (prompt_bufnr)
+		args_selection (prompt_bufnr, "argadd")
+	end,
+}
+arglist_actions = transform_mod(arglist_actions)
+
 require('telescope').setup{
 	defaults = {
 		-- Default configuration for telescope goes here:
@@ -8,10 +48,16 @@ require('telescope').setup{
 				-- Disable C-u being "sroll previewer" so it retains "kill entire line"
 				-- behaviour as in a normal buffer.
 				["<C-u>"] = false,
-				["<M-p>"] = action_layout.toggle_preview
+				["<M-p>"] = action_layout.toggle_preview,
+				["<M-8>"] = actions.toggle_all,
+				["<C-a>"] = arglist_actions.set_args,
+				["<C-b>"] = arglist_actions.argadd
 			},
 			n = {
-				["<M-p>"] = action_layout.toggle_preview
+				["<M-p>"] = action_layout.toggle_preview,
+				["*"] = actions.toggle_all,
+				["#"] = arglist_actions.set_args,
+				["+"] = arglist_actions.argadd
 			},
 		}
 	},
