@@ -44,28 +44,32 @@ require('telescope').load_extension('project')
 require('telescope').load_extension('ui-select')
 
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>cpf', builtin.find_files, {})
-vim.keymap.set('n', '<leader>cp.', function() builtin.find_files({ cwd = vim.fn.expand('%:p:h') }) end)
-vim.keymap.set('n', '<leader>cpr', builtin.git_files, {})
-vim.keymap.set('n', '<leader>cpg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>cpb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>cph', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>cp]', builtin.tags, {})
-vim.keymap.set('n', '<leader>cp[', builtin.lsp_workspace_symbols, {})
-vim.keymap.set('n', '<leader>cpt', builtin.treesitter, {})
-vim.keymap.set('n', '<leader>cpj', builtin.jumplist, {})
-
-local project = require('telescope').extensions.project
-vim.keymap.set('n', '<leader>cpp', project.project, {})
+vim.keymap.set('n', '<leader>cpf', builtin.find_files, {desc = "find files"})
+vim.keymap.set('n', '<leader>cp.',
+							function() builtin.find_files({ cwd = vim.fn.expand('%:p:h') }) end,
+							{desc = "find files in buffers dir"})
+vim.keymap.set('n', '<leader>cpr', builtin.git_files, {desc = "git ls-files"})
+vim.keymap.set('n', '<leader>cpg', builtin.live_grep, {desc = "live grep"})
+vim.keymap.set('n', '<leader>cpb', builtin.buffers, {desc = "buffers"})
 -- Buffers for "current working directory" while files searching in "same
 -- directory as buffer" because file opening defaults to cwd.
 -- Putting this under the "project" extension because it "fits" there in my
 -- mind.
-vim.keymap.set('n', '<leader>cpd', function () builtin.buffers({ cwd_only = true }) end, {})
+vim.keymap.set('n', '<leader>cpd',
+							function () builtin.buffers({ cwd_only = true }) end,
+							{desc = "buffers below cwd"})
+vim.keymap.set('n', '<leader>cph', builtin.help_tags, {desc = "help tags"})
+vim.keymap.set('n', '<leader>cp]', builtin.tags, {desc = "tags"})
+vim.keymap.set('n', '<leader>cp[', builtin.lsp_workspace_symbols, {desc = "lsp workspace symbols"})
+vim.keymap.set('n', '<leader>cpt', builtin.treesitter, {desc = 'treesitter symbols'})
+vim.keymap.set('n', '<leader>cpj', builtin.jumplist, {desc = 'jumplist'})
+
+local project = require('telescope').extensions.project
+vim.keymap.set('n', '<leader>cpp', project.project, {desc = 'project'})
 
 require('telescope').load_extension('arglist')
 local arglist = require('telescope-arglist')
-vim.keymap.set('n', '<leader>cpa', arglist.arglist, {})
+vim.keymap.set('n', '<leader>cpa', arglist.arglist, {desc = 'arglist'})
 
 -- Experimented with `telescope-cmdline`.  Did not like the limitation around
 -- special forms for buffers.  Not using it for that reason.
@@ -76,8 +80,9 @@ vim.keymap.set('n', '<leader>cpa', arglist.arglist, {})
 -- 2) Need to ensure that completions returned are actually handled when
 --	  we use such special characters.  Doesn't look like it at the
 --	  moment.
--- I *think* I just want to use `wilder`, since that naturally uses
--- the command line.
---local cmdline = require('telescope').extensions.cmdline
---vim.keymap.set('n', '<leader>cp;', cmdline.cmdline, {})
---vim.keymap.set('n', '<leader>cp:', cmdline.visual, {})
+-- If I ever look at doing something a bit nicer with the command line wildmenu
+-- I believe I just want to use `wilder`, since that naturally uses the command
+-- line.
+-- local cmdline = require('telescope').extensions.cmdline
+-- vim.keymap.set('n', '<leader>cp;', cmdline.cmdline, {})
+-- vim.keymap.set('n', '<leader>cp:', cmdline.visual, {})

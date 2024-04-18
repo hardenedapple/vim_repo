@@ -15,20 +15,27 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(args)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
 		if client.server_capabilities.hoverProvider then
-			vim.keymap.set('n', '<localleader>K', vim.lsp.buf.hover, { buffer = args.buf })
+			vim.keymap.set('n', '<localleader>K', vim.lsp.buf.hover,
+                   { buffer = args.buf, desc = 'hover' })
 		end
 		-- TODO Put each of the below under a check that the server has the
 		-- functionality.  Needs to find the mapping between the functionality
 		-- property and the behaviour that I want.
 		vim.keymap.set('n', '<localleader>q', 
 					function () vim.diagnostic.setloclist({open = true}) end,
-					{ buffer = args.buf })
-		vim.keymap.set('n', '<localleader>r', vim.lsp.buf.references, { buffer = args.buf })
-		vim.keymap.set('n', '<localleader>w', vim.lsp.buf.workspace_symbol, { buffer = args.buf })
-		vim.keymap.set('n', '<localleader>i', vim.lsp.buf.implementation, { buffer = args.buf })
-		vim.keymap.set('n', '<localleader>s', vim.lsp.buf.signature_help, { buffer = args.buf })
-		vim.keymap.set('n', '<localleader>d', vim.diagnostic.open_float, { buffer = args.buf })
-		vim.keymap.set('i', '<C-q>', vim.lsp.buf.signature_help, { buffer = args.buf })
+					{ buffer = args.buf, desc = 'diagnostic to qflist' })
+		vim.keymap.set('n', '<localleader>r', vim.lsp.buf.references,
+									{ buffer = args.buf, desc = 'references' })
+		vim.keymap.set('n', '<localleader>w', vim.lsp.buf.workspace_symbol,
+                   { buffer = args.buf, desc = 'workspace_symbol' })
+		vim.keymap.set('n', '<localleader>i', vim.lsp.buf.implementation,
+                   { buffer = args.buf, desc = 'implementation' })
+		vim.keymap.set('n', '<localleader>s', vim.lsp.buf.signature_help,
+                   { buffer = args.buf, desc = 'signature' })
+		vim.keymap.set('n', '<localleader>d', vim.diagnostic.open_float,
+                   { buffer = args.buf, desc = 'show diagnostic' })
+		vim.keymap.set('i', '<C-q>', vim.lsp.buf.signature_help,
+                   { buffer = args.buf, desc = 'signature' })
 		vim.lsp.inlay_hint.enable()
 		-- TODO
 		--    vim.lsp.buf.workspace_symbol  (can I use this instead of TQFSelect?)
