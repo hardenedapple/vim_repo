@@ -37,6 +37,12 @@ arglist_actions.argadd = {
 		args_selection (prompt_bufnr, "argadd")
 	end,
 }
+arglist_actions.badd = {
+	pre = append_to_history,
+	action = function (prompt_bufnr)
+		args_selection (prompt_bufnr, "Badd")
+	end,
+}
 arglist_actions = transform_mod(arglist_actions)
 
 require('telescope').setup{
@@ -49,15 +55,21 @@ require('telescope').setup{
 				-- behaviour as in a normal buffer.
 				["<C-u>"] = false,
 				["<M-p>"] = action_layout.toggle_preview,
+				["<M-7>"] = actions.select_all,
 				["<M-8>"] = actions.toggle_all,
+				["<M-9>"] = actions.drop_all,
 				["<C-a>"] = arglist_actions.set_args,
-				["<C-b>"] = arglist_actions.argadd
+				["<C-b>"] = arglist_actions.argadd,
+				["<M-b>"] = arglist_actions.badd
 			},
 			n = {
 				["<M-p>"] = action_layout.toggle_preview,
+				["&"] = actions.select_all,
 				["*"] = actions.toggle_all,
+				["("] = actions.drop_all,
 				["#"] = arglist_actions.set_args,
-				["+"] = arglist_actions.argadd
+				["+"] = arglist_actions.argadd,
+				["<M-b>"] = arglist_actions.badd
 			},
 		}
 	},
