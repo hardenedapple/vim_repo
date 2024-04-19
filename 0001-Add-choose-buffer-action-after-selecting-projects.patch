@@ -1,0 +1,79 @@
+From e18e5263a6452a5fc8389dc1b441e1370cab52f3 Mon Sep 17 00:00:00 2001
+From: Matthew Malcomson <matthew.malcomson@arm.com>
+Date: Fri, 19 Apr 2024 21:30:07 +0100
+Subject: [PATCH] Add "choose buffer" action after selecting projects
+
+Also put this on the relevant keybindings that I care about.
+I would really like to either get this into the main repo or to move it
+into some personal configuration.
+
+Unfortunately I am not at all familiar with the telescope setup, so
+making it a personal configuration thing will take a little while and
+I've not yet found the time.
+---
+ lua/telescope/_extensions/project/actions.lua | 13 +++++++++++++
+ lua/telescope/_extensions/project/main.lua    | 10 +++++-----
+ 2 files changed, 18 insertions(+), 5 deletions(-)
+
+diff --git a/lua/telescope/_extensions/project/actions.lua b/lua/telescope/_extensions/project/actions.lua
+index 454e6ab..f8f406c 100644
+--- a/lua/telescope/_extensions/project/actions.lua
++++ b/lua/telescope/_extensions/project/actions.lua
+@@ -184,6 +184,19 @@ M.recent_project_files = function(prompt_bufnr)
+   end
+ end
+ 
++-- Choose an open buffer within the selected project using the Telescope
++-- builtin `buffers`.
++M.buffers_in_project = function(prompt_bufnr)
++  local project_path = M.get_selected_path(prompt_bufnr)
++  actions._close(prompt_bufnr, true)
++  local cd_successful = _utils.change_project_dir(project_path, cd_scope)
++  if cd_successful then
++    vim.schedule(function()
++      builtin.buffers({cwd_only = true})
++    end)
++  end
++end
++
+ -- Change working directory to the selected project and close the picker.
+ M.change_working_directory = function(prompt_bufnr)
+   local project_path = M.get_selected_path(prompt_bufnr)
+diff --git a/lua/telescope/_extensions/project/main.lua b/lua/telescope/_extensions/project/main.lua
+index 8edeea9..66d6871 100644
+--- a/lua/telescope/_extensions/project/main.lua
++++ b/lua/telescope/_extensions/project/main.lua
+@@ -69,7 +69,7 @@ M.project = function(opts)
+       map('n', 'c', _actions.add_project)
+       map('n', 'C', _actions.add_project_cwd)
+       map('n', 'f', _actions.find_project_files)
+-      map('n', 'b', _actions.browse_project_files)
++      map('n', 'b', _actions.buffers_in_project)
+       map('n', 's', _actions.search_in_project_files)
+       map('n', 'R', _actions.recent_project_files)
+       map('n', 'w', _actions.change_working_directory)
+@@ -77,17 +77,17 @@ M.project = function(opts)
+ 
+       map('i', '<c-d>', _actions.delete_project)
+       map('i', '<c-v>', _actions.rename_project)
+-      map('i', '<c-a>', _actions.add_project)
+       map('i', '<c-A>', _actions.add_project_cwd)
++      map('i', '<c-a>', _actions.add_project)
+       map('i', '<c-f>', _actions.find_project_files)
+-      map('i', '<c-b>', _actions.browse_project_files)
++      map('i', '<c-b>', _actions.buffers_in_project)
+       map('i', '<c-s>', _actions.search_in_project_files)
+       map('i', '<c-r>', _actions.recent_project_files)
+       map('i', '<c-l>', _actions.change_working_directory)
+       map('i', '<c-o>', _actions.next_cd_scope)
+ 
+-      -- Workspace key mappings
+-      map('i', '<c-w>', _actions.change_workspace)
++      -- -- Workspace key mappings
++      -- map('i', '<c-w>', _actions.change_workspace)
+ 
+       local handler = function()
+         if on_project_selected then
+-- 
+2.25.1
+
