@@ -4,6 +4,14 @@ local action_layout = require("telescope.actions.layout")
 local from_entry = require("telescope.from_entry")
 local transform_mod = require("telescope.actions.mt").transform_mod
 
+-- TODO
+--	1) Add mapping to arglist picker that removes the selected buffer from the
+--		 arglist.
+--	2) Move my patch to the "project" extension into configuration here.
+--		 I want to change the mappings and add a choice to select buffers from
+--		 within that particular project.
+--	3) Try out fzf fuzzy finding (instead of fzy which I currently use).
+
 -- Copied from telescope actions directly.
 local append_to_history = function(prompt_bufnr)
   action_state
@@ -51,9 +59,14 @@ require('telescope').setup{
 		-- config_key = value,
 		mappings = {
 			i = {
-				-- Disable C-u being "sroll previewer" so it retains "kill entire line"
-				-- behaviour as in a normal buffer.
+				-- Disable C-u being "scroll previewer" so it retains "kill entire
+				-- line" behaviour as in a normal buffer.
+				-- Move the scrolling to C-e and C-y (as some alternate existing
+				-- scrolling mappings).
 				["<C-u>"] = false,
+				["<C-d>"] = false,
+				["<C-y>"] = actions.preview_scrolling_up,
+				["<C-e>"] = actions.preview_scrolling_down,
 				["<M-p>"] = action_layout.toggle_preview,
 				["<M-7>"] = actions.select_all,
 				["<M-8>"] = actions.toggle_all,
@@ -63,6 +76,10 @@ require('telescope').setup{
 				["<M-b>"] = arglist_actions.badd
 			},
 			n = {
+				["<C-u>"] = false,
+				["<C-d>"] = false,
+				["<C-y>"] = actions.preview_scrolling_up,
+				["<C-e>"] = actions.preview_scrolling_down,
 				["<M-p>"] = action_layout.toggle_preview,
 				["&"] = actions.select_all,
 				["*"] = actions.toggle_all,
@@ -74,13 +91,13 @@ require('telescope').setup{
 		}
 	},
 	pickers = {
-		-- Default configuration for builtin pickers goes here:
-		-- picker_name = {
-			--   picker_config_key = value,
-			--   ...
-			-- }
-			-- Now the picker_config_key will be applied every time you call this
-			-- builtin picker
+		buffers = {
+			mappings = {
+				i = {
+					["<c-d>"] = actions.delete_buffer + actions.move_to_top,
+				}
+			}
+		}
 	},
 	extensions = {
 		['ui-select'] = {
