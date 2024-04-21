@@ -130,3 +130,6 @@
 [submodule "bundle/telescope-arglist"]
 	path = bundle/telescope-arglist
 	url = git@github.com:sam4llis/telescope-arglist.nvim
+[submodule "bundle/nvim-lspconfig"]
+	path = bundle/nvim-lspconfig
+	url = git@github.com:neovim/nvim-lspconfig

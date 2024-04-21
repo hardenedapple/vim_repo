@@ -2,6 +2,9 @@
 -- logging and attempt to reproduce.
 -- vim.lsp.set_log_level("TRACE")
 
+-- Use defaults for rust_analyzer.
+require('lspconfig').rust_analyzer.setup({})
+
 -- The below seems to start the LSP server just fine.
 -- I'd need to have more conditions (things like only run when asked and only
 -- run on C/C++ files) before uncommenting it.
@@ -9,6 +12,9 @@
 -- enabled LSP in a given "project", then enable it in all buffers for that
 -- project".  I don't think there's anything like that built in to neovim.
 vim.api.nvim_create_augroup('personal_lsp', { clear = true })
+
+vim.keymap.set('n', '[h', vim.diagnostic.goto_prev, { desc = 'prev diagnostic' })
+vim.keymap.set('n', ']h', vim.diagnostic.goto_next, { desc = 'next diagnostic' })
 
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = "personal_lsp",
