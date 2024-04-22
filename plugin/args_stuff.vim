@@ -12,7 +12,7 @@ function s:ArglistComplete(ArgLead, CmdLine, CursorPos)
 endfunction
 
 command -nargs=1 -bar -complete=customlist,s:ArglistComplete Argument buffer <args>
-nnoremap <leader>mm :<C-U>call feedkeys(":Argument \<c-d>")<cr>
+nnoremap <silent> <leader>mm <cmd>call feedkeys(':Argument '.nr2char(&wildcharm))<cr>
 
 " Add a whole load of buffers at the same time
 function s:MultipleBadd(buffers)
@@ -23,4 +23,11 @@ function s:MultipleBadd(buffers)
   endfor
 endfunction
 
+function s:MultipleArgdelete(arguments)
+  for buffer_name in split(a:arguments)
+    exe 'argdelete ' . buffer_name
+  endfor
+endfunction
+
 command -nargs=+ -complete=file Badd call <SID>MultipleBadd('<args>')
+command -nargs=+ -complete=customlist,s:ArglistComplete Argdelete call <SID>MultipleArgdelete('<args>')
