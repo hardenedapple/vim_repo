@@ -101,6 +101,18 @@ require'nvim-treesitter.configs'.setup {
       include_surrounding_whitespace = true,
     },
 
+    -- N.b. I already have `sideways` as a vim plugin.
+    -- To be honest, this seems to work better than treesitter, but I expect
+    -- that to eventually change since I expect treesitter support to have more
+    -- work done on it over time.
+    -- However, somewhere that treesitter will never work is in areas where
+    -- there is no particular logical syntax.  E.g. in my VSH buffers where I
+    -- sometimes use a REPL.
+    -- Hence I will always want `sideways`, and want treesitter to override the
+    -- sideways mappings if&when I have a parser installed for the current
+    -- filetype.
+    -- It seems that the way I have things set up currently does that, will
+    -- hopefully notice if that changes and fix it then.
     swap = {
       enable = true,
       swap_next = {
