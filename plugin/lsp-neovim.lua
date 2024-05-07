@@ -22,7 +22,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
 		if client.server_capabilities.hoverProvider then
 			vim.keymap.set('n', '<localleader>K', vim.lsp.buf.hover,
-                   { buffer = args.buf, desc = 'hover' })
+                     { buffer = args.buf, desc = 'hover' })
+			-- I still want manpage under `K`.
+			vim.keymap.del("n", "K", { buffer = args.buf })
 		end
 		-- TODO Put each of the below under a check that the server has the
 		-- functionality.  Needs to find the mapping between the functionality
