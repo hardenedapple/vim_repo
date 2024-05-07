@@ -133,3 +133,6 @@
 [submodule "bundle/nvim-lspconfig"]
 	path = bundle/nvim-lspconfig
 	url = git@github.com:neovim/nvim-lspconfig
+[submodule "bundle/gv"]
+	path = bundle/gv
+	url = git@github.com:junegunn/gv.vim
