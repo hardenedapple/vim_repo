@@ -148,8 +148,8 @@ function s:Again()
 endfunction
 nnoremap <silent> Q :<C-U>call <SID>Again()<CR>
 
-" Quicker looking at buffers
-nnoremap <leader>b :<C-U>ls<CR>:b<space>
+" Quicker accessing buffers
+nnoremap <leader>b :<C-U>b<space>
 
 " Quick save
 nnoremap <silent> <leader>u :<C-U>update<CR>
