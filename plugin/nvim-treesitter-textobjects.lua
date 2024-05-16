@@ -45,8 +45,10 @@ require'nvim-treesitter.configs'.setup {
       lookahead = true,
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
+        -- Would prefer to use `af`, but since I have [m and ]m for methods
+        -- this is more consistent.
+        ["am"] = "@function.outer",
+        ["im"] = "@function.inner",
         -- Would in general prefer to have "ac" and "ic" for selecting a class,
         -- but since I use the `[c` and `]c` mappings often for moving between
         -- changes (in diff-mode) I don't want them for class text motions.
