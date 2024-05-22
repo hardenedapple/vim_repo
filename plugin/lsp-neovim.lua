@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		vim.keymap.set('n', '<localleader>d', vim.diagnostic.open_float,
                    { buffer = args.buf, desc = 'show diagnostic' })
 		vim.keymap.set('n', '<localleader>a',
-                   function() vim.lsp.buf.code_action end,
+                   function() vim.lsp.buf.code_action({apply = true}) end,
                    { buffer = args.buf, desc = 'code action' })
 		vim.keymap.set('n', '<localleader>n', vim.lsp.buf.rename,
                    { buffer = args.buf, desc = 'rename' })
