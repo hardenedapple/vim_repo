@@ -86,11 +86,18 @@ require'nvim-treesitter.configs'.setup {
       -- * method: eg 'v' or 'o'
       -- and should return the mode ('v', 'V', or '<c-v>') or a table
       -- mapping query_strings to modes.
-      selection_modes = {
-        ['@function.outer'] = 'V',
-        ['@class.outer'] = 'V',
-        -- Use '<c-v>' for blockwise
-      },
+      -- NOTE: Currently selection mode of linewase is implemented somewhat
+      -- dumbly (at least for C++).  It selects the first line containing
+      -- another method as well.  This seems to be because it selects a range
+      -- using charwise motion, then turns that selection linewise -- even
+      -- though the charwise motion included whitespace before the next method
+      -- name.  Rather than specify what modes I think things should be in I
+      -- plan to just use the default and adjust my workflow.
+      -- selection_modes = {
+      --   ['@function.outer'] = 'v',
+      --   ['@class.outer'] = 'V',
+      --   -- Use '<c-v>' for blockwise
+      -- },
       -- If you set this to `true` (default is `false`) then any textobject is
       -- extended to include preceding or succeeding whitespace. Succeeding
       -- whitespace has priority in order to act similarly to eg the built-in
