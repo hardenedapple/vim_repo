@@ -42,6 +42,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
                    { buffer = args.buf, desc = 'signature' })
 		vim.keymap.set('n', '<localleader>d', vim.diagnostic.open_float,
                    { buffer = args.buf, desc = 'show diagnostic' })
+		vim.keymap.set('n', '<localleader>a',
+                   function() vim.lsp.buf.code_action end,
+                   { buffer = args.buf, desc = 'code action' })
+		vim.keymap.set('n', '<localleader>n', vim.lsp.buf.rename,
+                   { buffer = args.buf, desc = 'rename' })
 		vim.keymap.set('i', '<C-q>', vim.lsp.buf.signature_help,
                    { buffer = args.buf, desc = 'signature' })
 		vim.lsp.inlay_hint.enable()
