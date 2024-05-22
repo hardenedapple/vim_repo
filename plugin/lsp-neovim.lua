@@ -13,9 +13,6 @@ require('lspconfig').rust_analyzer.setup({})
 -- project".  I don't think there's anything like that built in to neovim.
 vim.api.nvim_create_augroup('personal_lsp', { clear = true })
 
-vim.keymap.set('n', '[h', vim.diagnostic.goto_prev, { desc = 'prev diagnostic' })
-vim.keymap.set('n', ']h', vim.diagnostic.goto_next, { desc = 'next diagnostic' })
-
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = "personal_lsp",
 	callback = function(args)
