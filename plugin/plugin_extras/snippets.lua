@@ -48,7 +48,7 @@ function do_expand()
 end
 
 local function snippet_format(snip)
-	return string.format("%s:  %s", snip.name, snip.description)
+	return string.format("%s | %s:  %s", snip.prefix, snip.name, snip.description)
 end
 local function choose_snippet()
 	snippets.load_snippets_for_ft(vim.bo.filetype)
@@ -59,7 +59,7 @@ local function choose_snippet()
 		count = count + 1
 	end
 	vim.ui.select(items, {prompt = 'Choose snippet', format_item = snippet_format},
-								function(item) vim.snippet.expand(body_as_string(item.body)) end)
+								function(item) if item then vim.snippet.expand(body_as_string(item.body)) end end)
 end
 
 vim.keymap.set('i', '<M-;>', do_expand,
