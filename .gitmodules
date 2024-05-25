@@ -82,9 +82,6 @@
 [submodule "bundle/neomake"]
   path = bundle/neomake
   url = git@github.com:benekastah/neomake
-[submodule "bundle/rust-vim"]
-  path = bundle/rust-vim
-  url = git@github.com:rust-lang/rust.vim.git
 [submodule "bundle/vsh"]
   path = bundle/vsh
   url = git@github.com:hardenedapple/vsh.git
