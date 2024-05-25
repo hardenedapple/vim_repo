@@ -136,3 +136,9 @@
 [submodule "bundle/gv"]
 	path = bundle/gv
 	url = git@github.com:junegunn/gv.vim
+[submodule "bundle/nvim-snippets"]
+	path = bundle/nvim-snippets
+	url = git@github.com:garymjr/nvim-snippets
+[submodule "bundle/friendly-snippets"]
+	path = bundle/friendly-snippets
+	url = git@github.com:rafamadriz/friendly-snippets
