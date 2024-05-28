@@ -141,6 +141,7 @@ vim.keymap.set('n', '<leader>cp]', builtin.tags, {desc = "tags"})
 vim.keymap.set('n', '<leader>cp[', builtin.lsp_workspace_symbols, {desc = "lsp workspace symbols"})
 vim.keymap.set('n', '<leader>cpt', builtin.treesitter, {desc = 'treesitter symbols'})
 vim.keymap.set('n', '<leader>cpj', builtin.jumplist, {desc = 'jumplist'})
+vim.keymap.set('n', '<leader>cpq', builtin.quickfix, {desc = 'quickfix'})
 
 local project = require('telescope').extensions.project
 vim.keymap.set('n', '<leader>cpp', project.project, {desc = 'project'})
