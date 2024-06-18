@@ -7,8 +7,10 @@ setlocal fo+=crot
 setlocal define=^\s*\\(def\\\\|class\\)
 
 " Don't use semicolon very often in python
-lnoremap <buffer> ; :
-lnoremap <buffer> : ;
+if has('keymap')
+	lnoremap <buffer> ; :
+	lnoremap <buffer> : ;
+endif
 
 " Macro to go to and change the next occurance of TODO
 " require setreg  -  see

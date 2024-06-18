@@ -1,4 +1,6 @@
-lnoremap <buffer> [ {
-lnoremap <buffer> ] }
-lnoremap <buffer> { [
-lnoremap <buffer> } ]
+if has('keymap')
+  lnoremap <buffer> [ {
+  lnoremap <buffer> ] }
+  lnoremap <buffer> { [
+  lnoremap <buffer> } ]
+endif

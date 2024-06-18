@@ -83,6 +83,9 @@ function helpers#working_environment(buffer_specific)
 endfunction
 
 function helpers#toggle_colon()
+	if !has('keymap')
+		return
+	endif
   let mapdict = maparg(';', 'l', 0, 1)
   if has_key(mapdict, 'buffer')
     lunmap <buffer> ;
