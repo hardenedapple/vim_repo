@@ -13,3 +13,9 @@ endif
 
 " Run cscope
 nnoremap <F11>  :<C-U>!cscope -Rb<CR>:cs reset<CR>
+
+" Disable so can use LSP.  I don't really use the default one and would like
+" LSP via clang to set this by default.
+if &omnifunc =~ 'ccomplete'
+	set omnifunc=
+endif
