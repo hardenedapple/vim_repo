@@ -5,6 +5,9 @@
 -- Use defaults for rust_analyzer.
 require('lspconfig').rust_analyzer.setup({})
 
+-- Similar for pylsp.
+require('lspconfig').pylsp.setup({})
+
 -- The below seems to start the LSP server just fine.
 -- I'd need to have more conditions (things like only run when asked and only
 -- run on C/C++ files) before uncommenting it.
