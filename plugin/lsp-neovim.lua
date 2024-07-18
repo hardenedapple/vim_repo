@@ -1,6 +1,7 @@
 -- Temporary so that if I notice something strange I don't have to turn on
 -- logging and attempt to reproduce.
 -- vim.lsp.set_log_level("TRACE")
+vim.api.nvim_create_augroup('personal_lsp', { clear = true })
 
 -- Use defaults for rust_analyzer.
 require('lspconfig').rust_analyzer.setup({})
@@ -8,14 +9,72 @@ require('lspconfig').rust_analyzer.setup({})
 -- Similar for pylsp.
 require('lspconfig').pylsp.setup({})
 
--- The below seems to start the LSP server just fine.
--- I'd need to have more conditions (things like only run when asked and only
--- run on C/C++ files) before uncommenting it.
--- N.b. similar to emacs's `eglot` I would like to be able to say "if I've
--- enabled LSP in a given "project", then enable it in all buffers for that
--- project".  I don't think there's anything like that built in to neovim.
-vim.api.nvim_create_augroup('personal_lsp', { clear = true })
+-- For the moment this will likely work, since I only work on large C/C++
+-- projects in git.
+--
+-- TODO This autocmd seems to trigger everywhere it should *except* for opening
+-- the very first file.
+vim.api.nvim_create_autocmd('FileType', {
+	group = "personal_lsp",
+	callback = function(event_arg)
+		local interesting = {c = true, cpp = true}
+		if interesting[event_arg.match] then
+			project_cc_json = vim.fs.find(
+						{'compile_commands.json'},
+						{upward = true,
+						 stop = vim.uv.os_homedir(),
+						 path = vim.fs.dirname(vim.api.nvim_buf_get_name(0))})[1]
+			if project_cc_json then
+				vim.lsp.start({
+					name = 'clangd LSP server',
+					-- cmd = {'clangd', '--log=verbose'},
+					cmd = {'clangd'},
+					root_dir = vim.fs.dirname(project_cc_json)
+				})
+			end
+		end
+	end
+})
 
+-- Setup taken directly from the help description.  Supposedly best for lua
+-- developement for neovim plugins.
+require'lspconfig'.lua_ls.setup {
+  on_init = function(client)
+    local path = client.workspace_folders[1].name
+    if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
+      return
+    end
+
+    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+      runtime = {
+        -- Tell the language server which version of Lua you're using
+        -- (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT'
+      },
+      -- Make the server aware of Neovim runtime files
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME
+          -- Depending on the usage, you might want to add additional paths here.
+          -- "${3rd}/luv/library"
+          -- "${3rd}/busted/library",
+        }
+        -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+        -- library = vim.api.nvim_get_runtime_file("", true)
+      }
+    })
+  end,
+  settings = {
+    Lua = {}
+  }
+}
+------------------------------
+-- Below has the "general" configuration stuff -- i.e. keybindings, settings
+-- for how to display diagnostics, etc.
+------------------------------
+
+-- General keybindings and settings for interaction with LSP.
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = "personal_lsp",
 	callback = function(args)
@@ -61,33 +120,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		--								 N.b. if there is a nice formatting available, it might
 		--								 be better to use treesitter.
 	end,
-})
-
--- For the moment this will likely work, since I only work on large C/C++
--- projects in git.
---
--- TODO This autocmd seems to trigger everywhere it should *except* for opening
--- the very first file.
-vim.api.nvim_create_autocmd('FileType', {
-	group = "personal_lsp",
-	callback = function(event_arg)
-		local interesting = {c = true, cpp = true}
-		if interesting[event_arg.match] then
-			project_cc_json = vim.fs.find(
-						{'compile_commands.json'},
-						{upward = true,
-						 stop = vim.uv.os_homedir(),
-						 path = vim.fs.dirname(vim.api.nvim_buf_get_name(0))})[1]
-			if project_cc_json then
-				vim.lsp.start({
-					name = 'clangd LSP server',
-					-- cmd = {'clangd', '--log=verbose'},
-					cmd = {'clangd'},
-					root_dir = vim.fs.dirname(project_cc_json)
-				})
-			end
-		end
-	end
 })
 
 -- Get rid of the signs in the number column and the virtual text.
