@@ -39,9 +39,9 @@ end
 function do_expand()
 	local cword = get_current_word()
 	snippets.load_snippets_for_ft(vim.bo.filetype)
-	local snippet_key = Snippets.prefix_lookup[cword]
-	if snippet_key then
-		local body = body_as_string(Snippets.loaded_snippets[snippet_key].body)
+	local snip = snippets.loaded_snippets[cword]
+	if snip then
+		local body = body_as_string(snip.body)
 		vim.cmd('normal! dvB')
 		vim.snippet.expand(body)
 	end
