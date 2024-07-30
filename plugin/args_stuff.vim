@@ -23,6 +23,13 @@ function s:MultipleBadd(buffers)
   endfor
 endfunction
 
+" Delete a whole load of buffers at the same time
+function s:MultipleBdel(buffers)
+  for buffer_name in split(a:buffers)
+    exe 'bdelete ' . single_file
+  endfor
+endfunction
+
 function s:MultipleArgdelete(arguments)
   for buffer_name in split(a:arguments)
     exe 'argdelete ' . buffer_name
@@ -30,4 +37,5 @@ function s:MultipleArgdelete(arguments)
 endfunction
 
 command -nargs=+ -complete=file Badd call <SID>MultipleBadd('<args>')
+command -nargs=+ -complete=buffer Bdel call <SID>MultipleBdel('<args>')
 command -nargs=+ -complete=customlist,s:ArglistComplete Argdelete call <SID>MultipleArgdelete('<args>')
