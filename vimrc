@@ -319,14 +319,12 @@ noremap , ;
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Manage spaces and tabs {{{
 
-" Indentation settings taken from GNU coding standards
-" (may as well have them everywhere rather than rely on telling which files are
-" for GNU and which aren't).
+" Automatically insert indent.  Tend to use spaces instead of tabs (default
+" before filetype specific settings used).  Tab width of 4..
 set autoindent
-set noexpandtab
-set shiftwidth=2
-set tabstop=8
-set softtabstop=2
+set expandtab
+set tabstop=4
+set shiftwidth=4
 
 " Insert double spaces for a new sentence.  This is the GNU comment style.
 " Previously I didn't like it, but I'm now used to it.
