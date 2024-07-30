@@ -56,11 +56,11 @@ elseif s:project == 'gnu'
   setlocal formatoptions-=o
   setlocal formatoptions-=c
   setlocal cinoptions=>4,n-2,{2,^-2,:2,=2,g0,h2,p5,t0,+2,(0,u0,w1,m1
-	if expand('%:p') =~ 'gcc'
-		" Understand that `GTY` is a token in the GCC source code that can be in
-		" front of an identifier.
-		nnoremap <silent> <buffer> <F12> <cmd>!ctags-exuberant -R -I GTY+ --fields=+iaS --extra=+qf .<CR>
-	endif
+  if expand('%:p') =~ 'gcc'
+    " Understand that `GTY` is a token in the GCC source code that can be in
+    " front of an identifier.
+    nnoremap <silent> <buffer> <F12> <cmd>!ctags-exuberant -R -I GTY+ --fields=+iaS --extra=+qf .<CR>
+  endif
 elseif s:project == 'vim'
   setlocal shiftwidth=2
   setlocal tabstop=8
