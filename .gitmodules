@@ -139,3 +139,9 @@
 [submodule "bundle/friendly-snippets"]
 	path = bundle/friendly-snippets
 	url = git@github.com:rafamadriz/friendly-snippets
+[submodule "bundle/vim-visual-multi"]
+	path = bundle/vim-visual-multi
+	url = git@github.com:mg979/vim-visual-multi
+[submodule "bundle/notmuch-vim"]
+	path = bundle/notmuch-vim
+	url = git@github.com:felipec/notmuch-vim
