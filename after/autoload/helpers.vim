@@ -42,9 +42,23 @@ function s:set_colorscheme(group_name, colorset)
   endfor
 endfunction
 
-function s:toggle_cursorcrosshairs(timer_id)
-  let &cursorline = !&cursorline
-  let &cursorcolumn = !&cursorcolumn
+function s:toggle_cursorcrosshairs(winid, timer_id)
+  if has('nvim')
+    " With neovim I can keep toggling this particular window's cursor line and
+    " column.
+lua << EOF
+    local orig_line = vim.api.nvim_get_option_value('cursorline', { scope='local', win=vim.api.nvim_eval('a:winid')} )
+    local orig_col = vim.api.nvim_get_option_value('cursorcolumn', { scope='local', win=vim.api.nvim_eval('a:winid')} )
+    vim.api.nvim_set_option_value('cursorline', not orig_line, { scope='local', win=vim.api.nvim_eval('a:winid')} )
+    vim.api.nvim_set_option_value('cursorcolumn', not orig_col, {scope='local', win=vim.api.nvim_eval('a:winid')} )
+EOF
+  else
+    " Otherwise, just don't let me move cursor and mess things up.
+    " Always go back to that particular window until this toggling is over.
+    call win_gotoid(a:winid)
+    let &cursorline = !&cursorline
+    let &cursorcolumn = !&cursorcolumn
+  endif
 endfunction
 
 function helpers#where_cursor()
@@ -61,7 +75,8 @@ function helpers#where_cursor()
   "   event queue, and the redraw is invoked automatically when vim goes back
   "   to waiting for input from the user.
   "   This means the wait time is much more consistent.
-  let timer_id = timer_start(100, function('s:toggle_cursorcrosshairs'), { 'repeat': 6 })
+  let Curried_function = function('s:toggle_cursorcrosshairs', [win_getid()])
+  let timer_id = timer_start(100, Curried_function, { 'repeat': 6 })
 endfunction
 
 function helpers#working_environment(buffer_specific)
