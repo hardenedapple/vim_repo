@@ -101,7 +101,7 @@ require('telescope').setup{
 	},
 	extensions = {
 		['ui-select'] = {
-			require('telescope.themes').get_dropdown { }
+			require('telescope.themes').get_dropdown {layout_config={width=100}}
 		},
 		-- Your extension configuration goes here:
 		-- extension_name = {
