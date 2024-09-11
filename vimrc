@@ -528,6 +528,7 @@ set wildmenu
 set wildmode=longest:full,full
 set wildcharm=<C-Z>
 set wildignore+=*.pyc,__pycache__/,*~,.*.swp,*.aux,*.dvi,*.bbl,*.blg,*.brf,*.toc,*.lof
+set wildoptions=pum,tagfile
 
 " if ignorecase is on, use the case of the matching pattern to choose the case
 " of the insertion pattern to insert -- I rarely use ignorecase, but when I do,
