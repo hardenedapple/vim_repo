@@ -15,11 +15,11 @@ require('lspconfig').pylsp.setup({})
 -- TODO This autocmd seems to trigger everywhere it should *except* for opening
 -- the very first file.
 vim.api.nvim_create_autocmd('FileType', {
-	group = "personal_lsp",
+	group = 'personal_lsp',
 	callback = function(event_arg)
 		local interesting = {c = true, cpp = true}
 		if interesting[event_arg.match] then
-			project_cc_json = vim.fs.find(
+			local project_cc_json = vim.fs.find(
 						{'compile_commands.json'},
 						{upward = true,
 						 stop = vim.uv.os_homedir(),
@@ -76,14 +76,14 @@ require'lspconfig'.lua_ls.setup {
 
 -- General keybindings and settings for interaction with LSP.
 vim.api.nvim_create_autocmd('LspAttach', {
-	group = "personal_lsp",
+	group = 'personal_lsp',
 	callback = function(args)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
 		if client.server_capabilities.hoverProvider then
 			vim.keymap.set('n', '<localleader>K', vim.lsp.buf.hover,
                      { buffer = args.buf, desc = 'hover' })
 			-- I still want manpage under `K`.
-			vim.keymap.del("n", "K", { buffer = args.buf })
+			vim.keymap.del('n', 'K', { buffer = args.buf })
 		end
 		-- TODO Put each of the below under a check that the server has the
 		-- functionality.  Needs to find the mapping between the functionality
@@ -126,7 +126,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- Can still ask the diagnostics to be shown in a location list (with the
 -- key binding above), just don't want things cluttering up my view without
 -- explicitly asking for them.
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics, {
 		-- Disable signs
 		signs = false,

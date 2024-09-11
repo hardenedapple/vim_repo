@@ -137,6 +137,8 @@ vim.keymap.set('n', '<leader>cpd',
 							function () builtin.buffers({ cwd_only = true }) end,
 							{desc = "buffers below cwd"})
 vim.keymap.set('n', '<leader>cph', builtin.help_tags, {desc = "help tags"})
+-- N.b. be very careful about using the `tags` picker.  In large projects it
+-- can end up with vim taking a *lot* of memory and not releasing it.
 vim.keymap.set('n', '<leader>cp]', builtin.tags, {desc = "tags"})
 vim.keymap.set('n', '<leader>cp[', builtin.lsp_workspace_symbols, {desc = "lsp workspace symbols"})
 vim.keymap.set('n', '<leader>cpt', builtin.treesitter, {desc = 'treesitter symbols'})
