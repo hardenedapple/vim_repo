@@ -36,6 +36,30 @@ vim.api.nvim_create_autocmd('FileType', {
 	end
 })
 
+-- Using this LSP:  https://github.com/bergercookie/asm-lsp
+-- Documentation mentions that it requires a `.git` directory, so we ensure
+-- this before starting.
+vim.api.nvim_create_autocmd('FileType', {
+  group = 'personal_lsp',
+  callback = function(event_arg)
+    local interesting = {asm = true}
+    if interesting[event_arg.match] then
+      local project = vim.fs.find(
+        {'.git'},
+        {upward = true,
+         stop = vim.uv.os_homedir(),
+         path = vim.fs.dirname(vim.api.nvim_buf_get_name(0))})[1]
+      if project then
+        vim.lsp.start({
+          name = 'ASM LSP Server',
+          cmd = {'asm-lsp'},
+          root_dir = vim.fs.dirname(project)
+        })
+      end
+    end
+  end
+})
+
 -- Setup taken directly from the help description.  Supposedly best for lua
 -- developement for neovim plugins.
 require'lspconfig'.lua_ls.setup {
