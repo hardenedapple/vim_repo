@@ -663,7 +663,7 @@ set noimcmdline
 
 " Format options: automatic folding, comment folding etc.
 set textwidth=79
-set formatoptions+=crotql
+set formatoptions+=crotqlj
 set virtualedit=block
 
 " Make automatic open with folds all closed
