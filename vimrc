@@ -165,7 +165,7 @@ nnoremap <silent> <leader>u :<C-U>update<CR>
 " The function version is really slow in large files (e.g. 300,000 lines in
 " some weechat logs).
 " The function is mostly taken from man#show_toc()
-function OccurSearch(pattern, word_match, add) abort range
+function s:OccurSearch(pattern, word_match, add) abort range
   let pattern = a:word_match ? '\<' . a:pattern . '\>' : a:pattern
   let bufname = bufname('%')
   let info = getqflist({'title': 1})
@@ -194,8 +194,8 @@ function OccurSearch(pattern, word_match, add) abort range
   endif
 endfunction
 
-command -range=% -bang -bar -nargs=1 Occur <line1>,<line2>call OccurSearch(<q-args>, <bang>0, 0)
-command -range=% -bang -bar -nargs=1 Occuradd <line1>,<line2>call OccurSearch(<q-args>, <bang>0, 1)
+command -range=% -bang -bar -nargs=1 Occur <line1>,<line2>call <SID>OccurSearch(<q-args>, <bang>0, 0)
+command -range=% -bang -bar -nargs=1 Occuradd <line1>,<line2>call <SID>OccurSearch(<q-args>, <bang>0, 1)
 command -range=% -bang -bar -nargs=1 OccurFast execute 'silent vimgrep /' . substitute('<bang>', '!', '\\<', '') . <q-args> . substitute('<bang>', '!', '\\>', '') . '/j ' . expand('%') ' | call helpers#FilterQuickfixListByPosition(0, <line1>, <line2>, v:false) | call helpers#open_list_unobtrusively("", "copen")'
 nnoremap <silent> <leader>sh :OccurFast <C-R><C-W><CR>
 
@@ -241,10 +241,11 @@ nnoremap <leader>p, :keeppatterns s/,/,\r/g<CR>
 
 " Execute current line or current selection as Vim EX commands.
 " (I've just been watching the acme editor introduction)
-let g:command_prefix = 'vimcmd: '
+let g:command_prefix = 'vimcmd. '
 function s:ParseCommand(line)
-  let come_here_prefix = substitute(g:command_prefix, ':', ';', '')
-  let come_and_stay_prefix = substitute(g:command_prefix, ':', '!', '')
+  let basic_prefix = substitute(g:command_prefix, '\.', ':', '')
+  let come_here_prefix = substitute(g:command_prefix, '\.', ';', '')
+  let come_and_stay_prefix = substitute(g:command_prefix, '\.', '!', '')
 
   let l:command_start = match(a:line, g:command_prefix)
   if l:command_start != -1
@@ -264,7 +265,7 @@ function s:ParseCommand(line)
   return [0, '']
 endfunction
 
-function RunCommand(val)
+function s:RunCommand(val)
   let orig_vcount = 0
   if v:count == 0 || a:val
     let line = getline('.')
@@ -289,12 +290,12 @@ function RunCommand(val)
   end
 endfunction
 
-nnoremap <silent> <F2> :<C-u>call RunCommand(0)<CR>
+nnoremap <silent> <F2> :<C-u>call <SID>RunCommand(0)<CR>
 vnoremap <silent> <F2> y:<C-u>exe getreg('"')<CR>
 if exists(":keeppatterns")
-  command -range RunCommand execute 'keeppatterns' <line1> . ',' . <line2> . 'global/' . g:command_prefix . '/call RunCommand("1")'
+  command -range RunCommand execute 'keeppatterns' <line1> . ',' . <line2> . 'global/' . g:command_prefix . '/call <SID>RunCommand("1")'
 else
-  command -range RunCommand execute <line1> . ',' . <line2> . 'global/' . g:command_prefix . '/call RunCommand("1")'
+  command -range RunCommand execute <line1> . ',' . <line2> . 'global/' . g:command_prefix . '/call <SID>RunCommand("1")'
 endif
 " Save the current line as a vimcmd so I can reference it in some other file.
 " Thought about having a full pathname, so the cwd of the vim process doesn't
@@ -410,7 +411,7 @@ filetype plugin on
 filetype indent on
 
 " Set scripts to be executable from the shell
-function MakeExecutableIfScript()
+function s:MakeExecutableIfScript()
   let firstline = getline(1)
   if l:firstline =~ "^#!"
     if l:firstline =~ "/bin/"
@@ -420,38 +421,54 @@ function MakeExecutableIfScript()
 endfunction
 
 if !has('win32')
-  au BufWritePost * call MakeExecutableIfScript()
+  au BufWritePost * call <SID>MakeExecutableIfScript()
 endif
 
 " When executing automatic commands, wait until finished
 set lazyredraw
 
 " Scratch file function from http://dhruvasagar.com/tag/vim
-function ScratchEdit(cmd, options)
+function s:ScratchEdit(cmd, options)
   exe a:cmd tempname()
   setlocal buftype=nofile bufhidden=wipe nobuflisted
   if !empty(a:options) | exe 'setl' a:options | endif
 endfunction
 
-command -bar -nargs=* Sedit call ScratchEdit('edit', <q-args>)
-command -bar -nargs=* Ssedit call ScratchEdit('split', <q-args>)
-command -bar -nargs=* Svedit call ScratchEdit('vsplit', <q-args>)
-command -bar -nargs=* Stabedit call ScratchEdit('tabe', <q-args>)
+command -bar -nargs=* Sedit call <SID>ScratchEdit('edit', <q-args>)
+command -bar -nargs=* Ssedit call <SID>ScratchEdit('split', <q-args>)
+command -bar -nargs=* Svedit call <SID>ScratchEdit('vsplit', <q-args>)
+command -bar -nargs=* Stabedit call <SID>ScratchEdit('tabe', <q-args>)
 
 " Function to move/copy lines whether they're inside folds or not
-command -nargs=* O call WithOpenFolds(<q-args>)
+command -nargs=* O call <SID>WithOpenFolds(<q-args>)
 
-function WithOpenFolds(command)
+function s:WithOpenFolds(command)
   normal zn
   execute a:command
   normal zN
 endfunction
 
+" Command to ask whether to save each modified buffer.
+function s:AskAndSave()
+  let modified_buffers = getbufinfo({'bufloaded': 1, 'bufmodified': 1})
+  let curbuf = bufnr()
+  for info in modified_buffers
+    let bufname = bufname(info['bufnr'])
+    let shouldsave = confirm('Save modifications in '.bufname.'?', "&Yes\n&No")
+    if shouldsave == 1
+      execute 'buffer '.info['bufnr']
+      write
+      execute 'buffer '.curbuf
+    endif
+  endfor
+endfunction
+command SaveSomeBuffers call <SID>AskAndSave()
+
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Filters {{{
-function CompareLength(line1, line2) abort
+function s:CompareLength(line1, line2) abort
   let [length1, length2] = [strchars(a:line1), strchars(a:line2)]
   if length1 < length2
     return 1
@@ -464,16 +481,16 @@ function CompareLength(line1, line2) abort
   endif
 endfunction
 
-function SortByLength(reverse) range abort
+function s:SortByLength(reverse) range abort
   let lines_to_sort = getline(a:firstline, a:lastline)
   if a:reverse
-    call setline(a:firstline, reverse(sort(lines_to_sort, "CompareLength")))
+    call setline(a:firstline, reverse(sort(lines_to_sort, "<SID>CompareLength")))
   else
-    call setline(a:firstline, sort(lines_to_sort, "CompareLength"))
+    call setline(a:firstline, sort(lines_to_sort, "<SID>CompareLength"))
   endif
 endfunction
 
-command -bang -range Lensort <line1>,<line2>call SortByLength(<bang>0)
+command -bang -range Lensort <line1>,<line2>call <SID>SortByLength(<bang>0)
 
 " NOTE: it appears that a `range` attribute on one function doesn't get passed
 " over vimL calls.
@@ -482,7 +499,7 @@ command -bang -range Lensort <line1>,<line2>call SortByLength(<bang>0)
 " arguments.
 " This is why there's this implementation function that takes range arguments
 " explicitly.
-function ReplaceShared(lines, first, last) abort
+function s:ReplaceShared(lines, first, last) abort
   " Question is: Do I want to save the original lines?
   " I'm currently leaning towards "yes", but I may get annoyed by this in the
   " future.
@@ -494,16 +511,16 @@ function ReplaceShared(lines, first, last) abort
   call setpos("']", [0, a:first + len(a:lines) - 1, len(a:lines[-1]), 0])
   echom (a:last - a:first + 1) . ' lines replaced with ' . len(a:lines) . ' lines'
 endfunction
-function ReplaceText(lines) range abort
-  call ReplaceShared(a:lines, a:firstline, a:lastline)
+function s:ReplaceText(lines) range abort
+  call s:ReplaceShared(a:lines, a:firstline, a:lastline)
 endfunction
-function ReplaceReg(...) range abort
+function s:ReplaceReg(...) range abort
   let register = a:0 == '' ? v:register : a:1
-  call ReplaceShared(getreg(register, 1, v:true), a:firstline, a:lastline)
+  call s:ReplaceShared(getreg(register, 1, v:true), a:firstline, a:lastline)
 endfunction
 
-command -bar -register -range ReplaceReg <line1>,<line2>call ReplaceReg(<reg>)
-command -bar -range -nargs=+ Replace <args>call ReplaceText(getline(<line1>,<line2>))
+command -bar -register -range ReplaceReg <line1>,<line2>call <SID>ReplaceReg(<reg>)
+command -bar -range -nargs=+ Replace <args>call <SID>ReplaceText(getline(<line1>,<line2>))
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -591,7 +608,7 @@ set belloff=
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" {{{ Netrw
+" {{{ Netrw 
 
 " Make gx open the file under cursor with whatever program it requires.
 " NOTE: URL's require 'http://' at the front
@@ -674,9 +691,11 @@ set timeoutlen=1000
 " incremental searches
 set incsearch
 
-" When running under zsh, have a problem with 'grep -s ...'
-" could do stuff with NO_NOMATCH, but for compatibility with other boxes, just
-" use bash
+" When running under zsh, have a problem with 'grep -s ...' because during
+" shell expansion zsh may complain about filename generation having no matches
+" (whereas bash leaves that pattern on the command line without any warning).
+" could do stuff with zsh's option NO_NOMATCH, but for compatibility with other
+" boxes, just use bash
 if has('unix')
   set shell=bash
 elseif has('win32')
