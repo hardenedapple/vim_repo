@@ -1,3 +1,7 @@
+if vim.list_contains(vim.g.pathogen_disabled, 'telescope') then
+  return
+end
+
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 local action_layout = require("telescope.actions.layout")
@@ -25,7 +29,6 @@ local function args_selection(prompt_bufnr, cmd)
 	for _, entry in ipairs(picker:get_multi_selection()) do
 		table.insert(args, from_entry.path(entry))
 	end
-	local prompt = picker:_get_prompt()
 	actions.close(prompt_bufnr)
 	local argcmd = string.format([[%s %s]], cmd, table.concat(args, " "))
 	vim.cmd(argcmd)
@@ -114,12 +117,14 @@ require('telescope').setup{
 	}
 }
 
-require('telescope').load_extension('fzy_native')
-require('telescope').load_extension('project')
--- This isn't doing what I want yet.
+-- ui-select isn't doing what I want yet.
 -- I was hoping it would handle the standard vim completion interface, but it
 -- doesn't do that -- it handles some subset (see `:help vim.ui.select()`).
-require('telescope').load_extension('ui-select')
+for _, suffix in ipairs({ 'fzy_native', 'project', 'ui-select' }) do
+  if not vim.list_contains(vim.g.pathogen_disabled, suffix) then
+    require('telescope').load_extension(suffix)
+  end
+end
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>cpf', builtin.find_files, {desc = "find files"})

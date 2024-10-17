@@ -1,9 +1,5 @@
--- TODO Check for `snippets' being in vim.g.pathogen and `return' from this
--- script.
-for _,v in pairs(vim.g.pathogen_disabled) do
-	if v == 'snippets' then
-		return
-	end
+if vim.list_contains(vim.g.pathogen_disabled, 'snippets') then
+  return
 end
 
 local snippets = require('snippets')
