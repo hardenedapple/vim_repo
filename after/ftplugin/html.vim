@@ -8,7 +8,7 @@ setlocal shiftwidth=2
 " Mapping to g:UltiSnipsJumpForwardTrigger so that pressing that key jumps out
 " of the tag whether I've defined the snippet to do so or not.
 if exists('g:UltiSnipsJumpForwardTrigger')
-  execute "inoremap " . g:UltiSnipsJumpForwardTrigger . " <esc>vitf><esc>a"
+  execute "inoremap <buffer>" . g:UltiSnipsJumpForwardTrigger . " <esc>vitf><esc>a"
 else
-  inoremap <C-j> <esc>vitf><esc>a
+  inoremap <buffer> <C-j> <esc>vitf><esc>a
 endif
