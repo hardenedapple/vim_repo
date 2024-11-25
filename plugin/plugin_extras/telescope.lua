@@ -2,11 +2,37 @@ if vim.list_contains(vim.g.pathogen_disabled, 'telescope') then
   return
 end
 
+local telescope = require('telescope')
+local builtin = require('telescope.builtin')
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 local action_layout = require("telescope.actions.layout")
 local from_entry = require("telescope.from_entry")
 local transform_mod = require("telescope.actions.mt").transform_mod
+local project = require('telescope').extensions.project
+local project_actions = require('telescope._extensions.project.actions')
+local project_utils = require("telescope._extensions.project.utils")
+
+-- Choose an open buffer within the selected project using the Telescope
+-- builtin `buffers`.
+local function buffers_in_project(prompt_bufnr)
+  local project_path = project_actions.get_selected_path(prompt_bufnr)
+  actions._close(prompt_bufnr, true)
+  local cd_scope = project_actions.get_cd_scope()
+  local cd_scope_map = {
+    tab = "tcd",
+    window = "lcd",
+    global = "cd",
+  }
+  local cd_successful = project_utils.change_project_dir(project_path, cd_scope_map[cd_scope])
+  if cd_successful then
+    vim.schedule(function()
+      builtin.buffers({cwd_only = true})
+    end)
+  end
+end
+
+
 
 -- TODO
 --	1) Add mapping to arglist picker that removes the selected buffer from the
@@ -56,7 +82,7 @@ arglist_actions.badd = {
 }
 arglist_actions = transform_mod(arglist_actions)
 
-require('telescope').setup{
+telescope.setup{
 	defaults = {
 		-- Default configuration for telescope goes here:
 		-- config_key = value,
@@ -113,6 +139,34 @@ require('telescope').setup{
 			-- please take a look at the readme of the extension you want to configure
 		project = {
 			cd_scope = { "tab", "global", "window" },
+      mappings = {
+        n = {
+          ['d'] = project_actions.delete_project,
+          ['r'] = project_actions.rename_project,
+          ['c'] = project_actions.add_project,
+          ['C'] = project_actions.add_project_cwd,
+          ['f'] = project_actions.find_project_files,
+          ['b'] = buffers_in_project,
+          ['s'] = project_actions.search_in_project_files,
+          ['R'] = project_actions.recent_project_files,
+          ['w'] = project_actions.change_working_directory,
+          ['o'] = project_actions.next_cd_scope,
+        },
+        i = {
+          ['<c-d>'] = project_actions.delete_project,
+          ['<c-v>'] = project_actions.rename_project,
+          ['<c-a>'] = project_actions.add_project,
+          ['<c-A>'] = project_actions.add_project_cwd,
+          ['<c-f>'] = project_actions.find_project_files,
+          ['<c-b>'] = buffers_in_project,
+          ['<c-s>'] = project_actions.search_in_project_files,
+          ['<c-r>'] = project_actions.recent_project_files,
+          ['<c-l>'] = project_actions.change_working_directory,
+          ['<c-o>'] = project_actions.next_cd_scope,
+          -- Want to be able to delete a word I just typed.
+          -- ['<c-w>'] = project_actions.change_workspace,
+        }
+      }
 		}
 	}
 }
@@ -149,8 +203,8 @@ vim.keymap.set('n', '<leader>cp[', builtin.lsp_workspace_symbols, {desc = "lsp w
 vim.keymap.set('n', '<leader>cpt', builtin.treesitter, {desc = 'treesitter symbols'})
 vim.keymap.set('n', '<leader>cpj', builtin.jumplist, {desc = 'jumplist'})
 vim.keymap.set('n', '<leader>cpq', builtin.quickfix, {desc = 'quickfix'})
+vim.keymap.set('n', '<leader>cpm', builtin.keymaps, {desc = 'keymaps'})
 
-local project = require('telescope').extensions.project
 vim.keymap.set('n', '<leader>cpp', project.project, {desc = 'project'})
 
 require('telescope').load_extension('arglist')
