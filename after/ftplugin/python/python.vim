@@ -1,11 +1,3 @@
-" set foldmethod=indent
-setlocal comments=:#
-setlocal commentstring=#%s
-setlocal textwidth=79
-
-setlocal fo+=crot
-setlocal define=^\s*\\(def\\\\|class\\)
-
 " Don't use semicolon very often in python
 if has('keymap')
 	lnoremap <buffer> ; :
