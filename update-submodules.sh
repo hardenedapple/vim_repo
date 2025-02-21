@@ -4,183 +4,27 @@
 # so this is not pretty, but it at least gets the job done.
 cd ~/.vim
 
-pushd bundle/abolish
-git checkout master
-git pull
-popd
-pushd bundle/arduinosyntax
-git checkout master
-git pull
-popd
-pushd bundle/commentary
-git checkout master
-git pull
-popd
-pushd bundle/ctrlp
-git checkout master
-git pull
-popd
-pushd bundle/ctrlp-funky
-git checkout main
-git pull
-popd
-pushd bundle/dentures
-git checkout master
-git pull
-popd
-pushd bundle/dispatch
-git checkout master
-git pull
-popd
-pushd bundle/easygrep
-git checkout master
-git pull
-popd
-pushd bundle/eunuch
-git checkout master
-git pull
-popd
-pushd bundle/exchange
-git checkout master
-git pull
-popd
-pushd bundle/friendly-snippets
-git checkout main
-git pull
-popd
-pushd bundle/fugitive
-git checkout master
-git pull
-popd
-pushd bundle/gnupg
-git checkout master
-git pull
-popd
-pushd bundle/grepper
-git checkout master
-git pull
-popd
-pushd bundle/gv
-git checkout master
-git pull
-popd
-pushd bundle/lawrencium
-git checkout master
-git pull
-popd
-pushd bundle/linediff
-git checkout master
-git pull
-popd
-pushd bundle/neomake
-git checkout master
-git pull
-popd
-pushd bundle/nvim-lspconfig
-git checkout master
-git pull
-popd
-pushd bundle/nvim-snippets
-git checkout main
-git pull
-popd
-pushd bundle/nvim-treesitter
-git checkout master
-git pull
-popd
-pushd bundle/nvim-treesitter-context
-git checkout master
-git pull
-popd
-pushd bundle/nvim-treesitter-textobjects
-git checkout master
-git pull
-popd
-pushd bundle/obsession
-git checkout master
-git pull
-popd
-pushd bundle/orgmode
-git checkout master
-git pull
-popd
-pushd bundle/pathogen
-git checkout master
-git pull
-popd
-pushd bundle/plenary
-git checkout master
-git pull
-popd
-pushd bundle/repeat
-git checkout master
-git pull
-popd
-pushd bundle/sideways
-git checkout master
-git pull
-popd
-pushd bundle/sneak
-git checkout master
-git pull
-popd
-pushd bundle/snippets
-git checkout master
-git pull
-popd
-pushd bundle/submode
-git checkout master
-git pull
-popd
-pushd bundle/surround
-git checkout master
-git pull
-popd
-pushd bundle/tabular
-git checkout master
-git pull
-popd
-pushd bundle/telescope
-git checkout master
-git pull
-popd
-pushd bundle/telescope-arglist
-git checkout main
-git pull
-popd
-pushd bundle/telescope-fzy-native
-git checkout master
-git pull
-popd
-pushd bundle/telescope-project
-git checkout master
-git pull
-popd
-pushd bundle/telescope-ui-select
-git checkout master
-git pull
-popd
-pushd bundle/undotree
-git checkout master
-git pull
-popd
-pushd bundle/unimpaired
-git checkout master
-git pull
-popd
-pushd bundle/vimfindsme
-git checkout master
-git pull
-popd
-pushd bundle/vimple
-git checkout master
-git pull
-popd
-pushd bundle/visualstar
-git checkout master
-git pull
-popd
-pushd bundle/vsh
-git checkout master
-git pull
-popd
+do_update () {
+    branch=${2:-master}
+    if pushd $1 >/dev/null; then
+        echo $1
+        git checkout -q $2
+        git pull --ff-only | grep -v 'Already up to date.'
+        popd > /dev/null
+    else
+        echo "XXX -- $1 missing!! XXX"
+    fi
+}
+
+for i in abolish arduinosyntax commentary ctrlp dentures dispatch easygrep eunuch exchange fugitive grepper gv lawrencium linediff neomake nvim-lspconfig nvim-treesitter nvim-treesitter-context nvim-treesitter-textobjects obsession orgmode pathogen plenary repeat sideways sneak snippets submode surround tabular telescope telescope-project telescope-ui-select undotree unimpaired vimfindsme vimple visualstar vsh
+do
+    do_update bundle/$i
+done
+
+for i in ctrlp-funky friendly-snippets gnupg nvim-snippets telescope-arglist
+do
+    do_update bundle/$i main
+done
+
+# Possibly something to do with orgmode -- depends on what changes I make and
+# what is useful.
