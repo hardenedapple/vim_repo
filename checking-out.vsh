@@ -1,6 +1,6 @@
 vshcmd: > ./update-submodules.sh
+bundle/abolish
+bundle/arduinosyntax
+bundle/commentary
 
-vshcmd: > cd bundle/telescope-project/
-vshcmd: > git am ../../0001-Add-choose-buffer-action-after-selecting-projects.patch
-Applying: Add "choose buffer" action after selecting projects
-telescope-project [15:14:32] $ 
+.vim [12:29:15] $ 
