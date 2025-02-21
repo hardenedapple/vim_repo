@@ -7,7 +7,13 @@ vim.api.nvim_create_augroup('personal_lsp', { clear = true })
 require('lspconfig').rust_analyzer.setup({})
 
 -- Similar for pylsp.
-require('lspconfig').pylsp.setup({})
+require('lspconfig').pylsp.setup({
+  -- Enable mypy (type checking)
+  -- N.b. I'm going to enable type checking using `pyproject.toml` on a
+  -- per-project basis instead of always on.  There are enough times where I
+  -- don't want to use typing that having this always on would be annoying.
+  -- settings = { pylsp = { plugins = { mypy = { enabled = true } } } }
+})
 
 -- For the moment this will likely work, since I only work on large C/C++
 -- projects in git.
