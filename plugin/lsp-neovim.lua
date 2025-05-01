@@ -41,6 +41,13 @@ vim.api.nvim_create_autocmd('FileType', {
 		end
 	end
 })
+function ClangdSingleFile()
+  vim.lsp.start({
+    name = 'clangd LSP server',
+    cmd = {'clangd'},
+    root_dir = vim.fs.dirname(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
+  })
+end
 
 -- Using this LSP:  https://github.com/bergercookie/asm-lsp
 -- Documentation mentions that it requires a `.git` directory, so we ensure
