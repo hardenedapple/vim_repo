@@ -22,7 +22,9 @@ if version > 580
 endif
 let g:colors_name="techras"
 
-hi Normal    guifg=#ffffff guibg=#000000
+" Originally I had #ffffff, that is just too bright.  Especially for low-light
+" environments (which is where I like this colorscheme).
+hi Normal    guifg=#c0c0c0 guibg=#000000
 
 " GUI section
 " {{{ Cursor
@@ -44,13 +46,13 @@ hi DiffDelete     guifg=#3f3f00  guibg=#3f0000
 " {{{ Folding / Line Numbering / Status Lines
 hi Folded    guifg=#878700 guibg=NONE gui=bold
 "hi vimFold     guibg=#ECECEC guifg=#808080 gui=bold
-hi FoldColumn    guifg=#00ffff guibg=NONE gui=NONE
+hi FoldColumn    guifg=#00b0b0 guibg=NONE gui=NONE
 
 hi LineNr     guifg=#008000  guibg=NONE gui=NONE
-hi NonText   guifg=#0000ff guibg=NONE gui=NONE
+hi NonText   guifg=#3030ff guibg=NONE gui=NONE
 
-hi VertSplit     guifg=#00ffd7 guibg=NONE gui=NONE
-hi StatusLine    guifg=#00ffff guibg=NONE gui=NONE
+hi VertSplit     guifg=#00b0d7 guibg=NONE gui=NONE
+hi StatusLine    guifg=#00b0b0 guibg=NONE gui=NONE
 hi StatusLineNC  guifg=#303030 guibg=NONE gui=NONE
 " }}}
 
@@ -61,9 +63,9 @@ hi MoreMsg   guifg=#008000
 
 hi Title     guifg=#800080
 hi WarningMsg    guifg=#800000
-hi SpecialKey    guifg=#000080
+hi SpecialKey    guifg=#3030ff
 
-hi MatchParen    guibg=#00ffff ctermbg=grey
+hi MatchParen    guibg=#00b0b0 ctermbg=grey
 hi Underlined    guifg=#800080 gui=underline
 hi Directory     guifg=#000080
 " }}}
@@ -78,31 +80,31 @@ hi Search    guibg=#303030 guifg=NONE
 " }}}
 
 " {{{ Syntax groups
-hi Ignore       guifg=#ffffff
-hi Identifier   guifg=#00ffff
+hi Ignore       guifg=#b0b0b0
+hi Identifier   guifg=#00b0b0
 hi PreProc      guifg=#c000c0
-hi Comment      guifg=#005fff gui=italic
+hi Comment      guifg=#5f5fff gui=italic
 hi Constant     guifg=#005faf
-hi String       guifg=#ff0000
-hi Function     guifg=#00ffff
-hi Statement    guifg=#ff8700 gui=NONE
-hi Type         guifg=#00ff00  gui=NONE
-hi Number       guifg=#ff0000
+hi String       guifg=#b00000
+hi Function     guifg=#00b0b0
+hi Statement    guifg=#b08700 gui=NONE
+hi Type         guifg=#00b000  gui=NONE
+hi Number       guifg=#b00000
 " don't like this - want to improve
-hi Todo  guifg=#000000 guibg=#ffff00
+hi Todo  guifg=#000000 guibg=#b0b000
 hi Special   guifg=#c000c0
 "Might want to change this, it's pretty ugly, (always made me fix it)
-hi Error        guifg=#ffffff guibg=#ff0000
-hi Label        guifg=#ff8700
-hi StorageClass guifg=#00ff00 gui=NONE
-hi Structure    guifg=#00ff00 gui=NONE
-hi TypeDef      guifg=#00ff00 gui=NONE
+hi Error        guifg=#b0b0b0 guibg=#b00000
+hi Label        guifg=#b08700
+hi StorageClass guifg=#00b000 gui=NONE
+hi Structure    guifg=#00b000 gui=NONE
+hi TypeDef      guifg=#00b000 gui=NONE
 " }}}
 
 " Python specific {{{
 "hi pythonExceptions guifg=###### guibg=###### gui=
 "hi pythonFunction
-hi pythonBuiltin guifg=#00ff00
+hi pythonBuiltin guifg=#00b000
 " }}}
 
 " Vim specific {{{
@@ -118,7 +120,7 @@ hi pythonBuiltin guifg=#00ff00
 " }}}
 
 " {{{ Completion menus
-hi WildMenu  guifg=#000000 guibg=#ffff00
+hi WildMenu  guifg=#000000 guibg=#b0b000
 
 hi Pmenu     guibg=#000080
 hi PmenuSel  guibg=#800080
@@ -128,10 +130,10 @@ hi PmenuThumb    guibg=#000000
 
 " {{{ Spelling
 "NOTE: haven't actually chosen any of this - will have to look at it again
-hi spellBad  guibg=#ffd7d7
-hi spellCap  guibg=#5fd7ff
-hi spellRare     guibg=#ffd7ff
-hi spellLocal    guibg=#00ffff
+hi spellBad  guibg=#b0d7d7
+hi spellCap  guibg=#5fd7b0
+hi spellRare     guibg=#b0d7b0
+hi spellLocal    guibg=#00b0b0
 " }}}
 
 " {{{ Aliases
@@ -162,6 +164,16 @@ hi spellLocal    guibg=#00ffff
 hi TabLine   guifg=#000000 guibg=#c0c0c0 gui=underline
 hi TabLineFill   gui=reverse
 hi TabLineSel    gui=bold
+" }}}
+
+" {{{ Treesitter links
+" Not done much work here, just the majority of text in programming buffers.
+" Seems like for some reason the `syntax reset` at the top of this file doesn't
+" clear the @variable syntax group, so we do it manually here.
+highlight clear @variable
+highlight link @variable Normal
+highlight link @variable.parameter Normal
+highlight link @variable.member Normal
 " }}}
 "
 "
