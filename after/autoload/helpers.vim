@@ -285,3 +285,10 @@ function helpers#FilterQuickfixListByPosition(bang, line1, line2, new_list)
         \ a:new_list ? ' ' : 'r')
 endfunction
 
+
+" Mostly here to record which light colorschemes seem to be nicest.
+function helpers#LightColorscheme()
+  set background=light
+  " colorscheme PaperColor
+  colorscheme habilight
+endfunction
