@@ -464,6 +464,11 @@ function s:AskAndSave()
 endfunction
 command SaveSomeBuffers call <SID>AskAndSave()
 
+function s:RemovePerfTokens(startline, endline)
+  execute a:startline.','.a:endline.'s/\s\+\(▒\|◆\)//ge'
+endfunction
+command -range=% ConfigRemovePerfTokens call <SID>RemovePerfTokens(<line1>, <line2>)
+
 "}}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -503,7 +508,7 @@ function s:ReplaceShared(lines, first, last) abort
   " Question is: Do I want to save the original lines?
   " I'm currently leaning towards "yes", but I may get annoyed by this in the
   " future.
-  execute 'silent 'a:first.','.a:last.'d'
+  execute 'silent '.a:first.','.a:last.'d'
   call append(a:first - 1, a:lines)
   " Want to leave '[ and '] surrounding the text we just inserted.
   " Putting '] on the last inserted character matches the behaviour of 'p' on a
