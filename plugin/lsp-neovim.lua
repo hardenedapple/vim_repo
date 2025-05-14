@@ -171,6 +171,22 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 		virtual_text = false,
 	}
 )
+-- Do not have inlay hints in insert mode.
+-- They're really annoying.  Seem to keep pushing where I'm typing around all
+-- over the place.
+-- Not 100% confident that this will be something I like, but we'll try it out.
+vim.api.nvim_create_autocmd('InsertEnter', {
+  group = 'personal_lsp',
+  callback = function(_)
+    vim.lsp.inlay_hint.enable(false, {bufnr=0})
+  end
+})
+vim.api.nvim_create_autocmd('InsertLeavePre', {
+  group = 'personal_lsp',
+  callback = function(_)
+    vim.lsp.inlay_hint.enable(true, {bufnr=0})
+  end
+})
 
 -- Really need a get-out clause for plain tags.
 -- Am getting bad results from both sides enough that having both helps
