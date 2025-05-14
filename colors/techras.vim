@@ -49,11 +49,11 @@ hi Folded    guifg=#878700 guibg=NONE gui=bold
 hi FoldColumn    guifg=#00b0b0 guibg=NONE gui=NONE
 
 hi LineNr     guifg=#008000  guibg=NONE gui=NONE
-hi NonText   guifg=#3030ff guibg=NONE gui=NONE
+hi NonText   guifg=#858585 guibg=NONE gui=NONE
 
 hi VertSplit     guifg=#00b0d7 guibg=NONE gui=NONE
 hi StatusLine    guifg=#00b0b0 guibg=NONE gui=NONE
-hi StatusLineNC  guifg=#303030 guibg=NONE gui=NONE
+hi StatusLineNC  guifg=#707070 guibg=NONE gui=NONE
 " }}}
 
 
@@ -61,13 +61,13 @@ hi StatusLineNC  guifg=#303030 guibg=NONE gui=NONE
 hi ModeMsg   gui=bold
 hi MoreMsg   guifg=#008000
 
-hi Title     guifg=#800080
+hi Title     guifg=#a020a0
 hi WarningMsg    guifg=#800000
 hi SpecialKey    guifg=#3030ff
 
 hi MatchParen    guibg=#00b0b0 ctermbg=grey
 hi Underlined    guifg=#800080 gui=underline
-hi Directory     guifg=#000080
+hi Directory     guifg=#5050e0
 " }}}
 
 " {{{ Search, Visual, etc
@@ -167,13 +167,15 @@ hi TabLineSel    gui=bold
 " }}}
 
 " {{{ Treesitter links
-" Not done much work here, just the majority of text in programming buffers.
-" Seems like for some reason the `syntax reset` at the top of this file doesn't
-" clear the @variable syntax group, so we do it manually here.
-highlight clear @variable
-highlight link @variable Normal
-highlight link @variable.parameter Normal
-highlight link @variable.member Normal
+if has('nvim')
+  " Not done much work here, just the majority of text in programming buffers.
+  " Seems like for some reason the `syntax reset` at the top of this file doesn't
+  " clear the @variable syntax group, so we do it manually here.
+  highlight clear @variable
+  highlight link @variable Normal
+  highlight link @variable.parameter Normal
+  highlight link @variable.member Normal
+endif
 " }}}
 "
 "
