@@ -159,18 +159,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	end,
 })
 
--- Get rid of the signs in the number column and the virtual text.
--- Can still ask the diagnostics to be shown in a location list (with the
--- key binding above), just don't want things cluttering up my view without
--- explicitly asking for them.
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-	vim.lsp.diagnostic.on_publish_diagnostics, {
-		-- Disable signs
-		signs = false,
-		-- Disable virtual_text
-		virtual_text = false,
-	}
-)
 -- Do not have inlay hints in insert mode.
 -- They're really annoying.  Seem to keep pushing where I'm typing around all
 -- over the place.
