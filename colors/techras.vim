@@ -54,6 +54,9 @@ hi NonText   guifg=#858585 guibg=NONE gui=NONE
 hi VertSplit     guifg=#00b0d7 guibg=NONE gui=NONE
 hi StatusLine    guifg=#00b0b0 guibg=NONE gui=NONE
 hi StatusLineNC  guifg=#707070 guibg=NONE gui=NONE
+
+hi TabLine  guifg=#909090 guibg=#282828 gui=NONE
+hi TabLineFill  guifg=#909090 guibg=#282828 gui=NONE
 " }}}
 
 
@@ -85,11 +88,11 @@ hi Identifier   guifg=#00b0b0
 hi PreProc      guifg=#c000c0
 hi Comment      guifg=#5f5fff gui=italic
 hi Constant     guifg=#005faf
-hi String       guifg=#b00000
+hi String       guifg=#f03030
 hi Function     guifg=#00b0b0
 hi Statement    guifg=#b08700 gui=NONE
 hi Type         guifg=#00b000  gui=NONE
-hi Number       guifg=#b00000
+hi Number       guifg=#f03030
 " don't like this - want to improve
 hi Todo  guifg=#000000 guibg=#b0b000
 hi Special   guifg=#c000c0
@@ -175,73 +178,76 @@ if has('nvim')
   highlight link @variable Normal
   highlight link @variable.parameter Normal
   highlight link @variable.member Normal
+  highlight link @number Number
 endif
 " }}}
 "
 "
 " Cterm options
 if &t_Co==8
-  highlight LineNr ctermfg=LightGreen
-  highlight CursorColumn cterm=standout ctermfg=Gray ctermbg=NONE
-  highlight CursorLine cterm=bold ctermfg=NONE ctermbg=DarkBlue
-  highlight Folded cterm=bold ctermfg=blue ctermbg=NONE
-  highlight StatusLine cterm=NONE ctermbg=NONE ctermfg=DarkCyan
-  highlight StatusLineNC cterm=NONE ctermbg=NONE ctermfg=Gray
-  highlight Comment      cterm=NONE ctermfg=6
-  highlight FoldColumn cterm=NONE ctermfg=Cyan ctermbg=NONE
-  highlight String       cterm=NONE        ctermfg=1      ctermbg=NONE
+  highlight LineNr       cterm=NONE          ctermbg=NONE      ctermfg=LightGreen
+  highlight CursorColumn cterm=standout      ctermbg=NONE      ctermfg=Gray
+  highlight CursorLine   cterm=bold          ctermbg=DarkBlue  ctermfg=NONE
+  highlight Folded       cterm=bold          ctermbg=NONE      ctermfg=blue
+  highlight StatusLine   cterm=NONE          ctermbg=NONE      ctermfg=DarkCyan
+  highlight StatusLineNC cterm=NONE          ctermbg=NONE      ctermfg=Gray
+  highlight Comment      cterm=NONE          ctermbg=NONE      ctermfg=6
+  highlight FoldColumn   cterm=NONE          ctermbg=NONE      ctermfg=Cyan
+  highlight String       cterm=NONE          ctermbg=NONE      ctermfg=1
 elseif &t_Co==256
-  highlight Normal       cterm=NONE        ctermfg=15     ctermbg=NONE
-  highlight Comment ctermfg=27 cterm=NONE ctermbg=NONE
-  highlight LineNr cterm=NONE ctermfg=DarkGreen
-  highlight FoldColumn cterm=NONE ctermfg=Cyan ctermbg=NONE
-  highlight Folded       cterm=bold   ctermfg=100    ctermbg=NONE
-  highlight CursorColumn cterm=NONE ctermfg=NONE ctermbg=236
-  highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=234
-  highlight Folded cterm=bold ctermfg=100 ctermbg=NONE
-  highlight Search cterm=NONE ctermfg=NONE ctermbg=235
-  highlight Pmenu cterm=NONE ctermfg=NONE ctermbg=darkblue
-  highlight Pmenusel cterm=NONE ctermfg=NONE ctermbg=darkmagenta
-  highlight StatusLine   cterm=NONE   ctermfg=51     ctermbg=NONE
-  highlight StatusLineNC cterm=NONE ctermbg=NONE ctermfg=Gray
-  highlight DiffAdd      cterm=NONE        ctermfg=NONE   ctermbg=22
-  highlight DiffChange   cterm=NONE        ctermfg=NONE   ctermbg=53
-  highlight DiffText     cterm=bold        ctermfg=NONE   ctermbg=23
-  highlight DiffDelete   cterm=NONE        ctermfg=58     ctermbg=52
-  highlight NonText      cterm=NONE        ctermfg=12     ctermbg=NONE
-  highlight VertSplit    cterm=NONE        ctermfg=50     ctermbg=NONE
-  highlight ModeMsg      cterm=bold        ctermfg=NONE   ctermbg=NONE
-  highlight MoreMsg      cterm=NONE        ctermfg=2      ctermbg=NONE
-  highlight Title        cterm=NONE        ctermfg=5      ctermbg=NONE
-  highlight WarningMsg   cterm=NONE        ctermfg=1      ctermbg=NONE
-  highlight SpecialKey   cterm=NONE        ctermfg=4      ctermbg=NONE
-  highlight MatchParen   cterm=NONE        ctermfg=14     ctermbg=NONE
-  highlight Underlined   cterm=underline   ctermfg=5      ctermbg=NONE
-  highlight Visual       cterm=NONE        ctermfg=NONE   ctermbg=17
-  highlight VisualNOS    cterm=bold        ctermfg=NONE   ctermbg=NONE
-  highlight IncSearch    cterm=reverse     ctermfg=NONE   ctermbg=NONE
-  highlight Ignore       cterm=NONE        ctermfg=15     ctermbg=NONE
-  highlight Identifier   cterm=NONE        ctermfg=6      ctermbg=NONE
-  highlight PreProc      cterm=NONE        ctermfg=5      ctermbg=NONE
-  highlight Constant     cterm=NONE        ctermfg=1      ctermbg=NONE
-  highlight String       cterm=NONE        ctermfg=1      ctermbg=NONE
-  highlight Function     cterm=NONE        ctermfg=6      ctermbg=NONE
-  highlight Statement    cterm=NONE        ctermfg=130    ctermbg=NONE
-  highlight Type         cterm=NONE        ctermfg=2      ctermbg=NONE
-  highlight Number       cterm=NONE        ctermfg=1      ctermbg=NONE
-  highlight Todo         cterm=NONE        ctermfg=0      ctermbg=30
-  highlight Special      cterm=NONE        ctermfg=5      ctermbg=NONE
-  highlight Error        cterm=NONE        ctermfg=15     ctermbg=9
-  highlight Label        cterm=NONE        ctermfg=130    ctermbg=NONE
-  highlight StorageClass cterm=NONE        ctermfg=2      ctermbg=NONE
-  highlight Structure    cterm=NONE        ctermfg=2      ctermbg=NONE
-  highlight TypeDef      cterm=NONE        ctermfg=2      ctermbg=NONE
-  highlight WildMenu     cterm=NONE        ctermfg=0      ctermbg=11
-  highlight PmenuSbar    cterm=NONE        ctermfg=NONE   ctermbg=248
-  highlight PmenuThumb   cterm=NONE        ctermfg=NONE   ctermbg=248
-  highlight TabLine      cterm=NONE        ctermfg=NONE   ctermbg=236
-  highlight TabLineFill  cterm=NONE        ctermfg=NONE   ctermbg=236
-  highlight TabLineSel   cterm=NONE        ctermfg=11     ctermbg=236
+  highlight Normal       cterm=NONE       ctermbg=NONE         ctermfg=15
+  highlight Comment      cterm=NONE       ctermbg=NONE         ctermfg=27
+  highlight LineNr       cterm=NONE       ctermfg=DarkGreen
+  highlight FoldColumn   cterm=NONE       ctermbg=NONE         ctermfg=Cyan
+  highlight Folded       cterm=bold       ctermbg=NONE         ctermfg=100
+  highlight CursorColumn cterm=NONE       ctermbg=236          ctermfg=NONE
+  highlight CursorLine   cterm=NONE       ctermbg=234          ctermfg=NONE
+  highlight Folded       cterm=bold       ctermbg=NONE         ctermfg=100
+  highlight Search       cterm=NONE       ctermbg=235          ctermfg=NONE
+  highlight Pmenu        cterm=NONE       ctermbg=darkblue     ctermfg=NONE
+  highlight Pmenusel     cterm=NONE       ctermbg=darkmagenta  ctermfg=NONE
+  highlight StatusLine   cterm=NONE       ctermbg=NONE         ctermfg=51
+  highlight StatusLineNC cterm=NONE       ctermbg=NONE         ctermfg=Gray
+  highlight TabLine      cterm=NONE       ctermbg=DarkGray     ctermfg=NONE
+  highlight TabLineFill  cterm=NONE       ctermbg=DarkGray     ctermfg=NONE
+  highlight DiffAdd      cterm=NONE       ctermbg=22           ctermfg=NONE
+  highlight DiffChange   cterm=NONE       ctermbg=53           ctermfg=NONE
+  highlight DiffText     cterm=bold       ctermbg=23           ctermfg=NONE
+  highlight DiffDelete   cterm=NONE       ctermbg=52           ctermfg=58
+  highlight NonText      cterm=NONE       ctermbg=NONE         ctermfg=12
+  highlight VertSplit    cterm=NONE       ctermbg=NONE         ctermfg=50
+  highlight ModeMsg      cterm=bold       ctermbg=NONE         ctermfg=NONE
+  highlight MoreMsg      cterm=NONE       ctermbg=NONE         ctermfg=2
+  highlight Title        cterm=NONE       ctermbg=NONE         ctermfg=5
+  highlight WarningMsg   cterm=NONE       ctermbg=NONE         ctermfg=1
+  highlight SpecialKey   cterm=NONE       ctermbg=NONE         ctermfg=4
+  highlight MatchParen   cterm=NONE       ctermbg=NONE         ctermfg=14
+  highlight Underlined   cterm=underline  ctermbg=NONE         ctermfg=5
+  highlight Visual       cterm=NONE       ctermbg=17           ctermfg=NONE
+  highlight VisualNOS    cterm=bold       ctermbg=NONE         ctermfg=NONE
+  highlight IncSearch    cterm=reverse    ctermbg=NONE         ctermfg=NONE
+  highlight Ignore       cterm=NONE       ctermbg=NONE         ctermfg=15
+  highlight Identifier   cterm=NONE       ctermbg=NONE         ctermfg=6
+  highlight PreProc      cterm=NONE       ctermbg=NONE         ctermfg=5
+  highlight Constant     cterm=NONE       ctermbg=NONE         ctermfg=1
+  highlight String       cterm=NONE       ctermbg=NONE         ctermfg=1
+  highlight Function     cterm=NONE       ctermbg=NONE         ctermfg=6
+  highlight Statement    cterm=NONE       ctermbg=NONE         ctermfg=130
+  highlight Type         cterm=NONE       ctermbg=NONE         ctermfg=2
+  highlight Number       cterm=NONE       ctermbg=NONE         ctermfg=1
+  highlight Todo         cterm=NONE       ctermbg=30           ctermfg=0
+  highlight Special      cterm=NONE       ctermbg=NONE         ctermfg=5
+  highlight Error        cterm=NONE       ctermbg=9            ctermfg=15
+  highlight Label        cterm=NONE       ctermbg=NONE         ctermfg=130
+  highlight StorageClass cterm=NONE       ctermbg=NONE         ctermfg=2
+  highlight Structure    cterm=NONE       ctermbg=NONE         ctermfg=2
+  highlight TypeDef      cterm=NONE       ctermbg=NONE         ctermfg=2
+  highlight WildMenu     cterm=NONE       ctermbg=11           ctermfg=0
+  highlight PmenuSbar    cterm=NONE       ctermbg=248          ctermfg=NONE
+  highlight PmenuThumb   cterm=NONE       ctermbg=248          ctermfg=NONE
+  highlight TabLine      cterm=NONE       ctermbg=236          ctermfg=NONE
+  highlight TabLineFill  cterm=NONE       ctermbg=236          ctermfg=NONE
+  highlight TabLineSel   cterm=NONE       ctermbg=236          ctermfg=11
 	if has('nvim')
 		highlight NormalFloat ctermbg=235
 	endif
