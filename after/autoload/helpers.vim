@@ -97,15 +97,12 @@ function helpers#working_environment(buffer_specific)
   return 'default'
 endfunction
 
-function helpers#toggle_colon()
-	if !has('keymap')
+function helpers#shiftmap_colon()
+	if !has('keymap') || &keymap != 'shifted_keys'
 		return
 	endif
   let mapdict = maparg(';', 'l', 0, 1)
-  if has_key(mapdict, 'buffer')
-    lunmap <buffer> ;
-    lunmap <buffer> :
-  else
+  if !has_key(mapdict, 'buffer')
     lnoremap <buffer> ; :
     lnoremap <buffer> : ;
   endif

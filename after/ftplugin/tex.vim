@@ -27,12 +27,3 @@ endif
 set makeprg=pdflatex\ -interaction\ nonstopmode\ %
 nnoremap [om :<C-U>set makeprg=pdflatex\ %<CR>
 nnoremap ]om :<C-U>set makeprg=make<CR>
-
-if has('keymap')
-  lnoremap <buffer> [ {
-  lnoremap <buffer> ] }
-  lnoremap <buffer> { [
-  lnoremap <buffer> } ]
-  lnoremap <buffer> : ;
-  lnoremap <buffer> ; :
-endif

@@ -1,8 +1,5 @@
 " Don't use semicolon very often in python
-if has('keymap')
-	lnoremap <buffer> ; :
-	lnoremap <buffer> : ;
-endif
+call helpers#shiftmap_colon()
 
 " Macro to go to and change the next occurance of TODO
 " require setreg  -  see

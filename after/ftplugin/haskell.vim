@@ -1,4 +1,1 @@
-if has('keymap')
-  lnoremap <buffer> ; :
-  lnoremap <buffer> : ;
-endif
+call helpers#shiftmap_colon()
