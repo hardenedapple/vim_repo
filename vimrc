@@ -399,6 +399,7 @@ endif
 " Specify some color groups for :match to use
 highlight link match1 ColorColumn
 highlight link match2 Todo
+highlight link match3 Error
 
 " Define the statusline.
 set statusline=%<\ %f\ #%n\ %h%m%r%=%k\ %-14.(%l,%c%V%)\ %P
