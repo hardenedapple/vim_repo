@@ -143,8 +143,18 @@ vim.api.nvim_create_autocmd('LspAttach', {
                    { buffer = args.buf, desc = 'code action' })
 		vim.keymap.set('n', '<localleader>n', vim.lsp.buf.rename,
                    { buffer = args.buf, desc = 'rename' })
+		vim.keymap.set('n', '<localleader>t', vim.lsp.buf.type_definition,
+                   { buffer = args.buf, desc = 'type definition' })
 		vim.keymap.set('i', '<C-q>', vim.lsp.buf.signature_help,
                    { buffer = args.buf, desc = 'signature' })
+    vim.keymap.set('n' , '<localleader>e', function()
+        -- Set a buffer local variable for the autocommands.
+        -- Actually toggle with `vim.lsp.inlay_hint.enable()
+        -- Default is on, no buffer local variable set behaves same as variable
+        -- set to `false`.
+        vim.b.lsp_config_hide_inlay = not vim.b.lsp_config_hide_inlay
+        vim.lsp.inlay_hint.enable(not vim.b.lsp_config_hide_inlay, { bufnr = 0 })
+      end, { buffer = args.buf, desc = 'toggle inlay' })
 		vim.lsp.inlay_hint.enable()
 		-- TODO
 		--    vim.lsp.buf.workspace_symbol  (can I use this instead of TQFSelect?)
@@ -166,13 +176,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.api.nvim_create_autocmd('InsertEnter', {
   group = 'personal_lsp',
   callback = function(_)
-    vim.lsp.inlay_hint.enable(false, {bufnr=0})
+    -- Always off when inserting text.
+    vim.lsp.inlay_hint.enable(false, { bufnr = 0 })
   end
 })
 vim.api.nvim_create_autocmd('InsertLeavePre', {
   group = 'personal_lsp',
   callback = function(_)
-    vim.lsp.inlay_hint.enable(true, {bufnr=0})
+    -- Turn on if vim.b.lsp_config_hide_inlay is either unset or turned on.
+    vim.lsp.inlay_hint.enable(not vim.b.lsp_config_hide_inlay, { bufnr = 0 })
   end
 })
 
