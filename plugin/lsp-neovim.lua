@@ -4,10 +4,10 @@
 vim.api.nvim_create_augroup('personal_lsp', { clear = true })
 
 -- Use defaults for rust_analyzer.
-require('lspconfig').rust_analyzer.setup({})
+vim.lsp.config('rust_analyzer', {})
 
 -- Similar for pylsp.
-require('lspconfig').pylsp.setup({
+vim.lsp.config('pylsp', {
   -- Enable mypy (type checking)
   -- N.b. I'm going to enable type checking using `pyproject.toml` on a
   -- per-project basis instead of always on.  There are enough times where I
@@ -75,7 +75,7 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- Setup taken directly from the help description.  Supposedly best for lua
 -- developement for neovim plugins.
-require'lspconfig'.lua_ls.setup {
+vim.lsp.config('lua_ls', {
   on_init = function(client)
     local path = client.workspace_folders[1].name
     if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
@@ -105,7 +105,7 @@ require'lspconfig'.lua_ls.setup {
   settings = {
     Lua = {}
   }
-}
+})
 ------------------------------
 -- Below has the "general" configuration stuff -- i.e. keybindings, settings
 -- for how to display diagnostics, etc.

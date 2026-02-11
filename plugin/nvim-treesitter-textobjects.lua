@@ -37,7 +37,7 @@
 --     @return.outer
 --     @scopename.inner
 --     @statement.outer
-require'nvim-treesitter.configs'.setup {
+require'nvim-treesitter-textobjects'.setup {
   textobjects = {
     select = {
       enable = true,
