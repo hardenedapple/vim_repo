@@ -16,12 +16,12 @@ do_update () {
     fi
 }
 
-for i in abolish arduinosyntax commentary ctrlp dentures dispatch easygrep eunuch exchange fugitive grepper gv lawrencium linediff neomake nvim-lspconfig nvim-treesitter nvim-treesitter-context nvim-treesitter-textobjects obsession orgmode pathogen plenary repeat sideways sneak snippets submode surround tabular telescope telescope-project telescope-ui-select undotree unimpaired vimfindsme vimple visualstar vsh
+for i in abolish arduinosyntax commentary ctrlp dentures dispatch easygrep eunuch exchange fugitive grepper gv lawrencium neomake nvim-lspconfig nvim-treesitter-context obsession orgmode pathogen plenary repeat sneak snippets submode surround tabular telescope telescope-project telescope-ui-select undotree unimpaired vimfindsme vimple visualstar vsh
 do
     do_update bundle/$i
 done
 
-for i in ctrlp-funky friendly-snippets gnupg nvim-snippets telescope-arglist
+for i in linediff ctrlp-funky friendly-snippets gnupg nvim-snippets telescope-arglist nvim-treesitter nvim-treesitter-textobjects sideways
 do
     do_update bundle/$i main
 done
